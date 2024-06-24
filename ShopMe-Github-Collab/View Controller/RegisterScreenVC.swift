@@ -9,11 +9,14 @@ import UIKit
 
 class RegisterScreenVC: UIViewController {
     
-    @IBOutlet weak var VwRegisterBgView: UIView!
+    
     
     @IBOutlet weak var TfEmail: UITextField!
     @IBOutlet weak var TfPassword: UITextField!
     @IBOutlet weak var TfConfirmPassword: UITextField!
+    @IBOutlet weak var TfEnterName: UITextField!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var btnShowPassword: UIButton!
     var DoShowPassword = false
@@ -25,7 +28,10 @@ class RegisterScreenVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         SetUI()
-        
+        registerKeyboardNotifications()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: - All IBActions
@@ -47,7 +53,7 @@ class RegisterScreenVC: UIViewController {
     
     @IBAction func OnClickRegisterUser(_ sender: Any) {
         
-        if(TfEmail.text?.count == 0 || TfPassword.text?.count == 0 || TfConfirmPassword.text?.count == 0){
+        if(TfEmail.text?.count == 0 || TfPassword.text?.count == 0 || TfConfirmPassword.text?.count == 0 || TfEnterName.text?.count == 0){
             ShowAlertBox(Title: "No field should be Empty !", Message: "")
         }
         else if(!isValidEmail(email: TfEmail.text ?? "")){
@@ -74,14 +80,13 @@ class RegisterScreenVC: UIViewController {
     //MARK: - All Defined Functions
     
     func SaveIdAndPass(){
+        UserDefaults.standard.set(TfEnterName.text?.trimmingCharacters(in: .whitespaces), forKey: "Username")
         UserDefaults.standard.set(TfEmail.text?.lowercased(), forKey: "Email")
         UserDefaults.standard.set(TfPassword.text?.trimmingCharacters(in: .whitespaces), forKey: "Password")
         UserDefaults.standard.set(false, forKey: "IsRedirect")
     }
     
     func SetUI(){
-        VwRegisterBgView.layer.cornerRadius = 10
-        VwRegisterBgView.layer.borderWidth = 2
         
         DoShowPassword = false
         btnShowPassword.setImage(UIImage(named: "Password Hide"), for: .normal)
@@ -89,10 +94,31 @@ class RegisterScreenVC: UIViewController {
         TfConfirmPassword.isSecureTextEntry = true
     }
     
-    func isValidEmail(email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: email)
+    func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                             selector: #selector(keyboardWillShow(notification:)),
+                                             name: UIResponder.keyboardWillShowNotification,
+                                             object: nil)
+        NotificationCenter.default.addObserver(self,
+                                             selector: #selector(keyboardWillHide(notification:)),
+                                             name: UIResponder.keyboardWillHideNotification,
+                                             object: nil)
+    }
+    
+    //MARK: - All Objc Functions
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
+        let keyboardSize = keyboardInfo.cgRectValue.size
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
     }
     
 }
@@ -106,5 +132,11 @@ extension UIViewController{
             Alert.dismiss(animated: true)
         }))
         self.present(Alert, animated: true, completion: nil)
+    }
+    
+    func isValidEmail(email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: email)
     }
 }
