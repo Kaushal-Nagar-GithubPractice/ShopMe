@@ -10,7 +10,7 @@ import UIKit
 class LoginScreenVC: UIViewController {
     
     
-    @IBOutlet weak var VwLoginBgView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var TfPassword: UITextField!
     @IBOutlet weak var TfEmail: UITextField!
@@ -21,16 +21,19 @@ class LoginScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if UserDefaults.standard.bool(forKey: "IsRedirect"){
+            LoginSuccessfull()
+        }
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         SetUI()
-        
-        if UserDefaults.standard.bool(forKey: "IsRedirect"){
-            LoginSuccessfull()
-        }
+        registerKeyboardNotifications()
         
         print("\nEmail :", UserDefaults.standard.string(forKey: "Email") ?? "", "\nPassword :",UserDefaults.standard.string(forKey: "Password") ?? "", "\nIsRedirect :",UserDefaults.standard.bool(forKey: "IsRedirect"))
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: - All IBActions
@@ -71,16 +74,45 @@ class LoginScreenVC: UIViewController {
     
     func LoginSuccessfull(){
         UserDefaults.standard.set(true, forKey: "IsRedirect")
-        ShowAlertBox(Title: "Login Successfull!", Message: "")
+//        ShowAlertBox(Title: "Login Successfull!", Message: "")
+        
+        let HomeScreen = UIStoryboard(name: "Main", bundle: nibBundle).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
+        
+        self.navigationController?.pushViewController(HomeScreen, animated: true)
     }
     
     func SetUI(){
-        VwLoginBgView.layer.cornerRadius = 10
-        VwLoginBgView.layer.borderWidth = 2
         
         DoShowPassword = false
         btnShowPassword.setImage(UIImage(named: "Password Hide"), for: .normal)
         TfPassword.isSecureTextEntry = true
+    }
+    
+    func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                             selector: #selector(keyboardWillShow(notification:)),
+                                             name: UIResponder.keyboardWillShowNotification,
+                                             object: nil)
+        NotificationCenter.default.addObserver(self,
+                                             selector: #selector(keyboardWillHide(notification:)),
+                                             name: UIResponder.keyboardWillHideNotification,
+                                             object: nil)
+    }
+    
+    //MARK: - All Objc Functions
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
+        let keyboardSize = keyboardInfo.cgRectValue.size
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
     }
 
 }

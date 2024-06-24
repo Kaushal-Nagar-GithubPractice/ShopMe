@@ -19,6 +19,11 @@
 		C31219AC2C294FBF00D12067 /* LoginScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219AA2C294FBF00D12067 /* LoginScreenVC.swift */; };
 		C31219AD2C294FBF00D12067 /* RegisterScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219AB2C294FBF00D12067 /* RegisterScreenVC.swift */; };
 		C31219AF2C294FC800D12067 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31219AE2C294FC800D12067 /* Authentication.storyboard */; };
+		C31219B12C295D1300D12067 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31219B02C295D1300D12067 /* Profile.storyboard */; };
+		C31219B32C295DE500D12067 /* ProfileScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219B22C295DE500D12067 /* ProfileScreenVC.swift */; };
+		C31219B52C2975CF00D12067 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219B42C2975CF00D12067 /* EditProfileVC.swift */; };
+		C31219B72C29856A00D12067 /* MyOrderScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219B62C29856A00D12067 /* MyOrderScreenVC.swift */; };
+		C31219B92C298A1E00D12067 /* myOrderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219B82C298A1E00D12067 /* myOrderTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,11 @@
 		C31219AA2C294FBF00D12067 /* LoginScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenVC.swift; sourceTree = "<group>"; };
 		C31219AB2C294FBF00D12067 /* RegisterScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterScreenVC.swift; sourceTree = "<group>"; };
 		C31219AE2C294FC800D12067 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		C31219B02C295D1300D12067 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		C31219B22C295DE500D12067 /* ProfileScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenVC.swift; sourceTree = "<group>"; };
+		C31219B42C2975CF00D12067 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		C31219B62C29856A00D12067 /* MyOrderScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderScreenVC.swift; sourceTree = "<group>"; };
+		C31219B82C298A1E00D12067 /* myOrderTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = myOrderTableCell.swift; path = "ShopMe-Github-Collab/View Controller/myOrderTableCell.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +103,9 @@
 				C31219872C2944CF00D12067 /* ViewController.swift */,
 				C31219AA2C294FBF00D12067 /* LoginScreenVC.swift */,
 				C31219AB2C294FBF00D12067 /* RegisterScreenVC.swift */,
+				C31219B22C295DE500D12067 /* ProfileScreenVC.swift */,
+				C31219B42C2975CF00D12067 /* EditProfileVC.swift */,
+				C31219B62C29856A00D12067 /* MyOrderScreenVC.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -102,6 +115,7 @@
 			children = (
 				C31219892C2944CF00D12067 /* Main.storyboard */,
 				C31219AE2C294FC800D12067 /* Authentication.storyboard */,
+				C31219B02C295D1300D12067 /* Profile.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -146,6 +160,7 @@
 		C31219A12C29452500D12067 /* Table Cell */ = {
 			isa = PBXGroup;
 			children = (
+				C31219B82C298A1E00D12067 /* myOrderTableCell.swift */,
 			);
 			path = "Table Cell";
 			sourceTree = "<group>";
@@ -233,6 +248,7 @@
 			files = (
 				C31219AF2C294FC800D12067 /* Authentication.storyboard in Resources */,
 				C31219932C2944D300D12067 /* LaunchScreen.storyboard in Resources */,
+				C31219B12C295D1300D12067 /* Profile.storyboard in Resources */,
 				C31219902C2944D300D12067 /* Assets.xcassets in Resources */,
 				C312198B2C2944CF00D12067 /* Main.storyboard in Resources */,
 			);
@@ -245,14 +261,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C31219B52C2975CF00D12067 /* EditProfileVC.swift in Sources */,
 				C31219882C2944CF00D12067 /* ViewController.swift in Sources */,
 				C31219A82C29464B00D12067 /* CustomTabbar.swift in Sources */,
 				C312198E2C2944CF00D12067 /* ShopMe_Github_Collab.xcdatamodeld in Sources */,
 				C31219842C2944CF00D12067 /* AppDelegate.swift in Sources */,
 				C31219A92C29464B00D12067 /* CustomTabbarController.swift in Sources */,
+				C31219B72C29856A00D12067 /* MyOrderScreenVC.swift in Sources */,
 				C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */,
 				C31219AC2C294FBF00D12067 /* LoginScreenVC.swift in Sources */,
+				C31219B32C295DE500D12067 /* ProfileScreenVC.swift in Sources */,
 				C31219AD2C294FBF00D12067 /* RegisterScreenVC.swift in Sources */,
+				C31219B92C298A1E00D12067 /* myOrderTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
