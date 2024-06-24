@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C31219842C2944CF00D12067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219832C2944CF00D12067 /* AppDelegate.swift */; };
+		C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219852C2944CF00D12067 /* SceneDelegate.swift */; };
+		C31219882C2944CF00D12067 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219872C2944CF00D12067 /* ViewController.swift */; };
+		C312198B2C2944CF00D12067 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31219892C2944CF00D12067 /* Main.storyboard */; };
+		C312198E2C2944CF00D12067 /* ShopMe_Github_Collab.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C312198C2C2944CF00D12067 /* ShopMe_Github_Collab.xcdatamodeld */; };
+		C31219902C2944D300D12067 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C312198F2C2944D300D12067 /* Assets.xcassets */; };
+		C31219932C2944D300D12067 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31219912C2944D300D12067 /* LaunchScreen.storyboard */; };
+		C31219A82C29464B00D12067 /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219A62C29464B00D12067 /* CustomTabbar.swift */; };
+		C31219A92C29464B00D12067 /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219A72C29464B00D12067 /* CustomTabbarController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C31219802C2944CF00D12067 /* ShopMe-Github-Collab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ShopMe-Github-Collab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C31219832C2944CF00D12067 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C31219852C2944CF00D12067 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C31219872C2944CF00D12067 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C312198A2C2944CF00D12067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C312198D2C2944CF00D12067 /* ShopMe_Github_Collab.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShopMe_Github_Collab.xcdatamodel; sourceTree = "<group>"; };
+		C312198F2C2944D300D12067 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C31219922C2944D300D12067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C31219942C2944D300D12067 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C31219A62C29464B00D12067 /* CustomTabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
+		C31219A72C29464B00D12067 /* CustomTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C312197D2C2944CF00D12067 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C31219772C2944CF00D12067 = {
+			isa = PBXGroup;
+			children = (
+				C31219822C2944CF00D12067 /* ShopMe-Github-Collab */,
+				C31219812C2944CF00D12067 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C31219812C2944CF00D12067 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C31219802C2944CF00D12067 /* ShopMe-Github-Collab.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C31219822C2944CF00D12067 /* ShopMe-Github-Collab */ = {
+			isa = PBXGroup;
+			children = (
+				C31219A52C29464B00D12067 /* CustomTabbar */,
+				C31219A42C29454600D12067 /* Extension */,
+				C31219A32C29454000D12067 /* Protocol */,
+				C312199F2C29450F00D12067 /* Cell */,
+				C312199E2C29450A00D12067 /* Model */,
+				C312199D2C29450300D12067 /* View Model */,
+				C312199C2C2944F700D12067 /* Network Manager */,
+				C312199B2C2944F200D12067 /* UI */,
+				C312199A2C2944E200D12067 /* View Controller */,
+				C31219832C2944CF00D12067 /* AppDelegate.swift */,
+				C31219852C2944CF00D12067 /* SceneDelegate.swift */,
+				C312198F2C2944D300D12067 /* Assets.xcassets */,
+				C31219912C2944D300D12067 /* LaunchScreen.storyboard */,
+				C31219942C2944D300D12067 /* Info.plist */,
+				C312198C2C2944CF00D12067 /* ShopMe_Github_Collab.xcdatamodeld */,
+			);
+			path = "ShopMe-Github-Collab";
+			sourceTree = "<group>";
+		};
+		C312199A2C2944E200D12067 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C31219872C2944CF00D12067 /* ViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		C312199B2C2944F200D12067 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C31219892C2944CF00D12067 /* Main.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		C312199C2C2944F700D12067 /* Network Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Network Manager";
+			sourceTree = "<group>";
+		};
+		C312199D2C29450300D12067 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		C312199E2C29450A00D12067 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C312199F2C29450F00D12067 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C31219A12C29452500D12067 /* Table Cell */,
+				C31219A02C29451F00D12067 /* Collection Cell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C31219A02C29451F00D12067 /* Collection Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Collection Cell";
+			sourceTree = "<group>";
+		};
+		C31219A12C29452500D12067 /* Table Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Table Cell";
+			sourceTree = "<group>";
+		};
+		C31219A32C29454000D12067 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		C31219A42C29454600D12067 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		C31219A52C29464B00D12067 /* CustomTabbar */ = {
+			isa = PBXGroup;
+			children = (
+				C31219A62C29464B00D12067 /* CustomTabbar.swift */,
+				C31219A72C29464B00D12067 /* CustomTabbarController.swift */,
+			);
+			path = CustomTabbar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C312197F2C2944CF00D12067 /* ShopMe-Github-Collab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C31219972C2944D300D12067 /* Build configuration list for PBXNativeTarget "ShopMe-Github-Collab" */;
+			buildPhases = (
+				C312197C2C2944CF00D12067 /* Sources */,
+				C312197D2C2944CF00D12067 /* Frameworks */,
+				C312197E2C2944CF00D12067 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ShopMe-Github-Collab";
+			productName = "ShopMe-Github-Collab";
+			productReference = C31219802C2944CF00D12067 /* ShopMe-Github-Collab.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C31219782C2944CF00D12067 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					C312197F2C2944CF00D12067 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = C312197B2C2944CF00D12067 /* Build configuration list for PBXProject "ShopMe-Github-Collab" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C31219772C2944CF00D12067;
+			productRefGroup = C31219812C2944CF00D12067 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C312197F2C2944CF00D12067 /* ShopMe-Github-Collab */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C312197E2C2944CF00D12067 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C31219932C2944D300D12067 /* LaunchScreen.storyboard in Resources */,
+				C31219902C2944D300D12067 /* Assets.xcassets in Resources */,
+				C312198B2C2944CF00D12067 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C312197C2C2944CF00D12067 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C31219882C2944CF00D12067 /* ViewController.swift in Sources */,
+				C31219A82C29464B00D12067 /* CustomTabbar.swift in Sources */,
+				C312198E2C2944CF00D12067 /* ShopMe_Github_Collab.xcdatamodeld in Sources */,
+				C31219842C2944CF00D12067 /* AppDelegate.swift in Sources */,
+				C31219A92C29464B00D12067 /* CustomTabbarController.swift in Sources */,
+				C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C31219892C2944CF00D12067 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C312198A2C2944CF00D12067 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C31219912C2944D300D12067 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C31219922C2944D300D12067 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C31219952C2944D300D12067 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C31219962C2944D300D12067 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C31219982C2944D300D12067 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ShopMe-Github-Collab/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wcg.ShopMe-Github-Collab";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C31219992C2944D300D12067 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ShopMe-Github-Collab/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wcg.ShopMe-Github-Collab";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C312197B2C2944CF00D12067 /* Build configuration list for PBXProject "ShopMe-Github-Collab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C31219952C2944D300D12067 /* Debug */,
+				C31219962C2944D300D12067 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C31219972C2944D300D12067 /* Build configuration list for PBXNativeTarget "ShopMe-Github-Collab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C31219982C2944D300D12067 /* Debug */,
+				C31219992C2944D300D12067 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C312198C2C2944CF00D12067 /* ShopMe_Github_Collab.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C312198D2C2944CF00D12067 /* ShopMe_Github_Collab.xcdatamodel */,
+			);
+			currentVersion = C312198D2C2944CF00D12067 /* ShopMe_Github_Collab.xcdatamodel */;
+			path = ShopMe_Github_Collab.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C31219782C2944CF00D12067 /* Project object */;
+}
