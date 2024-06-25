@@ -8,17 +8,19 @@
 import UIKit
 
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect {
+   
   
     
 
-    
+//    var delegate : changesInTransition?
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var frame = CGFloat(0)
     var arrHeaderImages = ["carousel-1","carousel-2","carousel-3"]
     var arrHeaderLabel = ["Men Fashion","Women Fashion","Kids Fashion"]
-    var arrQualityImages = ["check-mark","truck","mobile-data","phone-ringing"]
+    var arrQualityImages = ["check-2","truck","return-box","phone-2"]
     var arrQualityText = ["  Quality Product","  Free Shipping","  14-Day Return","  24/7 Support"]
     var arrCategoryImage = ["cat-1","cat-2","cat-3","cat-4","cat-1","cat-2","cat-3","cat-4"]
+   
     @IBOutlet weak var collectionCategories: UICollectionView!
     @IBOutlet weak var collecctionFacilities: UICollectionView!
     @IBOutlet weak var pageControlHeader: UIPageControl!
@@ -38,6 +40,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         collectionCategories.dataSource = self
         collecctionFacilities.delegate = self
         collecctionFacilities.dataSource = self
+//        delegate = self
         pageControlHeader.numberOfPages = arrHeaderImages.count
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
     }
@@ -52,13 +55,25 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     override func viewDidAppear(_ animated: Bool) {
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+        
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in 
+            
+            self.tblViewHomeScreen.reloadData()
+        }
+        
+    }
+    
+//    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+////        tblViewHomeScreen.reloadData()
+//    }
     //MARK: IBAction Methods
     
     //MARK: Collection Delegate Methods
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
-            return arrHeaderImages.count
+            return arrHeaderImages.count * 1000
         }
         else if collectionView.tag == 2 {
             return arrQualityImages.count
@@ -73,8 +88,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView.tag == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeHeaderCollectionViewCell", for: indexPath) as! HomeHeaderCollectionViewCell
-            cell.imageHeader.image = UIImage(named: arrHeaderImages[indexPath.row])
-            cell.lblHeader.text = arrHeaderLabel[indexPath.row]
+            cell.imageHeader.image = UIImage(named: arrHeaderImages[indexPath.row % arrHeaderImages.count])
+            cell.lblHeader.text = arrHeaderLabel[indexPath.row % arrHeaderImages.count]
             return cell
         }
         else if collectionView.tag == 2 {
@@ -113,10 +128,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         cell.delegate = self
         return cell
     }
-func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableView.automaticDimension
-
-}
+//func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//    return UITableView.automaticDimension
+//
+//}
    
     //MARK: User Defined Methods
     
@@ -126,13 +141,9 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
     
     
     @objc func slideToNext(){
-        if currentCellIndex < arrHeaderImages .count - 1{
+       
             currentCellIndex = currentCellIndex + 1
-        }
-        else{
-            currentCellIndex = 0
-        }
-        pageControlHeader.currentPage = currentCellIndex
+        pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
         collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
     }
     
@@ -143,6 +154,10 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
         vc.arrCategoryImage.insert(imageName, at: 0)
         self.navigationController?.pushViewController(vc, animated: true)
     }
-   
+    
+//    func viewwillTranition(size: CGSize) {
+//        tblViewHomeScreen.reloadData()
+//    }
+    
 
 }
