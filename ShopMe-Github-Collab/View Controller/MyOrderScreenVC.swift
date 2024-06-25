@@ -30,6 +30,7 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden =  true
+        TvMyOrderTable.reloadData()
     }
     
     //MARK: - All IBAction
