@@ -20,23 +20,20 @@ class CustomTabbarController: UITabBarController {
         super.viewDidAppear(animated)
         
     }
-    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
-        
-    }
     
     
     // MARK: - Actions
     
     
     func setTabbarItemsController(){
-        let controller1 = UIViewController()
-        //        let controller1 = UIStoryboard(name: "HomeStoryboard", bundle: nibBundle).instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+//        let controller1 = UIViewController()
+                let controller1 = UIStoryboard(name: "HomeStoryboard", bundle: nibBundle).instantiateViewController(identifier: "HomeVC") as! HomeVC
         controller1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Home"), tag: 1)
         let nav1 = UINavigationController(rootViewController: controller1)
         
         
-        let controller2 = UIViewController()
-        //        let controller1 = UIStoryboard(name: "HomeStoryboard", bundle: nibBundle).instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+//        let controller2 = UIViewController()
+                let controller2 = UIStoryboard(name: "ShopStoryboard", bundle: nibBundle).instantiateViewController(identifier: "ShopVC") as! ShopVC
         controller2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Shop"), tag: 2)
         let nav2 = UINavigationController(rootViewController: controller2)
         
