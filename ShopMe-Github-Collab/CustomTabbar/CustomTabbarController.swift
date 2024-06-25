@@ -21,7 +21,7 @@ class CustomTabbarController: UITabBarController {
         
     }
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
-
+        
     }
     
     
@@ -45,11 +45,12 @@ class CustomTabbarController: UITabBarController {
         controller3.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Cart"), tag: 3)
         let nav3 = UINavigationController(rootViewController: controller3)
         
-        let controller4 = UIViewController()
-        //        let controller1 = UIStoryboard(name: "HomeStoryboard", bundle: nibBundle).instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+        
+        //        let controller4 = UIViewController()
+        let controller4 = UIStoryboard(name: "Profile", bundle: nibBundle).instantiateViewController(identifier: "ProfileScreenVC") as! ProfileScreenVC
         controller4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Profile"), tag: 4)
         let nav4 = UINavigationController(rootViewController: controller4)
-
+        
         setViewControllers([nav1, nav2,  nav3, nav4], animated: true)
     }
     
