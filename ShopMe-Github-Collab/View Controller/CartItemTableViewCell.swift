@@ -13,24 +13,26 @@ class CartItemTableViewCell: UITableViewCell {
     var removeItemDelegate:removeFromCart?
     var itemQuantity: Int = 1
     var itemPrice:Int = 0
+    
     @IBOutlet weak var imgItem: UIImageView!
     @IBOutlet weak var lblItemName: UILabel!
     @IBOutlet weak var lblItemPrice: UILabel!
     @IBOutlet weak var viewCell: UIView!
     @IBOutlet weak var lblQuantity: UILabel!
     @IBOutlet weak var viewQuantityManage: UIView!
+    @IBOutlet weak var btnDecrease: UIButton!
+    @IBOutlet weak var btnIncrease: UIButton!
+    @IBOutlet weak var btnRemoveItem: UIButton!
+    var increaseQuantity: (() -> Void)?
+    var decreaseQuantity: (() -> Void)?
     
     // MARK: - View Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        viewCell.layer.cornerRadius = 10
-//        viewCell.clipsToBounds = true
-//
         viewQuantityManage.layer.cornerRadius = 10
         viewQuantityManage.clipsToBounds = true
     
-        lblQuantity.text = String(itemQuantity)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -45,24 +47,23 @@ class CartItemTableViewCell: UITableViewCell {
 
     // MARK: - IBActions
     @IBAction func onClickDecreaseQuantity(_ sender: Any) {
-        if itemQuantity > 1{
-            itemQuantity -= 1
+        decreaseQuantity?()
+            
             lblQuantity.text = String(itemQuantity)
             lblItemPrice.text = String(itemQuantity * itemPrice)
-        }
     }
     
     @IBAction func onClickIncreaseQuantity(_ sender: Any) {
-        itemQuantity += 1
+        increaseQuantity?()
         lblQuantity.text = String(itemQuantity)
         lblItemPrice.text = String(itemQuantity * itemPrice)
-        print("ppppp-======",itemQuantity * (Int(lblItemPrice.text!) ?? 1))
-        print("qunatity===",itemQuantity)
+        
+        
     }
     
     
-    @IBAction func onClickRemoveItemFromCart(_ sender: Any) {
-        removeItemDelegate?.removeItemFromCart(sender: sender as! UIButton)
+    @IBAction func onClickRemoveItemFromCart(_ sender: UIButton) {
+        removeItemDelegate?.removeItemFromCart(sender: sender )
     }
 }
 

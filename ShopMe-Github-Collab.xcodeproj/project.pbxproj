@@ -19,6 +19,11 @@
 		C3759EBE2C295518006ABB02 /* CartList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3759EBD2C295517006ABB02 /* CartList.storyboard */; };
 		C3759EC02C295A5A006ABB02 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3759EBF2C295A5A006ABB02 /* ShoppingCartViewController.swift */; };
 		C3759EC22C295BB3006ABB02 /* CartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3759EC12C295BB3006ABB02 /* CartItemTableViewCell.swift */; };
+		C3759EC42C29899E006ABB02 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3759EC32C29899E006ABB02 /* CheckoutViewController.swift */; };
+		C3759EC62C2991BA006ABB02 /* OrderedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3759EC52C2991BA006ABB02 /* OrderedItemTableViewCell.swift */; };
+		C3759EC82C299B96006ABB02 /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3759EC72C299B96006ABB02 /* SelectAddressViewController.swift */; };
+		C3759ECA2C299BDF006ABB02 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3759EC92C299BDF006ABB02 /* AddressTableViewCell.swift */; };
+		C3759ECC2C299F7A006ABB02 /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3759ECB2C299F7A006ABB02 /* AddAddressViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,11 @@
 		C3759EBD2C295517006ABB02 /* CartList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CartList.storyboard; sourceTree = "<group>"; };
 		C3759EBF2C295A5A006ABB02 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		C3759EC12C295BB3006ABB02 /* CartItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartItemTableViewCell.swift; path = "ShopMe-Github-Collab/View Controller/CartItemTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		C3759EC32C29899E006ABB02 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
+		C3759EC52C2991BA006ABB02 /* OrderedItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrderedItemTableViewCell.swift; path = "ShopMe-Github-Collab/View Controller/OrderedItemTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		C3759EC72C299B96006ABB02 /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
+		C3759EC92C299BDF006ABB02 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddressTableViewCell.swift; path = "ShopMe-Github-Collab/View Controller/AddressTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		C3759ECB2C299F7A006ABB02 /* AddAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +102,9 @@
 			children = (
 				C31219872C2944CF00D12067 /* ViewController.swift */,
 				C3759EBF2C295A5A006ABB02 /* ShoppingCartViewController.swift */,
+				C3759EC32C29899E006ABB02 /* CheckoutViewController.swift */,
+				C3759EC72C299B96006ABB02 /* SelectAddressViewController.swift */,
+				C3759ECB2C299F7A006ABB02 /* AddAddressViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -146,6 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				C3759EC12C295BB3006ABB02 /* CartItemTableViewCell.swift */,
+				C3759EC52C2991BA006ABB02 /* OrderedItemTableViewCell.swift */,
+				C3759EC92C299BDF006ABB02 /* AddressTableViewCell.swift */,
 			);
 			path = "Table Cell";
 			sourceTree = "<group>";
@@ -251,7 +266,12 @@
 				C31219A82C29464B00D12067 /* CustomTabbar.swift in Sources */,
 				C312198E2C2944CF00D12067 /* ShopMe_Github_Collab.xcdatamodeld in Sources */,
 				C31219842C2944CF00D12067 /* AppDelegate.swift in Sources */,
+				C3759ECC2C299F7A006ABB02 /* AddAddressViewController.swift in Sources */,
+				C3759ECA2C299BDF006ABB02 /* AddressTableViewCell.swift in Sources */,
+				C3759EC82C299B96006ABB02 /* SelectAddressViewController.swift in Sources */,
+				C3759EC62C2991BA006ABB02 /* OrderedItemTableViewCell.swift in Sources */,
 				C31219A92C29464B00D12067 /* CustomTabbarController.swift in Sources */,
+				C3759EC42C29899E006ABB02 /* CheckoutViewController.swift in Sources */,
 				C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
