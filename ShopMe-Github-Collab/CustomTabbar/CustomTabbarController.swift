@@ -9,7 +9,7 @@ import UIKit
 
 class CustomTabbarController: UITabBarController {
     
-    
+    var controller4 = UIViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,14 +40,20 @@ class CustomTabbarController: UITabBarController {
         controller2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Shop"), tag: 2)
         let nav2 = UINavigationController(rootViewController: controller2)
         
-        let controller3 = UIViewController()
-        //            let controller3 = UIStoryboard(name: "UserProfile", bundle: nibBundle).instantiateViewController(identifier: "UserProfileVC") as! UserProfileVC
+//        let controller3 = UIViewController()
+        let controller3 = UIStoryboard(name: "CartList", bundle: nibBundle).instantiateViewController(identifier: "ShoppingCartViewController") as! ShoppingCartViewController
         controller3.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Cart"), tag: 3)
         let nav3 = UINavigationController(rootViewController: controller3)
         
         
-        //        let controller4 = UIViewController()
-        let controller4 = UIStoryboard(name: "Profile", bundle: nibBundle).instantiateViewController(identifier: "ProfileScreenVC") as! ProfileScreenVC
+        
+        if UserDefaults.standard.bool(forKey: "IsRedirect"){
+            controller4 = UIStoryboard(name: "Profile", bundle: nibBundle).instantiateViewController(identifier: "ProfileScreenVC") as! ProfileScreenVC
+        }
+        else{
+            controller4 = UIStoryboard(name: "Authentication", bundle: nibBundle).instantiateViewController(identifier: "LoginScreenVC") as! LoginScreenVC
+        }
+        
         controller4.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Profile"), tag: 4)
         let nav4 = UINavigationController(rootViewController: controller4)
         

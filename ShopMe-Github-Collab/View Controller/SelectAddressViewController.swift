@@ -26,6 +26,7 @@ class SelectAddressViewController: UIViewController, UITableViewDelegate, UITabl
         AddressListTableView.dataSource = self
     }
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
 //        setUi()
         

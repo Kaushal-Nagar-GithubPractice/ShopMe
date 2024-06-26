@@ -43,6 +43,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
         
         setUi()

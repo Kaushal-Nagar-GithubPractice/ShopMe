@@ -9,6 +9,7 @@ import UIKit
 
 class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, removeFromCart{
     
+    
     // MARK: - Variables and Outlets
     var shippingCharge = 5
     var cartItemArray = [["img":"item-1","Name":"Canon camera","Price":"60000","TotalItem":"1"],
@@ -22,7 +23,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var lblShippingCharge: UILabel!
     @IBOutlet weak var lblSubTotal: UILabel!
     @IBOutlet weak var lblGrandTotal: UILabel!
-    
+    @IBOutlet weak var viewForEmptyCart: UIView!
     
     
     // MARK: - View Methods
@@ -39,7 +40,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             
             let alert = UIAlertController(title: "To Checkout You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-                print("before=====navigate=======")
                 self.NavigateToLoginVC()
             } ))
                 alert.addAction(UIAlertAction(title: "No, Continue as Guest!", style: UIAlertAction.Style.default, handler: nil))
@@ -62,7 +62,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             
             let alert = UIAlertController(title: "To Checkout You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-                print("before=====navigate=======")
                 self.NavigateToLoginVC()
             } ))
     
@@ -93,8 +92,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         let cell = CartListTableView.dequeueReusableCell(withIdentifier: "CartItemTableViewCell", for: indexPath) as! CartItemTableViewCell
         cell.removeItemDelegate = self
         
-        cell.itemQuantity = Int(cartItemArray[indexPath.row]["TotalItem"]!) ?? 1
-        cell.itemPrice = Int(cartItemArray[indexPath.row]["Price"]!) ?? 1
         cell.imgItem.image = UIImage(named: "\(cartItemArray[indexPath.row]["img"]!)")
         cell.lblItemName.text = cartItemArray[indexPath.row]["Name"]
         cell.lblItemPrice.text = String( Int(cartItemArray[indexPath.row]["Price"]!) ?? 0 * (Int(cartItemArray[indexPath.row]["TotalItem"]!) ?? 0))
@@ -107,20 +104,26 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             
             let ItemCount = Int(self.cartItemArray[indexPath.row]["TotalItem"]!) ?? 0
             self.cartItemArray[indexPath.row]["TotalItem"] = "\(ItemCount+1)"
+            cell.lblQuantity.text = self.cartItemArray[indexPath.row]["TotalItem"]
             self.updateTotal()
-            cell.lblItemPrice.text = String(Int(self.cartItemArray[indexPath.row]["Price"]!)! * Int(self.cartItemArray[indexPath.row]["TotalItem"]!)!)
-            self.CartListTableView.reloadData()
+            cell.itemPrice = Int(self.cartItemArray[indexPath.row]["Price"]!)! * Int(self.cartItemArray[indexPath.row]["TotalItem"]!)!
+            let lblPrice = Int(self.cartItemArray[indexPath.row]["Price"]!)! * Int(self.cartItemArray[indexPath.row]["TotalItem"]!)!
+            cell.updatelblItemPrice(price:lblPrice)
              
         }
         
         cell.decreaseQuantity = {
-            let itemCount = Int(self.cartItemArray[indexPath.row]["TotalItem"]!) ?? 0
-            if itemCount > 1 {
-                self.cartItemArray[indexPath.row]["TotalItem"] = "\(itemCount-1)"
-                self.updateTotal()
-                self.CartListTableView.reloadData()
+            let itemCount = Int(self.cartItemArray[indexPath.row]["TotalItem"]!) ?? 1
+                if itemCount == 1{
+                    self.removeItemFromCart(sender: indexPath.row)                      // on 0 item it remove from cart list
+                }else{
+                    self.cartItemArray[indexPath.row]["TotalItem"] = "\(itemCount-1)"
+                    cell.lblQuantity.text = self.cartItemArray[indexPath.row]["TotalItem"]
+                    let lblPrice = Int(self.cartItemArray[indexPath.row]["Price"]!)! * Int(self.cartItemArray[indexPath.row]["TotalItem"]!)!
+                    cell.updatelblItemPrice(price:lblPrice)
+                }
 
-            }
+                self.updateTotal()
         }
         return cell
     }
@@ -132,8 +135,13 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - Custom Methods
     
     //remove item from cart
-    func removeItemFromCart(sender: UIButton) {
-        cartItemArray.remove(at: sender.tag)
+    func removeItemFromCart(sender: Int ) {
+        cartItemArray.remove(at: sender )
+   
+       //hode table on empty cart
+        if cartItemArray.count == 0{
+            CartListTableView.isHidden = true
+        }
         updateTotal()
         CartListTableView.reloadData()
     }
@@ -152,7 +160,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     
     func NavigateToLoginVC(){
-        print("navigate=======")
         let storyBoard = UIStoryboard(name: "Authentication", bundle: nibBundle)
         
         let loginVc = storyBoard.instantiateViewController(withIdentifier: "LoginScreenVC") as! LoginScreenVC
