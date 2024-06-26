@@ -20,7 +20,6 @@ Multi Shop is an eCommerce iOS application that supports a variety of functional
   - Edit Profile Information
 - **Order Management**
   - View all past orders
-  - Track current orders
 - **Dark Mode**
   - All screens support dark mode for better readability and user comfort
 
