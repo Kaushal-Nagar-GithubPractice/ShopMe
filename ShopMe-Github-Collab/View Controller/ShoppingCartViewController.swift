@@ -51,9 +51,19 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
         
-//        lblShippingCharge.text! = "1000"
-        
+        cartItemArray = UserDefaults.standard.array(forKey: "MyCart") as! [[String:String]]
+        CartListTableView.reloadData()
+        if cartItemArray.count == 0{
+            CartListTableView.isHidden = true
+        }
+        else{
+            CartListTableView.isHidden = false
+        }
         updateTotal()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UserDefaults.standard.set(cartItemArray, forKey: "MyCart")
     }
     
     @IBAction func onClickCheckout(_ sender: Any) {
@@ -92,9 +102,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         let cell = CartListTableView.dequeueReusableCell(withIdentifier: "CartItemTableViewCell", for: indexPath) as! CartItemTableViewCell
         cell.removeItemDelegate = self
         
+        let TotalItem = (cartItemArray[indexPath.row]["TotalItem"]! as NSString).integerValue
+        let Price = (cartItemArray[indexPath.row]["Price"]! as NSString).integerValue
+        
         cell.imgItem.image = UIImage(named: "\(cartItemArray[indexPath.row]["img"]!)")
         cell.lblItemName.text = cartItemArray[indexPath.row]["Name"]
-        cell.lblItemPrice.text = String( Int(cartItemArray[indexPath.row]["Price"]!) ?? 0 * (Int(cartItemArray[indexPath.row]["TotalItem"]!) ?? 0))
+        cell.lblItemPrice.text = "\(TotalItem * Price)"
         cell.lblQuantity.text = cartItemArray[indexPath.row]["TotalItem"]
         cell.btnDecrease.tag = indexPath.row
         cell.btnIncrease.tag = indexPath.row
@@ -106,8 +119,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             self.cartItemArray[indexPath.row]["TotalItem"] = "\(ItemCount+1)"
             cell.lblQuantity.text = self.cartItemArray[indexPath.row]["TotalItem"]
             self.updateTotal()
-            cell.itemPrice = Int(self.cartItemArray[indexPath.row]["Price"]!)! * Int(self.cartItemArray[indexPath.row]["TotalItem"]!)!
-            let lblPrice = Int(self.cartItemArray[indexPath.row]["Price"]!)! * Int(self.cartItemArray[indexPath.row]["TotalItem"]!)!
+            
+//            cell.itemPrice = (self.cartItemArray[indexPath.row]["Price"]! as NSString).integerValue * (self.cartItemArray[indexPath.row]["TotalItem"]! as NSString).integerValue
+            let lblPrice = (self.cartItemArray[indexPath.row]["Price"]! as NSString).integerValue * (self.cartItemArray[indexPath.row]["TotalItem"]! as NSString).integerValue
             cell.updatelblItemPrice(price:lblPrice)
              
         }
@@ -119,7 +133,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 }else{
                     self.cartItemArray[indexPath.row]["TotalItem"] = "\(itemCount-1)"
                     cell.lblQuantity.text = self.cartItemArray[indexPath.row]["TotalItem"]
-                    let lblPrice = Int(self.cartItemArray[indexPath.row]["Price"]!)! * Int(self.cartItemArray[indexPath.row]["TotalItem"]!)!
+                    let lblPrice = (self.cartItemArray[indexPath.row]["Price"]! as NSString).integerValue * (self.cartItemArray[indexPath.row]["TotalItem"]! as NSString).integerValue
                     cell.updatelblItemPrice(price:lblPrice)
                 }
 
@@ -137,12 +151,17 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     //remove item from cart
     func removeItemFromCart(sender: Int ) {
         cartItemArray.remove(at: sender )
-   
+        
        //hode table on empty cart
         if cartItemArray.count == 0{
             CartListTableView.isHidden = true
         }
+        else{
+            CartListTableView.isHidden = false
+        }
+        
         updateTotal()
+        UserDefaults.standard.set(cartItemArray, forKey: "MyCart")
         CartListTableView.reloadData()
     }
     
@@ -151,7 +170,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     func updateTotal(){
         var total:Int = 0
         for item in cartItemArray {
-            total = total + item["Price"]!.codingKey.intValue! * item ["TotalItem"]!.codingKey.intValue!
+            total = total + (item["Price"]! as NSString).integerValue * (item ["TotalItem"]! as NSString).integerValue
         }
         lblSubTotal.text = String(total)
         lblShippingCharge.text = String((total * shippingCharge)/100)

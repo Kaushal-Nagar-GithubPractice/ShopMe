@@ -38,8 +38,8 @@ class CustomTabbarController: UITabBarController, ChangeToHomeScreen {
         let nav2 = UINavigationController(rootViewController: controller2)
         
 
-        let controller3 = UIViewController()
-        //            let controller3 = UIStoryboard(name: "UserProfile", bundle: nibBundle).instantiateViewController(identifier: "UserProfileVC") as! UserProfileVC
+//        let controller3 = UIViewController()
+                    let controller3 = UIStoryboard(name: "CartList", bundle: nibBundle).instantiateViewController(identifier: "ShoppingCartViewController") as! ShoppingCartViewController
         controller3.tabBarItem = UITabBarItem(title: "Cart", image: UIImage(named: "tab3"), tag: 3)
         let nav3 = UINavigationController(rootViewController: controller3)
         

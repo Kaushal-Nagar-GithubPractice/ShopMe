@@ -30,6 +30,8 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden =  true
+        MyOrderArr = UserDefaults.standard.array(forKey: "MyOrder") as!  Array<Dictionary<String, String>>
+        print(MyOrderArr)
         TvMyOrderTable.reloadData()
     }
     

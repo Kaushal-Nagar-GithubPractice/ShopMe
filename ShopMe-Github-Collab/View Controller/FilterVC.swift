@@ -32,11 +32,13 @@ class FilterVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpMenuButton(isScroll: true)
-        self.navigationController?.isNavigationBarHidden = false
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         setUiFilterScreen()
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     //MARK: IBACTION Methods

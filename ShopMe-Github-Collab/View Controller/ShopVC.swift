@@ -32,6 +32,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
         setUpMenuButton(isScroll: true)
         self.navigationItem.title = "Shop"
         self.navigationController?.navigationBar.backgroundColor = .systemYellow
@@ -99,7 +100,8 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "DetailsScreenVC") as! DetailsScreenVC
         vc.arrCategoryImage.insert(filterData[indexPath.row].imageName, at: 0)
-        vc.hidesBottomBarWhenPushed = true
+        vc.Price = "\(filterData[indexPath.row].ProductPrice)"
+        vc.ProductName = filterData[indexPath.row].ProductName
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

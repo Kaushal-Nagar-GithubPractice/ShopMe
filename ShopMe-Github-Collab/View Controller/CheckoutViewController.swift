@@ -97,6 +97,9 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func onClickPlaceOrder(_ sender: Any) {
+//        let StatusArr = ["Placed","Cancelled"]
+//        let Status = StatusArr.randomElement() as! String
+        
         // navigate to place order screen
         let orderDetailsDict = ["Date":"24 June 2024", "TotalItem":"\(myOrderArray.count)", "TotalAmount":"\(totalAmount)","Status":"Placed"]
         
@@ -166,9 +169,26 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func NavigateToOrderVc(Dict:[String:String]){
-        let orderVc = UIStoryboard(name: "Profile", bundle: nibBundle).instantiateViewController(withIdentifier: "MyOrderScreenVC") as! MyOrderScreenVC
-        orderVc.MyOrderArr.insert(Dict, at: 0)
-        self.navigationController?.pushViewController(orderVc, animated: true)
+        
+        var CurrentMyOrder = UserDefaults.standard.array(forKey: "MyOrder") as! Array<Dictionary<String,String>>
+        CurrentMyOrder.insert(Dict, at: 0)
+        UserDefaults.standard.set(CurrentMyOrder, forKey: "MyOrder")
+        
+        var MyOrderArr = UserDefaults.standard.array(forKey: "MyOrder") as!  Array<Dictionary<String, String>>
+        print(MyOrderArr)
+        
+        UserDefaults.standard.set([], forKey: "MyCart")
+        
+        self.navigationController?.popViewController(animated: true)
+
+        let alert = UIAlertController(title: "Order Placed Successfully !", message: "" , preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+            ProfileScreenVC.Delegate.ChangeToHomeScreen()
+        } ))
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.white
+        self.present(alert, animated: true, completion: nil)
+ 
     }
     
 }

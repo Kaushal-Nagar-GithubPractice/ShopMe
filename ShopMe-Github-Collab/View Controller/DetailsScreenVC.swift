@@ -43,6 +43,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     var Quantity = 1
     var Price   = " "
     var ProductName  = " "
+ 
     
     //MARK: Application Delegate Method
     
@@ -59,6 +60,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     override func viewWillAppear(_ animated: Bool) {
         lblQuantity.text = "\(Quantity)"
         self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = true
         scrollView.showsVerticalScrollIndicator = false
         collectionSelectedItem.showsHorizontalScrollIndicator = false
         collectionSuggestedProducts.showsHorizontalScrollIndicator = false
@@ -66,7 +68,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         self.navigationItem.title = "Product Detail"
         navigationController?.navigationBar.barTintColor = UIColor.systemYellow
         setDetailScreenUI()
-        lblPrice.text = Price
+        lblPrice.text = " $ \(Price)."
         lblProductName.text = ProductName
         setUpSizeColorView()
     }
@@ -122,44 +124,30 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     
     @IBAction func onClickBtnColor(_ sender: UIButton) {
         
+        btnColorGreen.layer.borderColor = UIColor.black.cgColor
+        btnColorBlue.layer.borderColor = UIColor.black.cgColor
+        btnColorRed.layer.borderColor = UIColor.black.cgColor
+        btnColorBlack.layer.borderColor = UIColor.black.cgColor
+        btnColorWhite.layer.borderColor = UIColor.black.cgColor
+        
         if sender.tag == 6{
-            btnColorGreen.layer.borderColor = UIColor.black.cgColor
-            btnColorBlue.layer.borderColor = UIColor.black.cgColor
-            btnColorRed.layer.borderColor = UIColor.black.cgColor
-            btnColorBlack.layer.borderColor = UIColor.black.cgColor
             btnColorWhite.layer.borderColor = UIColor.systemYellow.cgColor
             SelectecColor = "W"
         }
         else if sender.tag == 7{
-            btnColorGreen.layer.borderColor = UIColor.black.cgColor
-            btnColorBlue.layer.borderColor = UIColor.black.cgColor
             btnColorRed.layer.borderColor = UIColor.systemYellow.cgColor
-            btnColorBlack.layer.borderColor = UIColor.black.cgColor
-            btnColorWhite.layer.borderColor = UIColor.black.cgColor
             SelectecColor = "Bk"
         }
         else if sender.tag == 8{
             btnColorGreen.layer.borderColor = UIColor.systemYellow.cgColor
-            btnColorBlue.layer.borderColor = UIColor.black.cgColor
-            btnColorRed.layer.borderColor = UIColor.black.cgColor
-            btnColorBlack.layer.borderColor = UIColor.black.cgColor
-            btnColorWhite.layer.borderColor = UIColor.black.cgColor
             SelectecColor = "R"
         }
         else if sender.tag == 9{
-            btnColorGreen.layer.borderColor = UIColor.black.cgColor
             btnColorBlue.layer.borderColor = UIColor.systemYellow.cgColor
-            btnColorRed.layer.borderColor = UIColor.black.cgColor
-            btnColorBlack.layer.borderColor = UIColor.black.cgColor
-            btnColorWhite.layer.borderColor = UIColor.black.cgColor
             SelectecColor = "Bl"
         }
         else if sender.tag == 10{
-            btnColorGreen.layer.borderColor = UIColor.black.cgColor
-            btnColorBlue.layer.borderColor = UIColor.black.cgColor
-            btnColorRed.layer.borderColor = UIColor.black.cgColor
             btnColorBlack.layer.borderColor = UIColor.systemYellow.cgColor
-            btnColorWhite.layer.borderColor = UIColor.black.cgColor
             SelectecColor = "G"
         }
     }
@@ -184,6 +172,28 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         
     }
     @IBAction func onCLickAddtoCart(_ sender: Any) {
+//        let vc = UIStoryboard(name: "CartList", bundle: nil).instantiateViewController(identifier: "ShoppingCartViewController") as! ShoppingCartViewController
+        guard let dict = ["img":arrCategoryImage[0],"Name":ProductName,"Price":Price,"TotalItem":"\(Quantity)"] as? Dictionary<String, String> else { return  }
+        var currentCart = UserDefaults.standard.array(forKey: "MyCart") as! Array<Dictionary<String, String>>
+        
+        var FoundItem =  currentCart.filter( { $0["Name"] == ProductName } )
+       
+       
+        if FoundItem.count == 0{
+            currentCart.insert(dict, at: 0)
+            
+        }
+        else{
+            let NewQuantity = (FoundItem[0]["TotalItem"]! as NSString).integerValue + Quantity
+            let FoundItemIndex =  currentCart.firstIndex(of: FoundItem[0])
+            currentCart.remove(at: FoundItemIndex ?? -1)
+            FoundItem[0]["TotalItem"] = "\(NewQuantity)"
+            currentCart.append(FoundItem[0])
+        }
+        UserDefaults.standard.set(currentCart, forKey: "MyCart")
+        print(currentCart)
+        
+        
     }
     
     //MARK: Delegate Method
@@ -218,8 +228,6 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         if collectionView.tag == 1 {
             let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "ImageDisplayViewController") as! ImageDisplayViewController
             vc.arrImageDisplay = arrCategoryImage
-            vc.hidesBottomBarWhenPushed = true
-//            self.navigationController?.pushViewController(vc, animated: true)
             vc.modalTransitionStyle = .coverVertical
             vc.modalPresentationStyle = .fullScreen
             present(vc,animated: true)
@@ -289,6 +297,12 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         btnColorBlack.layer.borderWidth = 2
         btnColorWhite.layer.borderColor = UIColor.black.cgColor
         btnColorWhite.layer.borderWidth = 2
+        
+        btnAddtoCart.layer.cornerRadius = 15
+        btnQuantityMinus.layer.cornerRadius = 10
+        btnQuantityMinus.layer.maskedCorners = [.layerMinXMinYCorner,.layerMinXMaxYCorner]
+        btnQuantityAdd.layer.cornerRadius = 10
+        btnQuantityAdd.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMaxXMaxYCorner]
     }
     
     func setUpSizeColorView(){

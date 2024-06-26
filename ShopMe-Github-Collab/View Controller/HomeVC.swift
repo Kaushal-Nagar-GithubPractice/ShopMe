@@ -8,11 +8,11 @@
 import UIKit
 
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect {
-   
-  
     
-
-//    var delegate : changesInTransition?
+    
+    
+    
+    //    var delegate : changesInTransition?
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var frame = CGFloat(0)
     var arrHeaderImages = ["carousel-1","carousel-2","carousel-3"]
@@ -20,7 +20,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var arrQualityImages = ["check-2","truck","return-box","phone-2"]
     var arrQualityText = ["  Quality Product","  Free Shipping","  14-Day Return","  24/7 Support"]
     var arrCategoryImage = ["cat-1","cat-2","cat-3","cat-4","cat-1","cat-2","cat-3","cat-4"]
-   
+    
     @IBOutlet weak var collectionCategories: UICollectionView!
     @IBOutlet weak var collecctionFacilities: UICollectionView!
     @IBOutlet weak var pageControlHeader: UIPageControl!
@@ -29,6 +29,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var timer : Timer?
     var currentCellIndex = 0
     var TableHeight = CGFloat(0)
+    var cartItemArray : Array<Dictionary<String, String>> = []
+    var MyOrders : Array<Dictionary<String, String>> = [["Date":"24 June 2024", "TotalItem":"5", "TotalAmount":"5000.00","Status":"Placed"],
+                                                        ["Date":"20 May 2024", "TotalItem":"2", "TotalAmount":"200.00","Status":"Cancelled"],
+    ]
     //MARK: Application Delegate Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,32 +44,54 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         collectionCategories.dataSource = self
         collecctionFacilities.delegate = self
         collecctionFacilities.dataSource = self
-
         
-        
+        if !UserDefaults.standard.bool(forKey: "MyOrderSet"){
+            UserDefaults.standard.set(MyOrders, forKey: "MyOrder")
+            
+        }
+        UserDefaults.standard.set(true, forKey: "MyOrderSet")
+        UserDefaults.standard.set(cartItemArray, forKey: "MyCart")
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        
         self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = false
         collectionHeader.showsHorizontalScrollIndicator = false
         collectionCategories.showsHorizontalScrollIndicator = false
         collecctionFacilities.showsHorizontalScrollIndicator = false
         pageControlHeader.numberOfPages = arrHeaderImages.count
+       print(currentCellIndex)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
+//        currentCellIndex = 0
+//        collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+      
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
         
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in 
-            
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
             self.tblViewHomeScreen.reloadData()
         }
-        
+  
     }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        timer?.invalidate()
+//        currentCellIndex = 0
+//        pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
+//        collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+//    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+               currentCellIndex = 0
+               pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
+               collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+    }
     //MARK: IBAction Methods
     
     //MARK: Collection Delegate Methods
@@ -117,14 +143,14 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-            collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+        collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
     }
     
     
     
     //MARK: TableView Delegate Methods
     
-  
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -133,20 +159,20 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         cell.frame = tableView.bounds
-
+        
         cell.layoutIfNeeded()
-
+        
         cell.collectionProducts.reloadData()
-
+        
         cell.HeightConstraint.constant = cell.collectionProducts.collectionViewLayout.collectionViewContentSize.height
         cell.delegate = self
         return cell
     }
-//func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//    return UITableView.automaticDimension
-//
-//}
-   
+    //func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //    return UITableView.automaticDimension
+    //
+    //}
+    
     //MARK: User Defined Methods
     
     
@@ -155,10 +181,11 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     
     @objc func slideToNext(){
-       
-            currentCellIndex = currentCellIndex + 1
+        
+        currentCellIndex = currentCellIndex + 1
         pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
         collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+        print(currentCellIndex)
     }
     
     
@@ -166,14 +193,14 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func selectedProduct(imageName : String,ProductName : String, Price : Double) {
         let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "DetailsScreenVC") as! DetailsScreenVC
         vc.arrCategoryImage.insert(imageName, at: 0)
-        vc.Price = " $ \(Price)"
-        vc.ProductName = " \(ProductName)"
+        vc.Price = "\(Price)"
+        vc.ProductName = "\(ProductName)"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-//    func viewwillTranition(size: CGSize) {
-//        tblViewHomeScreen.reloadData()
-//    }
+    //    func viewwillTranition(size: CGSize) {
+    //        tblViewHomeScreen.reloadData()
+    //    }
     
-
+    
 }
