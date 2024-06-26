@@ -32,18 +32,10 @@ Multi Shop is an eCommerce iOS application that supports a variety of functional
 2. Open the project in Xcode:
    ```sh
    cd multi-shop
-   open MultiShop.xcodeproj
 3. Install the dependencies using CocoaPods:
    ```sh
    pod install
    
-## Usage
-1. Open the project in Xcode:
-   ```sh
-   open MultiShop.xcworkspace
-2. Select your target device or simulator & Build and run the application:
-   ```sh
-   cmd + R
 ## Screenshots
 Include screenshots of your app to showcase its features.
 ## Contributing
