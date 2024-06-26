@@ -36,34 +36,14 @@ class FilterVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        heightViewPrice.constant = 0
-        heightViewSize.constant = 0
-        btnSizeL.layer.cornerRadius = 30
-        btnSizeM.layer.cornerRadius = 30
-        btnSizeS.layer.cornerRadius = 30
-        btnSizeXS.layer.cornerRadius = 30
-        btnSizeXL.layer.cornerRadius = 30
-        btnPrice0.layer.masksToBounds = true
-        btnPrice0.layer.cornerRadius = 15
-        btnPrice100.layer.masksToBounds = true
-        btnPrice100.layer.cornerRadius = 15
-        
-        btnPrice200.layer.masksToBounds = true
-        btnPrice200.layer.cornerRadius = 15
-        
-        btnPrice300.layer.masksToBounds = true
-        btnPrice300.layer.cornerRadius = 15
-        btnPrice400.layer.masksToBounds = true
-        btnPrice400.layer.cornerRadius = 15
-        
-        btnPrice500.layer.masksToBounds = true
-        btnPrice500.layer.cornerRadius = 15
-        viewSizeBtns.isHidden = true
-//        viewPriceRange.isHidden = true
-       
+        setUiFilterScreen()
     }
     
     //MARK: IBACTION Methods
+    
+    @IBAction func onClickBtnBack(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
     
     @IBAction func onClickShowSize(_ sender: Any) {
         if heightViewSize.constant == 0{
@@ -88,7 +68,30 @@ class FilterVC: UIViewController {
 
         }
     }
-  
+    @IBAction func onClickBtnFilterbySize(_ sender: Any) {
+        if heightViewSize.constant == 0{
+            btnSizeShow.setImage(UIImage(systemName: "arrow.up"), for: .normal)
+            heightViewSize.constant = 80
+            viewSizeBtns.isHidden = false
+        }
+        else{
+            btnSizeShow.setImage(UIImage(systemName: "arrow.down"), for: .normal)
+            heightViewSize.constant = 0
+            viewSizeBtns.isHidden = true
+        }
+    }
+    @IBAction func onClickBtnFilterbyPrice(_ sender: Any) {
+        if heightViewPrice.constant == 0{
+            btnPrizeShow.setImage(UIImage(systemName: "arrow.up"), for: .normal)
+            heightViewPrice.constant = 275
+        }
+        else{
+            btnPrizeShow.setImage(UIImage(systemName: "arrow.down"), for: .normal)
+            heightViewPrice.constant = 0
+
+        }
+    }
+    
     @IBAction func onClickSize(_ sender: UIButton) {
         if sender.tag  == 1 {
             if checkSelectedSize(tag: sender.tag) {
@@ -190,14 +193,16 @@ class FilterVC: UIViewController {
     
     @IBAction func onCLickApplyChanges(_ sender: Any) {
         if SelectedSize.isEmpty && SelectedPrice.isEmpty {
-            
+            let alert = UIAlertController(title: "Alert", message: "No Filter Selected", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         else{
             self.dismiss(animated: true)            
         }
         
     }
-    
+    //MARK: User Defined Methods
     func setUpMenuButton(isScroll : Bool){
         let icon = UIImage(systemName: "chevron.left")
         let iconSize = CGRect(origin: CGPoint.zero, size: CGSize(width: 20, height: 20))
@@ -220,9 +225,33 @@ class FilterVC: UIViewController {
         }
     }
     
-    @IBAction func onClickBtnBack(_ sender: Any) {
-        self.dismiss(animated: true)
+    func setUiFilterScreen(){
+        heightViewPrice.constant = 0
+        heightViewSize.constant = 0
+        btnSizeL.layer.cornerRadius = 30
+        btnSizeM.layer.cornerRadius = 30
+        btnSizeS.layer.cornerRadius = 30
+        btnSizeXS.layer.cornerRadius = 30
+        btnSizeXL.layer.cornerRadius = 30
+        btnPrice0.layer.masksToBounds = true
+        btnPrice0.layer.cornerRadius = 15
+        btnPrice100.layer.masksToBounds = true
+        btnPrice100.layer.cornerRadius = 15
+        
+        btnPrice200.layer.masksToBounds = true
+        btnPrice200.layer.cornerRadius = 15
+        
+        btnPrice300.layer.masksToBounds = true
+        btnPrice300.layer.cornerRadius = 15
+        btnPrice400.layer.masksToBounds = true
+        btnPrice400.layer.cornerRadius = 15
+        
+        btnPrice500.layer.masksToBounds = true
+        btnPrice500.layer.cornerRadius = 15
+        viewSizeBtns.isHidden = true
     }
+    
+    //MARK: @OBJC Methods
     
     @objc func btnBackClicked(){
         self.dismiss(animated: true)
