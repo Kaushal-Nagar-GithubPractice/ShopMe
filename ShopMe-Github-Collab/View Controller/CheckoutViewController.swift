@@ -52,7 +52,7 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.tabBarController?.tabBar.isHidden = true
         lblCustomerName.text = customerAddress["CustomerName"]
         lblAddress.text = customerAddress["fullAddress"]
         lblMobileNumber.text = customerAddress["Mobile"]
@@ -98,10 +98,11 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func onClickPlaceOrder(_ sender: Any) {
         // navigate to place order screen
-        let orderDetailsArr = ["Date":"24 June 2024", "TotalItem":"\(myOrderArray.count)", "TotalAmount":"\(totalAmount)","Status":"Placed"]
+        let orderDetailsDict = ["Date":"24 June 2024", "TotalItem":"\(myOrderArray.count)", "TotalAmount":"\(totalAmount)","Status":"Placed"]
         
-        if btnPaypal.isSelected || btnDirectCheck.isSelected || btnBankTransfer.isSelected {
-            showAlert(title: "Success", message: "Order Placed Successfully.")
+        if btnPaypal.isSelected || btnDirectCheck.isSelected || btnBankTransfer.isSelected  {
+//            showAlert(title: "Success", message: "Order Placed Successfully.")
+            NavigateToOrderVc(Dict:orderDetailsDict)
         }else{
             showAlert(title: "Alert", message: "Please select Payment Mode.")
         }
@@ -162,6 +163,12 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     
     func passAddressToCheckout(address: [String : String]) {
         customerAddress = address
+    }
+    
+    func NavigateToOrderVc(Dict:[String:String]){
+        let orderVc = UIStoryboard(name: "Profile", bundle: nibBundle).instantiateViewController(withIdentifier: "MyOrderScreenVC") as! MyOrderScreenVC
+        orderVc.MyOrderArr.insert(Dict, at: 0)
+        self.navigationController?.pushViewController(orderVc, animated: true)
     }
     
 }

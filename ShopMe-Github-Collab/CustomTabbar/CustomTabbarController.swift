@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class CustomTabbarController: UITabBarController, ChangeToHomeScreen {
  
     override func viewDidLoad() {
@@ -36,6 +37,7 @@ class CustomTabbarController: UITabBarController, ChangeToHomeScreen {
         controller2.tabBarItem = UITabBarItem(title: "Shop", image: UIImage(named: "tab2"), tag: 2)
         let nav2 = UINavigationController(rootViewController: controller2)
         
+
         let controller3 = UIViewController()
         //            let controller3 = UIStoryboard(name: "UserProfile", bundle: nibBundle).instantiateViewController(identifier: "UserProfileVC") as! UserProfileVC
         controller3.tabBarItem = UITabBarItem(title: "Cart", image: UIImage(named: "tab3"), tag: 3)
@@ -45,6 +47,7 @@ class CustomTabbarController: UITabBarController, ChangeToHomeScreen {
         //        let controller4 = UIViewController()
         let controller4 = UIStoryboard(name: "Profile", bundle: nibBundle).instantiateViewController(identifier: "ProfileScreenVC") as! ProfileScreenVC
         controller4.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "tab4"), tag: 4)
+
         let nav4 = UINavigationController(rootViewController: controller4)
         
         setViewControllers([nav1, nav2,  nav3, nav4], animated: true)

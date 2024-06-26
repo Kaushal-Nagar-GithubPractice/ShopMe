@@ -46,27 +46,25 @@ class CartItemTableViewCell: UITableViewCell {
      }
 
     // MARK: - IBActions
-    @IBAction func onClickDecreaseQuantity(_ sender: Any) {
+    @IBAction func onClickDecreaseQuantity(_ sender: UIButton) {
         decreaseQuantity?()
-            
-            lblQuantity.text = String(itemQuantity)
-            lblItemPrice.text = String(itemQuantity * itemPrice)
+
     }
     
-    @IBAction func onClickIncreaseQuantity(_ sender: Any) {
+    @IBAction func onClickIncreaseQuantity(_ sender: UIButton) {
         increaseQuantity?()
-        lblQuantity.text = String(itemQuantity)
-        lblItemPrice.text = String(itemQuantity * itemPrice)
-        
-        
+
     }
     
+    func updatelblItemPrice(price:Int){
+        lblItemPrice.text = String(price)
+    }
     
     @IBAction func onClickRemoveItemFromCart(_ sender: UIButton) {
-        removeItemDelegate?.removeItemFromCart(sender: sender )
+        removeItemDelegate?.removeItemFromCart(sender: sender.tag )
     }
 }
 
 protocol removeFromCart {
-    func removeItemFromCart(sender:UIButton)
+    func removeItemFromCart(sender: Int)
 }
