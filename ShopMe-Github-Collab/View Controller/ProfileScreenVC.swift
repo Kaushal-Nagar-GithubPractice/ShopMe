@@ -7,21 +7,46 @@
 
 import UIKit
 
+protocol ChangeToHomeScreen{
+    func ChangeToHomeScreen()
+}
+
 class ProfileScreenVC: UIViewController {
     
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var imgProfileImage: UIImageView!
     @IBOutlet weak var VwProfileMenuBgview: UIView!
     
+    static var Delegate : ChangeToHomeScreen!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        SetUI()
+        
+        self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.isNavigationBarHidden = true
-        lblUserName.text = UserDefaults.standard.string(forKey: "Username")
+        
+        if !UserDefaults.standard.bool(forKey: "IsRedirect"){
+            
+            imgProfileImage.image = UIImage(systemName: "person.circle.fill")
+            lblUserName.text = "Guest"
+            
+            let alert = UIAlertController(title: "To Checkout You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+                self.NavigateToLoginVC()
+            } ))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+                ProfileScreenVC.Delegate.ChangeToHomeScreen()
+            } ))
+            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.white
+            self.present(alert, animated: true, completion: nil)
+        }
+        else{
+            SetUI()
+        }
     }
     
     //MARK: - All IBAction
@@ -34,7 +59,8 @@ class ProfileScreenVC: UIViewController {
     
     @IBAction func OnClickLogout(_ sender: Any) {
         UserDefaults.standard.set(false, forKey: "IsRedirect")
-        self.tabBarController?.navigationController?.popViewController(animated: true)
+        
+        ProfileScreenVC.Delegate.ChangeToHomeScreen()
     }
     
     @IBAction func OnClickOpenMyOrder(_ sender: Any) {
@@ -46,7 +72,12 @@ class ProfileScreenVC: UIViewController {
     //MARK: - All Defined Functions
     
     func SetUI(){
+        
+        imgProfileImage.image = UIImage(named: "Profile Pic")
+        lblUserName.text = UserDefaults.standard.string(forKey: "Username")
+        
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.isNavigationBarHidden = true
         
         VwProfileMenuBgview.layer.cornerRadius = 20
         VwProfileMenuBgview.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -61,7 +92,13 @@ class ProfileScreenVC: UIViewController {
         borderLayer.borderWidth = 8
         borderLayer.cornerRadius = borderLayer.frame.width / 2
         imgProfileImage.layer.insertSublayer(borderLayer, above: imgProfileImage.layer)
-
+        
     }
-  
+    
+    func NavigateToLoginVC(){
+        let storyBoard = UIStoryboard(name: "Authentication", bundle: nibBundle)
+        
+        let loginVc = storyBoard.instantiateViewController(withIdentifier: "LoginScreenVC") as! LoginScreenVC
+        self.navigationController?.pushViewController(loginVc, animated: true)
+    }
 }

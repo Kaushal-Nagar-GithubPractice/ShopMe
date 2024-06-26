@@ -7,12 +7,11 @@
 
 import UIKit
 
-class CustomTabbarController: UITabBarController {
-    
-    
+class CustomTabbarController: UITabBarController, ChangeToHomeScreen {
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ProfileScreenVC.Delegate = self
         setTabbarItemsController()
     }
     
@@ -49,6 +48,11 @@ class CustomTabbarController: UITabBarController {
         let nav4 = UINavigationController(rootViewController: controller4)
         
         setViewControllers([nav1, nav2,  nav3, nav4], animated: true)
+    }
+    
+    
+    func ChangeToHomeScreen() {
+        selectedIndex = 0
     }
     
 }

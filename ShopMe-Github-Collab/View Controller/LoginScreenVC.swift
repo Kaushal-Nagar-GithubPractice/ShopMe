@@ -21,14 +21,10 @@ class LoginScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if UserDefaults.standard.bool(forKey: "IsRedirect"){
-            LoginSuccessfull()
-        }
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         SetUI()
-        registerKeyboardNotifications()
         
         print("\nEmail :", UserDefaults.standard.string(forKey: "Email") ?? "", "\nPassword :",UserDefaults.standard.string(forKey: "Password") ?? "", "\nIsRedirect :",UserDefaults.standard.bool(forKey: "IsRedirect"))
     }
@@ -76,12 +72,15 @@ class LoginScreenVC: UIViewController {
         UserDefaults.standard.set(true, forKey: "IsRedirect")
 //        ShowAlertBox(Title: "Login Successfull!", Message: "")
         
-        let HomeScreen = UIStoryboard(name: "Main", bundle: nibBundle).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
-        
-        self.navigationController?.pushViewController(HomeScreen, animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func SetUI(){
+        
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+        
+        registerKeyboardNotifications()
         
         DoShowPassword = false
         btnShowPassword.setImage(UIImage(named: "Password Hide"), for: .normal)
