@@ -34,7 +34,22 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
 
     }
     override func viewWillAppear(_ animated: Bool) {
+        
+        if !UserDefaults.standard.bool(forKey: "IsRedirect"){
+            
+            let alert = UIAlertController(title: "To Checkout You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+                print("before=====navigate=======")
+                self.NavigateToLoginVC()
+            } ))
+                alert.addAction(UIAlertAction(title: "No, Continue as Guest!", style: UIAlertAction.Style.default, handler: nil))
+                alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.white
+                self.present(alert, animated: true, completion: nil)
+            
+        }
+        
         self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = false
         
 //        lblShippingCharge.text! = "1000"
         
@@ -42,12 +57,30 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func onClickCheckout(_ sender: Any) {
-    
-        let checkoutVC = self.storyboard?.instantiateViewController(withIdentifier: "CheckoutViewController") as! CheckoutViewController
-        checkoutVC.myOrderArray = cartItemArray
-        checkoutVC.priceOfItems = Int(lblGrandTotal.text!) ?? 0
         
-        self.navigationController?.pushViewController(checkoutVC, animated: true)
+        if !UserDefaults.standard.bool(forKey: "IsRedirect"){
+            
+            let alert = UIAlertController(title: "To Checkout You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+                print("before=====navigate=======")
+                self.NavigateToLoginVC()
+            } ))
+    
+                alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.white
+                self.present(alert, animated: true, completion: nil)
+            
+        }
+       else if cartItemArray.count != 0{
+            let checkoutVC = self.storyboard?.instantiateViewController(withIdentifier: "CheckoutViewController") as! CheckoutViewController
+            checkoutVC.myOrderArray = cartItemArray
+            checkoutVC.priceOfItems = Int(lblGrandTotal.text!) ?? 0
+            
+            self.navigationController?.pushViewController(checkoutVC, animated: true)
+        }else{
+            showAlert(title: "Alert", message: "Please First select product to checkout.")
+            
+        }
+        
     }
     
     // MARK: - Tableview methods
@@ -115,6 +148,15 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         lblSubTotal.text = String(total)
         lblShippingCharge.text = String((total * shippingCharge)/100)
         lblGrandTotal.text = String(total + (Int( lblShippingCharge.text! ) ?? 0) )
+    }
+    
+    
+    func NavigateToLoginVC(){
+        print("navigate=======")
+        let storyBoard = UIStoryboard(name: "Authentication", bundle: nibBundle)
+        
+        let loginVc = storyBoard.instantiateViewController(withIdentifier: "LoginScreenVC") as! LoginScreenVC
+        self.navigationController?.pushViewController(loginVc, animated: true)
     }
     
 }
