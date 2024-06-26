@@ -40,9 +40,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         collectionCategories.dataSource = self
         collecctionFacilities.delegate = self
         collecctionFacilities.dataSource = self
-//        delegate = self
-        pageControlHeader.numberOfPages = arrHeaderImages.count
-        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
+
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,9 +50,11 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         collectionHeader.showsHorizontalScrollIndicator = false
         collectionCategories.showsHorizontalScrollIndicator = false
         collecctionFacilities.showsHorizontalScrollIndicator = false
+        pageControlHeader.numberOfPages = arrHeaderImages.count
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
@@ -64,9 +66,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
     }
     
-//    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
-////        tblViewHomeScreen.reloadData()
-//    }
     //MARK: IBAction Methods
     
     //MARK: Collection Delegate Methods
@@ -106,6 +105,21 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
         
     }
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == collectionHeader{
+            //            print(scrollView.contentOffset,scrollView.contentInset,scrollView.contentSize)
+            guard let visiblecell = collectionHeader.visibleCells.last else { return  }
+            let indexpath = collectionHeader.indexPath(for: visiblecell)
+            currentCellIndex = indexpath?.row ?? -1
+            pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
+        }
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+    }
+    
     
     
     //MARK: TableView Delegate Methods
@@ -149,9 +163,11 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     
     //MARK: Protocol Defined Methods
-    func selectedProduct(imageName : String) {
+    func selectedProduct(imageName : String,ProductName : String, Price : Double) {
         let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "DetailsScreenVC") as! DetailsScreenVC
         vc.arrCategoryImage.insert(imageName, at: 0)
+        vc.Price = " $ \(Price)"
+        vc.ProductName = " \(ProductName)"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
