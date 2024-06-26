@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ProductSelect {
-    func selectedProduct(imageName: String)
+    func selectedProduct(imageName: String,ProductName : String, Price : Double)
 }
 
 
@@ -55,7 +55,7 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        delegate?.selectedProduct(imageName: arrProductImages[indexPath.row])
+        delegate?.selectedProduct(imageName: arrProductImages[indexPath.row],ProductName: arrProductName[indexPath.row],Price: arrProductPrice[indexPath.row])
         
     }
     

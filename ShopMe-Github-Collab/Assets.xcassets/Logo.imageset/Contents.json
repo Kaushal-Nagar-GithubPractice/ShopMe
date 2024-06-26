@@ -2,16 +2,7 @@
   "images" : [
     {
       "filename" : "Screenshot_2024-06-24_at_7.44.04_PM-removebg-preview.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "idiom" : "universal"
     }
   ],
   "info" : {

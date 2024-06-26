@@ -9,7 +9,10 @@ import UIKit
 
 class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
    
+    @IBOutlet weak var heightForViewColor: NSLayoutConstraint!
     
+    @IBOutlet weak var viewSizeBtn: UIView!
+    @IBOutlet weak var heightForViewSize: NSLayoutConstraint!
     @IBOutlet weak var collectionSelectedItem: UICollectionView!
     
     @IBOutlet weak var collectionSuggestedProducts: UICollectionView!
@@ -38,7 +41,8 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     var SelectecColor = ""
     var SelectedSize = ""
     var Quantity = 1
-    
+    var Price   = " "
+    var ProductName  = " "
     
     //MARK: Application Delegate Method
     
@@ -61,65 +65,53 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         setUpMenuButton(isScroll: true)
         self.navigationItem.title = "Product Detail"
         navigationController?.navigationBar.barTintColor = UIColor.systemYellow
-        
-        btnSizeXL.layer.cornerRadius = 30
-        btnSizeL.layer.cornerRadius = 30
-        btnSizeM.layer.cornerRadius = 30
-        btnSizeS.layer.cornerRadius = 30
-        btnSizeXS.layer.cornerRadius = 30
-        
-        btnColorGreen.layer.cornerRadius = 30
-        btnColorBlue.layer.cornerRadius = 30
-        btnColorRed.layer.cornerRadius = 30
-        btnColorBlack.layer.cornerRadius = 30
-        btnColorWhite.layer.cornerRadius = 30
-        
-        btnSizeXL.layer.borderWidth = 2
-        btnSizeXL.layer.borderColor = UIColor.black.cgColor
-        btnSizeL.layer.borderWidth = 2
-        btnSizeL.layer.borderColor = UIColor.black.cgColor
-        btnSizeM.layer.borderWidth = 2
-        btnSizeM.layer.borderColor = UIColor.black.cgColor
-        btnSizeS.layer.borderWidth = 2
-        btnSizeS.layer.borderColor = UIColor.black.cgColor
-        btnSizeXS.layer.borderWidth = 2
-        btnSizeXS.layer.borderColor = UIColor.black.cgColor
-        
-        btnColorGreen.layer.borderColor = UIColor.black.cgColor
-        btnColorGreen.layer.borderWidth = 2
-        btnColorBlue.layer.borderColor = UIColor.black.cgColor
-        btnColorBlue.layer.borderWidth = 2
-        btnColorRed.layer.borderColor = UIColor.black.cgColor
-        btnColorRed.layer.borderWidth = 2
-        btnColorBlack.layer.borderColor = UIColor.black.cgColor
-        btnColorBlack.layer.borderWidth = 2
-        btnColorWhite.layer.borderColor = UIColor.black.cgColor
-        btnColorWhite.layer.borderWidth = 2
-        
-        
+        setDetailScreenUI()
+        lblPrice.text = Price
+        lblProductName.text = ProductName
+        setUpSizeColorView()
     }
     
     //MARK: IBACTION Method
 
     @IBAction func onCLickbtnSIze(_ sender: UIButton) {
         if sender.tag == 1{
-            
+            btnSizeXS.tintColor = .systemYellow
+            btnSizeS.tintColor = .label
+            btnSizeM.tintColor = .label
+            btnSizeL.tintColor = .label
+            btnSizeXL.tintColor = .label
             SelectedSize = "XS"
         }
         else if sender.tag == 2{
-           
+            btnSizeS.tintColor = .systemYellow
+            btnSizeXS.tintColor = .label
+            btnSizeM.tintColor = .label
+            btnSizeL.tintColor = .label
+            btnSizeXL.tintColor = .label
             SelectedSize = "S"
         }
         else if sender.tag == 3{
-            
+            btnSizeM.tintColor = .systemYellow
+            btnSizeS.tintColor = .label
+            btnSizeXS.tintColor = .label
+            btnSizeL.tintColor = .label
+            btnSizeXL.tintColor = .label
             SelectedSize = "M"
         }
         else if sender.tag == 4{
-            
+            btnSizeL.tintColor = .systemYellow
+            btnSizeS.tintColor = .label
+            btnSizeM.tintColor = .label
+            btnSizeXS.tintColor = .label
+            btnSizeXL.tintColor = .label
             SelectedSize = "L"
         }
         else if sender.tag == 5{
-            
+            btnSizeXL.tintColor = .systemYellow
+            btnSizeS.tintColor = .label
+            btnSizeM.tintColor = .label
+            btnSizeL.tintColor = .label
+            btnSizeXS.tintColor = .label
             SelectedSize = "XL"
         }
     }
@@ -128,23 +120,43 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBAction func onClickBtnColor(_ sender: UIButton) {
         
         if sender.tag == 6{
-            
+            btnColorGreen.layer.borderColor = UIColor.black.cgColor
+            btnColorBlue.layer.borderColor = UIColor.black.cgColor
+            btnColorRed.layer.borderColor = UIColor.black.cgColor
+            btnColorBlack.layer.borderColor = UIColor.black.cgColor
+            btnColorWhite.layer.borderColor = UIColor.systemYellow.cgColor
             SelectecColor = "W"
         }
         else if sender.tag == 7{
-            
+            btnColorGreen.layer.borderColor = UIColor.black.cgColor
+            btnColorBlue.layer.borderColor = UIColor.black.cgColor
+            btnColorRed.layer.borderColor = UIColor.systemYellow.cgColor
+            btnColorBlack.layer.borderColor = UIColor.black.cgColor
+            btnColorWhite.layer.borderColor = UIColor.black.cgColor
             SelectecColor = "Bk"
         }
         else if sender.tag == 8{
-            
+            btnColorGreen.layer.borderColor = UIColor.systemYellow.cgColor
+            btnColorBlue.layer.borderColor = UIColor.black.cgColor
+            btnColorRed.layer.borderColor = UIColor.black.cgColor
+            btnColorBlack.layer.borderColor = UIColor.black.cgColor
+            btnColorWhite.layer.borderColor = UIColor.black.cgColor
             SelectecColor = "R"
         }
         else if sender.tag == 9{
-            
+            btnColorGreen.layer.borderColor = UIColor.black.cgColor
+            btnColorBlue.layer.borderColor = UIColor.systemYellow.cgColor
+            btnColorRed.layer.borderColor = UIColor.black.cgColor
+            btnColorBlack.layer.borderColor = UIColor.black.cgColor
+            btnColorWhite.layer.borderColor = UIColor.black.cgColor
             SelectecColor = "Bl"
         }
         else if sender.tag == 10{
-            
+            btnColorGreen.layer.borderColor = UIColor.black.cgColor
+            btnColorBlue.layer.borderColor = UIColor.black.cgColor
+            btnColorRed.layer.borderColor = UIColor.black.cgColor
+            btnColorBlack.layer.borderColor = UIColor.systemYellow.cgColor
+            btnColorWhite.layer.borderColor = UIColor.black.cgColor
             SelectecColor = "G"
         }
     }
@@ -210,6 +222,21 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             present(vc,animated: true)
         }
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == collectionSelectedItem{
+            //            print(scrollView.contentOffset,scrollView.contentInset,scrollView.contentSize)
+            guard let visiblecell = collectionSelectedItem.visibleCells.last else { return  }
+            let indexpath = collectionSelectedItem.indexPath(for: visiblecell)
+            currentCellIndex = indexpath?.row ?? -1
+            pageControl.currentPage = currentCellIndex % arrCategoryImage.count
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        collectionSelectedItem.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+    }
+    
     //MARK: User Defined Methods
     
     func setUpMenuButton(isScroll : Bool){
@@ -223,6 +250,64 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
         navigationItem.leftBarButtonItem = barButton
        
+    }
+    
+    func setDetailScreenUI(){
+        btnSizeXL.layer.cornerRadius = self.btnSizeXL.frame.width / 2 - 1
+        btnSizeL.layer.cornerRadius = self.btnSizeXL.frame.width / 2 - 1
+        btnSizeM.layer.cornerRadius = self.btnSizeXL.frame.width / 2 - 1
+        btnSizeS.layer.cornerRadius = self.btnSizeXL.frame.width / 2 - 1
+        btnSizeXS.layer.cornerRadius = self.btnSizeXL.frame.width / 2 - 1
+        
+        btnColorGreen.layer.cornerRadius = self.btnSizeXL.frame.width / 2 - 1
+        btnColorBlue.layer.cornerRadius = self.btnSizeXL.frame.width / 2 - 1
+        btnColorRed.layer.cornerRadius = self.btnSizeXL.frame.width / 2 - 1
+        btnColorBlack.layer.cornerRadius = self.btnSizeXL.frame.width / 2 - 1
+        btnColorWhite.layer.cornerRadius = self.btnSizeXL.frame.width / 2 - 1
+        
+        btnSizeXL.layer.borderWidth = 2
+        btnSizeXL.layer.borderColor = UIColor.black.cgColor
+        btnSizeL.layer.borderWidth = 2
+        btnSizeL.layer.borderColor = UIColor.black.cgColor
+        btnSizeM.layer.borderWidth = 2
+        btnSizeM.layer.borderColor = UIColor.black.cgColor
+        btnSizeS.layer.borderWidth = 2
+        btnSizeS.layer.borderColor = UIColor.black.cgColor
+        btnSizeXS.layer.borderWidth = 2
+        btnSizeXS.layer.borderColor = UIColor.black.cgColor
+        
+        btnColorGreen.layer.borderColor = UIColor.black.cgColor
+        btnColorGreen.layer.borderWidth = 2
+        btnColorBlue.layer.borderColor = UIColor.black.cgColor
+        btnColorBlue.layer.borderWidth = 2
+        btnColorRed.layer.borderColor = UIColor.black.cgColor
+        btnColorRed.layer.borderWidth = 2
+        btnColorBlack.layer.borderColor = UIColor.black.cgColor
+        btnColorBlack.layer.borderWidth = 2
+        btnColorWhite.layer.borderColor = UIColor.black.cgColor
+        btnColorWhite.layer.borderWidth = 2
+    }
+    
+    func setUpSizeColorView(){
+        if ProductName.trimmingCharacters(in: .whitespacesAndNewlines) == "TOP" ||  ProductName.trimmingCharacters(in: .whitespacesAndNewlines) == "Tshirt"{
+            heightForViewSize.constant = 50
+            heightForViewColor.constant = 50
+            viewSizeBtn.isHidden = false
+        }
+        else{
+            heightForViewSize.constant = 0
+            heightForViewColor.constant = 0
+            viewSizeBtn.isHidden = true
+        }
+        if ProductName.trimmingCharacters(in: .whitespacesAndNewlines) == "Shoes"{
+            heightForViewSize.constant = 50
+            viewSizeBtn.isHidden = false
+            btnSizeXS.setTitle("8", for: .normal)
+            btnSizeS.setTitle("9", for: .normal)
+            btnSizeM.setTitle("10", for: .normal)
+            btnSizeL.setTitle("11", for: .normal)
+            btnSizeXL.setTitle("12", for: .normal)
+        }
     }
     
     //MARK: @OBJC Methods
