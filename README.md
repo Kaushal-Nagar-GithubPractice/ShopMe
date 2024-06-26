@@ -40,6 +40,6 @@ Include screenshots of your app to showcase its features.
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed. See the LICENSE file for details.
 ## Contact
 For any questions or suggestions, please reach out to us at email@example.com.
