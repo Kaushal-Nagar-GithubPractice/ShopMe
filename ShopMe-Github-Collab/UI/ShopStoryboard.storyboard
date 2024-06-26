@@ -213,6 +213,9 @@
                                                         <buttonConfiguration key="configuration" style="plain" title="  Filter by Size">
                                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="28"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="onClickBtnFilterbySize:" destination="ulH-e2-aOT" eventType="touchUpInside" id="hoN-CP-XXo"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FnT-4e-Ra0">
                                                         <rect key="frame" x="341.66666666666669" y="25.666666666666661" width="46.333333333333314" height="34.333333333333343"/>
@@ -222,6 +225,7 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
                                                         </buttonConfiguration>
                                                         <connections>
+                                                            <action selector="onClickBtnFilterbyPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="Ko0-aM-chH"/>
                                                             <action selector="onClickShowSize:" destination="ulH-e2-aOT" eventType="touchUpInside" id="NOU-f2-DZP"/>
                                                         </connections>
                                                     </button>

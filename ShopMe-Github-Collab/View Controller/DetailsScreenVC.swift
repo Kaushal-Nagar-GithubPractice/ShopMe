@@ -49,7 +49,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     override func viewDidLoad() {
         super.viewDidLoad()
         pageControl.numberOfPages = arrCategoryImage.count
-        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
+        
         collectionSelectedItem.delegate = self
         collectionSelectedItem.dataSource = self
         collectionSuggestedProducts.delegate = self
@@ -69,6 +69,9 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         lblPrice.text = Price
         lblProductName.text = ProductName
         setUpSizeColorView()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
     }
     
     //MARK: IBACTION Method
