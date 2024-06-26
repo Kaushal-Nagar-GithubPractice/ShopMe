@@ -64,7 +64,7 @@ class EditProfileVC: UIViewController {
         UserDefaults.standard.set(TfName.text?.trimmingCharacters(in: .whitespaces), forKey: "Username")
         UserDefaults.standard.set(TfEmail.text?.lowercased(), forKey: "Email")
         UserDefaults.standard.set(TfPassword.text?.trimmingCharacters(in: .whitespaces), forKey: "Password")
-        UserDefaults.standard.set(false, forKey: "IsRedirect")
+        UserDefaults.standard.set(true, forKey: "IsRedirect")
     }
     
     func registerKeyboardNotifications() {
