@@ -30,7 +30,7 @@ Multi Shop is an eCommerce iOS application that supports a variety of functional
    git clone https://github.com/Kaushal-Nagar-GithubPractice/ShopMe.git
 2. Open the project in Xcode:
    ```sh
-   cd multi-shop
+   cd ShopMe
 3. Install the dependencies using CocoaPods:
    ```sh
    pod install
