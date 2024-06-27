@@ -13,6 +13,7 @@ protocol ChangeToHomeScreen{
 
 class ProfileScreenVC: UIViewController {
     
+    @IBOutlet weak var btnLogout: UIButton!
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var imgProfileImage: UIImageView!
     @IBOutlet weak var VwProfileMenuBgview: UIView!
@@ -82,7 +83,7 @@ class ProfileScreenVC: UIViewController {
     //MARK: - All Defined Functions
     
     func SetUI(){
-        
+        btnLogout.layer.cornerRadius = 10
         imgProfileImage.image = UIImage(named: "Profile Pic")
         lblUserName.text = UserDefaults.standard.string(forKey: "Username")
         

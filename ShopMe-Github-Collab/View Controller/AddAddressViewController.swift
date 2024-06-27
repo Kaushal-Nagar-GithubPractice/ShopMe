@@ -56,7 +56,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
 //        viewHeader.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner ]
         
         btnSaveAddress.clipsToBounds = true
-        btnSaveAddress.layer.cornerRadius = 8
+        btnSaveAddress.layer.cornerRadius = 10
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

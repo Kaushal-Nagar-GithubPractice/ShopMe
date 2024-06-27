@@ -10,6 +10,7 @@ import UIKit
 class RegisterScreenVC: UIViewController {
     
     
+    @IBOutlet weak var btnRegister: UIButton!
     
     @IBOutlet weak var TfEmail: UITextField!
     @IBOutlet weak var TfPassword: UITextField!
@@ -29,6 +30,7 @@ class RegisterScreenVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         SetUI()
         registerKeyboardNotifications()
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
@@ -87,7 +89,11 @@ class RegisterScreenVC: UIViewController {
     }
     
     func SetUI(){
-        
+        TfEmail.text = ""
+        TfPassword.text = ""
+        TfEnterName.text = ""
+        TfConfirmPassword.text = ""
+        btnRegister.layer.cornerRadius = 10
         DoShowPassword = false
         btnShowPassword.setImage(UIImage(named: "Password Hide"), for: .normal)
         TfPassword.isSecureTextEntry = true

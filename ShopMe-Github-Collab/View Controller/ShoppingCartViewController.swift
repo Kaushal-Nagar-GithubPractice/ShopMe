@@ -167,7 +167,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         else{
             CartListTableView.isHidden = false
         }
-        
+//        btnProceedToCheckout.layer.cornerRadius = 15
         updateTotal()
         UserDefaults.standard.set(cartItemArray, forKey: "MyCart")
         CartListTableView.reloadData()

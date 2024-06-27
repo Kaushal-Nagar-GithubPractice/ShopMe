@@ -205,18 +205,18 @@
                                                 <rect key="frame" x="0.0" y="45" width="393" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAE-iH-54o">
-                                                        <rect key="frame" x="0.0" y="12.333333333333325" width="393" height="47.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="8" width="393" height="44"/>
                                                         <color key="tintColor" name="Custom Black"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="  Filter by Size">
-                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="28"/>
+                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                                         </buttonConfiguration>
                                                         <connections>
                                                             <action selector="onClickBtnFilterbySize:" destination="ulH-e2-aOT" eventType="touchUpInside" id="hoN-CP-XXo"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FnT-4e-Ra0">
-                                                        <rect key="frame" x="341.66666666666669" y="25.666666666666661" width="46.333333333333314" height="34.333333333333343"/>
+                                                        <rect key="frame" x="341.66666666666669" y="13" width="46.333333333333314" height="34.333333333333336"/>
                                                         <color key="tintColor" name="Custom Black"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system">
@@ -229,12 +229,12 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="TAE-iH-54o" firstAttribute="centerY" secondItem="eIR-0K-LjK" secondAttribute="centerY" id="093-p9-cIU"/>
                                                     <constraint firstAttribute="height" constant="60" id="BHy-Fq-LeK"/>
-                                                    <constraint firstAttribute="bottom" secondItem="TAE-iH-54o" secondAttribute="bottom" id="Tr5-T5-qrh"/>
                                                     <constraint firstAttribute="trailing" secondItem="FnT-4e-Ra0" secondAttribute="trailing" constant="5" id="dKY-q7-P9S"/>
                                                     <constraint firstAttribute="trailing" secondItem="TAE-iH-54o" secondAttribute="trailing" id="ire-fa-rpb"/>
+                                                    <constraint firstItem="FnT-4e-Ra0" firstAttribute="centerY" secondItem="eIR-0K-LjK" secondAttribute="centerY" id="n6p-4y-wAb"/>
                                                     <constraint firstItem="TAE-iH-54o" firstAttribute="leading" secondItem="eIR-0K-LjK" secondAttribute="leading" id="p5N-93-g2z"/>
-                                                    <constraint firstAttribute="bottom" secondItem="FnT-4e-Ra0" secondAttribute="bottom" id="yQg-yy-JyQ"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xkx-mP-TP1">
@@ -307,11 +307,11 @@
                                                         <color key="tintColor" name="Custom Black"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="  Filter by Price">
-                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="28"/>
+                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="25"/>
                                                         </buttonConfiguration>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Say-Bh-0v4">
-                                                        <rect key="frame" x="341.66666666666669" y="0.0" width="46.333333333333314" height="60"/>
+                                                        <rect key="frame" x="341.66666666666669" y="13" width="46.333333333333314" height="34.333333333333336"/>
                                                         <color key="tintColor" name="Custom Black"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system">
@@ -325,10 +325,10 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="05B-8d-454"/>
+                                                    <constraint firstItem="gvf-SP-S1M" firstAttribute="centerY" secondItem="hbU-Ii-1qb" secondAttribute="centerY" id="Brm-AS-kYi"/>
                                                     <constraint firstAttribute="trailing" secondItem="gvf-SP-S1M" secondAttribute="trailing" id="D2O-wi-7JO"/>
                                                     <constraint firstAttribute="trailing" secondItem="Say-Bh-0v4" secondAttribute="trailing" constant="5" id="coR-yM-EbA"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Say-Bh-0v4" secondAttribute="bottom" id="eAQ-3r-Yw7"/>
-                                                    <constraint firstItem="Say-Bh-0v4" firstAttribute="top" secondItem="hbU-Ii-1qb" secondAttribute="top" id="h2O-jK-LaM"/>
+                                                    <constraint firstItem="Say-Bh-0v4" firstAttribute="centerY" secondItem="hbU-Ii-1qb" secondAttribute="centerY" id="iEU-nS-xbv"/>
                                                     <constraint firstItem="gvf-SP-S1M" firstAttribute="leading" secondItem="hbU-Ii-1qb" secondAttribute="leading" id="kYG-VP-fXt"/>
                                                     <constraint firstAttribute="bottom" secondItem="gvf-SP-S1M" secondAttribute="bottom" id="pMd-xQ-LP1"/>
                                                     <constraint firstItem="gvf-SP-S1M" firstAttribute="top" secondItem="hbU-Ii-1qb" secondAttribute="top" id="wOK-O9-Gk0"/>
@@ -445,6 +445,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="Skf-h4-YUg"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                 <color key="tintColor" name="Custom Black"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Apply Changes"/>
@@ -538,7 +539,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
