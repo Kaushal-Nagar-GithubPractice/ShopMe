@@ -30,9 +30,9 @@ class CartItemTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        viewQuantityManage.layer.cornerRadius = 10
+        viewQuantityManage.layer.cornerRadius = 8
         viewQuantityManage.clipsToBounds = true
-    
+        setUI()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -57,11 +57,25 @@ class CartItemTableViewCell: UITableViewCell {
     }
     
     func updatelblItemPrice(price:Int){
-        lblItemPrice.text = String(price)
+        lblItemPrice.text = "$ \(price)"
     }
     
     @IBAction func onClickRemoveItemFromCart(_ sender: UIButton) {
         removeItemDelegate?.removeItemFromCart(sender: sender.tag )
+    }
+    
+    
+    func setUI(){
+        btnIncrease.layer.cornerRadius = 8
+        btnIncrease.clipsToBounds = true
+        btnDecrease.layer.cornerRadius = 8
+        btnDecrease.clipsToBounds = true
+        
+        viewCell.backgroundColor = UIColor.systemGray6
+        viewCell.layer.cornerRadius = 10
+        viewCell.layer.masksToBounds = true
+        
+        btnRemoveItem.setImage(UIImage(named: "cancel"), for: .normal)
     }
 }
 
