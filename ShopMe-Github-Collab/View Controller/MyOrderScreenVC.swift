@@ -63,6 +63,7 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.btnStatusbutton.setImage(UIImage(named: "Placed"), for: .normal)
             cell.btnStatusbutton.tintColor = UIColor.systemGreen
             cell.lblStatus.textColor = UIColor.systemGreen
+            cell.VwMyOrderTablebgView.backgroundColor = UIColor(named: "Custom Light Yellow")
             
             let dashedBorderLayer = cell.VwStatusView.addLineDashedStroke(pattern: [10, 5], radius: 10, color: UIColor.systemGreen.cgColor)
             cell.VwStatusView.layer.addSublayer(dashedBorderLayer)
@@ -71,6 +72,7 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.btnStatusbutton.setImage(UIImage(named: "Cancelled"), for: .normal)
             cell.btnStatusbutton.tintColor = UIColor.systemRed
             cell.lblStatus.textColor = UIColor.systemRed
+            cell.VwMyOrderTablebgView.backgroundColor = UIColor(named: "Custom Light Red")
             
             let dashedBorderLayer = cell.VwStatusView.addLineDashedStroke(pattern: [10, 5], radius: 10, color: UIColor.systemRed.cgColor)
             cell.VwStatusView.layer.addSublayer(dashedBorderLayer)
