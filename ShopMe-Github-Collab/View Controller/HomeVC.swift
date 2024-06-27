@@ -71,6 +71,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
             self.tblViewHomeScreen.reloadData()
+            self.collectionHeader.reloadData()
         }
   
     }
