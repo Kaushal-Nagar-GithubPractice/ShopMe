@@ -69,6 +69,16 @@ class ProfileScreenVC: UIViewController {
         self.navigationController?.pushViewController(myOrderScreen, animated: true)
     }
     
+    
+    @IBAction func OnClickOpenShippingAddress(_ sender: Any) {
+        
+        let ShippingAddressScreen = UIStoryboard(name: "CartList", bundle: nibBundle).instantiateViewController(withIdentifier: "SelectAddressViewController") as! SelectAddressViewController
+        
+        self.navigationController?.pushViewController(ShippingAddressScreen, animated: true)
+        
+    }
+    
+    
     //MARK: - All Defined Functions
     
     func SetUI(){
