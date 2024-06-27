@@ -38,6 +38,7 @@ Multi Shop is an eCommerce iOS application that supports a variety of functional
 ## Screenshots
 
 <img src="https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/f585a959-0b14-4fe4-a9c0-9ca3bb23d523" width="393" height="759">
+<img src="https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/e2c0c18e-08e7-4aa9-ba82-1cc24ae0dcc1" width="393" height="759">
 
 ![Simulator Screenshot - iPhone 15 Pro - 2024-06-27 at 18 27 33](https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/f585a959-0b14-4fe4-a9c0-9ca3bb23d523 | width=100)
 ![Simulator Screenshot - iPhone 15 Pro - 2024-06-27 at 18 29 22](https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/e2c0c18e-08e7-4aa9-ba82-1cc24ae0dcc1 | width=100)
