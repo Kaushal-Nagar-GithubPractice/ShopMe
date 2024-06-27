@@ -36,18 +36,10 @@ Multi Shop is an eCommerce iOS application that supports a variety of functional
    pod install
    
 ## Screenshots
-<p align="center">
-<img src="https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/f585a959-0b14-4fe4-a9c0-9ca3bb23d523" width="262" height="568">
-<img src="https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/e2c0c18e-08e7-4aa9-ba82-1cc24ae0dcc1" width="262" height="568">
-<img src="https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/2d0374d6-0ac7-4f20-910c-424a7d9728de" width="262" height="568">
-<img src="https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/a867b1e4-e33f-419c-bfbc-cda05c4b056a" width="262" height="568">
-<img src="https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/8dd6a648-7819-49fd-9da1-7dc144ddf73f" width="262" height="568">
-<img src="https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/a7360f06-9a33-4d30-abd0-f96b0de8f246" width="262" height="568">
-</p>
-
+Include screenshots of your app to showcase its features.
 ## Contributing
-> Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
+Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
 ## License
-> This project is licensed. See the LICENSE file for details.
+This project is licensed. See the LICENSE file for details.
 ## Contact
-> For any questions or suggestions, please reach out to us at email@example.com.
+For any questions or suggestions, please reach out to us at email@example.com.
