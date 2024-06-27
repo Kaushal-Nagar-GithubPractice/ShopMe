@@ -20,7 +20,6 @@ Multi Shop is an eCommerce iOS application that supports a variety of functional
   - Edit Profile Information
 - **Order Management**
   - View all past orders
-  - Track current orders
 - **Dark Mode**
   - All screens support dark mode for better readability and user comfort
 
@@ -29,3 +28,18 @@ Multi Shop is an eCommerce iOS application that supports a variety of functional
 1. Clone the repository:
    ```sh
    git clone https://github.com/Kaushal-Nagar-GithubPractice/ShopMe.git
+2. Open the project in Xcode:
+   ```sh
+   cd ShopMe
+3. Install the dependencies using CocoaPods:
+   ```sh
+   pod install
+   
+## Screenshots
+Include screenshots of your app to showcase its features.
+## Contributing
+Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
+## License
+This project is licensed. See the LICENSE file for details.
+## Contact
+For any questions or suggestions, please reach out to us at email@example.com.
