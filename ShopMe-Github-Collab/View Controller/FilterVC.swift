@@ -50,7 +50,7 @@ class FilterVC: UIViewController {
     @IBAction func onClickShowSize(_ sender: Any) {
         if heightViewSize.constant == 0{
             btnSizeShow.setImage(UIImage(systemName: "arrow.up"), for: .normal)
-            heightViewSize.constant = 80
+            heightViewSize.constant = 35
             viewSizeBtns.isHidden = false
         }
         else{
@@ -62,7 +62,7 @@ class FilterVC: UIViewController {
     @IBAction func onCLickshowPrize(_ sender: Any) {
         if heightViewPrice.constant == 0{
             btnPrizeShow.setImage(UIImage(systemName: "arrow.up"), for: .normal)
-            heightViewPrice.constant = 275
+            heightViewPrice.constant = 150
         }
         else{
             btnPrizeShow.setImage(UIImage(systemName: "arrow.down"), for: .normal)
@@ -73,7 +73,7 @@ class FilterVC: UIViewController {
     @IBAction func onClickBtnFilterbySize(_ sender: Any) {
         if heightViewSize.constant == 0{
             btnSizeShow.setImage(UIImage(systemName: "arrow.up"), for: .normal)
-            heightViewSize.constant = 80
+            heightViewSize.constant = 35
             viewSizeBtns.isHidden = false
         }
         else{
@@ -85,7 +85,7 @@ class FilterVC: UIViewController {
     @IBAction func onClickBtnFilterbyPrice(_ sender: Any) {
         if heightViewPrice.constant == 0{
             btnPrizeShow.setImage(UIImage(systemName: "arrow.up"), for: .normal)
-            heightViewPrice.constant = 275
+            heightViewPrice.constant = 150
         }
         else{
             btnPrizeShow.setImage(UIImage(systemName: "arrow.down"), for: .normal)
@@ -137,58 +137,34 @@ class FilterVC: UIViewController {
         }
     }
     @IBAction func onClickPrice(_ sender: UIButton) {
+        btnPrice0.backgroundColor = .systemGray5
+        btnPrice100.backgroundColor = .systemGray5
+        btnPrice200.backgroundColor = .systemGray5
+        btnPrice300.backgroundColor = .systemGray5
+        btnPrice400.backgroundColor = .systemGray5
+        btnPrice500.backgroundColor = .systemGray5
         if sender.tag  == 6 {
             btnPrice0.backgroundColor = .lightGray
-            btnPrice100.backgroundColor = .systemGray5
-            btnPrice200.backgroundColor = .systemGray5
-            btnPrice300.backgroundColor = .systemGray5
-            btnPrice400.backgroundColor = .systemGray5
-            btnPrice500.backgroundColor = .systemGray5
             SelectedPrice.append(6)
         }
         else if sender.tag  == 7 {
             btnPrice100.backgroundColor = .lightGray
-            btnPrice0.backgroundColor = .systemGray5
-            btnPrice200.backgroundColor = .systemGray5
-            btnPrice300.backgroundColor = .systemGray5
-            btnPrice400.backgroundColor = .systemGray5
-            btnPrice500.backgroundColor = .systemGray5
             SelectedPrice.append(7)
         }
         else if sender.tag  == 8 {
             btnPrice200.backgroundColor = .lightGray
-            btnPrice100.backgroundColor = .systemGray5
-            btnPrice0.backgroundColor = .systemGray5
-            btnPrice300.backgroundColor = .systemGray5
-            btnPrice400.backgroundColor = .systemGray5
-            btnPrice500.backgroundColor = .systemGray5
             SelectedPrice.append(8)
         }
         else if sender.tag  == 9 {
             btnPrice300.backgroundColor = .lightGray
-            btnPrice100.backgroundColor = .systemGray5
-            btnPrice200.backgroundColor = .systemGray5
-            btnPrice0.backgroundColor = .systemGray5
-            btnPrice400.backgroundColor = .systemGray5
-            btnPrice500.backgroundColor = .systemGray5
             SelectedPrice.append(9)
         }
         else if sender.tag  == 10 {
             btnPrice400.backgroundColor = .lightGray
-            btnPrice100.backgroundColor = .systemGray5
-            btnPrice200.backgroundColor = .systemGray5
-            btnPrice300.backgroundColor = .systemGray5
-            btnPrice0.backgroundColor = .systemGray5
-            btnPrice500.backgroundColor = .systemGray5
             SelectedPrice.append(10)
         }
         else if sender.tag  == 11 {
             btnPrice500.backgroundColor = .lightGray
-            btnPrice100.backgroundColor = .systemGray5
-            btnPrice200.backgroundColor = .systemGray5
-            btnPrice300.backgroundColor = .systemGray5
-            btnPrice400.backgroundColor = .systemGray5
-            btnPrice0.backgroundColor = .systemGray5
             SelectedPrice.append(11)
         }
     }
@@ -230,26 +206,26 @@ class FilterVC: UIViewController {
     func setUiFilterScreen(){
         heightViewPrice.constant = 0
         heightViewSize.constant = 0
-        btnSizeL.layer.cornerRadius = 30
-        btnSizeM.layer.cornerRadius = 30
-        btnSizeS.layer.cornerRadius = 30
-        btnSizeXS.layer.cornerRadius = 30
-        btnSizeXL.layer.cornerRadius = 30
+        btnSizeL.layer.cornerRadius = 10
+        btnSizeM.layer.cornerRadius = 10
+        btnSizeS.layer.cornerRadius = 10
+        btnSizeXS.layer.cornerRadius = 10
+        btnSizeXL.layer.cornerRadius = 10
         btnPrice0.layer.masksToBounds = true
-        btnPrice0.layer.cornerRadius = 15
+        btnPrice0.layer.cornerRadius = 10
         btnPrice100.layer.masksToBounds = true
-        btnPrice100.layer.cornerRadius = 15
+        btnPrice100.layer.cornerRadius = 10
         
         btnPrice200.layer.masksToBounds = true
-        btnPrice200.layer.cornerRadius = 15
+        btnPrice200.layer.cornerRadius = 10
         
         btnPrice300.layer.masksToBounds = true
-        btnPrice300.layer.cornerRadius = 15
+        btnPrice300.layer.cornerRadius = 10
         btnPrice400.layer.masksToBounds = true
-        btnPrice400.layer.cornerRadius = 15
+        btnPrice400.layer.cornerRadius = 10
         
         btnPrice500.layer.masksToBounds = true
-        btnPrice500.layer.cornerRadius = 15
+        btnPrice500.layer.cornerRadius = 10
         viewSizeBtns.isHidden = true
     }
     

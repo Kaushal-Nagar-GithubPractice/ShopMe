@@ -7,17 +7,13 @@
 
 import UIKit
 
-class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect {
+class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect, UICollectionViewDelegateFlowLayout {
     
-    
-    
-    
-    //    var delegate : changesInTransition?
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var frame = CGFloat(0)
     var arrHeaderImages = ["carousel-1","carousel-2","carousel-3"]
     var arrHeaderLabel = ["Men Fashion","Women Fashion","Kids Fashion"]
-    var arrQualityImages = ["check-2","truck","return-box","phone-2"]
+    var arrQualityImages = ["checkmark","truck.box.fill","shippingbox","phone"]
     var arrQualityText = ["  Quality Product","  Free Shipping","  14-Day Return","  24/7 Support"]
     var arrCategoryImage = ["cat-1","cat-2","cat-3","cat-4","cat-1","cat-2","cat-3","cat-4"]
     
@@ -54,22 +50,21 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        
+        timer?.invalidate()
+        currentCellIndex = 0
+        self.tblViewHomeScreen.showsVerticalScrollIndicator = false
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
         collectionHeader.showsHorizontalScrollIndicator = false
         collectionCategories.showsHorizontalScrollIndicator = false
         collecctionFacilities.showsHorizontalScrollIndicator = false
         pageControlHeader.numberOfPages = arrHeaderImages.count
-       print(currentCellIndex)
+        collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+        pageControlHeader.currentPage = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
-//        currentCellIndex = 0
-//        collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
-      
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
@@ -79,18 +74,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
   
     }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        timer?.invalidate()
-//        currentCellIndex = 0
-//        pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
-//        collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
-//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         timer?.invalidate()
-               currentCellIndex = 0
-               pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
-               collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+               
     }
     //MARK: IBAction Methods
     
@@ -120,7 +107,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         else if collectionView.tag == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeFacilitesCollectionViewCell", for: indexPath) as! HomeFacilitesCollectionViewCell
             
-            cell.imageFacilites.image = UIImage(named: arrQualityImages[indexPath.row])
+            cell.imageFacilites.image = UIImage(systemName: arrQualityImages[indexPath.row] )
             cell.lblFacilites.text = arrQualityText[indexPath.row]
             return cell
         }
@@ -132,17 +119,25 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionHeader.frame.width , height: 225)
+    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == collectionHeader{
-            //            print(scrollView.contentOffset,scrollView.contentInset,scrollView.contentSize)
-            guard let visiblecell = collectionHeader.visibleCells.last else { return  }
-            let indexpath = collectionHeader.indexPath(for: visiblecell)
-            currentCellIndex = indexpath?.row ?? -1
-            pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
-        }
+//        if scrollView == collectionHeader{
+//            guard let visiblecell = collectionHeader.visibleCells.first else { return  }
+//            let indexpath = collectionHeader.indexPath(for: visiblecell)
+//            currentCellIndex = indexpath?.row ?? 0
+//            print(indexpath?.row)
+//            pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
+//        }
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == collectionHeader{
+            guard let visiblecell = collectionHeader.visibleCells.last else { return  }
+            let indexpath = collectionHeader.indexPath(for: visiblecell)
+            currentCellIndex = indexpath?.row ?? 0
+            pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
+        }
         collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
     }
     
@@ -168,17 +163,11 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         cell.delegate = self
         return cell
     }
-    //func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //    return UITableView.automaticDimension
-    //
-    //}
-    
     //MARK: User Defined Methods
     
     
     
     //MARK: @OBJC Methods
-    
     
     @objc func slideToNext(){
         
@@ -197,10 +186,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         vc.ProductName = "\(ProductName)"
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    //    func viewwillTranition(size: CGSize) {
-    //        tblViewHomeScreen.reloadData()
-    //    }
-    
+
     
 }

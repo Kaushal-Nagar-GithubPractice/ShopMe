@@ -23,14 +23,14 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="  Search" translatesAutoresizingMaskIntoConstraints="NO" id="6Zn-cJ-aUF">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                        <rect key="frame" x="10" y="0.0" width="373" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="Y6W-OH-hqX" id="N0b-0j-Jri"/>
                                         </connections>
                                     </searchBar>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ahe-9i-Vmt">
-                                        <rect key="frame" x="0.0" y="56" width="393" height="695"/>
+                                        <rect key="frame" x="10" y="56" width="373" height="695"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AU9-hS-csw">
                                             <size key="itemSize" width="128" height="128"/>
@@ -40,7 +40,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProductsCollectionViewCell" id="2NJ-iL-4a6" customClass="ProductsCollectionViewCell" customModule="ShopMe_Github_Collab" customModuleProvider="target">
-                                                <rect key="frame" x="96" y="0.0" width="201" height="275"/>
+                                                <rect key="frame" x="86" y="0.0" width="201" height="275"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="j8Z-W0-44k">
                                                     <rect key="frame" x="0.0" y="0.0" width="201" height="275"/>
@@ -130,13 +130,13 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="6Zn-cJ-aUF" secondAttribute="trailing" id="EcI-h9-70S"/>
-                                    <constraint firstItem="6Zn-cJ-aUF" firstAttribute="leading" secondItem="6Ct-LY-6h7" secondAttribute="leading" id="Gy7-Lk-JRI"/>
+                                    <constraint firstItem="Ahe-9i-Vmt" firstAttribute="leading" secondItem="6Ct-LY-6h7" secondAttribute="leading" constant="10" id="351-OO-Atv"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ahe-9i-Vmt" secondAttribute="trailing" constant="10" id="7AQ-Cr-T4a"/>
+                                    <constraint firstAttribute="trailing" secondItem="6Zn-cJ-aUF" secondAttribute="trailing" constant="10" id="EcI-h9-70S"/>
+                                    <constraint firstItem="6Zn-cJ-aUF" firstAttribute="leading" secondItem="6Ct-LY-6h7" secondAttribute="leading" constant="10" id="Gy7-Lk-JRI"/>
                                     <constraint firstItem="6Zn-cJ-aUF" firstAttribute="top" secondItem="6Ct-LY-6h7" secondAttribute="top" id="HpN-Fn-vuQ"/>
-                                    <constraint firstItem="Ahe-9i-Vmt" firstAttribute="leading" secondItem="6Zn-cJ-aUF" secondAttribute="leading" id="JTa-Bs-sHB"/>
                                     <constraint firstItem="Ahe-9i-Vmt" firstAttribute="bottom" secondItem="6Ct-LY-6h7" secondAttribute="bottomMargin" id="Xa7-xK-efM"/>
                                     <constraint firstItem="Ahe-9i-Vmt" firstAttribute="top" secondItem="6Zn-cJ-aUF" secondAttribute="bottom" id="uJu-jn-yVT"/>
-                                    <constraint firstItem="Ahe-9i-Vmt" firstAttribute="trailing" secondItem="6Zn-cJ-aUF" secondAttribute="trailing" id="uva-I5-Nd2"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -150,6 +150,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ViewMain" destination="6Ct-LY-6h7" id="qDU-Ve-VcD"/>
                         <outlet property="collectionProducts" destination="Ahe-9i-Vmt" id="bhU-Vo-DKR"/>
                         <outlet property="searchBar" destination="6Zn-cJ-aUF" id="tkQ-mu-6CB"/>
                     </connections>
@@ -170,18 +171,16 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVG-Zs-Kja">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="595"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="430"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ga6-Ra-9nB">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="45"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQN-s0-lyN">
-                                                        <rect key="frame" x="15.000000000000004" y="0.0" width="40.333333333333343" height="45"/>
-                                                        <color key="tintColor" name="Custom Black - h"/>
+                                                        <rect key="frame" x="14.999999999999996" y="0.0" width="47.666666666666657" height="45"/>
+                                                        <color key="tintColor" name="Custom Black"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system">
-                                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="semibold"/>
-                                                        </buttonConfiguration>
+                                                        <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system"/>
                                                         <connections>
                                                             <action selector="onClickBtnBack:" destination="ulH-e2-aOT" eventType="touchUpInside" id="R2m-Xe-wCy"/>
                                                         </connections>
@@ -193,7 +192,6 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                 <constraints>
                                                     <constraint firstItem="WQN-s0-lyN" firstAttribute="leading" secondItem="ga6-Ra-9nB" secondAttribute="leading" constant="15" id="Be1-cU-NbT"/>
                                                     <constraint firstAttribute="height" constant="45" id="LCq-yx-TwX"/>
@@ -208,7 +206,7 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAE-iH-54o">
                                                         <rect key="frame" x="0.0" y="12.333333333333325" width="393" height="47.666666666666657"/>
-                                                        <color key="tintColor" systemColor="systemYellowColor"/>
+                                                        <color key="tintColor" name="Custom Black"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="  Filter by Size">
                                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="28"/>
@@ -219,13 +217,12 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FnT-4e-Ra0">
                                                         <rect key="frame" x="341.66666666666669" y="25.666666666666661" width="46.333333333333314" height="34.333333333333343"/>
-                                                        <color key="tintColor" name="Custom Black - h"/>
+                                                        <color key="tintColor" name="Custom Black"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="onClickBtnFilterbyPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="Ko0-aM-chH"/>
                                                             <action selector="onClickShowSize:" destination="ulH-e2-aOT" eventType="touchUpInside" id="NOU-f2-DZP"/>
                                                         </connections>
                                                     </button>
@@ -241,109 +238,73 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xkx-mP-TP1">
-                                                <rect key="frame" x="0.0" y="105" width="393" height="80"/>
+                                                <rect key="frame" x="0.0" y="105" width="393" height="35"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNA-Lb-WVS">
-                                                        <rect key="frame" x="15" y="10" width="60" height="60"/>
-                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="60" id="DiR-S3-0dl"/>
-                                                            <constraint firstAttribute="height" constant="60" id="ETZ-FV-rwA"/>
-                                                        </constraints>
-                                                        <color key="tintColor" name="Custom Black - h"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="XS">
-                                                            <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="onClickSize:" destination="ulH-e2-aOT" eventType="touchUpInside" id="d6T-mz-qib"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wi3-fs-TZq">
-                                                        <rect key="frame" x="90" y="10" width="60" height="60"/>
-                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="60" id="GH7-Zm-1WV"/>
-                                                            <constraint firstAttribute="height" constant="60" id="jxx-Z3-dfe"/>
-                                                        </constraints>
-                                                        <color key="tintColor" name="Custom Black - h"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="S">
-                                                            <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="onClickSize:" destination="ulH-e2-aOT" eventType="touchUpInside" id="ARv-im-vZT"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ObM-e7-tjA">
-                                                        <rect key="frame" x="165" y="10" width="60" height="60"/>
-                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="60" id="f6U-gJ-mZc"/>
-                                                            <constraint firstAttribute="height" constant="60" id="nVW-jg-Woh"/>
-                                                        </constraints>
-                                                        <color key="tintColor" name="Custom Black - h"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="M">
-                                                            <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="onClickSize:" destination="ulH-e2-aOT" eventType="touchUpInside" id="JNb-Np-Ms1"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5L-Bj-Huy">
-                                                        <rect key="frame" x="240" y="10" width="60" height="60"/>
-                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="60" id="VyS-ZN-PWP"/>
-                                                            <constraint firstAttribute="width" constant="60" id="yTN-ed-IM7"/>
-                                                        </constraints>
-                                                        <color key="tintColor" name="Custom Black - h"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="L">
-                                                            <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="onClickSize:" destination="ulH-e2-aOT" eventType="touchUpInside" id="nXc-Ig-F83"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjf-gB-7bU">
-                                                        <rect key="frame" x="315" y="10" width="60" height="60"/>
-                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="60" id="UBT-pj-4jw"/>
-                                                            <constraint firstAttribute="width" constant="60" id="lzE-hO-zGu"/>
-                                                        </constraints>
-                                                        <color key="tintColor" name="Custom Black - h"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="XL">
-                                                            <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
-                                                        </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="onClickSize:" destination="ulH-e2-aOT" eventType="touchUpInside" id="HTz-ET-EZO"/>
-                                                        </connections>
-                                                    </button>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="YW7-gd-C9h">
+                                                        <rect key="frame" x="20" y="2" width="373" height="33"/>
+                                                        <subviews>
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIO-j8-Jz9">
+                                                                <rect key="frame" x="0.0" y="0.0" width="71.333333333333329" height="33"/>
+                                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                <color key="tintColor" name="Custom Black"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="XS">
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                                                </buttonConfiguration>
+                                                            </button>
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v68-Yi-nzF">
+                                                                <rect key="frame" x="75.333333333333343" y="0.0" width="71.333333333333343" height="33"/>
+                                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                <color key="tintColor" name="Custom Black"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="S">
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                                                </buttonConfiguration>
+                                                            </button>
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6w-xW-1pw">
+                                                                <rect key="frame" x="150.66666666666666" y="0.0" width="71.666666666666657" height="33"/>
+                                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                <color key="tintColor" name="Custom Black"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="M">
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                                                </buttonConfiguration>
+                                                            </button>
+                                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DyD-bl-XAq">
+                                                                <rect key="frame" x="226.33333333333334" y="0.0" width="71.333333333333343" height="33"/>
+                                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                <color key="tintColor" name="Custom Black"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="L">
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                                                </buttonConfiguration>
+                                                            </button>
+                                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoP-L6-kRb">
+                                                                <rect key="frame" x="301.66666666666669" y="0.0" width="71.333333333333314" height="33"/>
+                                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                                <color key="tintColor" name="Custom Black"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="XL">
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                                                                </buttonConfiguration>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="0Oc-Pg-yrr"/>
-                                                    <constraint firstItem="ObM-e7-tjA" firstAttribute="leading" secondItem="Wi3-fs-TZq" secondAttribute="trailing" constant="15" id="DsI-OI-tKQ"/>
-                                                    <constraint firstItem="Wi3-fs-TZq" firstAttribute="leading" secondItem="tNA-Lb-WVS" secondAttribute="trailing" constant="15" id="P0g-Qr-h4y"/>
-                                                    <constraint firstItem="tjf-gB-7bU" firstAttribute="centerY" secondItem="Xkx-mP-TP1" secondAttribute="centerY" id="ROH-if-dOV"/>
-                                                    <constraint firstItem="d5L-Bj-Huy" firstAttribute="leading" secondItem="ObM-e7-tjA" secondAttribute="trailing" constant="15" id="W8V-yF-KDm"/>
-                                                    <constraint firstItem="Wi3-fs-TZq" firstAttribute="centerY" secondItem="Xkx-mP-TP1" secondAttribute="centerY" id="WMo-ap-kNk"/>
-                                                    <constraint firstItem="tNA-Lb-WVS" firstAttribute="leading" secondItem="Xkx-mP-TP1" secondAttribute="leading" constant="15" id="ZN6-YH-g5v"/>
-                                                    <constraint firstItem="tjf-gB-7bU" firstAttribute="leading" secondItem="d5L-Bj-Huy" secondAttribute="trailing" constant="15" id="beh-Ss-0Dj"/>
-                                                    <constraint firstItem="d5L-Bj-Huy" firstAttribute="centerY" secondItem="Xkx-mP-TP1" secondAttribute="centerY" id="iBE-kE-eaY"/>
-                                                    <constraint firstItem="tNA-Lb-WVS" firstAttribute="centerY" secondItem="Xkx-mP-TP1" secondAttribute="centerY" id="jKP-sh-koK"/>
-                                                    <constraint firstItem="ObM-e7-tjA" firstAttribute="centerY" secondItem="Xkx-mP-TP1" secondAttribute="centerY" id="yY3-Eq-7ir"/>
+                                                    <constraint firstAttribute="height" constant="35" id="0Oc-Pg-yrr"/>
+                                                    <constraint firstItem="YW7-gd-C9h" firstAttribute="leading" secondItem="Xkx-mP-TP1" secondAttribute="leading" constant="20" id="8bx-GP-ZJX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="YW7-gd-C9h" secondAttribute="trailing" id="RA5-yX-tgy"/>
+                                                    <constraint firstItem="YW7-gd-C9h" firstAttribute="top" secondItem="Xkx-mP-TP1" secondAttribute="top" constant="2" id="fNT-zs-Sec"/>
+                                                    <constraint firstAttribute="bottom" secondItem="YW7-gd-C9h" secondAttribute="bottom" id="oVv-xV-PhN"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbU-Ii-1qb">
-                                                <rect key="frame" x="0.0" y="185" width="393" height="60"/>
+                                                <rect key="frame" x="0.0" y="140" width="393" height="60"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvf-SP-S1M">
                                                         <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
-                                                        <color key="tintColor" systemColor="systemYellowColor"/>
+                                                        <color key="tintColor" name="Custom Black"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="  Filter by Price">
                                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="28"/>
@@ -351,7 +312,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Say-Bh-0v4">
                                                         <rect key="frame" x="341.66666666666669" y="0.0" width="46.333333333333314" height="60"/>
-                                                        <color key="tintColor" name="Custom Black - h"/>
+                                                        <color key="tintColor" name="Custom Black"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="arrow.down" catalog="system">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
@@ -374,33 +335,33 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iX-y1-pzA">
-                                                <rect key="frame" x="0.0" y="245" width="393" height="275"/>
+                                                <rect key="frame" x="0.0" y="200" width="393" height="150"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jDY-UA-MOk">
-                                                        <rect key="frame" x="20" y="15" width="353" height="260"/>
+                                                        <rect key="frame" x="20" y="5" width="353" height="145"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="CR7-4E-ClO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="73.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="35"/>
                                                                 <subviews>
                                                                     <button opaque="NO" tag="6" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dvw-3z-QUl">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="73.333333333333329"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="35"/>
                                                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black - h"/>
+                                                                        <color key="tintColor" name="Custom Black"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" title=" $ 0 - $ 100">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
                                                                             <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="A2S-Ct-Ck2"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" tag="7" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFO-Di-gZD">
-                                                                        <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="73.333333333333329"/>
+                                                                        <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="35"/>
                                                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black - h"/>
+                                                                        <color key="tintColor" name="Custom Black"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" title="$ 100 - $ 200">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
                                                                             <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="g6e-aB-3iz"/>
@@ -409,27 +370,27 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Mir-NP-LQa">
-                                                                <rect key="frame" x="0.0" y="93.333333333333314" width="353" height="73.333333333333314"/>
+                                                                <rect key="frame" x="0.0" y="55" width="353" height="35"/>
                                                                 <subviews>
                                                                     <button opaque="NO" tag="8" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDz-dq-qGt">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="73.333333333333329"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="35"/>
                                                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black - h"/>
+                                                                        <color key="tintColor" name="Custom Black"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" title=" $ 200 - $ 300">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
                                                                             <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="Hb8-Uk-juZ"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" tag="9" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewu-0a-Fnq">
-                                                                        <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="73.333333333333329"/>
+                                                                        <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="35"/>
                                                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black - h"/>
+                                                                        <color key="tintColor" name="Custom Black"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" title=" $ 300 - $ 400">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
                                                                             <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="9ED-3t-1Yu"/>
@@ -438,27 +399,27 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LN4-9b-bS2">
-                                                                <rect key="frame" x="0.0" y="186.66666666666669" width="353" height="73.333333333333314"/>
+                                                                <rect key="frame" x="0.0" y="110" width="353" height="35"/>
                                                                 <subviews>
                                                                     <button opaque="NO" tag="10" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIF-ev-CFW" userLabel="$ 400 - $ 500">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="73.333333333333329"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="35"/>
                                                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black - h"/>
+                                                                        <color key="tintColor" name="Custom Black"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" title=" $ 400 - $ 500">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="19"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
                                                                             <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="jEh-La-kMe"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" tag="11" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHW-Ku-d9D" userLabel="$ 400 - $ 500">
-                                                                        <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="73.333333333333329"/>
+                                                                        <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="35"/>
                                                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black - h"/>
+                                                                        <color key="tintColor" name="Custom Black"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" title="Above $ 500">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="19"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
                                                                             <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="lsK-QD-4ze"/>
@@ -472,20 +433,21 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="jDY-UA-MOk" firstAttribute="leading" secondItem="9iX-y1-pzA" secondAttribute="leading" constant="20" id="8i6-tT-bHu"/>
-                                                    <constraint firstAttribute="height" constant="275" id="OL0-r0-DmN"/>
+                                                    <constraint firstAttribute="height" constant="150" id="OL0-r0-DmN"/>
                                                     <constraint firstAttribute="trailing" secondItem="jDY-UA-MOk" secondAttribute="trailing" constant="20" id="YMU-ah-bNk"/>
-                                                    <constraint firstItem="jDY-UA-MOk" firstAttribute="top" secondItem="9iX-y1-pzA" secondAttribute="top" constant="15" id="tZ5-g4-waf"/>
+                                                    <constraint firstItem="jDY-UA-MOk" firstAttribute="top" secondItem="9iX-y1-pzA" secondAttribute="top" constant="5" id="tZ5-g4-waf"/>
                                                     <constraint firstAttribute="bottom" secondItem="jDY-UA-MOk" secondAttribute="bottom" id="uxO-xv-n0A"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVb-uP-DgG">
-                                                <rect key="frame" x="25" y="535" width="343" height="45"/>
+                                                <rect key="frame" x="25" y="370" width="343" height="45"/>
+                                                <color key="backgroundColor" name="AppColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="Skf-h4-YUg"/>
                                                 </constraints>
-                                                <color key="tintColor" systemColor="systemIndigoColor"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Apply Changes"/>
+                                                <color key="tintColor" name="Custom Black"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Apply Changes"/>
                                                 <connections>
                                                     <action selector="onCLickApplyChanges:" destination="ulH-e2-aOT" eventType="touchUpInside" id="g15-bc-YyR"/>
                                                 </connections>
@@ -493,7 +455,7 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="jVb-uP-DgG" firstAttribute="top" secondItem="9iX-y1-pzA" secondAttribute="bottom" constant="15" id="8l9-CM-yBy"/>
+                                            <constraint firstItem="jVb-uP-DgG" firstAttribute="top" secondItem="9iX-y1-pzA" secondAttribute="bottom" constant="20" id="8l9-CM-yBy"/>
                                             <constraint firstAttribute="trailing" secondItem="hbU-Ii-1qb" secondAttribute="trailing" id="ERM-ld-3Ph"/>
                                             <constraint firstItem="Xkx-mP-TP1" firstAttribute="top" secondItem="eIR-0K-LjK" secondAttribute="bottom" id="Guy-Xq-EML"/>
                                             <constraint firstAttribute="trailing" secondItem="Xkx-mP-TP1" secondAttribute="trailing" id="H2r-Oe-1Sv"/>
@@ -546,12 +508,12 @@
                         <outlet property="btnPrice400" destination="DIF-ev-CFW" id="rA7-qR-CVd"/>
                         <outlet property="btnPrice500" destination="fHW-Ku-d9D" id="ppM-g6-6Oe"/>
                         <outlet property="btnPrizeShow" destination="Say-Bh-0v4" id="13Q-0e-VlO"/>
-                        <outlet property="btnSizeL" destination="d5L-Bj-Huy" id="XZj-Be-pYX"/>
-                        <outlet property="btnSizeM" destination="ObM-e7-tjA" id="C4M-a0-HCK"/>
-                        <outlet property="btnSizeS" destination="Wi3-fs-TZq" id="5UK-kH-QeZ"/>
+                        <outlet property="btnSizeL" destination="DyD-bl-XAq" id="JKT-hC-Skd"/>
+                        <outlet property="btnSizeM" destination="e6w-xW-1pw" id="0bW-oG-qdW"/>
+                        <outlet property="btnSizeS" destination="v68-Yi-nzF" id="FbZ-DI-gId"/>
                         <outlet property="btnSizeShow" destination="FnT-4e-Ra0" id="MJT-aq-Dlb"/>
-                        <outlet property="btnSizeXL" destination="tjf-gB-7bU" id="OAt-fq-c7s"/>
-                        <outlet property="btnSizeXS" destination="tNA-Lb-WVS" id="rlg-Xo-DlF"/>
+                        <outlet property="btnSizeXL" destination="CoP-L6-kRb" id="Jfq-3q-bLw"/>
+                        <outlet property="btnSizeXS" destination="IIO-j8-Jz9" id="hYp-oJ-z8k"/>
                         <outlet property="heightViewPrice" destination="OL0-r0-DmN" id="7CX-JI-zis"/>
                         <outlet property="heightViewSize" destination="0Oc-Pg-yrr" id="eEY-aW-wDs"/>
                         <outlet property="viewPriceRange" destination="9iX-y1-pzA" id="ZBd-j5-UDX"/>
@@ -565,11 +527,11 @@
     </scenes>
     <resources>
         <image name="arrow.down" catalog="system" width="118" height="128"/>
-        <image name="chevron.left" catalog="system" width="97" height="128"/>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
         <namedColor name="AppColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.84313725490196079" green="0.82745098039215681" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Custom Black - h">
+        <namedColor name="Custom Black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
@@ -577,12 +539,6 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemIndigoColor">
-            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -19,7 +19,7 @@ class HomeHeaderCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        viewHeader.layer.cornerRadius = 15
-        viewHeader.layer.masksToBounds = true
+        imageHeader.layer.cornerRadius = 15
+        imageHeader.layer.masksToBounds = true
     }
 }
