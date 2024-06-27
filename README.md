@@ -37,6 +37,13 @@ Multi Shop is an eCommerce iOS application that supports a variety of functional
    
 ## Screenshots
 Include screenshots of your app to showcase its features.
+![Simulator Screenshot - iPhone 15 Pro - 2024-06-27 at 18 27 33](https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/f585a959-0b14-4fe4-a9c0-9ca3bb23d523)
+![Simulator Screenshot - iPhone 15 Pro - 2024-06-27 at 18 29 22](https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/e2c0c18e-08e7-4aa9-ba82-1cc24ae0dcc1)
+![Simulator Screenshot - iPhone 15 Pro - 2024-06-27 at 18 30 10](https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/2d0374d6-0ac7-4f20-910c-424a7d9728de)
+![Simulator Screenshot - iPhone 15 Pro - 2024-06-27 at 18 30 18](https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/a867b1e4-e33f-419c-bfbc-cda05c4b056a)
+![Simulator Screenshot - iPhone 15 Pro - 2024-06-27 at 18 30 28](https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/8dd6a648-7819-49fd-9da1-7dc144ddf73f)
+![Simulator Screenshot - iPhone 15 Pro - 2024-06-27 at 18 30 32](https://github.com/Kaushal-Nagar-GithubPractice/ShopMe/assets/128278195/a7360f06-9a33-4d30-abd0-f96b0de8f246)
+
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
 ## License
