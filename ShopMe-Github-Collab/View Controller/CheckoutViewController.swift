@@ -31,6 +31,7 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var btnDirectCheck: UIButton!
     @IBOutlet weak var btnBankTransfer: UIButton!
     
+    @IBOutlet weak var btnPlaceOrder: UIButton!
     
     // MARK: - View Methods
     override func viewDidLoad() {
@@ -63,6 +64,9 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         btnChnageAddress.layer.borderWidth = 1
         btnChnageAddress.clipsToBounds = true
         productTableView.backgroundColor = .systemGray6
+        
+        btnPlaceOrder.layer.cornerRadius = 8
+        btnPlaceOrder.layer.masksToBounds = true
         
         setProductBill()
         setRadioButton()
