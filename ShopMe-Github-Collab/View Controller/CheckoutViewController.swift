@@ -104,8 +104,9 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
 //        let StatusArr = ["Placed","Cancelled"]
 //        let Status = StatusArr.randomElement() as! String
         
+        let currentdate = Date.getCurrentDate()
         // navigate to place order screen
-        let orderDetailsDict = ["Date":"24 June 2024", "TotalItem":"\(myOrderArray.count)", "TotalAmount":"\(totalAmount)","Status":"Placed"]
+        let orderDetailsDict = ["Date":"\(currentdate)", "TotalItem":"\(myOrderArray.count)", "TotalAmount":"\(totalAmount)","Status":"Placed"]
         
         if btnPaypal.isSelected || btnDirectCheck.isSelected || btnBankTransfer.isSelected  {
 //            showAlert(title: "Success", message: "Order Placed Successfully.")
@@ -195,4 +196,14 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
  
     }
     
+}
+
+extension Date {
+
+ static func getCurrentDate() -> String {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM yyyy"
+        return dateFormatter.string(from: Date())
+    }
 }
