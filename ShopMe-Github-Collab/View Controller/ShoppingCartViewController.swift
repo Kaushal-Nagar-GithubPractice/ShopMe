@@ -24,7 +24,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var lblSubTotal: UILabel!
     @IBOutlet weak var lblGrandTotal: UILabel!
     @IBOutlet weak var viewForEmptyCart: UIView!
-    @IBOutlet weak var btnProceedToCheckout: UIButton!
     
     
     // MARK: - View Methods
@@ -46,7 +45,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 alert.addAction(UIAlertAction(title: "No, Continue as Guest!", style: UIAlertAction.Style.default, handler: nil))
                 alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.white
                 self.present(alert, animated: true, completion: nil)
-            setUI()
+            
         }
         
         self.navigationController?.isNavigationBarHidden = true
@@ -108,7 +107,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         cell.imgItem.image = UIImage(named: "\(cartItemArray[indexPath.row]["img"]!)")
         cell.lblItemName.text = cartItemArray[indexPath.row]["Name"]
-        cell.lblItemPrice.text = "$ \(TotalItem * Price)"
+        cell.lblItemPrice.text = "\(TotalItem * Price)"
         cell.lblQuantity.text = cartItemArray[indexPath.row]["TotalItem"]
         cell.btnDecrease.tag = indexPath.row
         cell.btnIncrease.tag = indexPath.row
@@ -148,13 +147,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     // MARK: - Custom Methods
-    
-    
-    func setUI(){
-        
-        btnProceedToCheckout.layer.cornerRadius  = 20
-        btnProceedToCheckout.layer.masksToBounds = true
-    }
     
     //remove item from cart
     func removeItemFromCart(sender: Int ) {
