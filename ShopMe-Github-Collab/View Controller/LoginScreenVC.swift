@@ -10,6 +10,7 @@ import UIKit
 class LoginScreenVC: UIViewController {
     
     
+    @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var TfPassword: UITextField!
@@ -25,7 +26,8 @@ class LoginScreenVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         SetUI()
-        
+        TfEmail.text = ""
+        TfPassword.text = ""
         print("\nEmail :", UserDefaults.standard.string(forKey: "Email") ?? "", "\nPassword :",UserDefaults.standard.string(forKey: "Password") ?? "", "\nIsRedirect :",UserDefaults.standard.bool(forKey: "IsRedirect"))
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -85,6 +87,7 @@ class LoginScreenVC: UIViewController {
         DoShowPassword = false
         btnShowPassword.setImage(UIImage(named: "Password Hide"), for: .normal)
         TfPassword.isSecureTextEntry = true
+        btnLogin.layer.cornerRadius = 15
     }
     
     func registerKeyboardNotifications() {

@@ -9,6 +9,7 @@ import UIKit
 
 class EditProfileVC: UIViewController {
     
+    @IBOutlet weak var btnUpdate: UIButton!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var TfName: UITextField!
@@ -23,7 +24,7 @@ class EditProfileVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         registerKeyboardNotifications()
-        
+        btnUpdate.layer.cornerRadius = 10
         self.tabBarController?.tabBar.isHidden =  true
         TfName.text = UserDefaults.standard.string(forKey: "Username")
         TfPassword.text = UserDefaults.standard.string(forKey: "Password")

@@ -227,6 +227,7 @@ class FilterVC: UIViewController {
         btnPrice500.layer.masksToBounds = true
         btnPrice500.layer.cornerRadius = 10
         viewSizeBtns.isHidden = true
+        btnApplyChanges.layer.cornerRadius = 15
     }
     
     //MARK: @OBJC Methods

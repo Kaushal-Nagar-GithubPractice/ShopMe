@@ -10,7 +10,6 @@ import UIKit
 class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
    
     @IBOutlet weak var heightForViewColor: NSLayoutConstraint!
-    
     @IBOutlet weak var viewSizeBtn: UIView!
     @IBOutlet weak var heightForViewSize: NSLayoutConstraint!
     @IBOutlet weak var collectionSelectedItem: UICollectionView!
@@ -77,6 +76,12 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     }
     override func viewDidAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
+    }
+    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
+            self.collectionSuggestedProducts.reloadData()
+            self.collectionSelectedItem.reloadData()
+        }
     }
     
     //MARK: IBACTION Method
@@ -158,6 +163,14 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         
     }
     @IBAction func onCLickAddtoCart(_ sender: Any) {
+        btnAddtoCart.backgroundColor = UIColor(named: "AppColor")
+        
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
+            
+            self.btnAddtoCart.backgroundColor = UIColor.systemGray4
+                }, completion: nil)
+        
+        
         guard let dict = ["img":arrCategoryImage[0],"Name":ProductName,"Price":Price,"TotalItem":"\(Quantity)"] as? Dictionary<String, String> else { return  }
         var currentCart = UserDefaults.standard.array(forKey: "MyCart") as! Array<Dictionary<String, String>>
         
@@ -204,7 +217,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as! CategoriesCollectionViewCell
             cell.imageCategories.image = UIImage(named: arrCategoryImage[indexPath.row])
-            cell.lblCategoryName.text = "Product Name"
+            cell.lblCategoryName.text = "Product Name goes here"
             return cell
         }
     }
