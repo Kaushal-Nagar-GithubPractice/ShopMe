@@ -1835,7 +1835,7 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-
+    </systemColor>
         <namedColor name="Custom Light Black">
             <color red="0.12360936945134948" green="0.11349473735785688" blue="0.00090029003850797208" alpha="0.12116542790899217" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
