@@ -12,6 +12,7 @@ protocol changesInTransition {
 class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
    
     
+    @IBOutlet weak var ViewMain: UIView!
     var arrData = [ProductModel]()
     var filterData = [ProductModel]()
     @IBOutlet weak var searchBar: UISearchBar!
@@ -33,9 +34,10 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+        self.collectionProducts.showsVerticalScrollIndicator = false
         setUpMenuButton(isScroll: true)
         self.navigationItem.title = "Shop"
-        self.navigationController?.navigationBar.backgroundColor = .systemYellow
+//        self.navigationController?.navigationBar.backgroundColor = .white
         collectionProducts.reloadData()
         
     }
@@ -117,7 +119,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         let icon = UIImage(named: "setting")
         let iconSize = CGRect(origin: CGPoint.zero, size: CGSize(width: 20, height: 20))
         let iconButton = UIButton(frame: iconSize)
-        iconButton.tintColor = UIColor(named: "Custom Black - h")
+        iconButton.tintColor = UIColor(named: "Custom Black")
         iconButton.setBackgroundImage(icon, for: .normal)
         let barButton = UIBarButtonItem(customView: iconButton)
         iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
@@ -135,9 +137,17 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
 
     @objc func btnBackClicked(){
         let vc = UIStoryboard(name: "ShopStoryboard", bundle: nil).instantiateViewController(withIdentifier: "FilterVC") as! FilterVC
-        vc.modalPresentationStyle = .fullScreen
+        vc.sheetPresentationController?.detents = [.medium()]
+//        vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .coverVertical
+//        let blurEffect = UIBlurEffect(style: .dark)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        view.addSubview(blurEffectView)
+//        view.sendSubviewToBack(blurEffectView)
         present(vc,animated:true)
+        
         
 //        self.navigationController?.pushViewController(vc, animated: true)
     }
