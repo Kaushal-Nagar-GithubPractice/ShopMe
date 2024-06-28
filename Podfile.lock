@@ -1,0 +1,30 @@
+PODS:
+  - Cosmos (25.0.1)
+  - Kingfisher (7.11.0)
+  - SVProgressHUD (2.3.1):
+    - SVProgressHUD/Core (= 2.3.1)
+  - SVProgressHUD/Core (2.3.1)
+  - SwiftyStarRatingView (1.0.4)
+
+DEPENDENCIES:
+  - Cosmos
+  - Kingfisher
+  - SVProgressHUD
+  - SwiftyStarRatingView
+
+SPEC REPOS:
+  trunk:
+    - Cosmos
+    - Kingfisher
+    - SVProgressHUD
+    - SwiftyStarRatingView
+
+SPEC CHECKSUMS:
+  Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
+  Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
+  SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
+  SwiftyStarRatingView: a2b0057700e0adeb8e7442c55d99cb53b531d2f4
+
+PODFILE CHECKSUM: 07b80c820de38c61d0dd32180657aedb2d3b27ee
+
+COCOAPODS: 1.15.2
