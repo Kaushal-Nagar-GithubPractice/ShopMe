@@ -42,7 +42,11 @@ class ProfileScreenVC: UIViewController {
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) -> Void in
                 ProfileScreenVC.Delegate.ChangeToHomeScreen()
             } ))
-            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.white
+//            alert.view..backgroundColor = UIColor(named: "Custom Black")
+            
+            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
             self.present(alert, animated: true, completion: nil)
         }
         else{

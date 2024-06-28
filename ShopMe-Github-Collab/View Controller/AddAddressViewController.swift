@@ -99,7 +99,9 @@ extension UIViewController {
     func showAlert(title:String , message: String){
         let alert = UIAlertController(title: title, message: message , preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.white
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+        alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+        alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
         self.present(alert, animated: true, completion: nil)
     }
 }

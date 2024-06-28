@@ -44,7 +44,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 self.NavigateToLoginVC()
             } ))
                 alert.addAction(UIAlertAction(title: "No, Continue as Guest!", style: UIAlertAction.Style.default, handler: nil))
-                alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.white
+            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
                 self.present(alert, animated: true, completion: nil)
             setUI()
         }
@@ -76,7 +78,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 self.NavigateToLoginVC()
             } ))
     
-                alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.white
+            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
                 self.present(alert, animated: true, completion: nil)
             
         }
@@ -152,7 +156,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     func setUI(){
         
-        btnProceedToCheckout.layer.cornerRadius  = 20
+        btnProceedToCheckout.layer.cornerRadius  = 10
         btnProceedToCheckout.layer.masksToBounds = true
     }
     
