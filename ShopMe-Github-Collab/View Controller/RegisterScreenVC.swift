@@ -137,6 +137,9 @@ extension UIViewController{
             //            print("Handle Ok logic here")
             Alert.dismiss(animated: true)
         }))
+        Alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+        Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+        Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
         self.present(Alert, animated: true, completion: nil)
     }
     

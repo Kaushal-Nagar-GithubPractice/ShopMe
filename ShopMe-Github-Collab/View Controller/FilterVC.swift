@@ -173,6 +173,9 @@ class FilterVC: UIViewController {
         if SelectedSize.isEmpty && SelectedPrice.isEmpty {
             let alert = UIAlertController(title: "Alert", message: "No Filter Selected", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
             self.present(alert, animated: true, completion: nil)
         }
         else{
