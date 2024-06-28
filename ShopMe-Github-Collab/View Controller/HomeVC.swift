@@ -67,7 +67,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     override func viewDidAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) {_ in
             self.tblViewHomeScreen.reloadData()
             self.collectionHeader.reloadData()
         }
@@ -75,7 +75,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
         
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) {_ in
             self.tblViewHomeScreen.reloadData()
             self.collectionHeader.reloadData()
         }
