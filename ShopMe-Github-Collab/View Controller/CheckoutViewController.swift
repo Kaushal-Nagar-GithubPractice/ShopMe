@@ -189,7 +189,7 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         let alert = UIAlertController(title: "Order Placed Successfully !", message: "" , preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            ProfileScreenVC.Delegate.ChangeToHomeScreen()
+            ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 0)
         } ))
         alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.white
         self.present(alert, animated: true, completion: nil)

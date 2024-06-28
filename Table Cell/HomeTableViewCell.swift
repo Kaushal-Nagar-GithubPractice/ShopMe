@@ -28,6 +28,7 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         // Initialization code
         collectionProducts.delegate = self
         collectionProducts.dataSource = self
+        collectionProducts.reloadData()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

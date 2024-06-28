@@ -11,6 +11,7 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBOutlet weak var TvMyOrderTable: UITableView!
     
+    @IBOutlet weak var viewEmptyOrder: UIView!
     var MyOrderArr = [["Date":"24 June 2024", "TotalItem":"5", "TotalAmount":"5000.00","Status":"Placed"],
                       ["Date":"20 May 2024", "TotalItem":"2", "TotalAmount":"200.00","Status":"Cancelled"],
                       ["Date":"14 April 2024", "TotalItem":"6", "TotalAmount":"600.00","Status":"Cancelled"],
@@ -32,6 +33,14 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tabBarController?.tabBar.isHidden =  true
         MyOrderArr = UserDefaults.standard.array(forKey: "MyOrder") as!  Array<Dictionary<String, String>>
         print(MyOrderArr)
+        if MyOrderArr.count == 0{
+            viewEmptyOrder.isHidden = false
+            TvMyOrderTable.isHidden = true
+        }
+        else{
+            viewEmptyOrder.isHidden = true
+            TvMyOrderTable.isHidden = false
+        }
         TvMyOrderTable.reloadData()
     }
     

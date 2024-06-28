@@ -36,7 +36,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         self.tabBarController?.tabBar.isHidden = false
         self.collectionProducts.showsVerticalScrollIndicator = false
         setUpMenuButton(isScroll: true)
-        self.navigationItem.title = "Shop"
+//        self.navigationItem.title = "Shop"
 //        self.navigationController?.navigationBar.backgroundColor = .white
         collectionProducts.reloadData()
         
@@ -50,8 +50,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     
     //MARK: SEARCHBAR DELEGATE  METHODS
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-            self.searchBar.showsCancelButton = true
-//        searchBar.setImage(UIImage(systemName: "xmark"), for: .clear, state: .normal)
+
     }
     
     
@@ -117,14 +116,27 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     func setUpMenuButton(isScroll : Bool){
         
         let icon = UIImage(named: "setting")
-        let iconSize = CGRect(origin: CGPoint.zero, size: CGSize(width: 20, height: 20))
+        let iconSize = CGRect(origin: CGPoint.init(x: 10, y: 0), size: CGSize(width: 20, height: 18))
         let iconButton = UIButton(frame: iconSize)
         iconButton.tintColor = UIColor(named: "Custom Black")
         iconButton.setBackgroundImage(icon, for: .normal)
         let barButton = UIBarButtonItem(customView: iconButton)
         iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
         navigationItem.rightBarButtonItem = barButton
-        
+        self.navigationItem.title = "Shop"
+//        let label = UILabel()
+//        label.text = "Shop"
+//        label.textAlignment = .center
+//        label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
+//        self.navigationItem.titleView = label
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: label.superview, attribute: .centerX, multiplier: 1, constant: 0))
+//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .width, relatedBy: .equal, toItem: label.superview, attribute: .width, multiplier: 1, constant: 0))
+//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: label.superview, attribute: .centerY, multiplier: 1, constant: 10))
+//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: label.superview, attribute: .height, multiplier: 1, constant: 0))
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)]
+
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     func setUpArrayProduct(){

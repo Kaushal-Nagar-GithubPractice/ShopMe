@@ -54,8 +54,8 @@ class CustomTabbarController: UITabBarController, ChangeToHomeScreen {
     }
     
     
-    func ChangeToHomeScreen() {
-        selectedIndex = 0
+    func ChangeToHomeScreen(tabbarItemIndex : Int) {
+        selectedIndex = tabbarItemIndex
     }
     
 }
