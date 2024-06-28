@@ -26,9 +26,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var currentCellIndex = 0
     var TableHeight = CGFloat(0)
     var cartItemArray : Array<Dictionary<String, String>> = []
-    var MyOrders : Array<Dictionary<String, String>> = [["Date":"24 June 2024", "TotalItem":"5", "TotalAmount":"5000.00","Status":"Placed"],
-                                                        ["Date":"20 May 2024", "TotalItem":"2", "TotalAmount":"200.00","Status":"Cancelled"],
-    ]
+//    var MyOrders : Array<Dictionary<String, String>> = [["Date":"24 June 2024", "TotalItem":"5", "TotalAmount":"5000.00","Status":"Placed"],
+//                                                        ["Date":"20 May 2024", "TotalItem":"2", "TotalAmount":"200.00","Status":"Cancelled"],
+//    ]
+    var MyOrders : Array<Dictionary<String, String>> = []
     //MARK: Application Delegate Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,10 +62,15 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         pageControlHeader.numberOfPages = arrHeaderImages.count
         collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
         pageControlHeader.currentPage = 0
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
+            self.tblViewHomeScreen.reloadData()
+            self.collectionHeader.reloadData()
+        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
@@ -128,7 +134,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
 //            guard let visiblecell = collectionHeader.visibleCells.first else { return  }
 //            let indexpath = collectionHeader.indexPath(for: visiblecell)
 //            currentCellIndex = indexpath?.row ?? 0
-//            print(indexpath?.row)
+//            print(indexpath?.row)Œ
 //            pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
 //        }
     }
@@ -175,7 +181,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         currentCellIndex = currentCellIndex + 1
         pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
         collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
-        print(currentCellIndex)
+//        print(currentCellIndex)
     }
     
     

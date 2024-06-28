@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ChangeToHomeScreen{
-    func ChangeToHomeScreen()
+    func ChangeToHomeScreen(tabbarItemIndex : Int)
 }
 
 class ProfileScreenVC: UIViewController {
@@ -40,7 +40,7 @@ class ProfileScreenVC: UIViewController {
                 self.NavigateToLoginVC()
             } ))
             alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-                ProfileScreenVC.Delegate.ChangeToHomeScreen()
+                ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 0)
             } ))
 //            alert.view..backgroundColor = UIColor(named: "Custom Black")
             
@@ -65,7 +65,7 @@ class ProfileScreenVC: UIViewController {
     @IBAction func OnClickLogout(_ sender: Any) {
         UserDefaults.standard.set(false, forKey: "IsRedirect")
         
-        ProfileScreenVC.Delegate.ChangeToHomeScreen()
+        ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 0)
     }
     
     @IBAction func OnClickOpenMyOrder(_ sender: Any) {

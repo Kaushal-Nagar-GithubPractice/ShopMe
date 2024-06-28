@@ -23,10 +23,6 @@ class FilterVC: UIViewController {
     @IBOutlet weak var btnSizeM: UIButton!
     @IBOutlet weak var btnSizeL: UIButton!
     @IBOutlet weak var btnSizeXL: UIButton!
-    @IBOutlet weak var heightViewPrice: NSLayoutConstraint!
-    @IBOutlet weak var heightViewSize: NSLayoutConstraint!
-    @IBOutlet weak var btnPrizeShow: UIButton!
-    @IBOutlet weak var btnSizeShow: UIButton!
     var SelectedSize = [Int]()
     var SelectedPrice = [Int]()
     override func viewDidLoad() {
@@ -47,52 +43,9 @@ class FilterVC: UIViewController {
         self.dismiss(animated: true)
     }
     
-    @IBAction func onClickShowSize(_ sender: Any) {
-        if heightViewSize.constant == 0{
-            btnSizeShow.setImage(UIImage(systemName: "arrow.up"), for: .normal)
-            heightViewSize.constant = 35
-            viewSizeBtns.isHidden = false
-        }
-        else{
-            btnSizeShow.setImage(UIImage(systemName: "arrow.down"), for: .normal)
-            heightViewSize.constant = 0
-            viewSizeBtns.isHidden = true
-        }
-    }
-    @IBAction func onCLickshowPrize(_ sender: Any) {
-        if heightViewPrice.constant == 0{
-            btnPrizeShow.setImage(UIImage(systemName: "arrow.up"), for: .normal)
-            heightViewPrice.constant = 150
-        }
-        else{
-            btnPrizeShow.setImage(UIImage(systemName: "arrow.down"), for: .normal)
-            heightViewPrice.constant = 0
-
-        }
-    }
-    @IBAction func onClickBtnFilterbySize(_ sender: Any) {
-        if heightViewSize.constant == 0{
-            btnSizeShow.setImage(UIImage(systemName: "arrow.up"), for: .normal)
-            heightViewSize.constant = 35
-            viewSizeBtns.isHidden = false
-        }
-        else{
-            btnSizeShow.setImage(UIImage(systemName: "arrow.down"), for: .normal)
-            heightViewSize.constant = 0
-            viewSizeBtns.isHidden = true
-        }
-    }
-    @IBAction func onClickBtnFilterbyPrice(_ sender: Any) {
-        if heightViewPrice.constant == 0{
-            btnPrizeShow.setImage(UIImage(systemName: "arrow.up"), for: .normal)
-            heightViewPrice.constant = 150
-        }
-        else{
-            btnPrizeShow.setImage(UIImage(systemName: "arrow.down"), for: .normal)
-            heightViewPrice.constant = 0
-
-        }
-    }
+   
+    
+   
     
     @IBAction func onClickSize(_ sender: UIButton) {
         if sender.tag  == 1 {
@@ -207,8 +160,6 @@ class FilterVC: UIViewController {
     }
     
     func setUiFilterScreen(){
-        heightViewPrice.constant = 0
-        heightViewSize.constant = 0
         btnSizeL.layer.cornerRadius = 10
         btnSizeM.layer.cornerRadius = 10
         btnSizeS.layer.cornerRadius = 10
@@ -229,7 +180,6 @@ class FilterVC: UIViewController {
         
         btnPrice500.layer.masksToBounds = true
         btnPrice500.layer.cornerRadius = 10
-        viewSizeBtns.isHidden = true
         btnApplyChanges.layer.cornerRadius = 15
     }
     

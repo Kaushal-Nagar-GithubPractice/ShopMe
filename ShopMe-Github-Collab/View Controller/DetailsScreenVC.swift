@@ -13,7 +13,6 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var viewSizeBtn: UIView!
     @IBOutlet weak var heightForViewSize: NSLayoutConstraint!
     @IBOutlet weak var collectionSelectedItem: UICollectionView!
-    
     @IBOutlet weak var viewColor: UIView!
     @IBOutlet weak var collectionSuggestedProducts: UICollectionView!
     @IBOutlet weak var btnAddtoCart: UIButton!
@@ -32,7 +31,6 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var btnSizeXS: UIButton!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var scrollView: UIScrollView!
     var arrCategoryImage =  ["product-1","product-2","product-3","product-4","product-5","product-6","product-7","product-8","product-9"]
@@ -45,7 +43,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     var Quantity = 1
     var Price   = " "
     var ProductName  = " "
- 
+    var isProductInCart = false
     
     //MARK: Application Delegate Method
     
@@ -62,17 +60,15 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     override func viewWillAppear(_ animated: Bool) {
         lblQuantity.text = "\(Quantity)"
         self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
         scrollView.showsVerticalScrollIndicator = false
         collectionSelectedItem.showsHorizontalScrollIndicator = false
         collectionSuggestedProducts.showsHorizontalScrollIndicator = false
         setUpMenuButton(isScroll: true)
-        self.navigationItem.title = "Product Detail"
-//        navigationController?.navigationBar.barTintColor = UIColor.white
         setDetailScreenUI()
         lblPrice.text = " $ \(Price)"
-        lblProductName.text = ProductName
         setUpSizeColorView()
+        isProductAddedtoCart()
     }
     override func viewDidAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
@@ -146,7 +142,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     }
     
     @IBAction func onClickPlus(_ sender: Any) {
-        if Quantity >= 5 {
+        if Quantity >= 100 {
         }
         else{
            Quantity += 1
@@ -163,35 +159,41 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         
     }
     @IBAction func onCLickAddtoCart(_ sender: Any) {
-        btnAddtoCart.backgroundColor = UIColor(named: "AppColor")
-        
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
-            
-            self.btnAddtoCart.backgroundColor = UIColor.systemGray4
-                }, completion: nil)
-        
-        
-        guard let dict = ["img":arrCategoryImage[0],"Name":ProductName,"Price":Price,"TotalItem":"\(Quantity)"] as? Dictionary<String, String> else { return  }
-        var currentCart = UserDefaults.standard.array(forKey: "MyCart") as! Array<Dictionary<String, String>>
-        
-        var FoundItem =  currentCart.filter( { $0["Name"] == ProductName } )
-       
-       
-        if FoundItem.count == 0{
-            currentCart.insert(dict, at: 0)
-            
+        print(isProductInCart)
+        if isProductInCart {
+            ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 2)
         }
         else{
-            let NewQuantity = (FoundItem[0]["TotalItem"]! as NSString).integerValue + Quantity
-            let FoundItemIndex =  currentCart.firstIndex(of: FoundItem[0])
-            currentCart.remove(at: FoundItemIndex ?? -1)
-            FoundItem[0]["TotalItem"] = "\(NewQuantity)"
-            currentCart.append(FoundItem[0])
+            btnAddtoCart.backgroundColor = UIColor.systemGray4
+            
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
+                
+                self.btnAddtoCart.backgroundColor = UIColor(named: "AppColor")
+                    }, completion: nil)
+            
+            guard let dict = ["img":arrCategoryImage[0],"Name":ProductName,"Price":Price,"TotalItem":"\(Quantity)","isAdded":"true"] as? Dictionary<String, String> else { return  }
+            var currentCart = UserDefaults.standard.array(forKey: "MyCart") as! Array<Dictionary<String, String>>
+            
+//            var FoundItem =  currentCart.filter( { $0["Name"] == ProductName } )
+           
+            currentCart.insert(dict, at: 0)
+           
+//            if FoundItem.count == 0{
+//                currentCart.insert(dict, at: 0)
+//                
+//            }
+//            else{
+//                let NewQuantity = (FoundItem[0]["TotalItem"]! as NSString).integerValue + Quantity
+//                let FoundItemIndex =  currentCart.firstIndex(of: FoundItem[0])
+//                currentCart.remove(at: FoundItemIndex ?? -1)
+//                FoundItem[0]["TotalItem"] = "\(NewQuantity)"
+//                currentCart.append(FoundItem[0])
+//                
+//            }
+            UserDefaults.standard.set(currentCart, forKey: "MyCart")
+            isProductAddedtoCart()
         }
-        UserDefaults.standard.set(currentCart, forKey: "MyCart")
-//        print(currentCart)
-        
-        
+
     }
     
     //MARK: Delegate Method
@@ -255,18 +257,38 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     
     //MARK: User Defined Methods
     
+    func isProductAddedtoCart(){
+        let currentCart = UserDefaults.standard.array(forKey: "MyCart") as! Array<Dictionary<String, String>>
+        let FoundItem =  currentCart.filter( { $0["Name"] == ProductName } )
+        if FoundItem.count == 0{
+            btnAddtoCart.setTitle(" Add to Cart", for: .normal)
+            isProductInCart = false
+        }
+        else{
+            isProductInCart = true
+            btnAddtoCart.setTitle(" Go to Cart", for: .normal)
+            btnQuantityAdd.isEnabled = false
+            btnQuantityMinus.isEnabled = false
+        }
+    }
+    
+    
+    
     func setUpMenuButton(isScroll : Bool){
         
         let icon = UIImage(systemName: "chevron.left")
-        let iconSize = CGRect(origin: CGPoint.zero, size: CGSize(width: 20, height: 20))
+        let iconSize = CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize(width: 20, height: 25))
         let iconButton = UIButton(frame: iconSize)
         iconButton.tintColor = isScroll ? .label : .label
         iconButton.setBackgroundImage(icon, for: .normal)
         let barButton = UIBarButtonItem(customView: iconButton)
         iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
         navigationItem.leftBarButtonItem = barButton
-       
+        self.navigationItem.title = ProductName
+        navigationController?.navigationBar.prefersLargeTitles = true
+
     }
+    
     
     func setDetailScreenUI(){
         btnSizeXL.layer.cornerRadius = 15
