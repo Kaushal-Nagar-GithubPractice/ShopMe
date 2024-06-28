@@ -162,12 +162,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         cell.frame = tableView.bounds
         
-        cell.layoutIfNeeded()
-        
-        cell.collectionProducts.reloadData()
-        
+//        cell.layoutIfNeeded()
         cell.HeightConstraint.constant = cell.collectionProducts.collectionViewLayout.collectionViewContentSize.height
         cell.delegate = self
+        cell.collectionProducts.reloadData()
+        
+      
         return cell
     }
     //MARK: User Defined Methods

@@ -50,7 +50,6 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     override func viewDidLoad() {
         super.viewDidLoad()
         pageControl.numberOfPages = arrCategoryImage.count
-        
         collectionSelectedItem.delegate = self
         collectionSelectedItem.dataSource = self
         collectionSuggestedProducts.delegate = self
@@ -83,11 +82,11 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     //MARK: IBACTION Method
 
     @IBAction func onCLickbtnSIze(_ sender: UIButton) {
-        btnSizeXS.layer.backgroundColor = UIColor.systemGray5.cgColor
-        btnSizeS.layer.backgroundColor = UIColor.systemGray5.cgColor
-        btnSizeM.layer.backgroundColor = UIColor.systemGray5.cgColor
-        btnSizeL.layer.backgroundColor = UIColor.systemGray5.cgColor
-        btnSizeXL.layer.backgroundColor = UIColor.systemGray5.cgColor
+        btnSizeXS.backgroundColor = UIColor.systemGray5
+        btnSizeS.backgroundColor = UIColor.systemGray5        
+        btnSizeM.backgroundColor = UIColor.systemGray5
+        btnSizeL.backgroundColor = UIColor.systemGray5
+        btnSizeXL.backgroundColor = UIColor.systemGray5
         if sender.tag == 1{
             btnSizeXS.backgroundColor = .systemYellow
             SelectedSize = "XS"
@@ -274,7 +273,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     
     
     
-    func setUpMenuButton(isScroll : Bool){
+    func setUpMenuButton(isScroll: Bool) {
         
         let icon = UIImage(systemName: "chevron.left")
         let iconSize = CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize(width: 20, height: 25))
