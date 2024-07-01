@@ -339,10 +339,10 @@
                                 <rect key="frame" x="0.0" y="109" width="393" height="709"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVu-GR-kIT">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="742"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="672"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDs-ec-8PF">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="742"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="672"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BZC-sy-RIE">
                                                         <rect key="frame" x="96.666666666666686" y="21" width="200" height="198.66666666666669"/>
@@ -389,7 +389,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLt-o8-gva">
-                                                        <rect key="frame" x="20" y="682" width="353" height="50"/>
+                                                        <rect key="frame" x="20" y="612" width="353" height="50"/>
                                                         <color key="backgroundColor" name="AppColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="BW4-jo-OO5"/>
@@ -431,9 +431,26 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiA-XI-TWo">
-                                                        <rect key="frame" x="76" y="524" width="200" height="110"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OcM-0x-cXd">
+                                                        <rect key="frame" x="19.999999999999993" y="526" width="116.33333333333331" height="76"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9p-sD-vnf">
+                                                                <rect key="frame" x="0.0" y="0.0" width="116.33333333333333" height="38"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" image="radio-button-notSelected" title=" Male">
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                                                    <color key="baseForegroundColor" name="Custom Black"/>
+                                                                </buttonConfiguration>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQs-sL-hli">
+                                                                <rect key="frame" x="0.0" y="38" width="116.33333333333333" height="38"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" image="radio-button-notSelected" title=" Female">
+                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                                                    <color key="baseForegroundColor" name="Custom Black"/>
+                                                                </buttonConfiguration>
+                                                            </button>
+                                                        </subviews>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -441,11 +458,12 @@
                                                     <constraint firstAttribute="bottom" secondItem="FLt-o8-gva" secondAttribute="bottom" constant="10" id="17q-Fm-aQg"/>
                                                     <constraint firstItem="TCC-4c-UDD" firstAttribute="leading" secondItem="UDs-ec-8PF" secondAttribute="leading" constant="20" id="972-z4-TC9"/>
                                                     <constraint firstItem="FLt-o8-gva" firstAttribute="centerX" secondItem="UDs-ec-8PF" secondAttribute="centerX" id="9ua-ea-Pni"/>
-                                                    <constraint firstItem="FLt-o8-gva" firstAttribute="top" secondItem="SVI-Ld-mSK" secondAttribute="bottom" constant="200" id="CQ4-au-a3F"/>
+                                                    <constraint firstItem="OcM-0x-cXd" firstAttribute="leading" secondItem="UDs-ec-8PF" secondAttribute="leading" constant="20" id="D5R-2J-EHj"/>
                                                     <constraint firstItem="Lxt-pk-dJR" firstAttribute="leading" secondItem="UDs-ec-8PF" secondAttribute="leading" constant="20" id="DwQ-KF-FfM"/>
                                                     <constraint firstItem="SVI-Ld-mSK" firstAttribute="top" secondItem="TCC-4c-UDD" secondAttribute="bottom" constant="10" id="I5e-Ej-8ct"/>
                                                     <constraint firstItem="6EF-Rv-gkw" firstAttribute="top" secondItem="SVI-Ld-mSK" secondAttribute="bottom" constant="10" id="KEi-jk-EBY"/>
                                                     <constraint firstItem="SVI-Ld-mSK" firstAttribute="leading" secondItem="UDs-ec-8PF" secondAttribute="leading" constant="20" id="LC2-Tt-sTo"/>
+                                                    <constraint firstItem="OcM-0x-cXd" firstAttribute="top" secondItem="6EF-Rv-gkw" secondAttribute="bottom" constant="10" id="PIw-Br-TUl"/>
                                                     <constraint firstItem="Zdu-6C-KRH" firstAttribute="leading" secondItem="UDs-ec-8PF" secondAttribute="leading" constant="20" id="Qbx-JY-u03"/>
                                                     <constraint firstItem="MyA-mR-pWD" firstAttribute="leading" secondItem="UDs-ec-8PF" secondAttribute="leading" constant="20" id="SSP-gy-HTz"/>
                                                     <constraint firstItem="BZC-sy-RIE" firstAttribute="top" secondItem="UDs-ec-8PF" secondAttribute="top" constant="20" id="UTy-3J-gfZ"/>
@@ -460,6 +478,7 @@
                                                     <constraint firstItem="pL3-JV-tFU" firstAttribute="leading" secondItem="UDs-ec-8PF" secondAttribute="leading" constant="20" id="kJG-M0-3Yb"/>
                                                     <constraint firstAttribute="trailing" secondItem="MyA-mR-pWD" secondAttribute="trailing" constant="20" id="omq-qd-aNM"/>
                                                     <constraint firstItem="FLt-o8-gva" firstAttribute="leading" secondItem="UDs-ec-8PF" secondAttribute="leading" constant="20" id="ruy-Tx-g2L"/>
+                                                    <constraint firstItem="FLt-o8-gva" firstAttribute="top" secondItem="OcM-0x-cXd" secondAttribute="bottom" constant="10" id="vZn-gA-1YA"/>
                                                     <constraint firstItem="TCC-4c-UDD" firstAttribute="top" secondItem="MyA-mR-pWD" secondAttribute="bottom" constant="10" id="wE1-PC-e8f"/>
                                                     <constraint firstAttribute="trailing" secondItem="FLt-o8-gva" secondAttribute="trailing" constant="20" id="xzP-Fm-93l"/>
                                                 </constraints>
@@ -787,6 +806,7 @@
         <image name="Notification" width="24" height="24"/>
         <image name="Placed" width="32" height="32"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="radio-button-notSelected" width="24" height="24"/>
         <namedColor name="AppColor">
             <color red="0.84313725490196079" green="0.82745098039215681" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
