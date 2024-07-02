@@ -344,7 +344,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDs-ec-8PF">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="672"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BZC-sy-RIE">
+                                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BZC-sy-RIE">
                                                         <rect key="frame" x="96.666666666666686" y="21" width="200" height="198.66666666666669"/>
                                                         <color key="tintColor" systemColor="systemGray3Color"/>
                                                         <constraints>
@@ -352,8 +352,8 @@
                                                             <constraint firstAttribute="width" constant="200" id="Gof-am-mgs"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pL3-JV-tFU">
-                                                        <rect key="frame" x="20" y="240" width="52" height="24"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pL3-JV-tFU">
+                                                        <rect key="frame" x="19.999999999999996" y="240" width="60.666666666666657" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -379,7 +379,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Date of BIrth Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SVI-Ld-mSK">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Your Date of BIrth Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SVI-Ld-mSK">
                                                         <rect key="frame" x="20" y="442" width="353" height="40"/>
                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                         <constraints>
@@ -405,7 +405,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Zdu-6C-KRH">
                                                         <rect key="frame" x="20" y="274" width="353" height="40"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xUS-GO-r54">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your First Name*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xUS-GO-r54">
                                                                 <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="40"/>
                                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                                 <constraints>
@@ -414,7 +414,7 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MDp-Vf-pTC">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Last Name*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MDp-Vf-pTC">
                                                                 <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="40"/>
                                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                                 <constraints>
@@ -425,8 +425,8 @@
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6EF-Rv-gkw">
-                                                        <rect key="frame" x="20" y="492" width="125" height="24"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Gender*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6EF-Rv-gkw">
+                                                        <rect key="frame" x="20" y="492" width="133.66666666666666" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -441,6 +441,9 @@
                                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                                     <color key="baseForegroundColor" name="Custom Black"/>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="OnClickSelectGender:" destination="Jlp-e4-4Ag" eventType="touchUpInside" id="bfk-p5-5I9"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQs-sL-hli">
                                                                 <rect key="frame" x="0.0" y="38" width="116.33333333333333" height="38"/>
@@ -449,6 +452,9 @@
                                                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
                                                                     <color key="baseForegroundColor" name="Custom Black"/>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="OnClickSelectGender:" destination="Jlp-e4-4Ag" eventType="touchUpInside" id="SAY-2X-Ik3"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -517,9 +523,14 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="TfEmail" destination="MyA-mR-pWD" id="jBv-qJ-C84"/>
-                        <outlet property="TfPassword" destination="SVI-Ld-mSK" id="p5m-sk-XKZ"/>
+                        <outlet property="TfDOB" destination="SVI-Ld-mSK" id="G3t-xN-PYu"/>
+                        <outlet property="TfFirstName" destination="xUS-GO-r54" id="vCj-4z-p2W"/>
+                        <outlet property="TfLastName" destination="MDp-Vf-pTC" id="sk4-Bb-GyC"/>
+                        <outlet property="TfPhoneNumber" destination="MyA-mR-pWD" id="sZ9-bN-J4s"/>
+                        <outlet property="btnGenderFemale" destination="eQs-sL-hli" id="xSH-qJ-4rF"/>
+                        <outlet property="btnGenderMale" destination="g9p-sD-vnf" id="Afz-dz-YO8"/>
                         <outlet property="btnUpdate" destination="FLt-o8-gva" id="Gto-uc-4yU"/>
+                        <outlet property="imgProfilePicImage" destination="BZC-sy-RIE" id="IeO-cC-B6O"/>
                         <outlet property="scrollView" destination="w0k-z4-vvj" id="4ve-Cu-AOT"/>
                     </connections>
                 </viewController>

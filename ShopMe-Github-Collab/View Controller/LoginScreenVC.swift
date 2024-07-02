@@ -11,7 +11,7 @@ import SVProgressHUD
 class LoginScreenVC: UIViewController {
     
     var getLoginDataVM = GetLoginDataViewModel()
-    var LoginDataArr: [Login_Struct] = []
+    var LoginDataArr: Login_Struct!
     let loader = SVProgressHUD.self
     
     @IBOutlet weak var btnLogin: UIButton!
@@ -25,7 +25,7 @@ class LoginScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -33,7 +33,7 @@ class LoginScreenVC: UIViewController {
         TfEmail.text = ""
         TfPassword.text = ""
         
-//        print("\nEmail :", UserDefaults.standard.string(forKey: "Email") ?? "", "\nPassword :",UserDefaults.standard.string(forKey: "Password") ?? "", "\nIsRedirect :",UserDefaults.standard.bool(forKey: "IsRedirect"))
+        //        print("\nEmail :", UserDefaults.standard.string(forKey: "Email") ?? "", "\nPassword :",UserDefaults.standard.string(forKey: "Password") ?? "", "\nIsRedirect :",UserDefaults.standard.bool(forKey: "IsRedirect"))
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -79,7 +79,28 @@ class LoginScreenVC: UIViewController {
         print("\n====================\n")
         print("\nCurrent Token :\n",Response.data?.token)
         
-//        ShowAlertBox(Title: "Login Successfull!", Message: "")
+        let Alert = UIAlertController(title: "Success!", message: "Login Successfull!", preferredStyle: UIAlertController.Style.alert)
+        
+        Alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            //            print("Handle Ok logic here")
+            self.navigationController?.popViewController(animated: true)
+            Alert.dismiss(animated: true)
+        }))
+        Alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+        Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+        Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
+        self.present(Alert, animated: true, completion: nil)
+        
+        //        ShowAlertBox(Title: "Login Successfull!", Message: "")
+    }
+    
+    func UpdateUI(){
+        if LoginDataArr.success!{
+            LoginSuccessfull(Response: LoginDataArr)
+        }
+        else{
+            ShowAlertBox(Title: "Something Went Wrong!", Message: LoginDataArr.message ?? "")
+        }
     }
     
     func CallApiToLogin(){
@@ -88,37 +109,25 @@ class LoginScreenVC: UIViewController {
                     "password" : TfPassword.text?.trimmingCharacters(in: .whitespaces)]
         
         loader.show(withStatus: "Login In Progress...")
-            
+        
         var request =  APIRequest(isLoader: true, method: .post, path: Constant.Login_User_URl, headers: HeaderValue.headerWithoutAuthToken.value, body: Body)
         
         getLoginDataVM.CallToLogin(request: request) { response in
-                DispatchQueue.main.async { [self] in
-                    //Execute UI Code on Completion of API Call and getting data
-                    print("\nAPI Response\n",response)
-                    LoginSuccessfull(Response: response)
-                    loader.dismiss()
-                    
-                    DispatchQueue.main.async {
-                        let Alert = UIAlertController(title: "Success!", message: "Login Successfull!", preferredStyle: UIAlertController.Style.alert)
-                        
-                        Alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                            //            print("Handle Ok logic here")
-                            self.navigationController?.popViewController(animated: true)
-                            Alert.dismiss(animated: true)
-                        }))
-                        Alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
-                        Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
-                        Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
-                        self.present(Alert, animated: true, completion: nil)
-                    }
-                }
-            } error: { error in
-                print("\n========== Login API Error :",error)
-                self.loader.dismiss()
+            
+            self.LoginDataArr = response
+            DispatchQueue.main.async { [self] in
+                //Execute UI Code on Completion of API Call and getting data
+                print("\nAPI Response\n",response)
+                UpdateUI()
+                loader.dismiss()
             }
+        } error: { error in
+            print("\n========== Login API Error :",error)
+            self.loader.dismiss()
+        }
     }
     
-
+    
     func SetUI(){
         
         self.navigationController?.isNavigationBarHidden = true
@@ -135,13 +144,13 @@ class LoginScreenVC: UIViewController {
     
     func registerKeyboardNotifications() {
         NotificationCenter.default.addObserver(self,
-                                             selector: #selector(keyboardWillShow(notification:)),
-                                             name: UIResponder.keyboardWillShowNotification,
-                                             object: nil)
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
         NotificationCenter.default.addObserver(self,
-                                             selector: #selector(keyboardWillHide(notification:)),
-                                             name: UIResponder.keyboardWillHideNotification,
-                                             object: nil)
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
     
     //MARK: - All Objc Functions
@@ -154,10 +163,10 @@ class LoginScreenVC: UIViewController {
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
     }
-
+    
     @objc func keyboardWillHide(notification: NSNotification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
     }
-
+    
 }

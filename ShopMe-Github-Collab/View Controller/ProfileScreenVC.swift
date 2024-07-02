@@ -58,7 +58,7 @@ class ProfileScreenVC: UIViewController {
     
     @IBAction func OnClickLogout(_ sender: Any) {
         UserDefaults.standard.set(false, forKey: "IsRedirect")
-        
+        UserDefaults.standard.set("", forKey: "token")
         ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 0)
     }
     
@@ -99,12 +99,7 @@ class ProfileScreenVC: UIViewController {
         imgProfileImage.layer.borderWidth = 4
         imgProfileImage.layer.borderColor = UIColor.black.cgColor
         
-        let borderLayer = CALayer()
-        borderLayer.frame = imgProfileImage.bounds
-        borderLayer.borderColor = UIColor.white.cgColor
-        borderLayer.borderWidth = 8
-        borderLayer.cornerRadius = borderLayer.frame.width / 2
-        imgProfileImage.layer.insertSublayer(borderLayer, above: imgProfileImage.layer)
+        SetImageRoundBorder(ImageView: imgProfileImage)
         
     }
     
@@ -149,4 +144,18 @@ class ProfileScreenVC: UIViewController {
                 self.loader.dismiss()
             }
     }
+}
+
+
+extension UIViewController{
+    
+    func SetImageRoundBorder(ImageView : UIImageView){
+        let borderLayer = CALayer()
+        borderLayer.frame = ImageView.bounds
+        borderLayer.borderColor = UIColor.white.cgColor
+        borderLayer.borderWidth = 8
+        borderLayer.cornerRadius = borderLayer.frame.width / 2
+        ImageView.layer.insertSublayer(borderLayer, above: ImageView.layer)
+    }
+    
 }

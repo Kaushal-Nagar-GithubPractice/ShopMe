@@ -1,17 +1,18 @@
 //
-//  RegisterModel.swift
+//  UpdateDataModel.swift
 //  ShopMe-Github-Collab
 //
-//  Created by webcodegenie on 01/07/24.
+//  Created by webcodegenie on 02/07/24.
 //
 
 import Foundation
-struct Register_Struct : Codable {
+
+struct UpdateData_Struct : Codable {
     let type : String?
     let success : Bool?
     let status : Int?
     let message : String?
-    let data : RegisterData?
+    let data : UpdateData?
 
     enum CodingKeys: String, CodingKey {
 
@@ -28,35 +29,43 @@ struct Register_Struct : Codable {
         success = try values.decodeIfPresent(Bool.self, forKey: .success)
         status = try values.decodeIfPresent(Int.self, forKey: .status)
         message = try values.decodeIfPresent(String.self, forKey: .message)
-        data = try values.decodeIfPresent(RegisterData.self, forKey: .data)
+        data = try values.decodeIfPresent(UpdateData.self, forKey: .data)
     }
 
 }
 
-struct RegisterData : Codable {
+struct UpdateData : Codable {
+    let _id : String?
     let firstName : String?
     let lastName : String?
     let email : String?
-    let token : String?
-    let _id : String?
+    let dob : String?
+    let gender : String?
+    let phone : Int?
+    let profilePic : String?
 
     enum CodingKeys: String, CodingKey {
 
+        case _id = "_id"
         case firstName = "firstName"
         case lastName = "lastName"
         case email = "email"
-        case token = "token"
-        case _id = "_id"
+        case dob = "dob"
+        case gender = "gender"
+        case phone = "phone"
+        case profilePic = "profilePic"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        _id = try values.decodeIfPresent(String.self, forKey: ._id)
         firstName = try values.decodeIfPresent(String.self, forKey: .firstName)
         lastName = try values.decodeIfPresent(String.self, forKey: .lastName)
         email = try values.decodeIfPresent(String.self, forKey: .email)
-        token = try values.decodeIfPresent(String.self, forKey: .token)
-        _id = try values.decodeIfPresent(String.self, forKey: ._id)
+        dob = try values.decodeIfPresent(String.self, forKey: .dob)
+        gender = try values.decodeIfPresent(String.self, forKey: .gender)
+        phone = try values.decodeIfPresent(Int.self, forKey: .phone)
+        profilePic = try values.decodeIfPresent(String.self, forKey: .profilePic)
     }
 
 }
-
