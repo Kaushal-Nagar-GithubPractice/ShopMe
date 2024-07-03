@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CartItemTableViewCell: UITableViewCell {
     
@@ -13,6 +14,7 @@ class CartItemTableViewCell: UITableViewCell {
     var removeItemDelegate:removeFromCart?
     var itemQuantity: Int = 1
     var itemPrice:Int = 0
+    var imageUrl:String = ""
     
     @IBOutlet weak var imgItem: UIImageView!
     @IBOutlet weak var lblItemName: UILabel!
@@ -23,6 +25,7 @@ class CartItemTableViewCell: UITableViewCell {
     @IBOutlet weak var btnDecrease: UIButton!
     @IBOutlet weak var btnIncrease: UIButton!
     @IBOutlet weak var btnRemoveItem: UIButton!
+    @IBOutlet weak var lblTotalItemPrice: UILabel!
     var increaseQuantity: (() -> Void)?
     var decreaseQuantity: (() -> Void)?
     
@@ -57,7 +60,8 @@ class CartItemTableViewCell: UITableViewCell {
     }
     
     func updatelblItemPrice(price:Int){
-        lblItemPrice.text = "$ \(price)"
+        lblTotalItemPrice.text = String(describing: price)
+        print(lblItemPrice.text)
     }
     
     @IBAction func onClickRemoveItemFromCart(_ sender: UIButton) {
