@@ -9,4 +9,6 @@ target 'ShopMe-Github-Collab' do
   pod 'Cosmos'
   pod 'Kingfisher'
   pod 'FloatRatingView'
+  pod 'SVProgressHUD'
+  pod ‘SwiftRangeSlider’
 end

@@ -6,17 +6,18 @@
 //
 
 import UIKit
-
+import Kingfisher
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-    var frame = CGFloat(0)
     var arrHeaderImages = ["carousel-1","carousel-2","carousel-3"]
     var arrHeaderLabel = ["Men Fashion","Women Fashion","Kids Fashion"]
     var arrQualityImages = ["checkmark","truck.box.fill","shippingbox","phone"]
     var arrQualityText = ["  Quality Product","  Free Shipping","  14-Day Return","  24/7 Support"]
-    var arrCategoryImage = ["cat-1","cat-2","cat-3","cat-4","cat-1","cat-2","cat-3","cat-4"]
-    
+    var pageCount = 1
+    var ArrCategory : [Category_List]?
+    var ArrProducts = [Products]()
+    var flagForEmptyProdCall = true
     @IBOutlet weak var collectionCategories: UICollectionView!
     @IBOutlet weak var collecctionFacilities: UICollectionView!
     @IBOutlet weak var pageControlHeader: UIPageControl!
@@ -26,9 +27,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var currentCellIndex = 0
     var TableHeight = CGFloat(0)
     var cartItemArray : Array<Dictionary<String, String>> = []
-//    var MyOrders : Array<Dictionary<String, String>> = [["Date":"24 June 2024", "TotalItem":"5", "TotalAmount":"5000.00","Status":"Placed"],
-//                                                        ["Date":"20 May 2024", "TotalItem":"2", "TotalAmount":"200.00","Status":"Cancelled"],
-//    ]
     var MyOrders : Array<Dictionary<String, String>> = []
     //MARK: Application Delegate Methods
     override func viewDidLoad() {
@@ -44,7 +42,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
         if !UserDefaults.standard.bool(forKey: "MyOrderSet"){
             UserDefaults.standard.set(MyOrders, forKey: "MyOrder")
-            
         }
         UserDefaults.standard.set(true, forKey: "MyOrderSet")
         UserDefaults.standard.set(cartItemArray, forKey: "MyCart")
@@ -62,6 +59,11 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         pageControlHeader.numberOfPages = arrHeaderImages.count
         collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
         pageControlHeader.currentPage = 0
+        pageCount = 1
+        flagForEmptyProdCall = true
+        ArrProducts = []
+        self.callApiCategory()
+        self.callApiProduct()
         
     }
     
@@ -74,17 +76,16 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
-        
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) {_ in
             self.tblViewHomeScreen.reloadData()
             self.collectionHeader.reloadData()
         }
-  
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         timer?.invalidate()
-               
+        
     }
     //MARK: IBAction Methods
     
@@ -98,7 +99,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             return arrQualityImages.count
         }
         else if collectionView.tag == 3 {
-            return arrCategoryImage.count
+            return ArrCategory?.count as? Int ?? 0
         }else{
             return 3
         }
@@ -120,7 +121,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
         else  {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as! CategoriesCollectionViewCell
-            cell.imageCategories.image = UIImage(named: arrCategoryImage[indexPath.row])
+            cell.imageCategories.setImageWithURL(url: ArrCategory?[indexPath.row].image as? String ?? "" , imageView: cell.imageCategories)
+            cell.lblCategoryName.text = ArrCategory?[indexPath.row].categoryName as? String
+            cell.lblCategoryQuantity.text = "\(ArrCategory?[indexPath.row].productCount as? Int ?? 0) products "
             return cell
         }
         
@@ -130,13 +133,15 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         return CGSize(width: collectionHeader.frame.width , height: 225)
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if scrollView == collectionHeader{
-//            guard let visiblecell = collectionHeader.visibleCells.first else { return  }
-//            let indexpath = collectionHeader.indexPath(for: visiblecell)
-//            currentCellIndex = indexpath?.row ?? 0
-//            print(indexpath?.row)Œ
-//            pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
-//        }
+        //        if scrollView == collectionHeader{
+        //            guard let visiblecell = collectionHeader.visibleCells.first else { return  }
+        //            let indexpath = collectionHeader.indexPath(for: visiblecell)
+        //            currentCellIndex = indexpath?.row ?? 0
+        //            print(indexpath?.row)Œ
+        //            pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
+        //        }
+        
+        
     }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == collectionHeader{
@@ -146,33 +151,72 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             pageControlHeader.currentPage = currentCellIndex % arrHeaderImages.count
         }
         collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+    
+    if scrollView == tblViewHomeScreen {
+        if scrollView.contentOffset.y + self.view.frame.height - 200 >= tblViewHomeScreen.contentSize.height {
+            if flagForEmptyProdCall {
+                pageCount += 1
+                callApiProduct()
+            }
+        }
     }
-    
-    
-    
+}
     //MARK: TableView Delegate Methods
-    
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
+        cell.arrProducts = ArrProducts
+        cell.collectionProducts.reloadData()
         cell.frame = tableView.bounds
-        
-//        cell.layoutIfNeeded()
+        cell.layoutIfNeeded()
         cell.HeightConstraint.constant = cell.collectionProducts.collectionViewLayout.collectionViewContentSize.height
         cell.delegate = self
-        cell.collectionProducts.reloadData()
         
       
         return cell
     }
     //MARK: User Defined Methods
     
-    
+    func callApiCategory(){
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_CATEGORY_LIST, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        CategoryViewModal.ApiCategory.getCategoryData(request: request) { response in
+            DispatchQueue.main.async {
+                
+                if response.data?.categories?.count == 0{
+                    print(response.status as Any,response.message as Any)
+                }else{
+                    self.ArrCategory = response.data?.categories ?? []
+                    print(self.ArrCategory?.count as Any)
+                    self.collectionCategories.reloadData()
+                }
+            }
+        } error: { error in
+            print(error as Any)
+        }
+    }
+    func callApiProduct(){
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT_LIST+"?page=\(pageCount)&items=6", headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        ProductViewModel.ApiProduct.getProductData(request: request) { response in
+            DispatchQueue.main.async {
+                if response.data?.products?.isEmpty == true{
+                    print(response.status as Any,response.message as Any)
+                    self.flagForEmptyProdCall = false
+                }
+                else{
+                    self.ArrProducts.append(contentsOf: response.data?.products ?? [])
+                    print(self.ArrProducts.count as Any)
+//                    let cell = self.tblViewHomeScreen.dequeueReusableCell(withIdentifier: "HomeTableViewCell") as! HomeTableViewCell
+//                    cell.collectionProducts.reloadData()
+                    self.tblViewHomeScreen.reloadData()
+                }
+            }
+        } error: { error in
+            print(error as Any)
+        }
+    }
     
     //MARK: @OBJC Methods
     
@@ -186,13 +230,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     
     //MARK: Protocol Defined Methods
-    func selectedProduct(imageName : String,ProductName : String, Price : Double) {
+    func selectedProduct(productId : String) {
         let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "DetailsScreenVC") as! DetailsScreenVC
-        vc.arrCategoryImage.insert(imageName, at: 0)
-        vc.Price = "\(Price)"
-        vc.ProductName = "\(ProductName)"
+        vc.productID = productId
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
-    
 }
+

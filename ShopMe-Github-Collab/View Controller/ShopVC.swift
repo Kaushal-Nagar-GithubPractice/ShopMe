@@ -10,17 +10,17 @@ protocol changesInTransition {
     func viewwillTranition(size: CGSize)
 }
 class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
-   
     
+    var isSearchBarEmpty = false
     @IBOutlet weak var ViewMain: UIView!
-    var arrData = [ProductModel]()
-    var filterData = [ProductModel]()
+    var filterData = [Products]()
     @IBOutlet weak var searchBar: UISearchBar!
-    var arrProductImages = ["product-1","product-2","product-3","product-4","product-5","product-6","product-7","product-8","product-9"]
-    var arrProductName = ["Camera","Tshirt","Lamp","Shoes","Drone","Watch","Top","Creams","Chair"]
-    var arrProductPrice = [599.00,59.00,123.00,89.00,1099.95,259.00,75.00,29.00,659.99]
+    var pageCountForSearchText = 1
+    var arrData = [Products]()
     @IBOutlet weak var collectionProducts: UICollectionView!
-    
+    var flagForEmptyProdCall = true
+    var pageCount = 1
+    var eneteredSearchText = ""
     
     //MARK: APPLICATION DELEGATE METHODS
     override func viewDidLoad() {
@@ -28,17 +28,14 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         collectionProducts.dataSource = self
         collectionProducts.delegate = self
         searchBar.delegate = self
-        setUpArrayProduct()
-        filterData = arrData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
         self.collectionProducts.showsVerticalScrollIndicator = false
         setUpMenuButton(isScroll: true)
-//        self.navigationItem.title = "Shop"
-//        self.navigationController?.navigationBar.backgroundColor = .white
         collectionProducts.reloadData()
+        callApiProduct()
         
     }
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
@@ -47,50 +44,55 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         }
     }
     
-    
     //MARK: SEARCHBAR DELEGATE  METHODS
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-
+        
     }
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        var enteredText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-
+        let enteredText = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if enteredText != "" {
-           
-            filterData = arrData.filter {$0.ProductName.lowercased().contains(enteredText.lowercased().trimmingCharacters(in: .whitespaces))
-
-            }
-        }else { self.filterData = self.arrData}
-        print(filterData,filterData.count)
-        collectionProducts.reloadData()
+            isSearchBarEmpty = false
+        }
+        else{
+            isSearchBarEmpty = true
+        }
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) {_ in
+            print(enteredText)
+            self.callApiProduct(searchText:enteredText ?? "")
+            self.collectionProducts.reloadData()
+        }
+        eneteredSearchText = enteredText ?? ""
     }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
             searchBar.showsCancelButton = false
             searchBar.text = ""
             searchBar.resignFirstResponder()
     }
     
-    
-    
     //MARK: COLLECTIONVIEW DELEGATE METHODS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filterData.count
+        if isSearchBarEmpty {
+            return arrData.count
+        }
+        else{
+            return filterData.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath) as! ProductsCollectionViewCell
-        print(filterData)
-        if filterData.isEmpty {
-            
+        if isSearchBarEmpty {
+            cell.imgProduct.setImageWithURL(url: arrData[indexPath.row].images?.first ?? " ", imageView: cell.imgProduct)
+            cell.lblProductName.text =  arrData[indexPath.row].productName
+            cell.lblPrice.text =  "$ \(arrData[indexPath.row].price ?? 123)"
+            cell.lblStrikePrice.isHidden = true
         }
         else{
-            cell.imgProduct.image = UIImage(named: filterData[indexPath.row].imageName)
-            cell.lblProductName.text =  filterData[indexPath.row].ProductName
-            cell.lblPrice.text =  "$ \(filterData[indexPath.row].ProductPrice)"
+            cell.imgProduct.setImageWithURL(url: filterData[indexPath.row].images?.first ?? " ", imageView: cell.imgProduct)
+            cell.lblProductName.text =  filterData[indexPath.row].productName
+            cell.lblPrice.text =  "$ \(filterData[indexPath.row].price ?? 123)"
             cell.lblStrikePrice.isHidden = true
         }
        
@@ -100,9 +102,12 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "DetailsScreenVC") as! DetailsScreenVC
-        vc.arrCategoryImage.insert(filterData[indexPath.row].imageName, at: 0)
-        vc.Price = "\(filterData[indexPath.row].ProductPrice)"
-        vc.ProductName = filterData[indexPath.row].ProductName
+        if isSearchBarEmpty {
+            vc.productID = arrData[indexPath.row]._id ?? ""
+        }
+        else{
+            vc.productID = filterData[indexPath.row]._id ?? ""
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -110,6 +115,21 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         return CGSize(width: collectionView.frame.width / 2 - 5, height: 285)
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + self.view.frame.height - 150 >= collectionProducts.contentSize.height {
+                if flagForEmptyProdCall {
+                    if isSearchBarEmpty {
+                        pageCount += 1
+                        callApiProduct(searchText: "")
+                    }
+                    else{
+                        pageCountForSearchText += 1
+                        callApiProduct(searchText: eneteredSearchText)
+                    }
+                    
+                }
+            }
+        }
     
     //MARK: USERDEFINED  METHODS
     
@@ -124,44 +144,58 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
         navigationItem.rightBarButtonItem = barButton
         self.navigationItem.title = "Shop"
-//        let label = UILabel()
-//        label.text = "Shop"
-//        label.textAlignment = .center
-//        label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
-//        self.navigationItem.titleView = label
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: label.superview, attribute: .centerX, multiplier: 1, constant: 0))
-//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .width, relatedBy: .equal, toItem: label.superview, attribute: .width, multiplier: 1, constant: 0))
-//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: label.superview, attribute: .centerY, multiplier: 1, constant: 10))
-//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: label.superview, attribute: .height, multiplier: 1, constant: 0))
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)]
-
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    func setUpArrayProduct(){
-        for i in 0...arrProductName.count - 1{
-            arrData.append(ProductModel(imageName: arrProductImages[i], ProductName: arrProductName[i], ProductPrice: arrProductPrice[i]))
+    
+    func callApiProduct(searchText : String = ""){
+        if isSearchBarEmpty {
+            let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT_LIST+"?page=\(pageCount)&items=6", headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+            ProductViewModel.ApiProduct.getProductData(request: request) { response in
+                DispatchQueue.main.async {
+                    if response.data?.products?.isEmpty == true{
+                        print(response.status as Any,response.message as Any)
+                        self.flagForEmptyProdCall = false
+                    }
+                    else{
+                        self.arrData.append(contentsOf: response.data?.products ?? [])
+                        print(self.arrData.count as Any)
+                        self.collectionProducts.reloadData()
+                    }
+                }
+            } error: { error in
+                print(error as Any)
+            }
         }
-        
+            else {
+            let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT_LIST+"?page=\(pageCountForSearchText)&items=10"+"&search="+searchText, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+            
+                ProductViewModel.ApiProduct.getProductData(request: request) { response in
+                DispatchQueue.main.async {
+                    if response.data?.products?.isEmpty == true{
+                        print(response.status as Any,response.message as Any)
+                        self.flagForEmptyProdCall = false
+                    }
+                    else{
+                        self.filterData.append(contentsOf: response.data?.products ?? [])
+                        print(self.filterData.count as Any)
+                        self.collectionProducts.reloadData()
+                    }
+                }
+            } error: { error in
+                print(error as Any)
+            }
+        }
     }
     //MARK: OBJC  METHODS
 
     @objc func btnBackClicked(){
         let vc = UIStoryboard(name: "ShopStoryboard", bundle: nil).instantiateViewController(withIdentifier: "FilterVC") as! FilterVC
         vc.sheetPresentationController?.detents = [.medium()]
-//        vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .coverVertical
-//        let blurEffect = UIBlurEffect(style: .dark)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        view.addSubview(blurEffectView)
-//        view.sendSubviewToBack(blurEffectView)
         present(vc,animated:true)
         
-        
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 

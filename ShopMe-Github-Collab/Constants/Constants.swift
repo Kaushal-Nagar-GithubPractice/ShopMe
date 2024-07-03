@@ -8,9 +8,14 @@
 import Foundation
 let headerContentType =  "Content-Type"
 let contentTypeUrlJSON =  "application/json"
-
-//let API_BASE_URL = "https://reqres.in/api/"
+let token = UserDefaults.standard.value(forKey: "token")
+let API_BASE_URL = "https://shoppingcart-api.demoserver.biz"
 
 class Constant {
-//    static let GET_USER_LIST = API_BASE_URL + "users?page=1"
+    static let GET_PRODUCT_LIST = API_BASE_URL + "/product/list"
+    static let GET_CATEGORY_LIST = API_BASE_URL + "/category/list"
+    static let GET_RELATED_LIST = API_BASE_URL + "/product/related/"
+    static let GET_PRODUCT = API_BASE_URL + "/product/"
+    static let GET_SEARCHED_PRODUCT = GET_PRODUCT_LIST + "?search="
+    static let ADD_TO_CART = API_BASE_URL + "/cart/"
 }

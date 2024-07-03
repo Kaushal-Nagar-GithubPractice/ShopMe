@@ -2,23 +2,33 @@ PODS:
   - Cosmos (25.0.1)
   - FloatRatingView (4.0)
   - Kingfisher (7.11.0)
+  - SVProgressHUD (2.3.1):
+    - SVProgressHUD/Core (= 2.3.1)
+  - SVProgressHUD/Core (2.3.1)
+  - SwiftRangeSlider (2.0.0)
 
 DEPENDENCIES:
   - Cosmos
   - FloatRatingView
   - Kingfisher
+  - SVProgressHUD
+  - SwiftRangeSlider
 
 SPEC REPOS:
   trunk:
     - Cosmos
     - FloatRatingView
     - Kingfisher
+    - SVProgressHUD
+    - SwiftRangeSlider
 
 SPEC CHECKSUMS:
   Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
   FloatRatingView: bb6bdddfbeec51b1d387b4bd50abc27b4dfccd48
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
+  SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
+  SwiftRangeSlider: f86e3b637c961120158fa1a89277c8343845cbe4
 
-PODFILE CHECKSUM: 056b587517c5b0d28b1d4fa06560f951cebaf20d
+PODFILE CHECKSUM: c8824564b6086c30a83eb121242e9d566d6f68d7
 
 COCOAPODS: 1.15.2

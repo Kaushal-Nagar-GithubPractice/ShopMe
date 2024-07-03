@@ -10,7 +10,7 @@ import Cosmos
 class ProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     
-    @IBOutlet weak var cosmosView: CosmosView!
+    @IBOutlet weak var starView: CosmosView!
     @IBOutlet weak var lblStrikePrice: UILabel!
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var imgProduct: UIImageView!

@@ -8,7 +8,11 @@
 import UIKit
 
 class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-   
+    @IBOutlet weak var viewSuggestedProduct: UIView!
+    
+    @IBOutlet weak var heightViewSuggestedProduct: NSLayoutConstraint!
+    @IBOutlet weak var collectionColor: UICollectionView!
+    @IBOutlet weak var collectionSize: UICollectionView!
     @IBOutlet weak var heightForViewColor: NSLayoutConstraint!
     @IBOutlet weak var viewSizeBtn: UIView!
     @IBOutlet weak var heightForViewSize: NSLayoutConstraint!
@@ -19,44 +23,41 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var btnQuantityAdd: UIButton!
     @IBOutlet weak var lblQuantity: UILabel!
     @IBOutlet weak var btnQuantityMinus: UIButton!
-    @IBOutlet weak var btnColorGreen: UIButton!
-    @IBOutlet weak var btnColorBlue: UIButton!
-    @IBOutlet weak var btnColorRed: UIButton!
-    @IBOutlet weak var btnColorBlack: UIButton!
-    @IBOutlet weak var btnColorWhite: UIButton!
-    @IBOutlet weak var btnSizeXL: UIButton!
-    @IBOutlet weak var btnSizeL: UIButton!
-    @IBOutlet weak var btnSizeM: UIButton!
-    @IBOutlet weak var btnSizeS: UIButton!
-    @IBOutlet weak var btnSizeXS: UIButton!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var scrollView: UIScrollView!
-    var arrCategoryImage =  ["product-1","product-2","product-3","product-4","product-5","product-6","product-7","product-8","product-9"]
-    var arrProductName = [""]
-    var arrProductPrice = [""]
+//    var productViewModal = ProductViewModel()
+//    var arrCategoryImage =  ["product-1","product-2","product-3","product-4","product-5","product-6","product-7","product-8","product-9"]
+//    var arrProductName = [""]
+//    var arrProductPrice = [""]
     var timer : Timer?
     var currentCellIndex = 0
-    var SelectecColor = ""
+    var SelectedColor = ""
     var SelectedSize = ""
     var Quantity = 1
-    var Price   = " "
-    var ProductName  = " "
+    var selectedProduct : SingleProduct?
+    var RelatedProduct = [Products]()
     var isProductInCart = false
-    
+    var productID = ""
     //MARK: Application Delegate Method
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pageControl.numberOfPages = arrCategoryImage.count
+        
         collectionSelectedItem.delegate = self
         collectionSelectedItem.dataSource = self
         collectionSuggestedProducts.delegate = self
         collectionSuggestedProducts.dataSource = self
+        collectionSize.delegate = self
+        collectionSize.dataSource = self
+        collectionColor.dataSource = self
+        collectionColor.delegate = self
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        self.callApiSelectedByID(product_id: self.productID)
+        callApiRelatedProduct(productId: productID)
         lblQuantity.text = "\(Quantity)"
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
@@ -65,12 +66,14 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         collectionSuggestedProducts.showsHorizontalScrollIndicator = false
         setUpMenuButton(isScroll: true)
         setDetailScreenUI()
-        lblPrice.text = " $ \(Price)"
-        setUpSizeColorView()
         isProductAddedtoCart()
+        print(productID)
+       
     }
     override func viewDidAppear(_ animated: Bool) {
-        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
+        if !(selectedProduct?.images?.count == 1) {
+            timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
+        }
     }
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
@@ -78,67 +81,13 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             self.collectionSelectedItem.reloadData()
         }
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        SelectedSize = ""
+        SelectedColor = ""
+        
+    }
     
     //MARK: IBACTION Method
-
-    @IBAction func onCLickbtnSIze(_ sender: UIButton) {
-        btnSizeXS.backgroundColor = UIColor.systemGray5
-        btnSizeS.backgroundColor = UIColor.systemGray5        
-        btnSizeM.backgroundColor = UIColor.systemGray5
-        btnSizeL.backgroundColor = UIColor.systemGray5
-        btnSizeXL.backgroundColor = UIColor.systemGray5
-        if sender.tag == 1{
-            btnSizeXS.backgroundColor = .systemYellow
-            SelectedSize = "XS"
-        }
-        else if sender.tag == 2{
-            btnSizeS.backgroundColor = .systemYellow
-            SelectedSize = "S"
-        }
-        else if sender.tag == 3{
-            btnSizeM.backgroundColor = .systemYellow
-            SelectedSize = "M"
-        }
-        else if sender.tag == 4{
-            btnSizeL.backgroundColor = .systemYellow
-            SelectedSize = "L"
-        }
-        else if sender.tag == 5{
-            btnSizeXL.backgroundColor = .systemYellow
-            SelectedSize = "XL"
-        }
-    }
-    
-    
-    @IBAction func onClickBtnColor(_ sender: UIButton) {
-        
-        btnColorGreen.layer.backgroundColor = UIColor.systemGray5.cgColor
-        btnColorBlue.layer.backgroundColor = UIColor.systemGray5.cgColor
-        btnColorRed.layer.backgroundColor = UIColor.systemGray5.cgColor
-        btnColorBlack.layer.backgroundColor = UIColor.systemGray5.cgColor
-        btnColorWhite.layer.backgroundColor = UIColor.systemGray5.cgColor
-        
-        if sender.tag == 6{
-            btnColorWhite.layer.backgroundColor = UIColor.systemYellow.cgColor
-            SelectecColor = "W"
-        }
-        else if sender.tag == 7{
-            btnColorRed.layer.backgroundColor = UIColor.systemYellow.cgColor
-            SelectecColor = "Bk"
-        }
-        else if sender.tag == 8{
-            btnColorGreen.layer.backgroundColor = UIColor.systemYellow.cgColor
-            SelectecColor = "R"
-        }
-        else if sender.tag == 9{
-            btnColorBlue.layer.backgroundColor = UIColor.systemYellow.cgColor
-            SelectecColor = "Bl"
-        }
-        else if sender.tag == 10{
-            btnColorBlack.layer.backgroundColor = UIColor.systemYellow.cgColor
-            SelectecColor = "G"
-        }
-    }
     
     @IBAction func onClickPlus(_ sender: Any) {
         if Quantity >= 100 {
@@ -158,123 +107,258 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         
     }
     @IBAction func onCLickAddtoCart(_ sender: Any) {
-        print(isProductInCart)
-        if isProductInCart {
-            ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 2)
+//        print(isProductInCart)
+//        if isProductInCart {
+//            ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 2)
+//        }
+//        else{
+//            btnAddtoCart.backgroundColor = UIColor.systemGray4
+//            
+//            UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
+//                
+//                self.btnAddtoCart.backgroundColor = UIColor(named: "AppColor")
+//                    }, completion: nil)
+//            
+////            guard let dict = ["img":arrCategoryImage[0],"Name":ProductName,"Price":Price,"TotalItem":"\(Quantity)","isAdded":"true"] as? Dictionary<String, String> else { return  }
+//            var currentCart = UserDefaults.standard.array(forKey: "MyCart") as! Array<Dictionary<String, String>>
+//            
+////            var FoundItem =  currentCart.filter( { $0["Name"] == ProductName } )
+//           
+////            currentCart.insert(dict, at: 0)
+//           
+////            if FoundItem.count == 0{
+////                currentCart.insert(dict, at: 0)
+////                
+////            }
+////            else{
+////                let NewQuantity = (FoundItem[0]["TotalItem"]! as NSString).integerValue + Quantity
+////                let FoundItemIndex =  currentCart.firstIndex(of: FoundItem[0])
+////                currentCart.remove(at: FoundItemIndex ?? -1)
+////                FoundItem[0]["TotalItem"] = "\(NewQuantity)"
+////                currentCart.append(FoundItem[0])
+////                
+////            }
+//            UserDefaults.standard.set(currentCart, forKey: "MyCart")
+//            isProductAddedtoCart()
+//        }
+        var dict : Dictionary<String,Dictionary<String, Any>> = [:]
+        if SelectedSize == "" || SelectedColor == "" {
+            if SelectedSize == "" {
+                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor]]
+            }
+            else if SelectedColor == "" {
+                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"size" : SelectedSize]]
+            }
+            else if  SelectedSize == "" && SelectedColor == "" {
+                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999]]
+            }
         }
         else{
-            btnAddtoCart.backgroundColor = UIColor.systemGray4
-            
-            UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
-                
-                self.btnAddtoCart.backgroundColor = UIColor(named: "AppColor")
-                    }, completion: nil)
-            
-            guard let dict = ["img":arrCategoryImage[0],"Name":ProductName,"Price":Price,"TotalItem":"\(Quantity)","isAdded":"true"] as? Dictionary<String, String> else { return  }
-            var currentCart = UserDefaults.standard.array(forKey: "MyCart") as! Array<Dictionary<String, String>>
-            
-//            var FoundItem =  currentCart.filter( { $0["Name"] == ProductName } )
-           
-            currentCart.insert(dict, at: 0)
-           
-//            if FoundItem.count == 0{
-//                currentCart.insert(dict, at: 0)
-//                
-//            }
-//            else{
-//                let NewQuantity = (FoundItem[0]["TotalItem"]! as NSString).integerValue + Quantity
-//                let FoundItemIndex =  currentCart.firstIndex(of: FoundItem[0])
-//                currentCart.remove(at: FoundItemIndex ?? -1)
-//                FoundItem[0]["TotalItem"] = "\(NewQuantity)"
-//                currentCart.append(FoundItem[0])
-//                
-//            }
-            UserDefaults.standard.set(currentCart, forKey: "MyCart")
-            isProductAddedtoCart()
+            dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor,"size" : SelectedSize]]
         }
-
+        callAddtoCartApi(dict: dict)
+        ShowAlertBox(Title: "Confirmation", Message: "Added to CArt Successfully")
     }
     
     //MARK: Delegate Method
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
-            return arrCategoryImage.count * 1000
+            if (selectedProduct?.images?.count ?? 0) > 1 {
+                return (selectedProduct?.images?.count ?? 1) * 1000
+            }else{return 1}
+        }
+        else if collectionView == collectionSize  {
+            print(selectedProduct?.size?.count ?? 0)
+            return selectedProduct?.size?.count ?? 0
+        }
+        else if collectionView == collectionColor {
+            return selectedProduct?.colors?.count ?? 0
         }
         else{
-            return arrCategoryImage.count
+            return RelatedProduct.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView.tag == 1 {
+        print(collectionView.tag)
+        if collectionView == collectionSelectedItem {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeHeaderCollectionViewCell", for: indexPath) as! HomeHeaderCollectionViewCell
-            cell.imageHeader.image = UIImage(named: arrCategoryImage[indexPath.row % arrCategoryImage.count])
+            if selectedProduct?.images?.count != 0{
+                cell.imageHeader.setImageWithURL(url: selectedProduct?.images?[indexPath.row % (selectedProduct?.images?.count ?? 3)] ?? "", imageView: cell.imageHeader)
+            }
+            else{
+                cell.imageHeader.image = UIImage(named: "placeholder")
+            }
             cell.viewHeader.backgroundColor = .systemGray5
             cell.viewHeader.layer.cornerRadius = 25
             cell.viewHeader.layer.masksToBounds = true
             return cell
         }
-        else{
+        else if collectionView == collectionSize || collectionView == collectionColor {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsCollectionViewCell", for: indexPath) as! ProductDetailsCollectionViewCell
+            if collectionView == collectionSize {
+                print(selectedProduct?.size?[indexPath.row] ?? "")
+                cell.lblChoice.text = selectedProduct?.size?[indexPath.row] ?? ""
+                SelectedSize = selectedProduct?.size?.first ?? ""
+            }
+            else{
+                cell.lblChoice.text = selectedProduct?.colors?[indexPath.row] ?? ""
+                SelectedColor = selectedProduct?.colors?.first ?? ""
+            }
+            return cell
+        }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as! CategoriesCollectionViewCell
-            cell.imageCategories.image = UIImage(named: arrCategoryImage[indexPath.row])
-            cell.lblCategoryName.text = "Product Name goes here"
+            cell.imageCategories.setImageWithURL(url: RelatedProduct[indexPath.row].images?.first ?? "", imageView: cell.imageCategories)
+            cell.lblCategoryName.text = RelatedProduct[indexPath.row].productName
+            cell.lblCategoryQuantity.text = "$\(RelatedProduct[indexPath.row].price ?? 999)"
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         if collectionView.tag == 1 {
             let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "ImageDisplayViewController") as! ImageDisplayViewController
-            vc.arrImageDisplay = arrCategoryImage
+            vc.arrImageDisplay = selectedProduct?.images ?? []
             vc.modalTransitionStyle = .coverVertical
             vc.modalPresentationStyle = .fullScreen
             present(vc,animated: true)
+        }else if collectionView.tag == 2 {
+            let cell = collectionView.cellForItem(at: indexPath) as! ProductDetailsCollectionViewCell
+            SelectedSize = selectedProduct?.size?[indexPath.row] ?? ""
+            cell.viewChoice.backgroundColor = .systemTeal
+        }
+        else if collectionView.tag == 3 {
+            let cell = collectionView.cellForItem(at: indexPath) as! ProductDetailsCollectionViewCell
+            SelectedColor = selectedProduct?.colors?[indexPath.row] ?? ""
+            cell.viewChoice.backgroundColor = .systemTeal
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! ProductDetailsCollectionViewCell
+        if collectionView.tag == 2 {
+            cell.viewChoice.backgroundColor = .systemGray5
+        }
+        else if collectionView.tag == 3 {
+            cell.viewChoice.backgroundColor = .systemGray5
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView.tag == 1 {
+        if collectionView == collectionSelectedItem {
             return CGSize(width: collectionView.frame.width, height: 250)
+        } else if collectionView == collectionSize {
+            return CGSize(width: 60, height: 35)
         }
-        return CGSize(width: 225, height: 98)
+        else if collectionView == collectionColor{
+            return CGSize(width: 75, height: 35)
+        }
+        else{
+            return CGSize(width: 225, height: 98)
+        }
     }
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == collectionSelectedItem{
-            //            print(scrollView.contentOffset,scrollView.contentInset,scrollView.contentSize)
-            guard let visiblecell = collectionSelectedItem.visibleCells.last else { return  }
-            let indexpath = collectionSelectedItem.indexPath(for: visiblecell)
-            currentCellIndex = indexpath?.row ?? -1
-            pageControl.currentPage = currentCellIndex % arrCategoryImage.count
-        }
+       
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        collectionSelectedItem.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+        if scrollView == collectionSelectedItem{
+            guard let visiblecell = collectionSelectedItem.visibleCells.last else { return  }
+            let indexpath = collectionSelectedItem.indexPath(for: visiblecell)
+            currentCellIndex = indexpath?.row ?? -1
+            pageControl.currentPage = currentCellIndex % (selectedProduct?.images?.count ?? 3)
+            collectionSelectedItem.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+        }
     }
     
     //MARK: User Defined Methods
     
     func isProductAddedtoCart(){
         let currentCart = UserDefaults.standard.array(forKey: "MyCart") as! Array<Dictionary<String, String>>
-        let FoundItem =  currentCart.filter( { $0["Name"] == ProductName } )
-        if FoundItem.count == 0{
-            btnAddtoCart.setTitle(" Add to Cart", for: .normal)
-            isProductInCart = false
-        }
-        else{
-            isProductInCart = true
-            btnAddtoCart.setTitle(" Go to Cart", for: .normal)
-            btnQuantityAdd.isEnabled = false
-            btnQuantityMinus.isEnabled = false
+//        let FoundItem =  currentCart.filter( { $0["Name"] == ProductName } )
+//        if FoundItem.count == 0{
+//            btnAddtoCart.setTitle(" Add to Cart", for: .normal)
+//            isProductInCart = false
+//        }
+//        else{
+//            isProductInCart = true
+//            btnAddtoCart.setTitle(" Go to Cart", for: .normal)
+//            btnQuantityAdd.isEnabled = false
+//            btnQuantityMinus.isEnabled = false
+//        }
+    }
+    
+    func callApiSelectedByID(product_id : String){
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT+productID, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        
+        ProductByIdViewModel.ApiProductByID.getSingleProductData(request: request, success: { response in
+            self.selectedProduct = response.data!
+            DispatchQueue.main.async {
+                print(response)
+               
+                self.updateUIAfterAPI()
+                self.collectionSelectedItem.reloadData()
+                self.collectionSize.reloadData()
+                self.collectionColor.reloadData()
+            }
+        }, error: { error in
+            print(error ?? "Error")
+        })
+    }
+    
+    func callApiRelatedProduct(productId : String){
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_RELATED_LIST+productID, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        ProductViewModel.ApiProduct.getProductData(request: request) { response in
+            DispatchQueue.main.async {
+                if response.data?.products?.isEmpty == true{
+                    print(response.data?.products?.isEmpty)
+                    print(response.status as Any,response.message as Any)
+                    self.viewSuggestedProduct.isHidden = true
+                    self.heightViewSuggestedProduct.constant = 0
+                }
+                else{
+                    print(response.data?.products)
+                    self.RelatedProduct = response.data?.products ?? []
+                    self.collectionSuggestedProducts.reloadData()
+                }
+            }
+        } error: { error in
+            print(error as Any)
         }
     }
     
+    func callAddtoCartApi(dict :Dictionary<String,Dictionary<String,Any>>){
+        let request = APIRequest(isLoader: true, method: HTTPMethods.post, path: Constant.ADD_TO_CART, headers: HeaderValue.headerWithToken.value, body: dict)
+        ProductAddToCartViewModel.ApiAddToCart.getAddToCartData(request: request) { response in
+            print("----------------",response,"-------------------------")
+        } error: { error in
+            print(error)
+        }
+
+    }
+
     
+    func updateUIAfterAPI(){
+        pageControl.numberOfPages = selectedProduct?.images?.count ?? 3
+        if selectedProduct?.images?.count == 1 {
+            timer?.invalidate()
+        }
+        if selectedProduct?.size?.count == 0 {
+            heightForViewSize.constant = 0
+            viewSizeBtn.isHidden = true
+        }
+        if selectedProduct?.colors?.count == 0 {
+            heightForViewColor.constant = 0
+            viewColor.isHidden = true
+        }
+        lblDescription.text = selectedProduct?.mainDescription ?? ""
+        self.navigationItem.title = selectedProduct?.productName
+        lblPrice.text = " $ \(selectedProduct?.price  ?? 1234)"
+    }
     
     func setUpMenuButton(isScroll: Bool) {
-        
         let icon = UIImage(systemName: "chevron.left")
         let iconSize = CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize(width: 20, height: 25))
         let iconButton = UIButton(frame: iconSize)
@@ -283,46 +367,12 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         let barButton = UIBarButtonItem(customView: iconButton)
         iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
         navigationItem.leftBarButtonItem = barButton
-        self.navigationItem.title = ProductName
+        self.navigationItem.title = selectedProduct?.productName
         navigationController?.navigationBar.prefersLargeTitles = true
-
     }
     
     
     func setDetailScreenUI(){
-        btnSizeXL.layer.cornerRadius = 15
-        btnSizeL.layer.cornerRadius = 15
-        btnSizeM.layer.cornerRadius = 15
-        btnSizeS.layer.cornerRadius = 15
-        btnSizeXS.layer.cornerRadius = 15
-        
-        btnColorGreen.layer.cornerRadius = 15
-        btnColorBlue.layer.cornerRadius = 15
-        btnColorRed.layer.cornerRadius = 15
-        btnColorBlack.layer.cornerRadius = 15
-        btnColorWhite.layer.cornerRadius = 15
-        
-        btnSizeXL.layer.borderWidth = 2
-        btnSizeXL.layer.borderColor = UIColor.black.cgColor
-        btnSizeL.layer.borderWidth = 2
-        btnSizeL.layer.borderColor = UIColor.black.cgColor
-        btnSizeM.layer.borderWidth = 2
-        btnSizeM.layer.borderColor = UIColor.black.cgColor
-        btnSizeS.layer.borderWidth = 2
-        btnSizeS.layer.borderColor = UIColor.black.cgColor
-        btnSizeXS.layer.borderWidth = 2
-        btnSizeXS.layer.borderColor = UIColor.black.cgColor
-        
-        btnColorGreen.layer.borderColor = UIColor.black.cgColor
-        btnColorGreen.layer.borderWidth = 2
-        btnColorBlue.layer.borderColor = UIColor.black.cgColor
-        btnColorBlue.layer.borderWidth = 2
-        btnColorRed.layer.borderColor = UIColor.black.cgColor
-        btnColorRed.layer.borderWidth = 2
-        btnColorBlack.layer.borderColor = UIColor.black.cgColor
-        btnColorBlack.layer.borderWidth = 2
-        btnColorWhite.layer.borderColor = UIColor.black.cgColor
-        btnColorWhite.layer.borderWidth = 2
         
         btnAddtoCart.layer.cornerRadius = 15
         btnQuantityMinus.layer.cornerRadius = 10
@@ -330,39 +380,19 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         btnQuantityAdd.layer.cornerRadius = 10
         btnQuantityAdd.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMaxXMaxYCorner]
     }
-    
-    func setUpSizeColorView(){
-        if ProductName.trimmingCharacters(in: .whitespacesAndNewlines) == "TOP" ||  ProductName.trimmingCharacters(in: .whitespacesAndNewlines) == "Tshirt"{
-            heightForViewSize.constant = 30
-            heightForViewColor.constant = 35
-            viewSizeBtn.isHidden = false
-            viewColor.isHidden = false
-            
-        }
-        else{
-            heightForViewSize.constant = 0
-            heightForViewColor.constant = 0
-            viewSizeBtn.isHidden = true
-            viewColor.isHidden = true
-        }
-        if ProductName.trimmingCharacters(in: .whitespacesAndNewlines) == "Shoes"{
-            heightForViewSize.constant = 30
-            viewSizeBtn.isHidden = false
-            btnSizeXS.setTitle("8", for: .normal)
-            btnSizeS.setTitle("9", for: .normal)
-            btnSizeM.setTitle("10", for: .normal)
-            btnSizeL.setTitle("11", for: .normal)
-            btnSizeXL.setTitle("12", for: .normal)
-        }
-    }
+ 
     
     //MARK: @OBJC Methods
     
     
     @objc func slideToNext(){
-        currentCellIndex = currentCellIndex + 1
-        pageControl.currentPage = currentCellIndex % arrCategoryImage.count
-        collectionSelectedItem.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+        
+        if selectedProduct?.images?.count != 0 {
+            currentCellIndex = currentCellIndex + 1
+            pageControl.currentPage = currentCellIndex % (selectedProduct?.images?.count ?? 3)
+            collectionSelectedItem.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+        }
+        
     }
     
     @objc func btnBackClicked(){

@@ -8,18 +8,15 @@
 import UIKit
 
 protocol ProductSelect {
-    func selectedProduct(imageName: String,ProductName : String, Price : Double)
+    func selectedProduct(productId : String)
 }
 
 
 class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     
-   
+   var arrProducts = [Products]()
     @IBOutlet weak var HeightConstraint: NSLayoutConstraint!
-    var arrProductImages = ["product-1","product-2","product-3","product-4","product-5","product-6","product-7","product-8","product-9","product-1","product-2","product-3","product-4","product-5","product-6","product-7","product-8","product-9"]
-    var arrProductName = ["Camera","Tshirt","Lamp","Shoes","Drone","Watch","Top","Creams","Chair","Camera","Tshirt","Lamp","Shoes","Drone","Watch","Top","Creams","Chair"]
-    var arrProductPrice = [599.00,59.00,123.00,89.00,1099.95,259.00,75.00,29.00,659.99,599.00,59.00,123.00,89.00,1099.95,259.00,75.00,29.00,659.99]
     var delegate : ProductSelect?
 
     @IBOutlet weak var collectionProducts: UICollectionView!
@@ -33,21 +30,21 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
- 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrProductImages.count
+        return arrProducts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath) as! ProductsCollectionViewCell
-        cell.imgProduct.image = UIImage(named: arrProductImages[indexPath.row])
-        cell.lblProductName.text = arrProductName[indexPath.row]
-        cell.lblPrice.text = "$\(arrProductPrice[indexPath.row])"
-        cell.lblStrikePrice.text =  "$\(arrProductPrice[indexPath.row])"
-        print(cell.frame.height)
+        if !arrProducts.isEmpty {
+            cell.imgProduct.setImageWithURL(url: arrProducts[indexPath.row].images?.first ?? "", imageView: cell.imgProduct)
+//            cell.starView.text = arrProducts[indexPath.row]
+            cell.lblProductName.text = arrProducts[indexPath.row].productName
+            cell.lblPrice.text = "$\(arrProducts[indexPath.row].price ?? 1234)"
+            cell.lblStrikePrice.text =  "$\(arrProducts[indexPath.row].sellingPrice ?? 1556)"
+        }
         return cell
         
     }
@@ -56,7 +53,7 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        delegate?.selectedProduct(imageName: arrProductImages[indexPath.row],ProductName: arrProductName[indexPath.row],Price: arrProductPrice[indexPath.row])
+        delegate?.selectedProduct(productId: arrProducts[indexPath.row]._id ?? "")
         
     }
     
