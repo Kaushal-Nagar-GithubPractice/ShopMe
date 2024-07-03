@@ -12,7 +12,9 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     var priceOfItems: Int = 0
     var totalAmount: Int = 0
     var customerAddress = [String:String]()
-    var myOrderArray = [ [String:String] ]()
+//    var myOrderArray = [ [String:String] ]()
+    var myOrderArray = [Products]()
+    var discount:Int = 10
     
     // MARK: - IBOutlets
     @IBOutlet weak var productTableView: UITableView!
@@ -46,10 +48,8 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         //default value for test
         customerAddress = ["CustomerName": "John Carter","fullAddress":"sola gam,SG Highway,Ahmedabad, gujarat - 320001", "Mobile":"9009088877"]
         
-        lblDiscount.text = String(priceOfItems*12/100)
-        
-        updateTableViewHeight()
-        
+        lblDiscount.text = String(priceOfItems * discount/100)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +58,15 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         lblAddress.text = customerAddress["fullAddress"]
         lblMobileNumber.text = customerAddress["Mobile"]
         
+        setUi()
+        setProductBill()
+        setRadioButton()
+        updateTableViewHeight()
+        print("=======>myorder arr*****",myOrderArray)
+        print("=======> priceof item",priceOfItems)
+    }
+    
+    func setUi(){
         
         btnChnageAddress.layer.borderColor = UIColor.gray.cgColor
         btnChnageAddress.layer.cornerRadius = 5
@@ -68,8 +77,6 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         btnPlaceOrder.layer.cornerRadius = 8
         btnPlaceOrder.layer.masksToBounds = true
         
-        setProductBill()
-        setRadioButton()
     }
     
     // MARK: - IBActions
@@ -101,27 +108,18 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func onClickPlaceOrder(_ sender: Any) {
-//        let StatusArr = ["Placed","Cancelled"]
-//        let Status = StatusArr.randomElement() as! String
-        
+
         let currentdate = Date.getCurrentDate()
-        // navigate to place order screen
+        
         let orderDetailsDict = ["Date":"\(currentdate)", "TotalItem":"\(myOrderArray.count)", "TotalAmount":"\(totalAmount)","Status":"Placed"]
         
+        // navigate to place order screen
         if btnPaypal.isSelected || btnDirectCheck.isSelected || btnBankTransfer.isSelected  {
 //            showAlert(title: "Success", message: "Order Placed Successfully.")
             NavigateToOrderVc(Dict:orderDetailsDict)
         }else{
             showAlert(title: "Alert", message: "Please select Payment Mode.")
         }
-        
-//        var MyOrder = orderDetailsArr
-//        var PreviousOrder = UserDefaults.standard.object(forKey: "MyOrder") as! Array<Any>
-//        var CurrentArr = PreviousOrder.append(MyOrder)
-//        UserDefaults.standard.set(CurrentArr, forKey: "MyOrder")
-//        orderVC.MyOrderArr.apend(orderDetailsArr)
-//        print("========",UserDefaults.standard.object(forKey: "MyOrder"))
-        
     }
  
     // MARK: - Tableview Methods
@@ -132,11 +130,19 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let cell = productTableView.dequeueReusableCell(withIdentifier: "OrderedItemTableViewCell", for: indexPath) as! OrderedItemTableViewCell
-        cell.imgProduct.image = UIImage(named: "\(myOrderArray[indexPath.row]["img"]!)")
-        cell.lblProductName.text = myOrderArray[indexPath.row]["Name"]
-        cell.lblProductQuantity.text = myOrderArray[indexPath.row]["TotalItem"]
-        cell.lblPrice.text = myOrderArray[indexPath.row]["Price"]
+        let index = indexPath.row
+        if myOrderArray[index].images?.count != 0 {
+            // set image using kingfisher
+            UIImageView().setImage(imgUrl: myOrderArray[index].images?[0] ?? "", imgView: cell.imgProduct)
+        }else{
+            cell.imgProduct.image = UIImage(named: "Placeholder")
+        }
+        cell.lblProductName.text = myOrderArray[index].productName!
+        cell.lblProductQuantity.text = "\(myOrderArray[index].quantity!)"
+        cell.lblPrice.text = "\(myOrderArray[index].totalProductPrice!)"
         return cell
     }
     
@@ -157,16 +163,18 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setProductBill(){
+        
         lblItemsCount.text = "\(myOrderArray.count) items"
         lblItemsPrice.text = "\(priceOfItems)"
         totalAmount =  priceOfItems - Int(lblDiscount.text!)!
         lblTotalPrice.text = String(totalAmount)
         
     }
+    
     //set table dynamic height
     func updateTableViewHeight() {
         productTableView.layoutIfNeeded()
-        heightTableView.constant = productTableView.contentSize.height
+        heightTableView.constant = CGFloat(myOrderArray.count * 118)
     }
     
     func passAddressToCheckout(address: [String : String]) {
@@ -198,15 +206,5 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         self.present(alert, animated: true, completion: nil)
  
     }
-    
-}
 
-extension Date {
-
- static func getCurrentDate() -> String {
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM yyyy"
-        return dateFormatter.string(from: Date())
-    }
 }

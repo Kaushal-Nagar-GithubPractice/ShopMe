@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C30385262C35479D004978BD /* prasiddh'sExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30385252C35479D004978BD /* prasiddh'sExtension.swift */; };
 		C31219842C2944CF00D12067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219832C2944CF00D12067 /* AppDelegate.swift */; };
 		C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219852C2944CF00D12067 /* SceneDelegate.swift */; };
 		C31219882C2944CF00D12067 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219872C2944CF00D12067 /* ViewController.swift */; };
@@ -48,9 +49,15 @@
 		C3A5DC662C2A7CBA003511F7 /* ShopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5DC652C2A7CBA003511F7 /* ShopVC.swift */; };
 		C3A5DC682C2A88D7003511F7 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5DC672C2A88D7003511F7 /* ProductModel.swift */; };
 		C3A5DC702C2AC051003511F7 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5DC6F2C2AC051003511F7 /* FilterVC.swift */; };
+		C3DC00102C2EF32600CC60FA /* UserCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC000F2C2EF32600CC60FA /* UserCartModel.swift */; };
+		C3DC00122C2EF3B600CC60FA /* UserCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC00112C2EF3B600CC60FA /* UserCartViewModel.swift */; };
+		F5D32AC97ABFD44A1F483801 /* Pods_ShopMe_Github_Collab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A16945ADD3C9B7BBEAC448F1 /* Pods_ShopMe_Github_Collab.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22695C6167DD92BCFB6B63FC /* Pods-ShopMe-Github-Collab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopMe-Github-Collab.release.xcconfig"; path = "Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab.release.xcconfig"; sourceTree = "<group>"; };
+		A16945ADD3C9B7BBEAC448F1 /* Pods_ShopMe_Github_Collab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopMe_Github_Collab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30385252C35479D004978BD /* prasiddh'sExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "prasiddh'sExtension.swift"; sourceTree = "<group>"; };
 		C31219802C2944CF00D12067 /* ShopMe-Github-Collab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ShopMe-Github-Collab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31219832C2944CF00D12067 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C31219852C2944CF00D12067 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +101,9 @@
 		C3A5DC652C2A7CBA003511F7 /* ShopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopVC.swift; sourceTree = "<group>"; };
 		C3A5DC672C2A88D7003511F7 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductModel.swift; path = "ShopMe-Github-Collab/View Controller/ProductModel.swift"; sourceTree = SOURCE_ROOT; };
 		C3A5DC6F2C2AC051003511F7 /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
+		C3DC000F2C2EF32600CC60FA /* UserCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserCartModel.swift; path = "Table Cell/UserCartModel.swift"; sourceTree = SOURCE_ROOT; };
+		C3DC00112C2EF3B600CC60FA /* UserCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserCartViewModel.swift; path = "Table Cell/UserCartViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		EE3F15BF4C413CB595A54D5C /* Pods-ShopMe-Github-Collab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopMe-Github-Collab.debug.xcconfig"; path = "Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,17 +111,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5D32AC97ABFD44A1F483801 /* Pods_ShopMe_Github_Collab.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D80F48515517A8B37B69DF9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE3F15BF4C413CB595A54D5C /* Pods-ShopMe-Github-Collab.debug.xcconfig */,
+				22695C6167DD92BCFB6B63FC /* Pods-ShopMe-Github-Collab.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A7F925D546F082F873A4BC02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A16945ADD3C9B7BBEAC448F1 /* Pods_ShopMe_Github_Collab.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C30385242C354772004978BD /* Prasiddh's Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C30385252C35479D004978BD /* prasiddh'sExtension.swift */,
+			);
+			path = "Prasiddh's Extensions";
+			sourceTree = "<group>";
+		};
 		C31219772C2944CF00D12067 = {
 			isa = PBXGroup;
 			children = (
 				C31219822C2944CF00D12067 /* ShopMe-Github-Collab */,
 				C31219812C2944CF00D12067 /* Products */,
+				8D80F48515517A8B37B69DF9 /* Pods */,
+				A7F925D546F082F873A4BC02 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -192,6 +230,7 @@
 		C312199D2C29450300D12067 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				C3DC00112C2EF3B600CC60FA /* UserCartViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -200,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A5DC672C2A88D7003511F7 /* ProductModel.swift */,
+				C3DC000F2C2EF32600CC60FA /* UserCartModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +287,7 @@
 		C31219A42C29454600D12067 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C30385242C354772004978BD /* Prasiddh's Extensions */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -275,9 +316,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C31219972C2944D300D12067 /* Build configuration list for PBXNativeTarget "ShopMe-Github-Collab" */;
 			buildPhases = (
+				D6171C8AF0DFBB76658BB468 /* [CP] Check Pods Manifest.lock */,
 				C312197C2C2944CF00D12067 /* Sources */,
 				C312197D2C2944CF00D12067 /* Frameworks */,
 				C312197E2C2944CF00D12067 /* Resources */,
+				ED67CC13871D66099CA8C7A0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -339,12 +382,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D6171C8AF0DFBB76658BB468 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShopMe-Github-Collab-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED67CC13871D66099CA8C7A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C312197C2C2944CF00D12067 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C388CAB82C296F8100051E02 /* ProductsCollectionViewCell.swift in Sources */,
+				C3DC00122C2EF3B600CC60FA /* UserCartViewModel.swift in Sources */,
 				C31219882C2944CF00D12067 /* ViewController.swift in Sources */,
 				C38748872C294F98006A0C72 /* HomeVC.swift in Sources */,
 				C31219B52C2975CF00D12067 /* EditProfileVC.swift in Sources */,
@@ -357,6 +443,8 @@
 				C388CAB22C296E8600051E02 /* CategoriesCollectionViewCell.swift in Sources */,
 				C388CAB62C296F2800051E02 /* HomeTableViewCell.swift in Sources */,
 				C3A5DC702C2AC051003511F7 /* FilterVC.swift in Sources */,
+				C30385262C35479D004978BD /* prasiddh'sExtension.swift in Sources */,
+				C3DC00102C2EF32600CC60FA /* UserCartModel.swift in Sources */,
 				C31219842C2944CF00D12067 /* AppDelegate.swift in Sources */,
 				C3A5DC662C2A7CBA003511F7 /* ShopVC.swift in Sources */,
 				C31219A92C29464B00D12067 /* CustomTabbarController.swift in Sources */,
@@ -521,6 +609,7 @@
 		};
 		C31219982C2944D300D12067 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE3F15BF4C413CB595A54D5C /* Pods-ShopMe-Github-Collab.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -548,6 +637,7 @@
 		};
 		C31219992C2944D300D12067 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22695C6167DD92BCFB6B63FC /* Pods-ShopMe-Github-Collab.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
