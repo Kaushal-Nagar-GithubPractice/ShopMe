@@ -104,7 +104,7 @@ class ProfileScreenVC: UIViewController {
     }
     
     func LoginAlert(){
-        let alert = UIAlertController(title: "To Checkout You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "To Open Profile, \nYou Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
             self.NavigateToLoginVC()
         } ))

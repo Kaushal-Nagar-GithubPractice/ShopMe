@@ -17,4 +17,5 @@ class Constant {
     static let Login_User_URl = API_BASE_URL + "/user/login"
     static let Get_User_URl = API_BASE_URL + "/user"
     static let Update_User_URl = API_BASE_URL +	"/user/update"
+    static let Get_OrderList_URl = API_BASE_URL + "/order/list"
 }

@@ -52,6 +52,9 @@
 		C3A5DC662C2A7CBA003511F7 /* ShopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5DC652C2A7CBA003511F7 /* ShopVC.swift */; };
 		C3A5DC682C2A88D7003511F7 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5DC672C2A88D7003511F7 /* ProductModel.swift */; };
 		C3A5DC702C2AC051003511F7 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5DC6F2C2AC051003511F7 /* FilterVC.swift */; };
+		C3DF939C2C35582900A7EC75 /* OrderListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF939B2C35582900A7EC75 /* OrderListModel.swift */; };
+		C3DF939E2C3561CA00A7EC75 /* OrderListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF939D2C3561CA00A7EC75 /* OrderListingViewModel.swift */; };
+		C3DF93A02C356EDF00A7EC75 /* Kaushal_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF939F2C356EDF00A7EC75 /* Kaushal_Extension.swift */; };
 		C3EF1DAD2C32839A006492EB /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EF1DAC2C32839A006492EB /* RegisterViewModel.swift */; };
 		C3EF1DAF2C3284CE006492EB /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EF1DAE2C3284CE006492EB /* RegisterModel.swift */; };
 		C3EF1DB12C32B01C006492EB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EF1DB02C32B01C006492EB /* LoginViewModel.swift */; };
@@ -109,6 +112,9 @@
 		C3A5DC652C2A7CBA003511F7 /* ShopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopVC.swift; sourceTree = "<group>"; };
 		C3A5DC672C2A88D7003511F7 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductModel.swift; path = "ShopMe-Github-Collab/View Controller/ProductModel.swift"; sourceTree = SOURCE_ROOT; };
 		C3A5DC6F2C2AC051003511F7 /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
+		C3DF939B2C35582900A7EC75 /* OrderListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListModel.swift; sourceTree = SOURCE_ROOT; };
+		C3DF939D2C3561CA00A7EC75 /* OrderListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListingViewModel.swift; sourceTree = SOURCE_ROOT; };
+		C3DF939F2C356EDF00A7EC75 /* Kaushal_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kaushal_Extension.swift; sourceTree = SOURCE_ROOT; };
 		C3EF1DAC2C32839A006492EB /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewModel.swift; path = "ShopMe-Github-Collab/View Controller/RegisterViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		C3EF1DAE2C3284CE006492EB /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterModel.swift; path = "ShopMe-Github-Collab/View Controller/RegisterModel.swift"; sourceTree = SOURCE_ROOT; };
 		C3EF1DB02C32B01C006492EB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "ShopMe-Github-Collab/View Controller/LoginViewModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -239,6 +245,7 @@
 				C3EF1DB02C32B01C006492EB /* LoginViewModel.swift */,
 				C3EF1DB42C32C57A006492EB /* ProfileViewModel.swift */,
 				C36419332C33DD7C0026B1DA /* UpdateDataViewModel.swift */,
+				C3DF939D2C3561CA00A7EC75 /* OrderListingViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -251,6 +258,7 @@
 				C3EF1DB22C32B030006492EB /* LoginModel.swift */,
 				C3EF1DB62C32C596006492EB /* ProfileModel.swift */,
 				C36419312C33DD070026B1DA /* UpdateDataModel.swift */,
+				C3DF939B2C35582900A7EC75 /* OrderListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -298,6 +306,7 @@
 		C31219A42C29454600D12067 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C3DF939F2C356EDF00A7EC75 /* Kaushal_Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -462,6 +471,7 @@
 				C3A5DC662C2A7CBA003511F7 /* ShopVC.swift in Sources */,
 				C31219A92C29464B00D12067 /* CustomTabbarController.swift in Sources */,
 				C388CAB02C296E2D00051E02 /* HomeFacilitesCollectionViewCell.swift in Sources */,
+				C3DF93A02C356EDF00A7EC75 /* Kaushal_Extension.swift in Sources */,
 				C355CC322C2EBAC100994D58 /* NetworkManager.swift in Sources */,
 				C388CAAE2C296D9A00051E02 /* HomeHeaderCollectionViewCell.swift in Sources */,
 				C3EF1DB52C32C57A006492EB /* ProfileViewModel.swift in Sources */,
@@ -470,6 +480,7 @@
 				C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */,
 				C3A5DC682C2A88D7003511F7 /* ProductModel.swift in Sources */,
 				C3759ECC2C299F7A006ABB02 /* AddAddressViewController.swift in Sources */,
+				C3DF939E2C3561CA00A7EC75 /* OrderListingViewModel.swift in Sources */,
 				C3759ECA2C299BDF006ABB02 /* AddressTableViewCell.swift in Sources */,
 				C3A314132C2D5064007D6BE5 /* CartItemTableViewCell.swift in Sources */,
 				C3759EC82C299B96006ABB02 /* SelectAddressViewController.swift in Sources */,
@@ -481,6 +492,7 @@
 				C31219AC2C294FBF00D12067 /* LoginScreenVC.swift in Sources */,
 				C36419322C33DD070026B1DA /* UpdateDataModel.swift in Sources */,
 				C31219B32C295DE500D12067 /* ProfileScreenVC.swift in Sources */,
+				C3DF939C2C35582900A7EC75 /* OrderListModel.swift in Sources */,
 				C31219AD2C294FBF00D12067 /* RegisterScreenVC.swift in Sources */,
 				C31219B92C298A1E00D12067 /* myOrderTableCell.swift in Sources */,
 				C355CC352C2EBCE900994D58 /* Constants.swift in Sources */,

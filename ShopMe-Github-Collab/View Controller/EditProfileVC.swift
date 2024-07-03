@@ -77,7 +77,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
             ShowAlertBox(Title: "Field marked as * should not be Empty !", Message: "")
         }
         else if ( !btnGenderMale.isSelected && !btnGenderFemale.isSelected){
-            ShowAlertBox(Title: "Select Gender Please", Message: "")
+            ShowAlertBox(Title: "Select Gender Please!", Message: "")
         }
         else{
             
@@ -164,16 +164,25 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
         imgProfilePicImage.SetImageWithKingFisher(ImageUrl: ProfileData.data?.profilePic ?? "", imageView: imgProfilePicImage)
         TfFirstName.text = ProfileData.data?.firstName
         TfLastName.text = ProfileData.data?.lastName
-        TfPhoneNumber.text = "\(ProfileData.data?.phone ?? 0)"
+        
+        if ProfileData.data?.phone != nil{
+            TfPhoneNumber.text = "\(ProfileData.data?.phone ?? 0)"
+        }
+        else{
+            TfPhoneNumber.text = ""
+        }
+        
         TfDOB.text = "\(Date)"
         
         
         
         if (ProfileData.data?.gender == "male") {
             btnGenderMale.isSelected = true
-        }
-        else{
+        }else if (ProfileData.data?.gender == "female"){
             btnGenderFemale.isSelected = true
+        }else{
+            btnGenderMale.isSelected = false
+            btnGenderFemale.isSelected = false
         }
         
     }
