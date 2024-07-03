@@ -52,7 +52,7 @@ class ProfileScreenVC: UIViewController {
     
     @IBAction func OnClickEditProfile(_ sender: Any) {
         let EditProfileScreen = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileVC") as! EditProfileVC
-        
+        EditProfileScreen.SelectedImage = imgProfileImage.image
         self.navigationController?.pushViewController(EditProfileScreen, animated: true)
     }
     

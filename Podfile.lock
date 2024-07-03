@@ -1,34 +1,26 @@
 PODS:
-  - Alamofire (5.9.1)
-  - Cosmos (25.0.1)
   - Kingfisher (7.11.0)
   - SVProgressHUD (2.3.1):
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
-  - SwiftyStarRatingView (1.0.4)
+  - SwiftRangeSlider (2.0.0)
 
 DEPENDENCIES:
-  - Alamofire
-  - Cosmos
   - Kingfisher
   - SVProgressHUD
-  - SwiftyStarRatingView
+  - SwiftRangeSlider
 
 SPEC REPOS:
   trunk:
-    - Alamofire
-    - Cosmos
     - Kingfisher
     - SVProgressHUD
-    - SwiftyStarRatingView
+    - SwiftRangeSlider
 
 SPEC CHECKSUMS:
-  Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
-  Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
-  SwiftyStarRatingView: a2b0057700e0adeb8e7442c55d99cb53b531d2f4
+  SwiftRangeSlider: f86e3b637c961120158fa1a89277c8343845cbe4
 
-PODFILE CHECKSUM: c880205c01b04e489dcad164deb9df6b0c75506f
+PODFILE CHECKSUM: 02f560c1e0529b24cb91a25f002bf31d85d85ff1
 
 COCOAPODS: 1.15.2

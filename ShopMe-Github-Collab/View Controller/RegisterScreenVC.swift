@@ -211,16 +211,18 @@ extension UIImageView{
         let url = URL(string: ImageUrl)
         print("\nKingfisher Img URL",ImageUrl)
         let processor = DownsamplingImageProcessor(size: imageView.bounds.size)
-        |> RoundCornerImageProcessor(cornerRadius: 20)
+        |> RoundCornerImageProcessor(cornerRadius: 0)
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(
             with: url,
             placeholder: UIImage(systemName: "person.circle.fill"),
             options: [
+                KingfisherOptionsInfoItem
                 .processor(processor),
                 .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-                .cacheOriginalImage
+                .transition(.fade(0.5)),
+                .forceRefresh
+//                .cacheOriginalImage
             ])
         {
             result in

@@ -43,6 +43,7 @@
 		C388CAB22C296E8600051E02 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C388CAB12C296E8600051E02 /* CategoriesCollectionViewCell.swift */; };
 		C388CAB62C296F2800051E02 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C388CAB52C296F2800051E02 /* HomeTableViewCell.swift */; };
 		C388CAB82C296F8100051E02 /* ProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C388CAB72C296F8100051E02 /* ProductsCollectionViewCell.swift */; };
+		C38F53F52C3519D60059DD4D /* MultiPartNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38F53F42C3519D60059DD4D /* MultiPartNetworkService.swift */; };
 		C3A3140E2C2D5014007D6BE5 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3140D2C2D5014007D6BE5 /* ShoppingCartViewController.swift */; };
 		C3A314102C2D5025007D6BE5 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3140F2C2D5025007D6BE5 /* CheckoutViewController.swift */; };
 		C3A314132C2D5064007D6BE5 /* CartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A314112C2D5064007D6BE5 /* CartItemTableViewCell.swift */; };
@@ -99,6 +100,7 @@
 		C388CAB12C296E8600051E02 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoriesCollectionViewCell.swift; path = "ShopMe-Github-Collab/View Controller/CategoriesCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		C388CAB52C296F2800051E02 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeTableViewCell.swift; path = "Table Cell/HomeTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		C388CAB72C296F8100051E02 /* ProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductsCollectionViewCell.swift; path = "Collection Cell/ProductsCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		C38F53F42C3519D60059DD4D /* MultiPartNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiPartNetworkService.swift; sourceTree = "<group>"; };
 		C3A3140D2C2D5014007D6BE5 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		C3A3140F2C2D5025007D6BE5 /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		C3A314112C2D5064007D6BE5 /* CartItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CartItemTableViewCell.swift; path = "Table Cell/CartItemTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -224,6 +226,7 @@
 		C312199C2C2944F700D12067 /* Network Manager */ = {
 			isa = PBXGroup;
 			children = (
+				C38F53F42C3519D60059DD4D /* MultiPartNetworkService.swift */,
 				C355CC312C2EBAC100994D58 /* NetworkManager.swift */,
 			);
 			path = "Network Manager";
@@ -472,6 +475,7 @@
 				C3759EC82C299B96006ABB02 /* SelectAddressViewController.swift in Sources */,
 				C31219A92C29464B00D12067 /* CustomTabbarController.swift in Sources */,
 				C31219B72C29856A00D12067 /* MyOrderScreenVC.swift in Sources */,
+				C38F53F52C3519D60059DD4D /* MultiPartNetworkService.swift in Sources */,
 				C3A314102C2D5025007D6BE5 /* CheckoutViewController.swift in Sources */,
 				C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */,
 				C31219AC2C294FBF00D12067 /* LoginScreenVC.swift in Sources */,

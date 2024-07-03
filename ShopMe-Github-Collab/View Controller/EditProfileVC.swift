@@ -8,9 +8,8 @@
 import UIKit
 import SVProgressHUD
 import Kingfisher
-import Alamofire
 //import UniformTypeIdentifiers
-//import MobileCoreServices
+import MobileCoreServices
 
 class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
@@ -113,85 +112,6 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     
     //MARK: - All Defined Functions
     
-//    //=========================
-//    func callsendImageAPI(){
-//
-//        //Set Your URL
-//        let api_url = Constant.Update_User_URl
-//            guard let url = URL(string: api_url) else {
-//                return
-//            }
-//
-//            var urlRequest = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 10.0 * 1000)
-//            urlRequest.httpMethod = "POST"
-//            urlRequest.addValue("multipart/form-data; boundary=", forHTTPHeaderField: "Content-Type")
-//        urlRequest.addValue("Bearer " + (UserDefaults.standard.string(forKey: "token") ?? ""), forHTTPHeaderField: "Authorization")
-//
-//            //Set Your Parameter
-//            let parameterDict = MakeUpdateAPIBody()
-//
-//            //Set Image Data
-//            let imgData = self.imgProfilePicImage.image!.jpegData(compressionQuality: 0.5)!
-//
-//           // Now Execute
-//            AF.upload(multipartFormData: { multiPart in
-//                for (key, value) in parameterDict {
-//                    if let temp = value as? String {
-//                        multiPart.append(temp.data(using: .utf8)!, withName: key as! String)
-//                    }
-//                    if let temp = value as? Int {
-//                        multiPart.append("\(temp)".data(using: .utf8)!, withName: key as! String)
-//                    }
-//                    if let temp = value as? NSArray {
-//                        temp.forEach({ element in
-//                            let keyObj = key as! String + "[]"
-//                            if let string = element as? String {
-//                                multiPart.append(string.data(using: .utf8)!, withName: keyObj)
-//                            } else
-//                                if let num = element as? Int {
-//                                    let value = "\(num)"
-//                                    multiPart.append(value.data(using: .utf8)!, withName: keyObj)
-//                            }
-//                        })
-//                    }
-//                }
-//                multiPart.append(imgData, withName: "file", fileName: "file.png", mimeType: "image/png")
-//            }, with: urlRequest)
-//                .uploadProgress(queue: .main, closure: { progress in
-//                    //Current upload progress of file
-//                    print("Upload Progress: \(progress.fractionCompleted)")
-//                })
-//                .responseJSON(completionHandler: { data in
-//
-//                           switch data.result {
-//
-//                           case .success(_):
-//                            do {
-//
-//                            let dictionary = try JSONSerialization.jsonObject(with: data.data!, options: .fragmentsAllowed) as! NSDictionary
-//
-//                                print("Success!")
-//                                print(dictionary)
-//                           }
-//                           catch {
-//                              // catch error.
-//                            print("catch error")
-//
-//                                  }
-//                            break
-//
-//                           case .failure(_):
-//                            print("failure")
-//
-//                            break
-//
-//                        }
-//
-//
-//                })
-//    }
-//    //=========================
-    
     func UpdateProfile(){
         CallUpdateDataAPI()
         dispatchGroup.leave()
@@ -209,27 +129,28 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     }
     
     func CallUpdateDataAPI(){
-//        callsendImageAPI()
+        
         let APIBody = MakeUpdateAPIBody()
         print("\n===============")
         print("\nUpdate API Body\n",APIBody)
-
+        
         loader.show(withStatus: "Please Wait While We are Getting Your Profile Data!")
-
-        var request =  APIRequest(isLoader: true, method: .put, path: Constant.Update_User_URl, headers: HeaderValue.headerMultiPart.value, body: APIBody)
-
-        getUpdateDataViewModel.CallToUpdateProfileData(request: request){ response in
-
-            self.ProfileData = response
-            DispatchQueue.main.async { [self] in
-                //Execute UI Code on Completion of API Call and getting data
-                UpdateProfileData()
-                loader.dismiss()
-
+        
+        MultiPartNetworkService().uploadRequest(image: SelectedImage, param: APIBody, url: Constant.Update_User_URl, imageName: "profilePic") { response, Error in
+            print("Response",response)
+            
+            if response != nil{
+                self.ProfileData = response
+                DispatchQueue.main.async { [self] in
+                    //Execute UI Code on Completion of API Call and getting data
+                    UpdateProfileData()
+                    loader.dismiss()
+                }
             }
-        } error: { error in
-            print("========== Profile API Error :",error)
-            self.loader.dismiss()
+            else{
+                self.loader.dismiss()
+                print("Error",Error)
+            }
         }
     }
     
@@ -292,7 +213,10 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
         present(imagePicker, animated: true, completion: nil)
     }
     
+    
+    
     func CreateDatePicker(CurrentDOB : String){
+        
         let datePicker = UIDatePicker()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat =  "yyyy-MM-dd"
