@@ -9,4 +9,7 @@ target 'ShopMe-Github-Collab' do
   pod 'Kingfisher'
   pod 'SVProgressHUD'
   pod 'SwiftyStarRatingView'
+  pod 'Cosmos'
+  pod 'FloatRatingView'
+
 end
