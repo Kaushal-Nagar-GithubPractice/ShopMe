@@ -11,28 +11,30 @@ class SelectAddressViewController: UIViewController, UITableViewDelegate, UITabl
     
     var delegatePassAddress:SendAddressToCheckout?
     
-    var addressArray = [["CustomerName":"Prasiddh Barot","fullAddress":"11,Gundel,Khedbrahma,Sabarkantha,Gujarat - 383270","Mobile":"6868668668"],
-                        ["CustomerName":"Prasiddh Barot","fullAddress":"11,Gundel,Khedbrahma,Sabarkantha,Gujarat - 383270","Mobile":"6868668668"],
-                        ["CustomerName":"Prasiddh Barot","fullAddress":"11,Gundel,Khedbrahma,Sabarkantha,Gujarat - 383270","Mobile":"6868668668"]]
+    var addressArray = [] as [[String:Any]]
     
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var AddressListTableView: UITableView!
-    
     @IBOutlet weak var ViewHeader: UIView!
+    
+    // MARK: - View Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         AddressListTableView.delegate = self
         AddressListTableView.dataSource = self
+        
+        addressArray = [["firstName":"john", "lastName": "carter" , "mobileNo" : "909900999" ,"email": "john@gmail.com", "addressLine1": "ganesh meridian" ,"addressLine2":"near kargil Petrol Pump" ,"country": "India" ,"city": "AHmedabad" ,"state": "Gujarat","zipcode" : 1111]]
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
-//        setUi()
-        
+        //        setUi()
     }
     func setUi(){
-    
+        
         ViewHeader.clipsToBounds = true
         ViewHeader.layer.cornerRadius = ViewHeader.frame.height/2
         ViewHeader.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner ]
@@ -52,6 +54,16 @@ class SelectAddressViewController: UIViewController, UITableViewDelegate, UITabl
         self.navigationController?.pushViewController(addAdrs, animated: true)
     }
     
+    
+    // MARK: - Delegate
+    func sendAddresToPreviousVc(addressDict : [String : Any]) {
+        addressArray.append(addressDict)
+        AddressListTableView.reloadData()
+    }
+    
+}
+
+extension SelectAddressViewController {
     // MARK: - Tableview Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,33 +71,32 @@ class SelectAddressViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let index = indexPath.row
+        let fullName = "\(addressArray[index]["firstName"] ?? "") \(addressArray[index]["lastName"] ?? "")"
+        let fullAddress = "\(addressArray[index]["addressLine1"] ?? ""),\(addressArray[index]["addressLine2"] ?? ""),\(addressArray[index]["city"] ?? ""),\(addressArray[index]["state"] ?? ""),\(addressArray[index]["country"] ?? "") -\(addressArray[index]["zipcode"]!)"
+        
         let cell = AddressListTableView.dequeueReusableCell(withIdentifier: "AddressTableViewCell", for: indexPath) as! AddressTableViewCell
-        cell.lblCustomerName.text = addressArray[indexPath.row]["CustomerName"]
-        cell.lblAddress.text = addressArray[indexPath.row]["fullAddress"]
-        cell.lblMobileNumber.text = addressArray[indexPath.row]["Mobile"]
+        cell.lblCustomerName.text = fullName
+        cell.lblAddress.text = fullAddress
+        cell.lblMobileNumber.text = addressArray[index]["mobileNo"] as? String
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let addres = addressArray[indexPath.row]
-
+        let address = addressArray[indexPath.row]
         //pass address previous screen
-        delegatePassAddress?.passAddressToCheckout(address: addres)
+        delegatePassAddress?.passAddressToCheckout(address: address)
         
         self.navigationController?.popViewController(animated: true)
     }
-    
-    func sendAddresToPreviousVc(addrsArr: [String : String]) {
-        addressArray.append(addrsArr)
-        AddressListTableView.reloadData()
-    }
-    
 }
 
 protocol SendAddressToCheckout {
-    func passAddressToCheckout(address : [String:String])
+    func passAddressToCheckout(address : [String:Any])
 }

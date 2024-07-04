@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C30385262C35479D004978BD /* prasiddh'sExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30385252C35479D004978BD /* prasiddh'sExtension.swift */; };
+		C303852A2C356578004978BD /* AddToCartOnCheckoutViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30385292C356578004978BD /* AddToCartOnCheckoutViewmodel.swift */; };
 		C31219842C2944CF00D12067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219832C2944CF00D12067 /* AppDelegate.swift */; };
 		C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219852C2944CF00D12067 /* SceneDelegate.swift */; };
 		C31219882C2944CF00D12067 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219872C2944CF00D12067 /* ViewController.swift */; };
@@ -58,6 +59,7 @@
 		22695C6167DD92BCFB6B63FC /* Pods-ShopMe-Github-Collab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopMe-Github-Collab.release.xcconfig"; path = "Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab.release.xcconfig"; sourceTree = "<group>"; };
 		A16945ADD3C9B7BBEAC448F1 /* Pods_ShopMe_Github_Collab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopMe_Github_Collab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30385252C35479D004978BD /* prasiddh'sExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "prasiddh'sExtension.swift"; sourceTree = "<group>"; };
+		C30385292C356578004978BD /* AddToCartOnCheckoutViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddToCartOnCheckoutViewmodel.swift; path = "ShopMe-Github-Collab/Extension/Prasiddh's Extensions/AddToCartOnCheckoutViewmodel.swift"; sourceTree = SOURCE_ROOT; };
 		C31219802C2944CF00D12067 /* ShopMe-Github-Collab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ShopMe-Github-Collab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C31219832C2944CF00D12067 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C31219852C2944CF00D12067 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -193,8 +195,8 @@
 				C3A5DC652C2A7CBA003511F7 /* ShopVC.swift */,
 				C3A5DC6F2C2AC051003511F7 /* FilterVC.swift */,
 				C3862C432C2AFC0400F07EC0 /* ImageDisplayViewController.swift */,
-				C3A3140F2C2D5025007D6BE5 /* CheckoutViewController.swift */,
 				C3A3140D2C2D5014007D6BE5 /* ShoppingCartViewController.swift */,
+				C3A3140F2C2D5025007D6BE5 /* CheckoutViewController.swift */,
 				C3759EC72C299B96006ABB02 /* SelectAddressViewController.swift */,
 				C3759ECB2C299F7A006ABB02 /* AddAddressViewController.swift */,
 				C31219AA2C294FBF00D12067 /* LoginScreenVC.swift */,
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				C3DC00112C2EF3B600CC60FA /* UserCartViewModel.swift */,
+				C30385292C356578004978BD /* AddToCartOnCheckoutViewmodel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 			files = (
 				C388CAB82C296F8100051E02 /* ProductsCollectionViewCell.swift in Sources */,
 				C3DC00122C2EF3B600CC60FA /* UserCartViewModel.swift in Sources */,
+				C303852A2C356578004978BD /* AddToCartOnCheckoutViewmodel.swift in Sources */,
 				C31219882C2944CF00D12067 /* ViewController.swift in Sources */,
 				C38748872C294F98006A0C72 /* HomeVC.swift in Sources */,
 				C31219B52C2975CF00D12067 /* EditProfileVC.swift in Sources */,
