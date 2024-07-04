@@ -18,4 +18,5 @@ class Constant {
     static let GET_PRODUCT = API_BASE_URL + "/product/"
     static let GET_SEARCHED_PRODUCT = GET_PRODUCT_LIST + "?search="
     static let ADD_TO_CART = API_BASE_URL + "/cart/"
+    static let GET_ALL_CART_ITEMS = API_BASE_URL + "/cart"
 }

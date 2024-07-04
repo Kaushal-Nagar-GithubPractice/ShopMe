@@ -292,6 +292,10 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
 //        }
     }
     
+    func callApiGetCartItems(){
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_ALL_CART_ITEMS, headers: HeaderValue.headerWithToken.value, body: nil)
+    }
+    
     func callApiSelectedByID(product_id : String){
         let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT+productID, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
         

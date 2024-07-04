@@ -22,12 +22,12 @@ class DatabaseManager {
     let context = persistentContainer.viewContext
     static let shared : DatabaseManager = DatabaseManager()
 
-    func fetchDetails () -> [UserData] {
-       var arrUserDetails = [UserData]()
+    func fetchDetails () -> [ProductInCart] {
+       var arrUserDetails = [ProductInCart]()
         let request = NSFetchRequest<NSManagedObject>(entityName: "UserData")
         do{
            
-            arrUserDetails =   try context.fetch(request) as! [UserData]
+            arrUserDetails =   try context.fetch(request) as! [ProductInCart]
         }
         catch{
             print("not able to fecth")
@@ -37,12 +37,12 @@ class DatabaseManager {
     }
     func insertDetails (dict : [String: Any])  {
         
-        let userStruct = NSEntityDescription.insertNewObject(forEntityName: "UserData", into: context) as! UserData
-        userStruct.email = dict["email"] as? String
-        userStruct.gender = dict["gender"] as? String
-        userStruct.name = dict["name"] as? String
-        userStruct.status = dict["status"] as? String
-        userStruct.id = Int64((dict["id"]) as? Int ?? 0)
+        let userStruct = NSEntityDescription.insertNewObject(forEntityName: "UserData", into: context) as! ProductInCart
+//        userStruct.email = dict["email"] as? String
+//        userStruct.gender = dict["gender"] as? String
+//        userStruct.name = dict["name"] as? String
+//        userStruct.status = dict["status"] as? String
+//        userStruct.id = Int64((dict["id"]) as? Int ?? 0)
         
         do{
             try context.save()
@@ -66,11 +66,11 @@ class DatabaseManager {
     }
     func update (dict : [String: Any], Index : Int){
         var updateArr = fetchDetails()
-        updateArr[Index].name = dict["name"] as? String
-        updateArr[Index].status = dict["status"] as? String
-        updateArr[Index].gender = dict["gender"] as? String
-        updateArr[Index].email = dict["email"] as? String
-        updateArr[Index].id = Int64(dict["id"] as? Int ?? 0)
+//        updateArr[Index].name = dict["name"] as? String
+//        updateArr[Index].status = dict["status"] as? String
+//        updateArr[Index].gender = dict["gender"] as? String
+//        updateArr[Index].email = dict["email"] as? String
+//        updateArr[Index].id = Int64(dict["id"] as? Int ?? 0)
         do {
             try context.save()
         }catch{
