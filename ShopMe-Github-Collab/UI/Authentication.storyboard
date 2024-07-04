@@ -138,12 +138,25 @@
                                                 <color key="textColor" name="Custom Black"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtT-nb-kqf">
+                                                <rect key="frame" x="10" y="0.0" width="48" height="50"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="Back Button">
+                                                    <color key="baseForegroundColor" name="Custom Black"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="OnClickCloseLoginScreen:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="48D-BC-gHA"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="dtT-nb-kqf" secondAttribute="bottom" id="C7y-U3-OtE"/>
                                             <constraint firstItem="Pp3-0D-dgz" firstAttribute="centerY" secondItem="gi4-yC-daN" secondAttribute="centerY" id="HwB-nz-EBZ"/>
                                             <constraint firstAttribute="height" constant="50" id="LdJ-iW-Tl2"/>
                                             <constraint firstItem="Pp3-0D-dgz" firstAttribute="centerX" secondItem="gi4-yC-daN" secondAttribute="centerX" id="Udr-GC-wLq"/>
+                                            <constraint firstItem="dtT-nb-kqf" firstAttribute="leading" secondItem="gi4-yC-daN" secondAttribute="leading" constant="10" id="V4o-A2-OeV"/>
+                                            <constraint firstItem="dtT-nb-kqf" firstAttribute="top" secondItem="gi4-yC-daN" secondAttribute="top" id="iQx-v7-HEb"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -403,6 +416,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Back Button" width="24" height="24"/>
         <image name="Login Illustration" width="450" height="450"/>
         <image name="Password Hide" width="32" height="32"/>
         <image name="Registration Illustration" width="639" height="450"/>

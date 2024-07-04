@@ -8,7 +8,11 @@
 import UIKit
 import SVProgressHUD
 
-class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+protocol CallOrderAPI{
+    func CallOrderAPI()
+}
+
+class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CallOrderAPI {
     
     @IBOutlet weak var TvMyOrderTable: UITableView!
     
@@ -16,17 +20,23 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     var OrderListData: OrderListing_Main?
     let loader = SVProgressHUD.self
     
+    @IBOutlet weak var btnFilterButton: UIButton!
+    static var IsFilterData = false
+    static var delegate : CallOrderAPI?
+    static var UrlExtraBody = ""
     @IBOutlet weak var viewEmptyOrder: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        MyOrderScreenVC.delegate = self
         TvMyOrderTable.delegate = self
         TvMyOrderTable.dataSource = self
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
         SetUI()
+        MyOrderScreenVC.UrlExtraBody = ""
         CallAPIToGetOrderListFromAPI()
     }
     
@@ -37,7 +47,27 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
-    //MARK: - All Delegate Methods
+    @IBAction func OnClickOpenFilter(_ sender: Any) {
+        
+        if MyOrderScreenVC.IsFilterData{
+            MyOrderScreenVC.UrlExtraBody = ""
+            MyOrderScreenVC.IsFilterData = false
+            btnFilterButton.setImage(UIImage(named: "Filter -k"), for: .normal)
+            CallAPIToGetOrderListFromAPI()
+        }else{
+            let FilterScreen = self.storyboard?.instantiateViewController(withIdentifier: "FilterScreenVC") as! FilterScreenVC
+            
+            FilterScreen.sheetPresentationController?.detents = [.medium()]
+            FilterScreen.MinPrice = OrderListData?.data?.min_price ?? 0
+            FilterScreen.MaxPrice = OrderListData?.data?.max_price ?? 0
+            
+            self.present(FilterScreen, animated: true)
+        }
+        
+        
+    }
+    
+    //MARK: - TableView Delegate Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return OrderListData?.data?.orders?.count ?? 0
@@ -81,13 +111,27 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let OrderDetailScreen = self.storyboard?.instantiateViewController(withIdentifier: "OrderDetailVC") as! OrderDetailVC
+        
+        OrderDetailScreen.OrderData = OrderListData?.data?.orders?[indexPath.row]
+        
+        self.navigationController?.pushViewController(OrderDetailScreen, animated: true)
+    }
+    
     //MARK: - All Defined Functions
+    
+    func CallOrderAPI() {
+        MyOrderScreenVC.IsFilterData = true
+        btnFilterButton.setImage(UIImage(named: "NoFilter -k"), for: .normal)
+        CallAPIToGetOrderListFromAPI()
+    }
     
     func CallAPIToGetOrderListFromAPI(){
 
         loader.show(withStatus: "Please Wait , \nWe Are Getting Your Data!")
             
-        var request =  APIRequest(isLoader: true, method: .get, path: Constant.Get_OrderList_URl, headers: HeaderValue.headerWithToken.value, body: nil)
+        var request =  APIRequest(isLoader: true, method: .get, path: Constant.Get_OrderList_URl + MyOrderScreenVC.UrlExtraBody, headers: HeaderValue.headerWithToken.value, body: nil)
             
         getOrderListViewModel.CallToGetOrdersData(request: request) { response in
                 

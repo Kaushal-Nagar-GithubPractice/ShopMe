@@ -42,6 +42,11 @@ class LoginScreenVC: UIViewController {
     
     //MARK: - All IBActions
     
+    
+    @IBAction func OnClickCloseLoginScreen(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func OnClickShowAndHidePassword(_ sender: Any) {
         if DoShowPassword{
             DoShowPassword = false

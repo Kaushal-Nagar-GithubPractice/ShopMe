@@ -20,4 +20,12 @@ extension UIViewController {
         print("Date",dateFormatterPrint.string(from: date ?? Date())) // Feb 01,2018
         return dateFormatterPrint.string(from: date ?? Date());
     }
+    
+    func ConvertStringToDate(formate : String , DateInString : String) -> Date {
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = formate
+        
+        return dateFormatterGet.date(from: DateInString) ?? Date()
+    }
 }

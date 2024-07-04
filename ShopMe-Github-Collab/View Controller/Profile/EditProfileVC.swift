@@ -16,7 +16,8 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     var getUpdateDataViewModel = UpdateDataViewModel()
     var ProfileData : UpdateData_Struct!
     let loader = SVProgressHUD.self
-    let dispatchGroup = DispatchGroup()
+    
+    var isCallFirstTime = true
     
     let imagePicker = UIImagePickerController()
     var SelectedImage : UIImage!
@@ -42,6 +43,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        isCallFirstTime = true
         SetUI()
         SetupRadioButton()
         registerKeyboardNotifications()
@@ -80,16 +82,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
             ShowAlertBox(Title: "Select Gender Please!", Message: "")
         }
         else{
-            
-            dispatchGroup.enter()
             UpdateProfile()
-            
-            dispatchGroup.enter()
-            ShowAlertBox(Title: ProfileData.message ?? "", Message: "")
-            
-            dispatchGroup.notify(queue: .main) {
-                print("all activities complete 👍")
-            }
         }
     }
     
@@ -114,7 +107,6 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     
     func UpdateProfile(){
         CallUpdateDataAPI()
-        dispatchGroup.leave()
     }
     
     func registerKeyboardNotifications() {
@@ -143,8 +135,19 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
                 self.ProfileData = response
                 DispatchQueue.main.async { [self] in
                     //Execute UI Code on Completion of API Call and getting data
-                    UpdateProfileData()
-                    loader.dismiss()
+                    
+                    if (ProfileData.success == true){
+                        UpdateProfileData()
+                        if !isCallFirstTime{
+                            ShowAlertBox(Title: ProfileData.message ?? "", Message: "")
+                        }
+                        isCallFirstTime = false
+                        loader.dismiss()
+                    }
+                    else{
+                        ShowAlertBox(Title: ProfileData.message ?? "", Message: "")
+                        loader.dismiss()
+                    }
                 }
             }
             else{

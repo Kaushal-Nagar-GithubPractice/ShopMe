@@ -34,12 +34,13 @@ struct OrderListing_Main : Codable {
 
 }
 
-
 struct OrderListing_Data : Codable {
     let orders : [OrderListing_Orders]?
     let page : Int?
     let items : Int?
     let total_count : Int?
+    let min_price : Int?
+    let max_price : Int?
 
     enum CodingKeys: String, CodingKey {
 
@@ -47,6 +48,8 @@ struct OrderListing_Data : Codable {
         case page = "page"
         case items = "items"
         case total_count = "total_count"
+        case min_price = "min_price"
+        case max_price = "max_price"
     }
 
     init(from decoder: Decoder) throws {
@@ -55,10 +58,86 @@ struct OrderListing_Data : Codable {
         page = try values.decodeIfPresent(Int.self, forKey: .page)
         items = try values.decodeIfPresent(Int.self, forKey: .items)
         total_count = try values.decodeIfPresent(Int.self, forKey: .total_count)
+        min_price = try values.decodeIfPresent(Int.self, forKey: .min_price)
+        max_price = try values.decodeIfPresent(Int.self, forKey: .max_price)
     }
 
 }
 
+struct OrderListing_Orders : Codable {
+    let _id : String?
+    let userId : String?
+    let products : [OrderListing_Products]?
+    let totalAmount : Int?
+    let billingAddress : OrderListing_BillingAddress?
+    let paymentMethod : String?
+    let orderStatus : String?
+    let createdAt : String?
+
+    enum CodingKeys: String, CodingKey {
+
+        case _id = "_id"
+        case userId = "userId"
+        case products = "products"
+        case totalAmount = "totalAmount"
+        case billingAddress = "billingAddress"
+        case paymentMethod = "paymentMethod"
+        case orderStatus = "orderStatus"
+        case createdAt = "createdAt"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        _id = try values.decodeIfPresent(String.self, forKey: ._id)
+        userId = try values.decodeIfPresent(String.self, forKey: .userId)
+        products = try values.decodeIfPresent([OrderListing_Products].self, forKey: .products)
+        totalAmount = try values.decodeIfPresent(Int.self, forKey: .totalAmount)
+        billingAddress = try values.decodeIfPresent(OrderListing_BillingAddress.self, forKey: .billingAddress)
+        paymentMethod = try values.decodeIfPresent(String.self, forKey: .paymentMethod)
+        orderStatus = try values.decodeIfPresent(String.self, forKey: .orderStatus)
+        createdAt = try values.decodeIfPresent(String.self, forKey: .createdAt)
+    }
+
+}
+
+struct OrderListing_Products : Codable {
+    let productName : String?
+    let size : String?
+    let color : String?
+    let quantity : Int?
+    let productId : String?
+    let _id : String?
+    let price : Int?
+    let totalProductPrice : Int?
+    let image : String?
+
+    enum CodingKeys: String, CodingKey {
+
+        case productName = "productName"
+        case size = "size"
+        case color = "color"
+        case quantity = "quantity"
+        case productId = "productId"
+        case _id = "_id"
+        case price = "price"
+        case totalProductPrice = "totalProductPrice"
+        case image = "image"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        productName = try values.decodeIfPresent(String.self, forKey: .productName)
+        size = try values.decodeIfPresent(String.self, forKey: .size)
+        color = try values.decodeIfPresent(String.self, forKey: .color)
+        quantity = try values.decodeIfPresent(Int.self, forKey: .quantity)
+        productId = try values.decodeIfPresent(String.self, forKey: .productId)
+        _id = try values.decodeIfPresent(String.self, forKey: ._id)
+        price = try values.decodeIfPresent(Int.self, forKey: .price)
+        totalProductPrice = try values.decodeIfPresent(Int.self, forKey: .totalProductPrice)
+        image = try values.decodeIfPresent(String.self, forKey: .image)
+    }
+
+}
 
 struct OrderListing_BillingAddress : Codable {
     let firstName : String?
@@ -98,113 +177,6 @@ struct OrderListing_BillingAddress : Codable {
         city = try values.decodeIfPresent(String.self, forKey: .city)
         state = try values.decodeIfPresent(String.self, forKey: .state)
         zipcode = try values.decodeIfPresent(Int.self, forKey: .zipcode)
-    }
-
-}
-
-
-struct OrderListing_Information : Codable {
-    let description : String?
-    let infoPoints : [String]?
-
-    enum CodingKeys: String, CodingKey {
-
-        case description = "description"
-        case infoPoints = "infoPoints"
-    }
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        description = try values.decodeIfPresent(String.self, forKey: .description)
-        infoPoints = try values.decodeIfPresent([String].self, forKey: .infoPoints)
-    }
-
-}
-
-
-struct OrderListing_Orders : Codable {
-    let _id : String?
-    let userId : String?
-    let products : [OrderListing_Products]?
-    let billingAddress : OrderListing_BillingAddress?
-    let totalAmount : Int?
-    let paymentMethod : String?
-    let createdAt : String?
-    let orderStatus : String?
-
-    enum CodingKeys: String, CodingKey {
-
-        case _id = "_id"
-        case userId = "userId"
-        case products = "products"
-        case billingAddress = "billingAddress"
-        case totalAmount = "totalAmount"
-        case paymentMethod = "paymentMethod"
-        case createdAt = "createdAt"
-        case orderStatus = "orderStatus"
-    }
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        _id = try values.decodeIfPresent(String.self, forKey: ._id)
-        userId = try values.decodeIfPresent(String.self, forKey: .userId)
-        products = try values.decodeIfPresent([OrderListing_Products].self, forKey: .products)
-        billingAddress = try values.decodeIfPresent(OrderListing_BillingAddress.self, forKey: .billingAddress)
-        totalAmount = try values.decodeIfPresent(Int.self, forKey: .totalAmount)
-        paymentMethod = try values.decodeIfPresent(String.self, forKey: .paymentMethod)
-        createdAt = try values.decodeIfPresent(String.self, forKey: .createdAt)
-        orderStatus = try values.decodeIfPresent(String.self, forKey: .orderStatus)
-    }
-
-}
-
-struct OrderListing_Products : Codable {
-    let categoryId : String?
-    let productName : String?
-    let images : [String]?
-    let price : Int?
-    let sellingPrice : Int?
-    let colors : [String]?
-    let size : [String]?
-    let mainDescription : String?
-    let subDescription : String?
-    let tags : [String]?
-    let information : OrderListing_Information?
-    let isFeatured : Bool?
-    let isActive : Bool?
-
-    enum CodingKeys: String, CodingKey {
-
-        case categoryId = "categoryId"
-        case productName = "productName"
-        case images = "images"
-        case price = "price"
-        case sellingPrice = "sellingPrice"
-        case colors = "colors"
-        case size = "size"
-        case mainDescription = "mainDescription"
-        case subDescription = "subDescription"
-        case tags = "tags"
-        case information = "information"
-        case isFeatured = "isFeatured"
-        case isActive = "isActive"
-    }
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        categoryId = try values.decodeIfPresent(String.self, forKey: .categoryId)
-        productName = try values.decodeIfPresent(String.self, forKey: .productName)
-        images = try values.decodeIfPresent([String].self, forKey: .images)
-        price = try values.decodeIfPresent(Int.self, forKey: .price)
-        sellingPrice = try values.decodeIfPresent(Int.self, forKey: .sellingPrice)
-        colors = try values.decodeIfPresent([String].self, forKey: .colors)
-        size = try values.decodeIfPresent([String].self, forKey: .size)
-        mainDescription = try values.decodeIfPresent(String.self, forKey: .mainDescription)
-        subDescription = try values.decodeIfPresent(String.self, forKey: .subDescription)
-        tags = try values.decodeIfPresent([String].self, forKey: .tags)
-        information = try values.decodeIfPresent(OrderListing_Information.self, forKey: .information)
-        isFeatured = try values.decodeIfPresent(Bool.self, forKey: .isFeatured)
-        isActive = try values.decodeIfPresent(Bool.self, forKey: .isActive)
     }
 
 }
