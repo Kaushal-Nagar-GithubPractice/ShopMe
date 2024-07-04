@@ -44,6 +44,8 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
             cell.lblProductName.text = arrProducts[indexPath.row].productName
             cell.lblPrice.text = "$\(arrProducts[indexPath.row].price ?? 1234)"
             cell.lblStrikePrice.text =  "$\(arrProducts[indexPath.row].sellingPrice ?? 1556)"
+            cell.starView?.rating = arrProducts[indexPath.row].ratings ?? 0
+            cell.starView?.text = "\(arrProducts[indexPath.row].ratings ?? 0)"
         }
         return cell
         

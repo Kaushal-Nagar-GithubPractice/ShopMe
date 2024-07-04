@@ -157,7 +157,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor,"size" : SelectedSize]]
         }
         callAddtoCartApi(dict: dict)
-        ShowAlertBox(Title: "Confirmation", Message: "Added to CArt Successfully")
+        ShowAlertBox(Title: "Confirmation", Message: "Added to Cart Successfully")
     }
     
     //MARK: Delegate Method
@@ -219,6 +219,8 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView.tag == 1 {
+            let cell = collectionView.cellForItem(at: indexPath) as! HomeHeaderCollectionViewCell
+//            if cell.imageHeader.imagena
             let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "ImageDisplayViewController") as! ImageDisplayViewController
             vc.arrImageDisplay = selectedProduct?.images ?? []
             vc.modalTransitionStyle = .coverVertical

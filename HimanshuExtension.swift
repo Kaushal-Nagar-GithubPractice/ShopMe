@@ -30,7 +30,8 @@ extension UIImageView {
 //                print("Task done for: \(value.source.url?.absoluteString ?? "")")
                 break
             case .failure(let error):
-                print("Job failed: \(error.localizedDescription)")
+//                print("Job failed: \(error.localizedDescription)")
+                break
             }
         }
     }

@@ -16,6 +16,8 @@ class CategoryViewModal : NSObject {
         APIClient().perform(request){(data,error) in
             if let data = data {
                 do {
+                    let parsedData = try JSONSerialization.jsonObject(with: data) as! [String:Any]
+//                    print(parsedData)
                     let response = try JSONDecoder().decode(CategoryModel.self, from: data)
                     successCallback(response)
                 }
