@@ -50,7 +50,7 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     
     @IBAction func OnClickWishList(_ sender: UIButton) {
 //        IsWishList.toggle()
-//        SetWishlistbutton()
+        
 //
         callApiWishList(productId: arrProducts[sender.tag]._id ?? "")
         
@@ -62,6 +62,7 @@ class ProductsCollectionViewCell: UICollectionViewCell {
             DispatchQueue.main.async {
                 print(response)
                 self.delegate?.onClickAddtoWishlist()
+//                self.SetWishlistbutton()
             }
             
         } error: { error in

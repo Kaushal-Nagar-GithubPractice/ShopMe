@@ -9,6 +9,11 @@ import UIKit
 import Kingfisher
 import SVProgressHUD
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect, UICollectionViewDelegateFlowLayout {
+    func reloadAfterWishlist() {
+        callApiProduct()
+        
+    }
+    
     var isFirstTimeApiCall = true
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var arrHeaderImages = ["carousel-1","carousel-2","carousel-3"]

@@ -9,6 +9,7 @@ import UIKit
 
 protocol ProductSelect {
     func selectedProduct(productId : String)
+    func reloadAfterWishlist()
 }
 
 
@@ -52,6 +53,12 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
             cell.starView?.text = "\(arrProducts[indexPath.row].ratings ?? 0)"
             cell.btnWishlist.tag = indexPath.row
             cell.IsWishList = arrProducts[indexPath.row].isWishList ?? false
+            if arrProducts[indexPath.row].isWishList ?? false{
+                cell.btnWishlist.tintColor = .red
+            }
+            else{
+                cell.btnWishlist.tintColor = .black
+            }
         }
         return cell
         
@@ -76,5 +83,6 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
 //    }
     func onClickAddtoWishlist() {
         collectionProducts.reloadData()
+        delegate?.reloadAfterWishlist()
     }
 }
