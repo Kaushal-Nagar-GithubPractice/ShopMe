@@ -138,12 +138,25 @@
                                                 <color key="textColor" name="Custom Black"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtT-nb-kqf">
+                                                <rect key="frame" x="10" y="0.0" width="48" height="50"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="Back Button">
+                                                    <color key="baseForegroundColor" name="Custom Black"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="OnClickCloseLoginScreen:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="48D-BC-gHA"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="dtT-nb-kqf" secondAttribute="bottom" id="C7y-U3-OtE"/>
                                             <constraint firstItem="Pp3-0D-dgz" firstAttribute="centerY" secondItem="gi4-yC-daN" secondAttribute="centerY" id="HwB-nz-EBZ"/>
                                             <constraint firstAttribute="height" constant="50" id="LdJ-iW-Tl2"/>
                                             <constraint firstItem="Pp3-0D-dgz" firstAttribute="centerX" secondItem="gi4-yC-daN" secondAttribute="centerX" id="Udr-GC-wLq"/>
+                                            <constraint firstItem="dtT-nb-kqf" firstAttribute="leading" secondItem="gi4-yC-daN" secondAttribute="leading" constant="10" id="V4o-A2-OeV"/>
+                                            <constraint firstItem="dtT-nb-kqf" firstAttribute="top" secondItem="gi4-yC-daN" secondAttribute="top" id="iQx-v7-HEb"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -289,28 +302,41 @@
                                                     <constraint firstAttribute="width" constant="350" id="sVc-Dc-gMI"/>
                                                 </constraints>
                                             </imageView>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Name Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="62Q-e0-aSm">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="03k-OE-UPc">
                                                 <rect key="frame" x="20" y="305" width="353" height="50"/>
-                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="RuV-Jk-euG"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="62Q-e0-aSm">
+                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="RuV-Jk-euG"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p0D-yh-iLU">
+                                                        <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="qy9-fa-rHD"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="5Cf-nB-On3" firstAttribute="centerX" secondItem="OyN-dP-GqQ" secondAttribute="centerX" id="0Qk-lZ-Ul8"/>
                                             <constraint firstAttribute="bottom" secondItem="5Cf-nB-On3" secondAttribute="bottom" constant="10" id="4ie-PD-aCA"/>
-                                            <constraint firstItem="62Q-e0-aSm" firstAttribute="leading" secondItem="OyN-dP-GqQ" secondAttribute="leading" constant="20" id="7FL-ep-tJ0"/>
                                             <constraint firstItem="uEO-Rn-mNs" firstAttribute="top" secondItem="K2X-jJ-bQB" secondAttribute="bottom" constant="20" id="7GU-Kt-QxR"/>
                                             <constraint firstItem="Spd-rn-SSe" firstAttribute="leading" secondItem="OyN-dP-GqQ" secondAttribute="leading" constant="20" id="Alk-Ju-Yza"/>
                                             <constraint firstAttribute="trailing" secondItem="uEO-Rn-mNs" secondAttribute="trailing" constant="20" id="BdX-Tn-IYb"/>
                                             <constraint firstItem="h74-1f-0k4" firstAttribute="top" secondItem="i8c-2X-tXK" secondAttribute="bottom" constant="20" id="Fb9-Qh-Quq"/>
-                                            <constraint firstItem="K2X-jJ-bQB" firstAttribute="top" secondItem="62Q-e0-aSm" secondAttribute="bottom" constant="20" id="GaV-d6-kxa"/>
+                                            <constraint firstItem="K2X-jJ-bQB" firstAttribute="top" secondItem="03k-OE-UPc" secondAttribute="bottom" constant="20" id="Fqp-n1-i0K"/>
+                                            <constraint firstItem="03k-OE-UPc" firstAttribute="top" secondItem="Bb4-9h-fpS" secondAttribute="bottom" constant="20" id="FzR-jt-cbH"/>
                                             <constraint firstAttribute="trailing" secondItem="qDU-4N-96x" secondAttribute="trailing" constant="20" id="Gzf-ce-ieQ"/>
-                                            <constraint firstItem="62Q-e0-aSm" firstAttribute="top" secondItem="Bb4-9h-fpS" secondAttribute="bottom" constant="20" id="HjI-Zh-UmL"/>
                                             <constraint firstItem="5Cf-nB-On3" firstAttribute="top" secondItem="qDU-4N-96x" secondAttribute="bottom" id="OOf-II-hUX"/>
                                             <constraint firstItem="Bb4-9h-fpS" firstAttribute="top" secondItem="OyN-dP-GqQ" secondAttribute="top" constant="10" id="P5M-tU-qKc"/>
                                             <constraint firstAttribute="trailing" secondItem="Spd-rn-SSe" secondAttribute="trailing" constant="20" id="Ru4-G9-bg7"/>
@@ -323,7 +349,8 @@
                                             <constraint firstAttribute="trailing" secondItem="i8c-2X-tXK" secondAttribute="trailing" constant="20" id="em7-dw-iXB"/>
                                             <constraint firstItem="qDU-4N-96x" firstAttribute="leading" secondItem="OyN-dP-GqQ" secondAttribute="leading" constant="20" id="f4d-oT-GF3"/>
                                             <constraint firstItem="h74-1f-0k4" firstAttribute="leading" secondItem="OyN-dP-GqQ" secondAttribute="leading" constant="20" id="hwL-Zy-mpk"/>
-                                            <constraint firstAttribute="trailing" secondItem="62Q-e0-aSm" secondAttribute="trailing" constant="20" id="iuG-pS-0F8"/>
+                                            <constraint firstItem="03k-OE-UPc" firstAttribute="leading" secondItem="OyN-dP-GqQ" secondAttribute="leading" constant="20" id="jNs-hj-Rbe"/>
+                                            <constraint firstAttribute="trailing" secondItem="03k-OE-UPc" secondAttribute="trailing" constant="20" id="kl2-c1-Pja"/>
                                             <constraint firstAttribute="trailing" secondItem="h74-1f-0k4" secondAttribute="trailing" constant="20" id="n7Y-HP-Lpa"/>
                                             <constraint firstItem="uEO-Rn-mNs" firstAttribute="leading" secondItem="OyN-dP-GqQ" secondAttribute="leading" constant="20" id="sEU-M2-5BT"/>
                                             <constraint firstItem="qDU-4N-96x" firstAttribute="centerX" secondItem="OyN-dP-GqQ" secondAttribute="centerX" id="tBJ-PR-a88"/>
@@ -358,6 +385,7 @@
                     <connections>
                         <outlet property="TfConfirmPassword" destination="h74-1f-0k4" id="Ord-7B-ISe"/>
                         <outlet property="TfEmail" destination="K2X-jJ-bQB" id="uZw-Fw-6z1"/>
+                        <outlet property="TfEnterLastName" destination="p0D-yh-iLU" id="0ma-qp-nvS"/>
                         <outlet property="TfEnterName" destination="62Q-e0-aSm" id="mqk-NT-R4f"/>
                         <outlet property="TfPassword" destination="uEO-Rn-mNs" id="zhg-pn-Dc3"/>
                         <outlet property="btnRegister" destination="Spd-rn-SSe" id="Li0-3K-a9Q"/>
@@ -388,6 +416,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Back Button" width="24" height="24"/>
         <image name="Login Illustration" width="450" height="450"/>
         <image name="Password Hide" width="32" height="32"/>
         <image name="Registration Illustration" width="639" height="450"/>

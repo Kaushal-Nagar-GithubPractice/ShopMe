@@ -11,5 +11,6 @@ target 'ShopMe-Github-Collab' do
   pod 'SwiftyStarRatingView'
   pod 'Cosmos'
   pod 'FloatRatingView'
-
+  pod ‘SwiftRangeSlider’
+  pod 'ReachabilitySwift'
 end
