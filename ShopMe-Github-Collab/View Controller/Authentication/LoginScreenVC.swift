@@ -42,6 +42,14 @@ class LoginScreenVC: UIViewController {
     
     //MARK: - All IBActions
     
+    @IBAction func OnClickForgetPassword(_ sender: Any) {
+        
+        let ForgetPasswordScreen = self.storyboard?.instantiateViewController(withIdentifier: "ForgetPasswordVC") as! ForgetPasswordVC
+        
+        self.navigationController?.pushViewController(ForgetPasswordScreen, animated: true)
+        
+    }
+    
     
     @IBAction func OnClickCloseLoginScreen(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

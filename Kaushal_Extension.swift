@@ -83,7 +83,7 @@ extension UIImageView{
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(
             with: url,
-            placeholder: UIImage(systemName: "person.circle.fill"),
+            placeholder: UIImage(named: "placeholder"),
             options: [
                 KingfisherOptionsInfoItem
                 .processor(processor),

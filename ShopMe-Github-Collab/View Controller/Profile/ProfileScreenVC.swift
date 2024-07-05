@@ -51,6 +51,15 @@ class ProfileScreenVC: UIViewController {
     
     //MARK: - All IBAction
     
+    
+    @IBAction func OnClickOpenWishlist(_ sender: Any) {
+        
+        let WishlistScreen = UIStoryboard(name: "WishList", bundle: nibBundle).instantiateViewController(withIdentifier: "WishListVC") as! WishListVC
+        
+        self.navigationController?.pushViewController(WishlistScreen, animated: true)
+        
+    }
+    
     @IBAction func OnClickEditProfile(_ sender: Any) {
         let EditProfileScreen = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileVC") as! EditProfileVC
         EditProfileScreen.SelectedImage = imgProfileImage.image

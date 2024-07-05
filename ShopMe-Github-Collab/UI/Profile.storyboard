@@ -38,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="109" width="393" height="709"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0K3-B9-azr">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="576"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="656"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKM-4v-gYf">
                                                 <rect key="frame" x="10" y="0.0" width="373" height="276"/>
@@ -68,10 +68,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2A-qC-TZj">
-                                                <rect key="frame" x="0.0" y="276" width="393" height="300"/>
+                                                <rect key="frame" x="0.0" y="276" width="393" height="380"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TAb-57-FPT">
-                                                        <rect key="frame" x="10" y="10" width="373" height="290"/>
+                                                        <rect key="frame" x="10" y="10" width="373" height="350"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftu-SC-aJC">
                                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="50"/>
@@ -145,8 +145,45 @@
                                                                     <constraint firstItem="dWB-eq-VXS" firstAttribute="leading" secondItem="Y38-7r-a7j" secondAttribute="leading" constant="10" id="xih-27-ZOO"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qg1-5r-vyy">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uf3-Yz-jAB">
                                                                 <rect key="frame" x="0.0" y="120" width="373" height="50"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNQ-Km-ube">
+                                                                        <rect key="frame" x="305" y="0.0" width="48" height="50"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="Goto Icon"/>
+                                                                        <connections>
+                                                                            <action selector="OnClickOpenWishlist:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="aU0-eL-rZh"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joa-oM-5vc">
+                                                                        <rect key="frame" x="10" y="0.0" width="295" height="50"/>
+                                                                        <state key="normal" title="Button"/>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="WishList -k" title="   My Wishlist">
+                                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                                        </buttonConfiguration>
+                                                                        <connections>
+                                                                            <action selector="OnClickOpenWishlist:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="T5M-f3-b35"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="bottom" secondItem="bNQ-Km-ube" secondAttribute="bottom" id="CFT-s2-LCa"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="bNQ-Km-ube" secondAttribute="bottom" id="Ff9-1E-0JC"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="bNQ-Km-ube" secondAttribute="trailing" constant="20" id="RpM-wl-K4V"/>
+                                                                    <constraint firstItem="bNQ-Km-ube" firstAttribute="top" secondItem="uf3-Yz-jAB" secondAttribute="top" id="ThM-A4-IQD"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="bNQ-Km-ube" secondAttribute="trailing" constant="20" id="aKB-R7-ojZ"/>
+                                                                    <constraint firstItem="joa-oM-5vc" firstAttribute="top" secondItem="uf3-Yz-jAB" secondAttribute="top" id="bez-Ha-WPA"/>
+                                                                    <constraint firstItem="joa-oM-5vc" firstAttribute="leading" secondItem="uf3-Yz-jAB" secondAttribute="leading" constant="10" id="e2i-nk-QQk"/>
+                                                                    <constraint firstItem="bNQ-Km-ube" firstAttribute="top" secondItem="uf3-Yz-jAB" secondAttribute="top" id="pMr-cv-Wdm"/>
+                                                                    <constraint firstItem="bNQ-Km-ube" firstAttribute="leading" secondItem="joa-oM-5vc" secondAttribute="trailing" id="rtW-qE-u4d"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="joa-oM-5vc" secondAttribute="bottom" id="vvC-d8-tYc"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qg1-5r-vyy">
+                                                                <rect key="frame" x="0.0" y="180" width="373" height="50"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKp-6u-NsH">
                                                                         <rect key="frame" x="305" y="0.0" width="48" height="50"/>
@@ -183,7 +220,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIM-ev-gwz">
-                                                                <rect key="frame" x="0.0" y="180" width="373" height="50"/>
+                                                                <rect key="frame" x="0.0" y="240" width="373" height="50"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yv-8f-1DW">
                                                                         <rect key="frame" x="305" y="0.0" width="48" height="50"/>
@@ -214,7 +251,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNO-Ia-TVe">
-                                                                <rect key="frame" x="0.0" y="240" width="373" height="50"/>
+                                                                <rect key="frame" x="0.0" y="300" width="373" height="50"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txs-Fr-XWs">
                                                                         <rect key="frame" x="10" y="0.0" width="353" height="50"/>
@@ -243,9 +280,9 @@
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <constraints>
                                                     <constraint firstItem="TAb-57-FPT" firstAttribute="leading" secondItem="p2A-qC-TZj" secondAttribute="leading" constant="10" id="H2R-be-Vp3"/>
+                                                    <constraint firstAttribute="bottom" secondItem="TAb-57-FPT" secondAttribute="bottom" constant="20" id="P0M-Kt-OsD"/>
                                                     <constraint firstAttribute="trailing" secondItem="TAb-57-FPT" secondAttribute="trailing" constant="10" id="PfW-7k-ucd"/>
                                                     <constraint firstItem="TAb-57-FPT" firstAttribute="top" secondItem="p2A-qC-TZj" secondAttribute="top" constant="10" id="fs6-jh-uO9"/>
-                                                    <constraint firstAttribute="height" constant="300" id="wqR-Qr-XL5"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -1413,6 +1450,7 @@
         <image name="My Orders" width="24" height="24"/>
         <image name="Notification" width="24" height="24"/>
         <image name="Placed" width="32" height="32"/>
+        <image name="WishList -k" width="24" height="24"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <image name="radio-button-notSelected" width="24" height="24"/>

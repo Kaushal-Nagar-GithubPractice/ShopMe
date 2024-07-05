@@ -18,4 +18,8 @@ class Constant {
     static let Get_User_URl = API_BASE_URL + "/user"
     static let Update_User_URl = API_BASE_URL +	"/user/update"
     static let Get_OrderList_URl = API_BASE_URL + "/order/list"
+    static let Confirm_Email_URL = API_BASE_URL + "/user/confirm-email"
+    static let Forget_Pass_URl = API_BASE_URL + "/user/forget-password/"
+    static let Get_Wishlist_URL = API_BASE_URL + "/wishlist/"
+    static let Delete_Product_From_Wishlist_URL = API_BASE_URL + "/wishlist/"
 }
