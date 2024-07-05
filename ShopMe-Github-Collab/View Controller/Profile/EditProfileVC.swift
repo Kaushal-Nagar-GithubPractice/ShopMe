@@ -47,11 +47,6 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
         SetUI()
         SetupRadioButton()
         registerKeyboardNotifications()
-        btnUpdate.layer.cornerRadius = 10
-        self.tabBarController?.tabBar.isHidden =  true
-        //        TfName.text = UserDefaults.standard.string(forKey: "Username")
-        //        TfPassword.text = UserDefaults.standard.string(forKey: "Password")
-        //        TfEmail.text = UserDefaults.standard.string(forKey: "Email")
     }
     override func viewDidAppear(_ animated: Bool) {
         CallUpdateDataAPI()
@@ -177,8 +172,6 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
         
         TfDOB.text = "\(Date)"
         
-        
-        
         if (ProfileData.data?.gender == "male") {
             btnGenderMale.isSelected = true
         }else if (ProfileData.data?.gender == "female"){
@@ -211,6 +204,9 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     }
     
     func SetUI(){
+        btnUpdate.layer.cornerRadius = 10
+        self.tabBarController?.tabBar.isHidden =  true
+        
         loader.setDefaultMaskType(.black)
         imgProfilePicImage.layer.cornerRadius = imgProfilePicImage.frame.width/2
         imgProfilePicImage.layer.borderWidth = 4

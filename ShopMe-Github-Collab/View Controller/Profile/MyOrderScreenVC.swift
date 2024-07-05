@@ -16,6 +16,7 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBOutlet weak var TvMyOrderTable: UITableView!
     
+    @IBOutlet weak var lblEmptyOrderLabel: UILabel!
     var getOrderListViewModel = OrderListingDataViewModel()
     var OrderListData: OrderListing_Main?
     let loader = SVProgressHUD.self
@@ -48,23 +49,27 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     @IBAction func OnClickOpenFilter(_ sender: Any) {
-        
-        if MyOrderScreenVC.IsFilterData{
-            MyOrderScreenVC.UrlExtraBody = ""
-            MyOrderScreenVC.IsFilterData = false
-            btnFilterButton.setImage(UIImage(named: "Filter -k"), for: .normal)
-            CallAPIToGetOrderListFromAPI()
+        if OrderListData?.success == true{
+            if ( !MyOrderScreenVC.IsFilterData && OrderListData?.data?.orders?.count == 0){
+                ShowAlertBox(Title: "There is no orders to Filter !!", Message: "")
+            }else{
+                if MyOrderScreenVC.IsFilterData{
+                    MyOrderScreenVC.UrlExtraBody = ""
+                    btnFilterButton.setImage(UIImage(named: "Filter -k"), for: .normal)
+                    CallAPIToGetOrderListFromAPI()
+                }else{
+                    let FilterScreen = self.storyboard?.instantiateViewController(withIdentifier: "FilterScreenVC") as! FilterScreenVC
+                    
+                    FilterScreen.sheetPresentationController?.detents = [.medium()]
+                    FilterScreen.MinPrice = OrderListData?.data?.min_price ?? 0
+                    FilterScreen.MaxPrice = OrderListData?.data?.max_price ?? 0
+                    
+                    self.present(FilterScreen, animated: true)
+                }
+            }
         }else{
-            let FilterScreen = self.storyboard?.instantiateViewController(withIdentifier: "FilterScreenVC") as! FilterScreenVC
-            
-            FilterScreen.sheetPresentationController?.detents = [.medium()]
-            FilterScreen.MinPrice = OrderListData?.data?.min_price ?? 0
-            FilterScreen.MaxPrice = OrderListData?.data?.max_price ?? 0
-            
-            self.present(FilterScreen, animated: true)
+            ShowAlertBox(Title: "Error While fetching Data , Please Try Again!", Message: "")
         }
-        
-        
     }
     
     //MARK: - TableView Delegate Methods
@@ -122,7 +127,6 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     //MARK: - All Defined Functions
     
     func CallOrderAPI() {
-        MyOrderScreenVC.IsFilterData = true
         btnFilterButton.setImage(UIImage(named: "NoFilter -k"), for: .normal)
         CallAPIToGetOrderListFromAPI()
     }
@@ -130,6 +134,12 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func CallAPIToGetOrderListFromAPI(){
 
         loader.show(withStatus: "Please Wait , \nWe Are Getting Your Data!")
+        
+        if MyOrderScreenVC.UrlExtraBody.count <= 1{
+            MyOrderScreenVC.IsFilterData = false
+        }else{
+            MyOrderScreenVC.IsFilterData = true
+        }
             
         var request =  APIRequest(isLoader: true, method: .get, path: Constant.Get_OrderList_URl + MyOrderScreenVC.UrlExtraBody, headers: HeaderValue.headerWithToken.value, body: nil)
             
@@ -151,11 +161,25 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func UpdateUIData(){
-        TvMyOrderTable.reloadData()
+        if ((OrderListData?.success) == false){
+            ShowAlertBox(Title: OrderListData?.message ?? "", Message: "")
+        }else{
+            TvMyOrderTable.reloadData()
+        }
     }
  
     func SetUI(){
         self.tabBarController?.tabBar.isHidden =  true
+        
+        print(MyOrderScreenVC.IsFilterData)
+        
+        if (MyOrderScreenVC.IsFilterData && OrderListData?.data?.orders?.count == 0 ){
+            lblEmptyOrderLabel.text = "Oops!... \nFound 0 Orders !"
+            
+        }else if (!MyOrderScreenVC.IsFilterData && OrderListData?.data?.orders?.count == 0){
+            lblEmptyOrderLabel.text = "Oops!... \nPlease Order Something From Us !!"
+        }
+        
         
         if OrderListData?.data?.orders?.count == 0{
             viewEmptyOrder.isHidden = false

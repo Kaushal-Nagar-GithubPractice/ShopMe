@@ -9,4 +9,5 @@ target 'ShopMe-Github-Collab' do
   pod 'Kingfisher'
   pod 'SVProgressHUD'
   pod ‘SwiftRangeSlider’
+  pod 'ReachabilitySwift'
 end

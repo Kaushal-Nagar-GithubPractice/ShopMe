@@ -1,5 +1,6 @@
 PODS:
   - Kingfisher (7.11.0)
+  - ReachabilitySwift (5.2.3)
   - SVProgressHUD (2.3.1):
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
@@ -7,20 +8,23 @@ PODS:
 
 DEPENDENCIES:
   - Kingfisher
+  - ReachabilitySwift
   - SVProgressHUD
   - SwiftRangeSlider
 
 SPEC REPOS:
   trunk:
     - Kingfisher
+    - ReachabilitySwift
     - SVProgressHUD
     - SwiftRangeSlider
 
 SPEC CHECKSUMS:
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
+  ReachabilitySwift: 7f151ff156cea1481a8411701195ac6a984f4979
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftRangeSlider: f86e3b637c961120158fa1a89277c8343845cbe4
 
-PODFILE CHECKSUM: 02f560c1e0529b24cb91a25f002bf31d85d85ff1
+PODFILE CHECKSUM: f706fb375d4eea1d33118991f4422d4d36880a5b
 
 COCOAPODS: 1.15.2

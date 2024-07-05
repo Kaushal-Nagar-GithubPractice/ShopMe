@@ -33,6 +33,9 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
         
         SetUI()
     }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        SetUI()
+    }
     
     //MARK: - All IBActions
     
@@ -117,14 +120,14 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
         
         let TotalRange = MinPrice+MaxPrice
         
-        VwRangeSliderView.minimumValue = Double(MinPrice)
+        VwRangeSliderView.minimumValue = Double(0)
         VwRangeSliderView.maximumValue = Double(MaxPrice)
-        VwRangeSliderView.stepValue = Double((TotalRange)/10)
-        VwRangeSliderView.lowerValue = Double(MinPrice)
+//        VwRangeSliderView.stepValue = Double((TotalRange)/10)
+        VwRangeSliderView.lowerValue = Double(0)
         VwRangeSliderView.upperValue = Double((TotalRange)/10)
         VwRangeSliderView.minimumDistance = Double((TotalRange)/10)
         
-        lblMinPrice.text = "\(MinPrice)"
+        lblMinPrice.text = "\(0)"
         lblMaxPrice.text = "\(MaxPrice)"
     }
     

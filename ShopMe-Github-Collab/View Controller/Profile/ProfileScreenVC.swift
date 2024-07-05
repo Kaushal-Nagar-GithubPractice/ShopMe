@@ -31,6 +31,7 @@ class ProfileScreenVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        loader.setDefaultMaskType(.black)
         
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.isNavigationBarHidden = true
@@ -128,6 +129,7 @@ class ProfileScreenVC: UIViewController {
     
     func CallProfileDataAPI(){
         loader.show()
+        
         imgProfileImage.image = UIImage(named: "")
             var request =  APIRequest(isLoader: true, method: .get, path: Constant.Get_User_URl, headers: HeaderValue.headerWithToken.value, body: nil)
             
@@ -144,18 +146,4 @@ class ProfileScreenVC: UIViewController {
                 self.loader.dismiss()
             }
     }
-}
-
-
-extension UIViewController{
-    
-    func SetImageRoundBorder(ImageView : UIImageView){
-        let borderLayer = CALayer()
-        borderLayer.frame = ImageView.bounds
-        borderLayer.borderColor = UIColor.white.cgColor
-        borderLayer.borderWidth = 8
-        borderLayer.cornerRadius = borderLayer.frame.width / 2
-        ImageView.layer.insertSublayer(borderLayer, above: ImageView.layer)
-    }
-    
 }

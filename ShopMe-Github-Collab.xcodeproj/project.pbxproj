@@ -25,6 +25,7 @@
 		C31219B52C2975CF00D12067 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219B42C2975CF00D12067 /* EditProfileVC.swift */; };
 		C31219B72C29856A00D12067 /* MyOrderScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219B62C29856A00D12067 /* MyOrderScreenVC.swift */; };
 		C31219B92C298A1E00D12067 /* myOrderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219B82C298A1E00D12067 /* myOrderTableCell.swift */; };
+		C32E1CFB2C37CBDE00EE7C50 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32E1CFA2C37CBDE00EE7C50 /* Connectivity.swift */; };
 		C3429E462C3666E1005C6DC0 /* OrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3429E452C3666E1005C6DC0 /* OrderDetailVC.swift */; };
 		C3429E482C3676FB005C6DC0 /* OrderDetailTabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3429E472C3676FB005C6DC0 /* OrderDetailTabelCell.swift */; };
 		C3429E4A2C36A36B005C6DC0 /* FilterScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3429E492C36A36B005C6DC0 /* FilterScreenVC.swift */; };
@@ -88,6 +89,7 @@
 		C31219B42C2975CF00D12067 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		C31219B62C29856A00D12067 /* MyOrderScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderScreenVC.swift; sourceTree = "<group>"; };
 		C31219B82C298A1E00D12067 /* myOrderTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = myOrderTableCell.swift; path = "ShopMe-Github-Collab/View Controller/myOrderTableCell.swift"; sourceTree = SOURCE_ROOT; };
+		C32E1CFA2C37CBDE00EE7C50 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Connectivity.swift; path = "ShopMe-Github-Collab/View Controller/Profile/Connectivity.swift"; sourceTree = SOURCE_ROOT; };
 		C3429E452C3666E1005C6DC0 /* OrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailVC.swift; sourceTree = "<group>"; };
 		C3429E472C3676FB005C6DC0 /* OrderDetailTabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrderDetailTabelCell.swift; path = "Table Cell/OrderDetailTabelCell.swift"; sourceTree = SOURCE_ROOT; };
 		C3429E492C36A36B005C6DC0 /* FilterScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterScreenVC.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				C3DF939F2C356EDF00A7EC75 /* Kaushal_Extension.swift */,
+				C32E1CFA2C37CBDE00EE7C50 /* Connectivity.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				C31219B32C295DE500D12067 /* ProfileScreenVC.swift in Sources */,
 				C3DF939C2C35582900A7EC75 /* OrderListModel.swift in Sources */,
 				C31219AD2C294FBF00D12067 /* RegisterScreenVC.swift in Sources */,
+				C32E1CFB2C37CBDE00EE7C50 /* Connectivity.swift in Sources */,
 				C31219B92C298A1E00D12067 /* myOrderTableCell.swift in Sources */,
 				C355CC352C2EBCE900994D58 /* Constants.swift in Sources */,
 			);
