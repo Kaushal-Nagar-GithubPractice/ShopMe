@@ -20,4 +20,6 @@ class Constant {
     static let ADD_TO_CART = API_BASE_URL + "/cart/"
     static let GET_ALL_CART_ITEMS = API_BASE_URL + "/cart"
     static let POST_PRODUCT_RATING = API_BASE_URL + "/review/"
+    static let GET_REVIEW_LIST = API_BASE_URL + "/review/list/"
+    static let GET_COLOR_LIST = API_BASE_URL + "/product/color"
 }

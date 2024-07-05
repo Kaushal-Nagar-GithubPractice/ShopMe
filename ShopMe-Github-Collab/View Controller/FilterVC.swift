@@ -55,8 +55,9 @@ class FilterVC: UIViewController {
             setUIFilterScreen()
             appliedFilters()
             isSliderSetOnAppear = false
+            getColor()
         }
-        
+
     }
     
     //MARK: IBACTION Methods
@@ -160,8 +161,13 @@ class FilterVC: UIViewController {
     
     func appliedFilters(){
         if flagForAppliedFilter {
-            priceRangeSLider?.lowerValue = Double(dictFilters?.minPrice ?? minPrice)
-            priceRangeSLider?.upperValue = Double(dictFilters?.maxPrice ?? maxPrice)
+            if dictFilters?.minPrice != 0 {
+                priceRangeSLider?.lowerValue = Double(dictFilters?.minPrice ?? minPrice)
+            }
+            if dictFilters?.maxPrice != 0 {
+                priceRangeSLider?.upperValue = Double(dictFilters?.maxPrice ?? maxPrice)
+            }
+            
             SelectedSize = dictFilters?.size ?? []
             SelectedColor = (dictFilters?.color) ?? []
             collectionColor.reloadData()
@@ -182,6 +188,22 @@ class FilterVC: UIViewController {
         lblMAxPrice.text = "\(maxPrice)"
     }
     
+    func getColor(){
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_COLOR_LIST, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        GetColorViewModel.ApiGetColor.getPostRatingData(request: request) { response in
+            DispatchQueue.main.async {
+                if response.data?.isEmpty == false {
+                    self.arrColor = response.data ?? []
+                    self.collectionColor.reloadData()
+                }
+            }
+            
+        } error: { error in
+            print(error)
+        }
+
+        
+    }
     
     //MARK: @OBJC Methods
     
@@ -228,10 +250,21 @@ extension FilterVC : UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == collectionSize {
-            return CGSize(width: 45, height: 35)
+          let label = UILabel(frame: CGRect.zero)
+            label.text = arrSize[indexPath.item]
+            label.sizeToFit()
+            if arrSize[indexPath.item].count == 1 {
+                return CGSize(width: label.frame.width + 25, height: 35)
+            }
+            else{
+                return CGSize(width: label.frame.width + 10, height: 35)
+            }
         }
         else{
-            return CGSize(width: 60, height: 35)
+           let label = UILabel(frame: CGRect.zero)
+            label.text = arrColor[indexPath.item]
+            label.sizeToFit()
+            return CGSize(width: label.frame.width + 15, height: 35)
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

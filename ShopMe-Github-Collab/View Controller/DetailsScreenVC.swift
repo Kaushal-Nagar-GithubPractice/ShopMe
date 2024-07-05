@@ -44,6 +44,8 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     var productID = ""
     var ColorsInCart = [""]
     var SizesInCArt = [""]
+    var ArrReview = [Reviews]()
+    @IBOutlet weak var heightForTblRating: NSLayoutConstraint!
     //MARK: Application Delegate Method
     
     override func viewDidLoad() {
@@ -72,6 +74,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         setDetailScreenUI()
         print(productID)
         callApiGetCartItems()
+        getUserRatings()
        
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -150,7 +153,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             ShowAlertBox(Title: "Alert", Message: "please add your review")
         }
         else {
-            print(UserRating.rating,txtViewUserRating.text ?? "demo" )
+//            print(UserRating.rating,txtViewUserRating.text ?? "demo" )
           var dictRating = [
             "rating" : UserRating.rating,
             "review" : txtViewUserRating.text ?? "demo"
@@ -237,12 +240,18 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! ProductDetailsCollectionViewCell
+        
         if collectionView.tag == 2 {
+            let cell = collectionView.cellForItem(at: indexPath) as! ProductDetailsCollectionViewCell
             cell.viewChoice.backgroundColor = .systemGray5
+            SelectedSize = ""
+            isSelectedSizeColorInCart()
         }
         else if collectionView.tag == 3 {
+            let cell = collectionView.cellForItem(at: indexPath) as! ProductDetailsCollectionViewCell
             cell.viewChoice.backgroundColor = .systemGray5
+            SelectedColor = ""
+            isSelectedSizeColorInCart()
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -277,26 +286,52 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     //MARK: API CAllING Methods
     
     func callApiAddRating(dictRating : [String : Any]) {
-        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.POST_PRODUCT_RATING+productID, headers: HeaderValue.headerWithToken.value, body: dictRating)
+        let request = APIRequest(isLoader: true, method: HTTPMethods.post, path: Constant.POST_PRODUCT_RATING+productID, headers: HeaderValue.headerWithToken.value, body: dictRating)
         
         UserRatingViewModel.ApiPostRatings.getPostRatingData(request: request) { response in
             DispatchQueue.main.async {
                 print(response)
-                if response.status == 200 && response.success == false {
+                if response.status == 200 && response.success == true {
                     self.ShowAlertBox(Title: "Message", Message: "Your Ratings are Added Successfully")
+                    self.getUserRatings()
+//                    self.tblUserReviews.reloadData()
+                }
+                else if response.status == 400{
+                    self.ShowAlertBox(Title: "Message", Message: "You have already added Ratings for this product")
                 }
                 else{
-                    self.ShowAlertBox(Title: "Message", Message: "You have already added Ratings for this product")
+                    self.ShowAlertBox(Title: "Message", Message: "Something Went Wrong")
                 }
             }
         } error: { error in
-            print(error)
+            print(error as Any)
         }
         
     }
     
-    
-  
+    func getUserRatings(){
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_REVIEW_LIST+productID, headers: HeaderValue.headerWithToken.value, body: nil)
+        UserRatingViewModel.ApiPostRatings.getPostRatingData(request: request) { response in
+            DispatchQueue.main.async {
+                print(response)
+                if response.data?.reviews?.count != 0 {
+                    self.ArrReview = response.data?.reviews ?? []
+                    self.tblUserReviews.reloadData()
+                    self.tblUserReviews.isHidden = false
+                    self.heightForTblRating.constant = CGFloat(150 *  (response.data?.reviews?.count ?? 1) + 75)
+                }
+                else{
+                    self.tblUserReviews.isHidden = true
+                    self.heightForTblRating.constant = 0
+                }
+                
+                
+            }
+        } error: { error in
+            print(error as Any)
+        }
+    }
+
     func callApiGetCartItems(){
         let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_ALL_CART_ITEMS, headers: HeaderValue.headerWithToken.value, body: nil)
         
@@ -352,8 +387,12 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     
     func callAddtoCartApi(dict :Dictionary<String,Dictionary<String,Any>>){
         let request = APIRequest(isLoader: true, method: HTTPMethods.post, path: Constant.ADD_TO_CART, headers: HeaderValue.headerWithToken.value, body: dict)
-        ProductAddToCartViewModel.ApiAddToCart.getAddToCartData(request: request) { response in
-            print("----------------",response,"-------------------------")
+        ProductAddToCartViewModel.ApiAddToCart.getAddToCartData(request: request) { [self] response in
+//            print("----------------",response,"-------------------------")
+            DispatchQueue.main.async {
+                self.btnQuantityAdd.isEnabled = false
+                btnQuantityMinus.isEnabled = false
+            }
         } error: { error in
             print(error)
         }
@@ -429,13 +468,14 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     
     
     func setDetailScreenUI(){
-        
+        tblUserReviews.isScrollEnabled = false
         btnAddtoCart.layer.cornerRadius = 15
         btnQuantityMinus.layer.cornerRadius = 10
         btnQuantityMinus.layer.maskedCorners = [.layerMinXMinYCorner,.layerMinXMaxYCorner]
         btnQuantityAdd.layer.cornerRadius = 10
         btnQuantityAdd.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMaxXMaxYCorner]
 //        UserRating.settings.fillMode = .precise
+        txtViewUserRating.layer.cornerRadius = 12
     }
  
     
@@ -459,11 +499,14 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
 
 extension DetailsScreenVC : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return ArrReview.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserReviewsTableViewCell", for: indexPath) as! UserReviewsTableViewCell
+        cell.btnRatings.setTitle("   \(ArrReview[indexPath.row].rating ?? 5)", for: .normal)
+        cell.lblUsername.text = ArrReview[indexPath.row].name
+        cell.lblUserReview.text = "   \(ArrReview[indexPath.row].review)"
         return cell
     }
     
