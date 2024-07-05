@@ -42,10 +42,11 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
             cell.imgProduct.setImageWithURL(url: arrProducts[indexPath.row].images?.first ?? "", imageView: cell.imgProduct)
 //            cell.starView.text = arrProducts[indexPath.row]
             cell.lblProductName.text = arrProducts[indexPath.row].productName
-            cell.lblPrice.text = "$\(arrProducts[indexPath.row].price ?? 1234)"
-            cell.lblStrikePrice.text =  "$\(arrProducts[indexPath.row].sellingPrice ?? 1556)"
+            cell.lblPrice.text = "$\(arrProducts[indexPath.row].sellingPrice ?? 1234)"
+            cell.lblStrikePrice.text =  "$\(arrProducts[indexPath.row].price ?? 1556)"
             cell.starView?.rating = arrProducts[indexPath.row].ratings ?? 0
             cell.starView?.text = "\(arrProducts[indexPath.row].ratings ?? 0)"
+            cell.btnWishlist.tag = indexPath.row
         }
         return cell
         

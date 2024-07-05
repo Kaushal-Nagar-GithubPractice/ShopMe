@@ -25,7 +25,7 @@ enum HeaderValue{
             let header: [HTTPHeader] = [HTTPHeader(field: "device", value: "ios"),
                                         HTTPHeader(field: "build-version", value: ""),
                                         HTTPHeader(field: headerContentType, value: contentTypeUrlJSON),
-                                        HTTPHeader(field: "Authorization", value:  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ODc3MTkxMzViZGI1Mzg4YWVkMzI3NyIsImlhdCI6MTcyMDE1NDU2N30.PrsViF_xMfVmigkJ7GfekjXjHUe9YnuXOQ9v5CUQ04c")]
+                                        HTTPHeader(field: "Authorization", value:  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ODc5ZTliMmNkZjEzNjFiMzc5NGMwZiIsImlhdCI6MTcyMDE2Mzk5N30.Dj2CDv5KWFg9yNRk1qI2Cv4yAoQ6VY7qnDqDiuyg2cI")]
             return header
         case .headerWithoutAuthToken:
             let header: [HTTPHeader] = [HTTPHeader(field: "device", value: "ios"),

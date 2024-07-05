@@ -8,7 +8,7 @@ target 'ShopMe-Github-Collab' do
   # Pods for ShopMe-Github-Collab
   pod 'Cosmos'
   pod 'Kingfisher'
-  pod 'FloatRatingView'
   pod 'SVProgressHUD'
   pod ‘SwiftRangeSlider’
+  pod 'ReachabilitySwift'
 end

@@ -91,6 +91,19 @@
                                                                         <constraint firstAttribute="height" constant="22" id="ApW-OB-CJd"/>
                                                                     </constraints>
                                                                 </stackView>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84j-T5-kQu">
+                                                                    <rect key="frame" x="141" y="0.0" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="50" id="bQn-Uk-xNZ"/>
+                                                                        <constraint firstAttribute="height" constant="50" id="bhh-Km-UmW"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" name="Custom Black"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="Wishlist"/>
+                                                                    <connections>
+                                                                        <action selector="OnClickWishList:" destination="2NJ-iL-4a6" eventType="touchUpInside" id="eg6-eB-UZH"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
@@ -104,7 +117,9 @@
                                                                 <constraint firstItem="8Pe-9Z-Awy" firstAttribute="top" secondItem="CHB-NP-VQ9" secondAttribute="bottom" constant="8" id="e08-db-atv"/>
                                                                 <constraint firstItem="CHB-NP-VQ9" firstAttribute="top" secondItem="Sak-Jf-dA7" secondAttribute="top" id="ens-1Q-MkC"/>
                                                                 <constraint firstAttribute="height" constant="275" id="h78-Ox-ufT"/>
+                                                                <constraint firstItem="84j-T5-kQu" firstAttribute="top" secondItem="Sak-Jf-dA7" secondAttribute="top" id="p0c-oZ-AtZ"/>
                                                                 <constraint firstItem="8Pe-9Z-Awy" firstAttribute="leading" secondItem="Sak-Jf-dA7" secondAttribute="leading" id="qn2-et-QDY"/>
+                                                                <constraint firstAttribute="trailing" secondItem="84j-T5-kQu" secondAttribute="trailing" id="u57-Ix-lMf"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -118,6 +133,7 @@
                                                 <color key="tintColor" name="AppColor"/>
                                                 <size key="customSize" width="201" height="275"/>
                                                 <connections>
+                                                    <outlet property="btnWishlist" destination="84j-T5-kQu" id="mBP-GO-GKI"/>
                                                     <outlet property="imgProduct" destination="CHB-NP-VQ9" id="ysO-He-BYn"/>
                                                     <outlet property="lblPrice" destination="hBP-bp-I8p" id="Km8-IK-YvE"/>
                                                     <outlet property="lblProductName" destination="8Pe-9Z-Awy" id="gXU-Kb-TlX"/>
@@ -782,6 +798,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Wishlist" width="32" height="32"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
         <namedColor name="AppColor">
             <color red="0.84313725490196079" green="0.82745098039215681" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

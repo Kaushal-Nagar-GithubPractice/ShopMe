@@ -10,6 +10,8 @@ import Cosmos
 class ProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     
+    var IsWishList = false
+    @IBOutlet weak var btnWishlist: UIButton!
     @IBOutlet weak var starView: CosmosView?
     @IBOutlet weak var lblStrikePrice: UILabel!
     @IBOutlet weak var lblProductName: UILabel!
@@ -18,6 +20,7 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        SetWishlistbutton()
         let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: "$199.00")
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
         
@@ -29,4 +32,22 @@ class ProductsCollectionViewCell: UICollectionViewCell {
         starView?.settings.fillMode = .precise
         
     }
+    
+    func SetWishlistbutton(){
+        if IsWishList{
+            btnWishlist.tintColor = .systemRed
+        }else{
+            btnWishlist.tintColor = UIColor(named: "Custom Black")
+        }
+    }
+    
+    @IBAction func OnClickWishList(_ sender: Any) {
+        IsWishList.toggle()
+        SetWishlistbutton()
+    }
+    
+    func callApiWishList(){
+        
+    }
+    
 }

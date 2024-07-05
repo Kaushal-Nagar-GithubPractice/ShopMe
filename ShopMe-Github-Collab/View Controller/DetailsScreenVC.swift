@@ -6,10 +6,15 @@
 //
 
 import UIKit
-
+import Cosmos
 class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    var isRatingAdded = false
+    @IBOutlet weak var tblUserReviews: UITableView!
+    @IBOutlet weak var UserRating: CosmosView!
     @IBOutlet weak var viewSuggestedProduct: UIView!
+    @IBOutlet weak var txtViewUserRating: UITextView!
     var isAddedtoCart = false
+    @IBOutlet weak var btnAddUserRating: UIButton!
     @IBOutlet weak var heightViewSuggestedProduct: NSLayoutConstraint!
     @IBOutlet weak var collectionColor: UICollectionView!
     @IBOutlet weak var collectionSize: UICollectionView!
@@ -106,40 +111,6 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         
     }
     @IBAction func onCLickAddtoCart(_ sender: Any) {
-//        print(isProductInCart)
-//        if isProductInCart {
-//            ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 2)
-//        }
-//        else{
-//            btnAddtoCart.backgroundColor = UIColor.systemGray4
-//            
-//            UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
-//                
-//                self.btnAddtoCart.backgroundColor = UIColor(named: "AppColor")
-//                    }, completion: nil)
-//            
-////            guard let dict = ["img":arrCategoryImage[0],"Name":ProductName,"Price":Price,"TotalItem":"\(Quantity)","isAdded":"true"] as? Dictionary<String, String> else { return  }
-//            var currentCart = UserDefaults.standard.array(forKey: "MyCart") as! Array<Dictionary<String, String>>
-//            
-////            var FoundItem =  currentCart.filter( { $0["Name"] == ProductName } )
-//           
-////            currentCart.insert(dict, at: 0)
-//           
-////            if FoundItem.count == 0{
-////                currentCart.insert(dict, at: 0)
-////                
-////            }
-////            else{
-////                let NewQuantity = (FoundItem[0]["TotalItem"]! as NSString).integerValue + Quantity
-////                let FoundItemIndex =  currentCart.firstIndex(of: FoundItem[0])
-////                currentCart.remove(at: FoundItemIndex ?? -1)
-////                FoundItem[0]["TotalItem"] = "\(NewQuantity)"
-////                currentCart.append(FoundItem[0])
-////                
-////            }
-//            UserDefaults.standard.set(currentCart, forKey: "MyCart")
-//            isProductAddedtoCart()
-//        }
         if isAddedtoCart {
             ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex: 2)
         }
@@ -150,7 +121,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
                                 }, completion: nil)
             var dict : Dictionary<String,Dictionary<String, Any>> = [:]
             if SelectedSize != "" && SelectedColor != "" {
-                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor,"size" : SelectedSize]]
+                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.sellingPrice ?? 999,"color" : SelectedColor,"size" : SelectedSize]]
                 callAddtoCartApi(dict: dict)
                 btnAddtoCart.setTitle(" Go To Cart", for: .normal)
                 isAddedtoCart = true
@@ -166,12 +137,28 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
                 else if  SelectedSize == "" && SelectedColor == "" {
                     ShowAlertBox(Title: "Alert", Message: "Select Size & Color For Product ")
                 }
-            
             }
-            
         }
-        
     }
+    
+    
+    @IBAction func onClickAddRating(_ sender: Any) {
+        if UserRating.rating == 0 {
+            ShowAlertBox(Title: "Alert", Message: "please give your ratings")
+        }
+        else if txtViewUserRating.text.trimmingCharacters(in: .whitespacesAndNewlines) == "" || txtViewUserRating.text.trimmingCharacters(in: .whitespacesAndNewlines) == "Add Review"{
+            ShowAlertBox(Title: "Alert", Message: "please add your review")
+        }
+        else {
+            print(UserRating.rating,txtViewUserRating.text ?? "demo" )
+          var dictRating = [
+            "rating" : UserRating.rating,
+            "review" : txtViewUserRating.text ?? "demo"
+          ] as [String : Any]
+            callApiAddRating(dictRating: dictRating)
+        }
+    }
+    
     
     //MARK: Delegate Method
     
@@ -210,18 +197,16 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsCollectionViewCell", for: indexPath) as! ProductDetailsCollectionViewCell
             if collectionView == collectionSize {
                 cell.lblChoice.text = selectedProduct?.size?[indexPath.row] ?? ""
-//                SelectedSize = selectedProduct?.size?.first ?? ""
             }
             else{
                 cell.lblChoice.text = selectedProduct?.colors?[indexPath.row] ?? ""
-//                SelectedColor = selectedProduct?.colors?.first ?? ""
             }
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as! CategoriesCollectionViewCell
             cell.imageCategories.setImageWithURL(url: RelatedProduct[indexPath.row].images?.first ?? "", imageView: cell.imageCategories)
             cell.lblCategoryName.text = RelatedProduct[indexPath.row].productName
-            cell.lblCategoryQuantity.text = "$\(RelatedProduct[indexPath.row].price ?? 999)"
+            cell.lblCategoryQuantity.text = "$\(RelatedProduct[indexPath.row].sellingPrice ?? 999)"
             return cell
         }
     }
@@ -290,6 +275,26 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     }
     
     //MARK: API CAllING Methods
+    
+    func callApiAddRating(dictRating : [String : Any]) {
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.POST_PRODUCT_RATING+productID, headers: HeaderValue.headerWithToken.value, body: dictRating)
+        
+        UserRatingViewModel.ApiPostRatings.getPostRatingData(request: request) { response in
+            DispatchQueue.main.async {
+                print(response)
+                if response.status == 200 && response.success == false {
+                    self.ShowAlertBox(Title: "Message", Message: "Your Ratings are Added Successfully")
+                }
+                else{
+                    self.ShowAlertBox(Title: "Message", Message: "You have already added Ratings for this product")
+                }
+            }
+        } error: { error in
+            print(error)
+        }
+        
+    }
+    
     
   
     func callApiGetCartItems(){
@@ -406,7 +411,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
         lblDescription.text = selectedProduct?.mainDescription ?? ""
         self.navigationItem.title = selectedProduct?.productName
-        lblPrice.text = " $ \(selectedProduct?.price  ?? 1234)"
+        lblPrice.text = " $ \(selectedProduct?.sellingPrice  ?? 1234)"
     }
     
     func setUpMenuButton(isScroll: Bool) {
@@ -430,6 +435,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         btnQuantityMinus.layer.maskedCorners = [.layerMinXMinYCorner,.layerMinXMaxYCorner]
         btnQuantityAdd.layer.cornerRadius = 10
         btnQuantityAdd.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMaxXMaxYCorner]
+//        UserRating.settings.fillMode = .precise
     }
  
     
@@ -449,4 +455,17 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     @objc func btnBackClicked(){
         self.navigationController?.popViewController(animated: true)
     }
+}
+
+extension DetailsScreenVC : UITableViewDelegate,UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserReviewsTableViewCell", for: indexPath) as! UserReviewsTableViewCell
+        return cell
+    }
+    
+    
 }
