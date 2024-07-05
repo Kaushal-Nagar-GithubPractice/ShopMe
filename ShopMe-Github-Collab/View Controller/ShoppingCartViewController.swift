@@ -13,9 +13,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     
     // MARK: - Variables and Outlets
-    //    var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ODIyYWE0NWZiNjljODE2M2MzN2Y4MCIsImlhdCI6MTcxOTgwNjYzOCwiZXhwIjoxNzE5ODkzMDM4fQ.SA6umkYGtX0fULnMFc3UyseiT3-sYuJIN3BS4fPWgnk"
     var productId:String = ""
-    var url = "https://shoppingcart-api.demoserver.biz/cart"
     var userCartViewModel = GetUserCartVM()
     var addProductOnCheckoutViewModel = AddProductsOnChekoutViewModel()
     var usercartObj = [UserCartModel]()
@@ -42,33 +40,17 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         SVProgressHUD.setForegroundColor(UIColor.black)
         SVProgressHUD.setBackgroundColor(UIColor(named: "Custom Black - h")!)
         SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.custom)
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        //        if !UserDefaults.standard.bool(forKey: "IsRedirect"){
-        //
-        //            let alert = UIAlertController(title: "To Checkout You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
-        //            alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-        //                self.NavigateToLoginVC()
-        //            } ))
-        //                alert.addAction(UIAlertAction(title: "No, Continue as Guest!", style: UIAlertAction.Style.default, handler: nil))
-        //            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
-        //            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
-        //            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
-        //                self.present(alert, animated: true, completion: nil)
-        //            setUI()
-        //
-        //            getCartData(urlPath:url)
-        //        }
-        getCartData(urlPath: url)
-        loader.defaultMaskType = .black
+        getCartData(urlPath: Constant.getUserCart)
+        SVProgressHUD.setDefaultMaskType(.black)
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
         
         checkCart()
-        //        updateTotal()
         
     }
     
@@ -79,41 +61,34 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     // MARK: - IBAction
     
-    @IBAction func onClickCheckout(_ sender: Any) {                 //need to update!!!
+    @IBAction func onClickCheckout(_ sender: Any) {
         
-        //        if !UserDefaults.standard.bool(forKey: "IsRedirect"){
+        if !UserDefaults.standard.bool(forKey: "IsRedirect"){
         
-        //            let alert = UIAlertController(title: "To Checkout You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
-        //            alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-        //                self.NavigateToLoginVC()
-        //            } ))
-        //
-        //            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
-        //            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
-        //            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
-        //            self.present(alert, animated: true, completion: nil)
-        //
-        //        }
-        //        else if cartItemArray.count != 0{
-        //            let checkoutVC = self.storyboard?.instantiateViewController(withIdentifier: "CheckoutViewController") as! CheckoutViewController
-        //            checkoutVC.myOrderArray = productArr
-        //            checkoutVC.priceOfItems = (cartObj.totalAmount! + shippingCharge)
-        //            self.navigationController?.pushViewController(checkoutVC, animated: true)
-        //        }else{
-        //            showAlert(title: "Alert", message: "Please First select product to checkout.")
-        //
-        //        }
-        
-        var newProductArr: [Any] = []
-        
-        for product in productArr {
-            let dict:[String:Any] = ["productId":product.productId ?? "" ,"quantity":product.quantity ?? 0 , "price":product.price ?? 0 , "size": product.size ?? "A" , "color": product.color ?? "black"]
-            newProductArr.append(dict)
+            let alert = UIAlertController(title: "To Checkout You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+                        self.NavigateToLoginVC()
+                    } ))
+            alert.addAction(UIAlertAction(title: "No, Continue as Guest!", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+                self.NavigateToCheckoutVc()
+            } ))
+            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
+            self.present(alert, animated: true, completion: nil)
+
+        }else{
+            var newProductArr: [Any] = []
+            
+            for product in productArr {
+                let dict:[String:Any] = ["productId":product.productId ?? "" ,"quantity":product.quantity ?? 0 , "price":product.price ?? 0 , "size": product.size ?? "A" , "color": product.color ?? "black"]
+                newProductArr.append(dict)
+            }
+            
+            let productsDict:[String : Any] = ["product": newProductArr]
+            updateCartOnCheckout(prod_arr: productsDict)
         }
-        
-        let productsDict:[String : Any] = ["product": newProductArr]
-        updateCartOnCheckout(prod_arr: productsDict)
-        
+
     }
     
     // MARK: - Tableview methods
@@ -150,15 +125,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             
             let ItemCount = self.productArr[indexPath.row].quantity ?? 0
             self.productArr[indexPath.row].quantity = ItemCount+1
-            cell.lblQuantity.text = "\(self.productArr[indexPath.row].quantity!)"
-            
+
             let lblPrice = (self.productArr[indexPath.row].price! * self.productArr[indexPath.row].quantity!)
             self.productArr[indexPath.row].totalProductPrice = lblPrice
-            cell.lblTotalItemPrice.text = "₹\(lblPrice)"
-            //            cell.updatelblItemPrice(price:lblPrice)
             self.CartListTableView.reloadData()
             
-            if ItemCount > 0{
+            if ItemCount >= 1 {
                 cell.btnDecrease.backgroundColor = UIColor(named: "btnQty")
             }
             self.updateTotal()
@@ -172,15 +144,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 //                    self.removeItemFromCart(sender: indexPath.row)                      // on 0 item it remove from cart list
                 //                }else{
                 self.productArr[indexPath.row].quantity = itemCount-1
-                cell.lblQuantity.text = String(describing: self.productArr[indexPath.row].quantity!)
                 let lblPrice = (self.productArr[indexPath.row].price! * self.productArr[indexPath.row].quantity!)
                 self.productArr[indexPath.row].totalProductPrice = lblPrice
-                cell.lblTotalItemPrice.text = "₹\( self.productArr[indexPath.row].totalProductPrice ?? 00)"
-                //            cell.updatelblItemPrice(price:lblPrice)
                 self.CartListTableView.reloadData()
                 
             }else{
-                
                 cell.btnDecrease.isEnabled = true
                 cell.btnDecrease.backgroundColor = UIColor.systemGray5
             }
@@ -229,8 +197,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         SVProgressHUD.show()
         let request = APIRequest(isLoader: true, method: .get, path: urlPath, headers: HeaderValue.headerWithToken.value, body: nil)
         userCartViewModel.getCartData(request:request) { [self] response in
-            //            print("=====>response====>",response)
-            //            print("=====>response.data====>",response.data)
             if response.success == true{
                 self.cartObj = response.data
                 DispatchQueue.main.async {
@@ -252,15 +218,14 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     func removeItemFromCart(sender: Int ) {
         
         let prod_Id = productArr[sender]._id
-        let urlPath = url+"/\(prod_Id!)"
+        let urlPath = Constant.deleteProductFromCart+"/\(prod_Id!)"
         
         let request = APIRequest(isLoader: true, method: .delete, path: urlPath, headers: HeaderValue.headerWithToken.value, body: nil)
         userCartViewModel.deleteProduct(request: request) { response in
             DispatchQueue.main.async {
                 
-                self.getCartData(urlPath: self.url)
+                self.getCartData(urlPath: Constant.getUserCart)
             }
-            //            print("del response========",response)
         } error: {error in
             print("error in delete", error as Any)
         }
@@ -272,17 +237,13 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     func updateCartOnCheckout(prod_arr : [String:Any]){
         
         SVProgressHUD.show()
-        let request = APIRequest(isLoader: true, method: HTTPMethods.post, path: url, headers: HeaderValue.headerWithToken.value, body: prod_arr)
+        let request = APIRequest(isLoader: true, method: HTTPMethods.post, path: Constant.getUserCart, headers: HeaderValue.headerWithToken.value, body: prod_arr)
         addProductOnCheckoutViewModel.addproductOnCheckout(request: request) { response in
             //            print("=====> Added on checkout resp",response)
             if response.success == true {
                 DispatchQueue.main.async {
-                    
-                    let checkoutVC = self.storyboard?.instantiateViewController(withIdentifier: "CheckoutViewController") as! CheckoutViewController
-                    checkoutVC.myOrderArray = self.productArr
-                    checkoutVC.priceOfItems = (self.cartObj.totalAmount! + self.shippingCharge)
+                    self.NavigateToCheckoutVc()
                     SVProgressHUD.dismiss()
-                    self.navigationController?.pushViewController(checkoutVC, animated: true)
                 }
                 
             }else{
@@ -292,6 +253,13 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             print("error in added to cart on checkout",error!)
         }
         
+    }
+    
+    func NavigateToCheckoutVc(){
+        let checkoutVC = self.storyboard?.instantiateViewController(withIdentifier: "CheckoutViewController") as! CheckoutViewController
+        checkoutVC.myOrderArray = self.productArr
+        checkoutVC.priceOfItems = (self.cartObj.totalAmount! + self.shippingCharge)
+        self.navigationController?.pushViewController(checkoutVC, animated: true)
     }
     
     func NavigateToLoginVC(){

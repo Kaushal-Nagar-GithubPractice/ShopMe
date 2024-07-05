@@ -29,8 +29,8 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var textFields: [UITextField] {
-            return [tfFirstName,tfLastName, tfPhoneNumber, tfEmail, tfAddressline1,tfAddressline2,tfCity,tfState,tfCountry,tfZipCode]
-        }
+        return [tfFirstName,tfLastName, tfPhoneNumber, tfEmail, tfAddressline1,tfAddressline2,tfCity,tfState,tfCountry,tfZipCode]
+    }
     // MARK: - View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,11 +51,8 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUi(){
-    
-        viewHeader.clipsToBounds = true
-//        viewHeader.layer.cornerRadius = 15
-//        viewHeader.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner ]
         
+        viewHeader.clipsToBounds = true
         btnSaveAddress.clipsToBounds = true
         btnSaveAddress.layer.cornerRadius = 10
     }
@@ -64,16 +61,16 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-          
+    
     @objc private func keyboardWillShow(notification: NSNotification){
         guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         scrollView.contentInset.bottom = view.convert(keyboardFrame.cgRectValue, from: nil).size.height + 50
     }
-
+    
     @objc private func keyboardWillHide(notification: NSNotification){
         scrollView.contentInset.bottom = 0
     }
-
+    
     
     // MARK: - IBActions
     

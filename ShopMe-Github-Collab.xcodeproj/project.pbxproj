@@ -26,6 +26,7 @@
 		C31219B52C2975CF00D12067 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219B42C2975CF00D12067 /* EditProfileVC.swift */; };
 		C31219B72C29856A00D12067 /* MyOrderScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219B62C29856A00D12067 /* MyOrderScreenVC.swift */; };
 		C31219B92C298A1E00D12067 /* myOrderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219B82C298A1E00D12067 /* myOrderTableCell.swift */; };
+		C33380662C37D08D00A78234 /* Prasiddh Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33380652C37D08D00A78234 /* Prasiddh Protocol.swift */; };
 		C351242C2C29928C00B0938E /* DetailsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C351242B2C29928C00B0938E /* DetailsScreenVC.swift */; };
 		C355CC322C2EBAC100994D58 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355CC312C2EBAC100994D58 /* NetworkManager.swift */; };
 		C355CC352C2EBCE900994D58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355CC342C2EBCE900994D58 /* Constants.swift */; };
@@ -79,6 +80,7 @@
 		C31219B42C2975CF00D12067 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		C31219B62C29856A00D12067 /* MyOrderScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderScreenVC.swift; sourceTree = "<group>"; };
 		C31219B82C298A1E00D12067 /* myOrderTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = myOrderTableCell.swift; path = "ShopMe-Github-Collab/View Controller/myOrderTableCell.swift"; sourceTree = SOURCE_ROOT; };
+		C33380652C37D08D00A78234 /* Prasiddh Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Prasiddh Protocol.swift"; path = "ShopMe-Github-Collab/Extension/Prasiddh's Extensions/Prasiddh Protocol.swift"; sourceTree = SOURCE_ROOT; };
 		C351242B2C29928C00B0938E /* DetailsScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreenVC.swift; sourceTree = "<group>"; };
 		C355CC312C2EBAC100994D58 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = SOURCE_ROOT; };
 		C355CC342C2EBCE900994D58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 		C31219A32C29454000D12067 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				C33380652C37D08D00A78234 /* Prasiddh Protocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */,
 				C3A5DC682C2A88D7003511F7 /* ProductModel.swift in Sources */,
 				C3759ECC2C299F7A006ABB02 /* AddAddressViewController.swift in Sources */,
+				C33380662C37D08D00A78234 /* Prasiddh Protocol.swift in Sources */,
 				C3759ECA2C299BDF006ABB02 /* AddressTableViewCell.swift in Sources */,
 				C3A314132C2D5064007D6BE5 /* CartItemTableViewCell.swift in Sources */,
 				C3759EC82C299B96006ABB02 /* SelectAddressViewController.swift in Sources */,

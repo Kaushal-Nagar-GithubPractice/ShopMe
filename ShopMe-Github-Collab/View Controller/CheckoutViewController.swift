@@ -17,7 +17,6 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     var fullName = ""
     var fullAddress = ""
     var paymentMode = ""
-    var url = "https://shoppingcart-api.demoserver.biz/order/checkout"
     
     // MARK: - IBOutlets
     @IBOutlet weak var productTableView: UITableView!
@@ -30,6 +29,7 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var lblDiscount: UILabel!
     @IBOutlet weak var lblTotalPrice: UILabel!
     @IBOutlet weak var btnChnageAddress: UIButton!
+    @IBOutlet weak var viewAddress: UIView!
     
     //    radio buttons
     @IBOutlet weak var btnPaypal: UIButton!
@@ -41,20 +41,19 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        UserDefaults.standard.set(true, forKey: "IsRedirect")
         productTableView.delegate = self
         productTableView.dataSource = self
         
-        //default value for test
-        customerAddress = ["firstName":"john", "lastName": "carter" , "mobileNo" : "9099009990" ,"email": "john@gmail.com", "addressLine1": "ganesh meridian" ,"addressLine2":"near kargil Petrol Pump" ,"country": "India" ,"city": "AHmedabad" ,"state": "Gujarat","zipcode" : 1111]
-        
+        self.lblAddress.text = ""
+        self.lblCustomerName.text = ""
+        self.lblMobileNumber.text = ""
         lblDiscount.text = String(priceOfItems * discount/100)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         
-        setAddress()
         setUi()
         setProductBill()
         setRadioButton()
@@ -104,11 +103,30 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func onClickPlaceOrder(_ sender: Any) {
         
+        if !UserDefaults.standard.bool(forKey: "IsRedirect"){
+            let alert = UIAlertController(title: "To Place Order You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+                let storyBoard = UIStoryboard(name: "Authentication", bundle: self.nibBundle)
+                
+                let loginVc = storyBoard.instantiateViewController(withIdentifier: "LoginScreenVC") as! LoginScreenVC
+                self.navigationController?.pushViewController(loginVc, animated: true)
+                    } ))
+            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        if customerAddress.isEmpty{
+            showAlert(title: "Please Select Delivery Address!", message: "")
+            return
+        }
+        
         if btnPaypal.isSelected || btnDirectCheck.isSelected || btnBankTransfer.isSelected  {
             let paymentMode = getPaymentMode()
             let orderDetails = ["billingAddress": customerAddress, "paymentMethod": paymentMode ,"shippingCharge": 100] as [String : Any]
             
-            callCheckoutApi(url: url ,method: .post, body: orderDetails)
+            callCheckoutApi(url: Constant.checkoutOrder ,method: .post, body: orderDetails)
         }else{
             showAlert(title: "Alert", message: "Please select Payment Mode.")
         }
@@ -195,29 +213,17 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         lblMobileNumber.text = "\(customerAddress["mobileNo"] ?? "")"
     }
     
-    func NavigateToOrderVc(Dict:[String:String]){
-        
-        var CurrentMyOrder = UserDefaults.standard.array(forKey: "MyOrder") as! Array<Dictionary<String,String>>
-        CurrentMyOrder.insert(Dict, at: 0)
-        UserDefaults.standard.set(CurrentMyOrder, forKey: "MyOrder")
-        
-        let MyOrderArr = UserDefaults.standard.array(forKey: "MyOrder") as!  Array<Dictionary<String, String>>
-        
-        UserDefaults.standard.set([], forKey: "MyCart")
-        
-        self.navigationController?.popViewController(animated: true)
-        
-        let alert = UIAlertController(title: "Order Placed Successfully !", message: "" , preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 0)
-        } ))
-        
+    func NavigateToOrderVc(){
+        let alert = UIAlertController(title: "Order placed Successfully!", message: "" , preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default,handler: {(action:UIAlertAction!) in
+            let storyBoard = UIStoryboard(name: "Profile", bundle: self.nibBundle)
+            let orderListVc = storyBoard.instantiateViewController(withIdentifier: "MyOrderScreenVC") as! MyOrderScreenVC
+            self.navigationController?.pushViewController(orderListVc, animated: true)
+        }))
         alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
         alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
         alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
         self.present(alert, animated: true, completion: nil)
-        
     }
     
     
@@ -226,7 +232,7 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     func callCheckoutApi(url: String ,method: HTTPMethods, body: [String:Any]){
         
         let request = APIRequest(isLoader: true, method: method, path: url, headers: HeaderValue.headerWithToken.value, body: body)
-        
+        print("====> checkout url ===>",url)
         let checkoutViewModel = AddProductsOnChekoutViewModel()
         
         checkoutViewModel.addproductOnCheckout(request: request) { response in
@@ -234,13 +240,13 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
             
             DispatchQueue.main.async {
                 if response.success == true {
-                    self.showAlert(title: "Order Placed Successfully!!", message: "")
+                    self.NavigateToOrderVc()
                 }else{
                     self.showAlert(title: "Order failed!!", message: "\(response.message!)")
                 }
             }
         } error: { error in
-            print("===> error during checkout ===>",error!)
+            print("===> error during checkout ===>",error)
         }
         
     }

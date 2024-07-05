@@ -25,7 +25,7 @@ class SelectAddressViewController: UIViewController, UITableViewDelegate, UITabl
         AddressListTableView.delegate = self
         AddressListTableView.dataSource = self
         
-        addressArray = [["firstName":"john", "lastName": "carter" , "mobileNo" : "909900999" ,"email": "john@gmail.com", "addressLine1": "ganesh meridian" ,"addressLine2":"near kargil Petrol Pump" ,"country": "India" ,"city": "AHmedabad" ,"state": "Gujarat","zipcode" : 1111]]
+        addressArray = [["firstName":"john", "lastName": "carter" , "mobileNo" : "9099009990" ,"email": "john@gmail.com", "addressLine1": "ganesh meridian" ,"addressLine2":"near kargil Petrol Pump" ,"country": "India" ,"city": "AHmedabad" ,"state": "Gujarat","zipcode" : 1111]]
     }
     
     override func viewWillAppear(_ animated: Bool) {
