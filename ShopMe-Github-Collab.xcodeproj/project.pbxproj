@@ -57,6 +57,8 @@
 		C388CAB82C296F8100051E02 /* ProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C388CAB72C296F8100051E02 /* ProductsCollectionViewCell.swift */; };
 		C39548D32C381974006C7D9B /* getColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39548D22C381974006C7D9B /* getColor.swift */; };
 		C39548D52C38198C006C7D9B /* GetColorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39548D42C38198C006C7D9B /* GetColorViewModel.swift */; };
+		C39548D72C382613006C7D9B /* Post_WishlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39548D62C382613006C7D9B /* Post_WishlistModel.swift */; };
+		C39548D92C38262F006C7D9B /* Post_WishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39548D82C38262F006C7D9B /* Post_WishlistViewModel.swift */; };
 		C3A3140E2C2D5014007D6BE5 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3140D2C2D5014007D6BE5 /* ShoppingCartViewController.swift */; };
 		C3A314102C2D5025007D6BE5 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3140F2C2D5025007D6BE5 /* CheckoutViewController.swift */; };
 		C3A314132C2D5064007D6BE5 /* CartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A314112C2D5064007D6BE5 /* CartItemTableViewCell.swift */; };
@@ -125,6 +127,8 @@
 		C388CAB72C296F8100051E02 /* ProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductsCollectionViewCell.swift; path = "Collection Cell/ProductsCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		C39548D22C381974006C7D9B /* getColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getColor.swift; sourceTree = SOURCE_ROOT; };
 		C39548D42C38198C006C7D9B /* GetColorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetColorViewModel.swift; sourceTree = SOURCE_ROOT; };
+		C39548D62C382613006C7D9B /* Post_WishlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_WishlistModel.swift; sourceTree = SOURCE_ROOT; };
+		C39548D82C38262F006C7D9B /* Post_WishlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_WishlistViewModel.swift; sourceTree = SOURCE_ROOT; };
 		C3A3140D2C2D5014007D6BE5 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		C3A3140F2C2D5025007D6BE5 /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		C3A314112C2D5064007D6BE5 /* CartItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CartItemTableViewCell.swift; path = "Table Cell/CartItemTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -248,6 +252,7 @@
 				C3878AD82C36DCA200CCD8C0 /* Get_CartItemsViewModel.swift */,
 				C353EE602C37F7B200727B18 /* UserRatingViewModel.swift */,
 				C39548D42C38198C006C7D9B /* GetColorViewModel.swift */,
+				C39548D82C38262F006C7D9B /* Post_WishlistViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 				C3878AD62C36DC8500CCD8C0 /* Get_CartItems.swift */,
 				C353EE5E2C37F7A100727B18 /* UserRatingModel.swift */,
 				C39548D22C381974006C7D9B /* getColor.swift */,
+				C39548D62C382613006C7D9B /* Post_WishlistModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -525,8 +531,10 @@
 				C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */,
 				C3ABE8C72C33E1FF0092F804 /* ProductByIdViewModel.swift in Sources */,
 				C32C460B2C326AE500B12669 /* ProductDetailsCollectionViewCell.swift in Sources */,
+				C39548D92C38262F006C7D9B /* Post_WishlistViewModel.swift in Sources */,
 				C3878AC82C36D05D00CCD8C0 /* DatabaseManager.swift in Sources */,
 				C32C46132C32878D00B12669 /* CategoryViewModal.swift in Sources */,
+				C39548D72C382613006C7D9B /* Post_WishlistModel.swift in Sources */,
 				C3ABE8CB2C3421A20092F804 /* ProductAddToCartModel.swift in Sources */,
 				C39548D32C381974006C7D9B /* getColor.swift in Sources */,
 				C3759ECC2C299F7A006ABB02 /* AddAddressViewController.swift in Sources */,

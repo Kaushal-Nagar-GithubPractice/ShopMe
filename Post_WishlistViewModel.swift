@@ -1,24 +1,23 @@
 //
-//  GetColorViewModel.swift
+//  Post_WishlistViewModel.swift
 //  ShopMe-Github-Collab
 //
 //  Created by Webcodegenie on 05/07/24.
 //
 
 import Foundation
-
-class GetColorViewModel : NSObject {
+class Post_WishlistViewModel : NSObject {
     
-    static let ApiGetColor = GetColorViewModel()
+    static let ApiAddWishlist = Post_WishlistViewModel()
     
-    func getPostRatingData(request : APIRequest ,success successCallback : @escaping  (getColor)  -> Void,error errorCallback : @escaping (Error?) -> Void){
+    func getPostRatingData(request : APIRequest ,success successCallback : @escaping  (Post_WhislistModel)  -> Void,error errorCallback : @escaping (Error?) -> Void){
         
         APIClient().perform(request){(data,error) in
             if let data = data {
                 do {
                     let parsedData = try JSONSerialization.jsonObject(with: data) as! [String:Any]
                     print(parsedData)
-                    var response = try JSONDecoder().decode(getColor.self, from: data)
+                    var response = try JSONDecoder().decode(Post_WhislistModel.self, from: data)
                     successCallback(response)
                 }
                 catch {
@@ -32,3 +31,4 @@ class GetColorViewModel : NSObject {
         
     }
 }
+

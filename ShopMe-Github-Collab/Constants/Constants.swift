@@ -22,4 +22,5 @@ class Constant {
     static let POST_PRODUCT_RATING = API_BASE_URL + "/review/"
     static let GET_REVIEW_LIST = API_BASE_URL + "/review/list/"
     static let GET_COLOR_LIST = API_BASE_URL + "/product/color"
+    static let ADD_TO_WHISLIST = API_BASE_URL + "/wishlist/"
 }

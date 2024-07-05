@@ -82,6 +82,7 @@ struct Products : Codable {
     let mainDescription : String?
     let subDescription : String?
     let category : Category?
+    let isWishList : Bool?
 
     enum CodingKeys: String, CodingKey {
 
@@ -102,6 +103,7 @@ struct Products : Codable {
         case mainDescription = "mainDescription"
         case subDescription = "subDescription"
         case category = "category"
+        case isWishList = "isWishList"
     }
 
     init(from decoder: Decoder) throws {
@@ -123,6 +125,7 @@ struct Products : Codable {
         mainDescription = try values.decodeIfPresent(String.self, forKey: .mainDescription)
         subDescription = try values.decodeIfPresent(String.self, forKey: .subDescription)
         category = try values.decodeIfPresent(Category.self, forKey: .category)
+        isWishList = try values.decodeIfPresent(Bool.self, forKey: .isWishList)
     }
 
 }

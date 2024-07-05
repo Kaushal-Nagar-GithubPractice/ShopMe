@@ -12,7 +12,8 @@ protocol ProductSelect {
 }
 
 
-class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, AddtoWishlist {
+    
     
     
    var arrProducts = [Products]()
@@ -39,14 +40,18 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath) as! ProductsCollectionViewCell
         if !arrProducts.isEmpty {
+//            print(arrProducts)
+            cell.arrProducts = arrProducts
             cell.imgProduct.setImageWithURL(url: arrProducts[indexPath.row].images?.first ?? "", imageView: cell.imgProduct)
 //            cell.starView.text = arrProducts[indexPath.row]
+            cell.delegate = self
             cell.lblProductName.text = arrProducts[indexPath.row].productName
             cell.lblPrice.text = "$\(arrProducts[indexPath.row].sellingPrice ?? 1234)"
             cell.lblStrikePrice.text =  "$\(arrProducts[indexPath.row].price ?? 1556)"
             cell.starView?.rating = arrProducts[indexPath.row].ratings ?? 0
             cell.starView?.text = "\(arrProducts[indexPath.row].ratings ?? 0)"
             cell.btnWishlist.tag = indexPath.row
+            cell.IsWishList = arrProducts[indexPath.row].isWishList ?? false
         }
         return cell
         
@@ -60,5 +65,16 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
         
     }
     
-
+//    func callApiWishList(productId : String){
+//        let request = APIRequest(isLoader: true, method: HTTPMethods.post, path: Constant.ADD_TO_WHISLIST+productId, headers: HeaderValue.headerWithToken.value, body: nil)
+//        Post_WishlistViewModel.ApiAddWishlist.getPostRatingData(request: request) { response in
+//            print(response)
+//        } error: { error in
+//            print(error)
+//        }
+//
+//    }
+    func onClickAddtoWishlist() {
+        collectionProducts.reloadData()
+    }
 }

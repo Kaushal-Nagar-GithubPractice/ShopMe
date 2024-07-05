@@ -265,7 +265,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         pageControlHeader.numberOfPages = arrBannerCategory.count
     }
     
-    
     //MARK: @OBJC Methods
     
     @objc func slideToNext(){
