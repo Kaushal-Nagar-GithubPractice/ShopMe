@@ -9,7 +9,7 @@ import UIKit
 
 class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var viewSuggestedProduct: UIView!
-    
+    var isAddedtoCart = false
     @IBOutlet weak var heightViewSuggestedProduct: NSLayoutConstraint!
     @IBOutlet weak var collectionColor: UICollectionView!
     @IBOutlet weak var collectionSize: UICollectionView!
@@ -67,7 +67,8 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         setUpMenuButton(isScroll: true)
         setDetailScreenUI()
         isProductAddedtoCart()
-        print(productID)
+//        print(productID)
+        callApiGetCartItems()
        
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -141,23 +142,31 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
 //            UserDefaults.standard.set(currentCart, forKey: "MyCart")
 //            isProductAddedtoCart()
 //        }
-        var dict : Dictionary<String,Dictionary<String, Any>> = [:]
-        if SelectedSize == "" || SelectedColor == "" {
-            if SelectedSize == "" {
-                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor]]
-            }
-            else if SelectedColor == "" {
-                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"size" : SelectedSize]]
-            }
-            else if  SelectedSize == "" && SelectedColor == "" {
-                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999]]
-            }
+        if isAddedtoCart {
+            self.navigationController?.popViewController(animated: true)
         }
         else{
-            dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor,"size" : SelectedSize]]
+            var dict : Dictionary<String,Dictionary<String, Any>> = [:]
+            if SelectedSize == "" || SelectedColor == "" {
+                if SelectedSize == "" {
+                    dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor]]
+                }
+                else if SelectedColor == "" {
+                    dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"size" : SelectedSize]]
+                }
+                else if  SelectedSize == "" && SelectedColor == "" {
+                    dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999]]
+                }
+            }
+            else{
+                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor,"size" : SelectedSize]]
+            }
+            callAddtoCartApi(dict: dict)
+            btnAddtoCart.setTitle(" Go To Cart", for: .normal)
+            isAddedtoCart = true
+            ShowAlertBox(Title: "Confirmation", Message: "Added to Cart Successfully") 
         }
-        callAddtoCartApi(dict: dict)
-        ShowAlertBox(Title: "Confirmation", Message: "Added to Cart Successfully")
+        
     }
     
     //MARK: Delegate Method
@@ -220,12 +229,14 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         
         if collectionView.tag == 1 {
             let cell = collectionView.cellForItem(at: indexPath) as! HomeHeaderCollectionViewCell
-//            if cell.imageHeader.imagena
-            let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "ImageDisplayViewController") as! ImageDisplayViewController
-            vc.arrImageDisplay = selectedProduct?.images ?? []
-            vc.modalTransitionStyle = .coverVertical
-            vc.modalPresentationStyle = .fullScreen
-            present(vc,animated: true)
+            if cell.imageHeader.image != UIImage(named: "placeholder"){
+                let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "ImageDisplayViewController") as! ImageDisplayViewController
+                vc.arrImageDisplay = selectedProduct?.images ?? []
+                vc.modalTransitionStyle = .coverVertical
+                vc.modalPresentationStyle = .fullScreen
+                present(vc,animated: true)
+            }
+            
         }else if collectionView.tag == 2 {
             let cell = collectionView.cellForItem(at: indexPath) as! ProductDetailsCollectionViewCell
             SelectedSize = selectedProduct?.size?[indexPath.row] ?? ""
@@ -294,6 +305,20 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     
     func callApiGetCartItems(){
         let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_ALL_CART_ITEMS, headers: HeaderValue.headerWithToken.value, body: nil)
+        
+        Get_CartItemsViewModel.ApiGetCart.getAddToCartData(request: request) { response in
+            DispatchQueue.main.async {
+                if response.data?.products?.count != 0 {
+                    
+                }
+            }
+        } error: { error in
+            print(error)
+        }
+
+        
+        
+        
     }
     
     func callApiSelectedByID(product_id : String){

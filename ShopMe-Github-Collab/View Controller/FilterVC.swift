@@ -16,6 +16,8 @@ class FilterVC: UIViewController {
     @IBOutlet weak var viewPriceRange: UIView!
     var arrSize = [""]
     var arrColor = [""]
+    var flagForAppliedFilter = false
+    var dictFilters : FilterDictModel?
     @IBOutlet weak var priceRangeSLider: RangeSlider?
     @IBOutlet weak var collectionColor: UICollectionView!
     @IBOutlet weak var collectionSize: UICollectionView!
@@ -104,7 +106,7 @@ class FilterVC: UIViewController {
     
     @IBAction func onCLickApplyChanges(_ sender: Any) {
         
-        var dictFilters : FilterDictModel?
+       
        lazy var tempMin = 0
        lazy var tempMax = 0
         lazy var tempArrSize = [""]
@@ -156,6 +158,15 @@ class FilterVC: UIViewController {
         selectedMaxPrice = Int(max)
     }
     
+    func appliedFilters(){
+        if flagForAppliedFilter {
+            SelectedSize = dictFilters?.size ?? []
+            SelectedColor = (dictFilters?.color) ?? []
+        }
+    }
+    
+    
+    
     //MARK: @OBJC Methods
     
     @objc func btnBackClicked(){
@@ -164,6 +175,8 @@ class FilterVC: UIViewController {
 }
 
 extension FilterVC : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate {
+    
+    //MARK: CollectionView Delegate Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == collectionSize {
             return arrSize.count
@@ -176,6 +189,10 @@ extension FilterVC : UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsCollectionViewCell", for: indexPath) as! ProductDetailsCollectionViewCell
         if collectionView == collectionSize {
             cell.lblChoice.text = arrSize[indexPath.row]
+            if flagForAppliedFilter {
+                
+            }
+           
         }else {
             cell.lblChoice.text = arrColor[indexPath.row]
         }
@@ -219,6 +236,8 @@ extension FilterVC : UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         }
     }
 
+    //MARK: textfield Delegate Methods
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.trimmingCharacters(in: .whitespacesAndNewlines) != ""{
             let enteredValue = "\(textField.text ?? "")"+"\(string)"
