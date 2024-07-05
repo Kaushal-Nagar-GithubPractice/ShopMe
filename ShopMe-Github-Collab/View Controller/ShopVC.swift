@@ -9,8 +9,7 @@ import UIKit
 import SVProgressHUD
 
 class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UISearchBarDelegate, SelectedFilter {
-
-    
+//    var isFirstTimeApiCall = true
     var flagForPgCntFilterPrdt = false
     var pageForFilterPdt = 1
     var isSearchBarEmpty = true
@@ -29,6 +28,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     var size = [""]
     var filterUrl = ""
     var ShopProducts = [Products]()
+    var dictFilters : FilterDictModel?
 
     
     //MARK: APPLICATION DELEGATE METHODS
@@ -52,8 +52,11 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         arrData = []
         filterData = []
         setUpMenuButton(isScroll: true)
-        collectionProducts.reloadData()
-        callApiProduct()
+//        collectionProducts.reloadData()
+//        if isFirstTimeApiCall{
+            callApiProduct()
+//        }
+        
         
     }
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
@@ -71,10 +74,12 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         let enteredText = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if enteredText != "" {
             isSearchBarEmpty = false
+            
         }
         else{
             isSearchBarEmpty = true
             filterData = []
+            
         }
         
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
@@ -177,6 +182,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                         print(self.arrData.count as Any)
                         self.collectionProducts.reloadData()
                         SVProgressHUD.dismiss()
+//                        self.isFirstTimeApiCall = true
                     }
                 }
             } error: { error in
@@ -234,7 +240,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                     SVProgressHUD.dismiss()
                 }
                 else{
-                    print(response)
+//                    print(response)
                     self.allFilteresProduct.append(contentsOf: response.data?.products ?? [])
                     print(self.allFilteresProduct,self.ShopProducts)
                     self.ShopProducts = self.allFilteresProduct
@@ -271,6 +277,11 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         let vc = UIStoryboard(name: "ShopStoryboard", bundle: nil).instantiateViewController(withIdentifier: "FilterVC") as! FilterVC
         vc.sheetPresentationController?.detents = [.medium()]
         vc.modalTransitionStyle = .coverVertical
+        vc.dictFilters = dictFilters
+        if dictFilters?.minPrice != 0 || dictFilters?.maxPrice != 0 || (dictFilters?.color != [""]) || (dictFilters?.size != [""]) {
+            vc.flagForAppliedFilter = true
+        }
+       
         vc.minPrice = MainArr.first?.min_price ?? 0
         vc.maxPrice = MainArr.first?.max_price ?? 1000
         vc.arrSize = size
@@ -281,6 +292,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     }
     //MARK: Protocol  METHODS
     func onClickApplyFilter(dict: FilterDictModel) {
+        searchBar.text = ""
         print(dict)
         flagForPgCntFilterPrdt = true
         if !(dict.minPrice == 0) {
@@ -296,6 +308,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             filterUrl += "&color="+"\(dict.color)"
         }
         print(filterUrl)
+        dictFilters = dict
         callApiFilteredProduct(urlString: filterUrl)
     }
 }

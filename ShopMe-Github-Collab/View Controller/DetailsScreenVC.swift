@@ -27,19 +27,18 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var scrollView: UIScrollView!
-//    var productViewModal = ProductViewModel()
-//    var arrCategoryImage =  ["product-1","product-2","product-3","product-4","product-5","product-6","product-7","product-8","product-9"]
-//    var arrProductName = [""]
-//    var arrProductPrice = [""]
     var timer : Timer?
     var currentCellIndex = 0
     var SelectedColor = ""
     var SelectedSize = ""
     var Quantity = 1
+    var cartItems  = [Get_CartProducts]()
     var selectedProduct : SingleProduct?
     var RelatedProduct = [Products]()
     var isProductInCart = false
     var productID = ""
+    var ColorsInCart = [""]
+    var SizesInCArt = [""]
     //MARK: Application Delegate Method
     
     override func viewDidLoad() {
@@ -66,8 +65,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         collectionSuggestedProducts.showsHorizontalScrollIndicator = false
         setUpMenuButton(isScroll: true)
         setDetailScreenUI()
-        isProductAddedtoCart()
-//        print(productID)
+        print(productID)
         callApiGetCartItems()
        
     }
@@ -143,28 +141,34 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
 //            isProductAddedtoCart()
 //        }
         if isAddedtoCart {
-            self.navigationController?.popViewController(animated: true)
+            ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex: 2)
         }
         else{
+            btnAddtoCart.backgroundColor = UIColor.systemGray4
+                        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
+                            self.btnAddtoCart.backgroundColor = UIColor(named: "AppColor")
+                                }, completion: nil)
             var dict : Dictionary<String,Dictionary<String, Any>> = [:]
-            if SelectedSize == "" || SelectedColor == "" {
-                if SelectedSize == "" {
-                    dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor]]
-                }
-                else if SelectedColor == "" {
-                    dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"size" : SelectedSize]]
-                }
-                else if  SelectedSize == "" && SelectedColor == "" {
-                    dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999]]
-                }
+            if SelectedSize != "" && SelectedColor != "" {
+                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor,"size" : SelectedSize]]
+                callAddtoCartApi(dict: dict)
+                btnAddtoCart.setTitle(" Go To Cart", for: .normal)
+                isAddedtoCart = true
+                ShowAlertBox(Title: "Confirmation", Message: "Added to Cart Successfully")
             }
             else{
-                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.price ?? 999,"color" : SelectedColor,"size" : SelectedSize]]
+                if SelectedSize == "" {
+                   ShowAlertBox(Title: "Alert", Message: "Select Size For Product ")
+                }
+                else if SelectedColor == "" {
+                    ShowAlertBox(Title: "Alert", Message: "Select Color For Product ")
+                }
+                else if  SelectedSize == "" && SelectedColor == "" {
+                    ShowAlertBox(Title: "Alert", Message: "Select Size & Color For Product ")
+                }
+            
             }
-            callAddtoCartApi(dict: dict)
-            btnAddtoCart.setTitle(" Go To Cart", for: .normal)
-            isAddedtoCart = true
-            ShowAlertBox(Title: "Confirmation", Message: "Added to Cart Successfully") 
+            
         }
         
     }
@@ -178,7 +182,6 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             }else{return 1}
         }
         else if collectionView == collectionSize  {
-            print(selectedProduct?.size?.count ?? 0)
             return selectedProduct?.size?.count ?? 0
         }
         else if collectionView == collectionColor {
@@ -190,7 +193,6 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print(collectionView.tag)
         if collectionView == collectionSelectedItem {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeHeaderCollectionViewCell", for: indexPath) as! HomeHeaderCollectionViewCell
             if selectedProduct?.images?.count != 0{
@@ -207,13 +209,12 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         else if collectionView == collectionSize || collectionView == collectionColor {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsCollectionViewCell", for: indexPath) as! ProductDetailsCollectionViewCell
             if collectionView == collectionSize {
-                print(selectedProduct?.size?[indexPath.row] ?? "")
                 cell.lblChoice.text = selectedProduct?.size?[indexPath.row] ?? ""
-                SelectedSize = selectedProduct?.size?.first ?? ""
+//                SelectedSize = selectedProduct?.size?.first ?? ""
             }
             else{
                 cell.lblChoice.text = selectedProduct?.colors?[indexPath.row] ?? ""
-                SelectedColor = selectedProduct?.colors?.first ?? ""
+//                SelectedColor = selectedProduct?.colors?.first ?? ""
             }
             return cell
         }else{
@@ -241,11 +242,13 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             let cell = collectionView.cellForItem(at: indexPath) as! ProductDetailsCollectionViewCell
             SelectedSize = selectedProduct?.size?[indexPath.row] ?? ""
             cell.viewChoice.backgroundColor = .systemTeal
+            isSelectedSizeColorInCart()
         }
         else if collectionView.tag == 3 {
             let cell = collectionView.cellForItem(at: indexPath) as! ProductDetailsCollectionViewCell
             SelectedColor = selectedProduct?.colors?[indexPath.row] ?? ""
             cell.viewChoice.backgroundColor = .systemTeal
+            isSelectedSizeColorInCart()
         }
     }
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -286,39 +289,22 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
     }
     
-    //MARK: User Defined Methods
+    //MARK: API CAllING Methods
     
-    func isProductAddedtoCart(){
-        let currentCart = UserDefaults.standard.array(forKey: "MyCart") as! Array<Dictionary<String, String>>
-//        let FoundItem =  currentCart.filter( { $0["Name"] == ProductName } )
-//        if FoundItem.count == 0{
-//            btnAddtoCart.setTitle(" Add to Cart", for: .normal)
-//            isProductInCart = false
-//        }
-//        else{
-//            isProductInCart = true
-//            btnAddtoCart.setTitle(" Go to Cart", for: .normal)
-//            btnQuantityAdd.isEnabled = false
-//            btnQuantityMinus.isEnabled = false
-//        }
-    }
-    
+  
     func callApiGetCartItems(){
         let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_ALL_CART_ITEMS, headers: HeaderValue.headerWithToken.value, body: nil)
         
         Get_CartItemsViewModel.ApiGetCart.getAddToCartData(request: request) { response in
-            DispatchQueue.main.async {
+	            DispatchQueue.main.async {
                 if response.data?.products?.count != 0 {
-                    
+                    self.cartItems = response.data?.products ?? []
+                    self.isProductAddedtoCart()
                 }
             }
         } error: { error in
             print(error)
         }
-
-        
-        
-        
     }
     
     func callApiSelectedByID(product_id : String){
@@ -327,8 +313,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         ProductByIdViewModel.ApiProductByID.getSingleProductData(request: request, success: { response in
             self.selectedProduct = response.data!
             DispatchQueue.main.async {
-                print(response)
-               
+//                print(response)
                 self.updateUIAfterAPI()
                 self.collectionSelectedItem.reloadData()
                 self.collectionSize.reloadData()
@@ -350,7 +335,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
                     self.heightViewSuggestedProduct.constant = 0
                 }
                 else{
-                    print(response.data?.products)
+//                    print(response.data?.products)
                     self.RelatedProduct = response.data?.products ?? []
                     self.collectionSuggestedProducts.reloadData()
                 }
@@ -367,9 +352,44 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         } error: { error in
             print(error)
         }
-
     }
-
+    
+    //MARK: User Defined Methods
+    func isProductAddedtoCart(){
+        let FoundItem = cartItems.filter( { $0.productId == selectedProduct?._id})
+        print(FoundItem)
+        if FoundItem.count == 0{
+            btnAddtoCart.setTitle(" Add to Cart", for: .normal)
+            isAddedtoCart = false
+        }
+        else{
+            getCartSizesColors()
+            isAddedtoCart = true
+            btnAddtoCart.setTitle(" Go to Cart", for: .normal)
+            btnQuantityAdd.isEnabled = false
+            btnQuantityMinus.isEnabled = false
+            }
+    }
+    func getCartSizesColors(){
+      ColorsInCart = []
+        SizesInCArt = []
+        for i in 0..<(cartItems.count){
+            ColorsInCart.append(cartItems[i].color ?? "")
+            SizesInCArt.append(cartItems[i].size ?? "")
+        }
+    }
+    
+    func isSelectedSizeColorInCart(){
+        if ColorsInCart.contains(SelectedColor) && SizesInCArt.contains(SelectedSize) {
+            isAddedtoCart = true
+            btnAddtoCart.setTitle(" Go to Cart", for: .normal)
+        }
+        else{
+            isAddedtoCart = false
+            btnAddtoCart.setTitle(" Add to Cart", for: .normal)
+        }
+    }
+    
     
     func updateUIAfterAPI(){
         pageControl.numberOfPages = selectedProduct?.images?.count ?? 3

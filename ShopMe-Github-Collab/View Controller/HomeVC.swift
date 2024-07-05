@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import SVProgressHUD
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect, UICollectionViewDelegateFlowLayout {
-    
+    var isFirstTimeApiCall = true
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var arrHeaderImages = ["carousel-1","carousel-2","carousel-3"]
     var arrHeaderLabel = ["Men Fashion","Women Fashion","Kids Fashion"]
@@ -42,8 +42,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        SVProgressHUD.setDefaultMaskType(.black)
-        SVProgressHUD.show()
+//        SVProgressHUD.setDefaultMaskType(.black)
+//        SVProgressHUD.show()
         timer?.invalidate()
         currentCellIndex = 0
         self.tblViewHomeScreen.showsVerticalScrollIndicator = false
@@ -55,11 +55,14 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         pageControlHeader.numberOfPages = arrBannerCategory.count
         collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
         pageControlHeader.currentPage = 0
-        pageCount = 1
-        flagForEmptyProdCall = true
-        ArrProducts = []
-        self.callApiCategory()
-        self.callApiProduct()
+//        pageCount = 1
+//        flagForEmptyProdCall = true
+//        ArrProducts = []
+        if isFirstTimeApiCall {
+            self.callApiCategory()
+            self.callApiProduct()
+        }
+       
         
     }
     
@@ -204,6 +207,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     //MARK: User Defined Methods
     
     func callApiCategory(){
+                SVProgressHUD.setDefaultMaskType(.black)
+                SVProgressHUD.show()
         let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_CATEGORY_LIST, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
      
         CategoryViewModal.ApiCategory.getCategoryData(request: request) { response in
@@ -217,11 +222,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                     self.findBannerCategories()
                     self.collectionHeader.reloadData()
                     self.collectionCategories.reloadData()
-                    
+                    SVProgressHUD.dismiss()
                 }
             }
         } error: { error in
             print(error as Any)
+            SVProgressHUD.dismiss()
         }
     }
     func callApiProduct(){
@@ -241,10 +247,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                     print(self.ArrProducts.count as Any)
                     self.tblViewHomeScreen.reloadData()
                     SVProgressHUD.dismiss()
+                    self.isFirstTimeApiCall = false
                 }
             }
         } error: { error in
             print(error as Any)
+            SVProgressHUD.dismiss()
         }
     }
     

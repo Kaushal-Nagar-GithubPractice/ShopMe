@@ -14,9 +14,12 @@ protocol SelectedFilter {
 
 class FilterVC: UIViewController {
     @IBOutlet weak var viewPriceRange: UIView!
+    @IBOutlet weak var lblMAxPrice: UILabel!
     var arrSize = [""]
     var arrColor = [""]
+    @IBOutlet weak var lblMinPrice: UILabel!
     var flagForAppliedFilter = false
+    var isSliderSetOnAppear = true
     var dictFilters : FilterDictModel?
     @IBOutlet weak var priceRangeSLider: RangeSlider?
     @IBOutlet weak var collectionColor: UICollectionView!
@@ -46,12 +49,14 @@ class FilterVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = true
-        priceRangeSLider?.minimumValue = Double(minPrice)
-        priceRangeSLider?.maximumValue = Double(maxPrice)
-        priceRangeSLider?.lowerValue = Double(minPrice)
-        priceRangeSLider?.upperValue = Double(maxPrice)
         collectionSize.allowsMultipleSelection = true
         collectionColor.allowsMultipleSelection = true
+        if isSliderSetOnAppear {
+            setUIFilterScreen()
+            appliedFilters()
+            isSliderSetOnAppear = false
+        }
+        
     }
     
     //MARK: IBACTION Methods
@@ -67,7 +72,7 @@ class FilterVC: UIViewController {
         }
         if sender.upperValue >= Double(minPrice - 50) {
             txtMaxPrice.text = "\(sender.upperValue.rounded())"
-            selectedMaxPrice = Int(sender.lowerValue.rounded())
+            selectedMaxPrice = Int(sender.upperValue.rounded())
         }
 //        txtMaxPrice.text = "\(sender.upperValue)"
     }
@@ -124,13 +129,8 @@ class FilterVC: UIViewController {
             tempArrColor = SelectedColor
         }
         dictFilters = FilterDictModel(minPrice: tempMin, maxPrice: tempMax, size: tempArrSize, color: tempArrColor)
-        if SelectedSize.isEmpty || SelectedColor.isEmpty || selectedMinPrice == minPrice || selectedMaxPrice == maxPrice {
-            let alert = UIAlertController(title: "Alert", message: "No Filter Selected", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
-            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
-            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
-            self.present(alert, animated: true, completion: nil)
+        if SelectedSize == [""] && SelectedColor == [""] && selectedMinPrice == minPrice && selectedMaxPrice == maxPrice {
+            ShowAlertBox(Title: "Alert", Message: "No Filter Selected")
         }
         else{
             delegate?.onClickApplyFilter(dict: dictFilters!)
@@ -150,8 +150,8 @@ class FilterVC: UIViewController {
         navigationItem.leftBarButtonItem = barButton
     }
     func setSliderOnRange(min : Double,max : Double){
-        priceRangeSLider?.lowerValue = min
-        priceRangeSLider?.upperValue = max
+        priceRangeSLider?.minimumValue = min
+        priceRangeSLider?.maximumValue = max
         txtMinPrice.text = "\(min)"
         txtMaxPrice.text = "\(max)"
         selectedMinPrice = Int(min)
@@ -160,11 +160,27 @@ class FilterVC: UIViewController {
     
     func appliedFilters(){
         if flagForAppliedFilter {
+            priceRangeSLider?.lowerValue = Double(dictFilters?.minPrice ?? minPrice)
+            priceRangeSLider?.upperValue = Double(dictFilters?.maxPrice ?? maxPrice)
             SelectedSize = dictFilters?.size ?? []
             SelectedColor = (dictFilters?.color) ?? []
+            collectionColor.reloadData()
+            collectionSize.reloadData()
+            txtMinPrice.text = "\(dictFilters?.minPrice ?? minPrice)"
+            txtMaxPrice.text = "\(dictFilters?.maxPrice ?? maxPrice)"
         }
     }
     
+    func setUIFilterScreen(){
+        priceRangeSLider?.minimumValue = Double(minPrice)
+        priceRangeSLider?.maximumValue = Double(maxPrice)
+        priceRangeSLider?.lowerValue = Double(minPrice)
+        priceRangeSLider?.upperValue = Double(maxPrice)
+        txtMinPrice.text = "\(minPrice)"
+        txtMaxPrice.text = "\(maxPrice)"
+        lblMinPrice.text = "\(minPrice)"
+        lblMAxPrice.text = "\(maxPrice)"
+    }
     
     
     //MARK: @OBJC Methods
@@ -190,11 +206,22 @@ extension FilterVC : UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         if collectionView == collectionSize {
             cell.lblChoice.text = arrSize[indexPath.row]
             if flagForAppliedFilter {
-                
+                if SelectedSize.contains(cell.lblChoice.text ?? "") {
+                    collectionSize.selectItem(at: indexPath, animated: true,
+                                              scrollPosition: [])
+                    cell.viewChoice.backgroundColor = .systemMint
+                }
             }
            
         }else {
             cell.lblChoice.text = arrColor[indexPath.row]
+            if flagForAppliedFilter {
+                if SelectedColor.contains(cell.lblChoice.text ?? "") {
+                    collectionColor.selectItem(at: indexPath, animated: true,
+                                              scrollPosition: [])
+                    cell.viewChoice.backgroundColor = .systemMint
+                }
+            }
         }
         return cell
     }
