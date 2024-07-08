@@ -19,6 +19,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     
     var isCallFirstTime = true
     
+    @IBOutlet weak var btnOpenImageGallary: UIButton!
     let imagePicker = UIImagePickerController()
     var SelectedImage : UIImage!
     @IBOutlet weak var btnUpdate: UIButton!
@@ -97,6 +98,12 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
             btnGenderFemale.isSelected = true
         }
     }
+    
+    
+    @IBAction func OnClickOpenImagePicker(_ sender: Any) {
+        OpenImagePicker()
+    }
+    
     
     //MARK: - All Defined Functions
     
@@ -204,8 +211,10 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     }
     
     func SetUI(){
+        btnOpenImageGallary.layer.cornerRadius = btnOpenImageGallary.frame.width/2
         btnUpdate.layer.cornerRadius = 10
         self.tabBarController?.tabBar.isHidden =  true
+        self.navigationController?.isNavigationBarHidden = true
         
         loader.setDefaultMaskType(.black)
         imgProfilePicImage.layer.cornerRadius = imgProfilePicImage.frame.width/2

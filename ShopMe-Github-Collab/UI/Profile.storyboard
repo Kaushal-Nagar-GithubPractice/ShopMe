@@ -38,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="109" width="393" height="709"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0K3-B9-azr">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="656"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="596"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKM-4v-gYf">
                                                 <rect key="frame" x="10" y="0.0" width="373" height="276"/>
@@ -68,10 +68,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2A-qC-TZj">
-                                                <rect key="frame" x="0.0" y="276" width="393" height="380"/>
+                                                <rect key="frame" x="0.0" y="276" width="393" height="320"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TAb-57-FPT">
-                                                        <rect key="frame" x="10" y="10" width="373" height="350"/>
+                                                        <rect key="frame" x="10" y="10" width="373" height="290"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftu-SC-aJC">
                                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="50"/>
@@ -190,18 +190,18 @@
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Goto Icon"/>
                                                                         <connections>
-                                                                            <action selector="OnClickOpenShippingAddress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="45E-Lv-hwx"/>
+                                                                            <action selector="OnClickChangePassword:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JVw-xV-KGL"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHH-cE-gqq">
                                                                         <rect key="frame" x="10" y="0.0" width="295" height="50"/>
                                                                         <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" image="Location" title="   Shipping Address">
+                                                                        <buttonConfiguration key="configuration" style="plain" image="Lock" title="   Change Password">
                                                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
                                                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
-                                                                            <action selector="OnClickOpenShippingAddress:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="tDo-Cj-JwH"/>
+                                                                            <action selector="OnClickChangePassword:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="U0V-uC-QJK"/>
                                                                         </connections>
                                                                     </button>
                                                                 </subviews>
@@ -219,39 +219,8 @@
                                                                     <constraint firstItem="IKp-6u-NsH" firstAttribute="leading" secondItem="yHH-cE-gqq" secondAttribute="trailing" id="y9o-BH-Yb4"/>
                                                                 </constraints>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIM-ev-gwz">
-                                                                <rect key="frame" x="0.0" y="240" width="373" height="50"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yv-8f-1DW">
-                                                                        <rect key="frame" x="305" y="0.0" width="48" height="50"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" image="Goto Icon"/>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyL-8n-90H">
-                                                                        <rect key="frame" x="10" y="0.0" width="295" height="50"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" image="Notification" title="   Notifications">
-                                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                                            <color key="baseForegroundColor" systemColor="labelColor"/>
-                                                                        </buttonConfiguration>
-                                                                    </button>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstItem="9Yv-8f-1DW" firstAttribute="top" secondItem="aIM-ev-gwz" secondAttribute="top" id="8Bp-nj-rwH"/>
-                                                                    <constraint firstItem="9Yv-8f-1DW" firstAttribute="leading" secondItem="vyL-8n-90H" secondAttribute="trailing" id="DKU-r9-54E"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="vyL-8n-90H" secondAttribute="bottom" id="Fio-Ao-dcl"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="9Yv-8f-1DW" secondAttribute="trailing" constant="20" id="JaI-00-0Gs"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="9Yv-8f-1DW" secondAttribute="bottom" id="RW2-fL-zBY"/>
-                                                                    <constraint firstItem="9Yv-8f-1DW" firstAttribute="top" secondItem="aIM-ev-gwz" secondAttribute="top" id="Spo-Jn-hNA"/>
-                                                                    <constraint firstItem="vyL-8n-90H" firstAttribute="leading" secondItem="aIM-ev-gwz" secondAttribute="leading" constant="10" id="Z7o-ex-hXU"/>
-                                                                    <constraint firstItem="vyL-8n-90H" firstAttribute="top" secondItem="aIM-ev-gwz" secondAttribute="top" id="da5-CQ-ihs"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="9Yv-8f-1DW" secondAttribute="bottom" id="iQc-8a-g9U"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="9Yv-8f-1DW" secondAttribute="trailing" constant="20" id="qJH-f0-TwC"/>
-                                                                </constraints>
-                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNO-Ia-TVe">
-                                                                <rect key="frame" x="0.0" y="300" width="373" height="50"/>
+                                                                <rect key="frame" x="0.0" y="240" width="373" height="50"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txs-Fr-XWs">
                                                                         <rect key="frame" x="10" y="0.0" width="353" height="50"/>
@@ -495,6 +464,22 @@
                                                             </button>
                                                         </subviews>
                                                     </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94Q-Fh-Xmo">
+                                                        <rect key="frame" x="171.66666666666666" y="184" width="50" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="7ph-Sa-lun"/>
+                                                            <constraint firstAttribute="width" constant="50" id="LhY-II-Xu7"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="Edit Profile">
+                                                            <color key="baseForegroundColor" name="Custom Black"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="OnClickOpenImagePicker:" destination="Jlp-e4-4Ag" eventType="touchUpInside" id="OhJ-7y-FHt"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
@@ -512,8 +497,10 @@
                                                     <constraint firstItem="BZC-sy-RIE" firstAttribute="top" secondItem="UDs-ec-8PF" secondAttribute="top" constant="20" id="UTy-3J-gfZ"/>
                                                     <constraint firstItem="6EF-Rv-gkw" firstAttribute="leading" secondItem="UDs-ec-8PF" secondAttribute="leading" constant="20" id="XuI-Iv-dwI"/>
                                                     <constraint firstItem="pL3-JV-tFU" firstAttribute="top" secondItem="BZC-sy-RIE" secondAttribute="bottom" constant="20" id="Z25-Ac-Lkp"/>
+                                                    <constraint firstItem="Zdu-6C-KRH" firstAttribute="top" secondItem="94Q-Fh-Xmo" secondAttribute="bottom" constant="40" id="aEe-Xs-d1T"/>
                                                     <constraint firstItem="MyA-mR-pWD" firstAttribute="top" secondItem="Lxt-pk-dJR" secondAttribute="bottom" constant="10" id="aL4-Su-LuS"/>
                                                     <constraint firstAttribute="trailing" secondItem="SVI-Ld-mSK" secondAttribute="trailing" constant="20" id="dT1-1d-NvQ"/>
+                                                    <constraint firstItem="94Q-Fh-Xmo" firstAttribute="centerX" secondItem="UDs-ec-8PF" secondAttribute="centerX" id="eFk-z5-PLD"/>
                                                     <constraint firstAttribute="trailing" secondItem="Zdu-6C-KRH" secondAttribute="trailing" constant="20" id="exm-Jp-ZR9"/>
                                                     <constraint firstItem="Lxt-pk-dJR" firstAttribute="top" secondItem="Zdu-6C-KRH" secondAttribute="bottom" constant="10" id="gHc-kh-APX"/>
                                                     <constraint firstItem="BZC-sy-RIE" firstAttribute="centerX" secondItem="UDs-ec-8PF" secondAttribute="centerX" id="hmQ-xz-Zgl"/>
@@ -566,6 +553,7 @@
                         <outlet property="TfPhoneNumber" destination="MyA-mR-pWD" id="sZ9-bN-J4s"/>
                         <outlet property="btnGenderFemale" destination="eQs-sL-hli" id="xSH-qJ-4rF"/>
                         <outlet property="btnGenderMale" destination="g9p-sD-vnf" id="Afz-dz-YO8"/>
+                        <outlet property="btnOpenImageGallary" destination="94Q-Fh-Xmo" id="2dw-tQ-hvj"/>
                         <outlet property="btnUpdate" destination="FLt-o8-gva" id="Gto-uc-4yU"/>
                         <outlet property="imgProfilePicImage" destination="BZC-sy-RIE" id="IeO-cC-B6O"/>
                         <outlet property="scrollView" destination="w0k-z4-vvj" id="4ve-Cu-AOT"/>
@@ -1446,9 +1434,8 @@
         <image name="EmptyOrder" width="200" height="200"/>
         <image name="Filter -k" width="32" height="32"/>
         <image name="Goto Icon" width="24" height="24"/>
-        <image name="Location" width="24" height="24"/>
+        <image name="Lock" width="24" height="24"/>
         <image name="My Orders" width="24" height="24"/>
-        <image name="Notification" width="24" height="24"/>
         <image name="Placed" width="32" height="32"/>
         <image name="WishList -k" width="24" height="24"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>

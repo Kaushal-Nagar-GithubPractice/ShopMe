@@ -28,7 +28,7 @@
 		C32E1CFB2C37CBDE00EE7C50 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32E1CFA2C37CBDE00EE7C50 /* Connectivity.swift */; };
 		C3429E462C3666E1005C6DC0 /* OrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3429E452C3666E1005C6DC0 /* OrderDetailVC.swift */; };
 		C3429E482C3676FB005C6DC0 /* OrderDetailTabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3429E472C3676FB005C6DC0 /* OrderDetailTabelCell.swift */; };
-		C3429E4A2C36A36B005C6DC0 /* FilterScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3429E492C36A36B005C6DC0 /* FilterScreenVC.swift */; };
+		C3429E4A2C36A36B005C6DC0 /* MyOrderFilterScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3429E492C36A36B005C6DC0 /* MyOrderFilterScreenVC.swift */; };
 		C351242C2C29928C00B0938E /* DetailsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C351242B2C29928C00B0938E /* DetailsScreenVC.swift */; };
 		C355CC322C2EBAC100994D58 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355CC312C2EBAC100994D58 /* NetworkManager.swift */; };
 		C355CC352C2EBCE900994D58 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355CC342C2EBCE900994D58 /* Constants.swift */; };
@@ -69,6 +69,9 @@
 		C3DF939C2C35582900A7EC75 /* OrderListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF939B2C35582900A7EC75 /* OrderListModel.swift */; };
 		C3DF939E2C3561CA00A7EC75 /* OrderListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF939D2C3561CA00A7EC75 /* OrderListingViewModel.swift */; };
 		C3DF93A02C356EDF00A7EC75 /* Kaushal_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF939F2C356EDF00A7EC75 /* Kaushal_Extension.swift */; };
+		C3E1B4E62C3BB863003E77E4 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E1B4E52C3BB863003E77E4 /* ChangePasswordVC.swift */; };
+		C3E1B4E82C3BBB73003E77E4 /* ChangePassModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E1B4E72C3BBB73003E77E4 /* ChangePassModel.swift */; };
+		C3E1B4EA2C3BBBF7003E77E4 /* ChangePassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E1B4E92C3BBBF7003E77E4 /* ChangePassViewModel.swift */; };
 		C3EF1DAD2C32839A006492EB /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EF1DAC2C32839A006492EB /* RegisterViewModel.swift */; };
 		C3EF1DAF2C3284CE006492EB /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EF1DAE2C3284CE006492EB /* RegisterModel.swift */; };
 		C3EF1DB12C32B01C006492EB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EF1DB02C32B01C006492EB /* LoginViewModel.swift */; };
@@ -102,7 +105,7 @@
 		C32E1CFA2C37CBDE00EE7C50 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Connectivity.swift; path = "ShopMe-Github-Collab/View Controller/Profile/Connectivity.swift"; sourceTree = SOURCE_ROOT; };
 		C3429E452C3666E1005C6DC0 /* OrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailVC.swift; sourceTree = "<group>"; };
 		C3429E472C3676FB005C6DC0 /* OrderDetailTabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrderDetailTabelCell.swift; path = "Table Cell/OrderDetailTabelCell.swift"; sourceTree = SOURCE_ROOT; };
-		C3429E492C36A36B005C6DC0 /* FilterScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterScreenVC.swift; sourceTree = "<group>"; };
+		C3429E492C36A36B005C6DC0 /* MyOrderFilterScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrderFilterScreenVC.swift; sourceTree = "<group>"; };
 		C351242B2C29928C00B0938E /* DetailsScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreenVC.swift; sourceTree = "<group>"; };
 		C355CC312C2EBAC100994D58 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = SOURCE_ROOT; };
 		C355CC342C2EBCE900994D58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -143,6 +146,9 @@
 		C3DF939B2C35582900A7EC75 /* OrderListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListModel.swift; sourceTree = SOURCE_ROOT; };
 		C3DF939D2C3561CA00A7EC75 /* OrderListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListingViewModel.swift; sourceTree = SOURCE_ROOT; };
 		C3DF939F2C356EDF00A7EC75 /* Kaushal_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kaushal_Extension.swift; sourceTree = SOURCE_ROOT; };
+		C3E1B4E52C3BB863003E77E4 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		C3E1B4E72C3BBB73003E77E4 /* ChangePassModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassModel.swift; sourceTree = "<group>"; };
+		C3E1B4E92C3BBBF7003E77E4 /* ChangePassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassViewModel.swift; sourceTree = "<group>"; };
 		C3EF1DAC2C32839A006492EB /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterViewModel.swift; path = "ShopMe-Github-Collab/View Controller/RegisterViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		C3EF1DAE2C3284CE006492EB /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterModel.swift; path = "ShopMe-Github-Collab/View Controller/RegisterModel.swift"; sourceTree = SOURCE_ROOT; };
 		C3EF1DB02C32B01C006492EB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "ShopMe-Github-Collab/View Controller/LoginViewModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -273,6 +279,7 @@
 				C3DBA81B2C38161B0024E714 /* WishlistViewModel.swift */,
 				C3DBA80F2C38002A0024E714 /* ConfirmEmailViewModel.swift */,
 				C3DBA8132C3805340024E714 /* ForgetPassViewModel.swift */,
+				C3E1B4E92C3BBBF7003E77E4 /* ChangePassViewModel.swift */,
 				C3EF1DB42C32C57A006492EB /* ProfileViewModel.swift */,
 				C36419332C33DD7C0026B1DA /* UpdateDataViewModel.swift */,
 				C3DF939D2C3561CA00A7EC75 /* OrderListingViewModel.swift */,
@@ -291,6 +298,7 @@
 				C3DBA80D2C37FFB00024E714 /* ConfirmEmailModel.swift */,
 				C36419312C33DD070026B1DA /* UpdateDataModel.swift */,
 				C3DBA8112C3804530024E714 /* ForgetPassModel.swift */,
+				C3E1B4E72C3BBB73003E77E4 /* ChangePassModel.swift */,
 				C3DF939B2C35582900A7EC75 /* OrderListModel.swift */,
 			);
 			path = Model;
@@ -361,6 +369,7 @@
 			children = (
 				C31219AA2C294FBF00D12067 /* LoginScreenVC.swift */,
 				C31219AB2C294FBF00D12067 /* RegisterScreenVC.swift */,
+				C3E1B4E52C3BB863003E77E4 /* ChangePasswordVC.swift */,
 				C3DBA80B2C37FD820024E714 /* ForgetPasswordVC.swift */,
 			);
 			path = Authentication;
@@ -373,7 +382,7 @@
 				C31219B42C2975CF00D12067 /* EditProfileVC.swift */,
 				C31219B62C29856A00D12067 /* MyOrderScreenVC.swift */,
 				C3429E452C3666E1005C6DC0 /* OrderDetailVC.swift */,
-				C3429E492C36A36B005C6DC0 /* FilterScreenVC.swift */,
+				C3429E492C36A36B005C6DC0 /* MyOrderFilterScreenVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -534,7 +543,9 @@
 				C388CAB02C296E2D00051E02 /* HomeFacilitesCollectionViewCell.swift in Sources */,
 				C3DF93A02C356EDF00A7EC75 /* Kaushal_Extension.swift in Sources */,
 				C355CC322C2EBAC100994D58 /* NetworkManager.swift in Sources */,
-				C3429E4A2C36A36B005C6DC0 /* FilterScreenVC.swift in Sources */,
+				C3429E4A2C36A36B005C6DC0 /* MyOrderFilterScreenVC.swift in Sources */,
+				C3E1B4E82C3BBB73003E77E4 /* ChangePassModel.swift in Sources */,
+				C3E1B4EA2C3BBBF7003E77E4 /* ChangePassViewModel.swift in Sources */,
 				C388CAAE2C296D9A00051E02 /* HomeHeaderCollectionViewCell.swift in Sources */,
 				C3EF1DB52C32C57A006492EB /* ProfileViewModel.swift in Sources */,
 				C3A3140E2C2D5014007D6BE5 /* ShoppingCartViewController.swift in Sources */,
@@ -542,6 +553,7 @@
 				C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */,
 				C3A5DC682C2A88D7003511F7 /* ProductModel.swift in Sources */,
 				C3759ECC2C299F7A006ABB02 /* AddAddressViewController.swift in Sources */,
+				C3E1B4E62C3BB863003E77E4 /* ChangePasswordVC.swift in Sources */,
 				C3DF939E2C3561CA00A7EC75 /* OrderListingViewModel.swift in Sources */,
 				C3759ECA2C299BDF006ABB02 /* AddressTableViewCell.swift in Sources */,
 				C3A314132C2D5064007D6BE5 /* CartItemTableViewCell.swift in Sources */,

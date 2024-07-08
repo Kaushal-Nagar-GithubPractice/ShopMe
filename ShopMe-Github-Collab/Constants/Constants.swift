@@ -13,6 +13,7 @@ let API_BASE_URL = "https://shoppingcart-api.demoserver.biz"
 class Constant {
 //    static let GET_USER_LIST = API_BASE_URL + "users?page=1"
     
+    //Kaushal's URLs
     static let Register_User_URl = API_BASE_URL + "/user/registration"
     static let Login_User_URl = API_BASE_URL + "/user/login"
     static let Get_User_URl = API_BASE_URL + "/user"
@@ -22,4 +23,5 @@ class Constant {
     static let Forget_Pass_URl = API_BASE_URL + "/user/forget-password/"
     static let Get_Wishlist_URL = API_BASE_URL + "/wishlist/"
     static let Delete_Product_From_Wishlist_URL = API_BASE_URL + "/wishlist/"
+    static let Change_Pass_URl = API_BASE_URL + "/user/changePassword"
 }

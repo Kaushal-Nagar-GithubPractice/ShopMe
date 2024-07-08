@@ -48,7 +48,10 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
         
         var FilterBody = "?"
         
-        if ConvertStringToDate(formate: "dd MMM yyyy", DateInString: TfFromDate.text ?? "") > ConvertStringToDate(formate: "dd MMM yyyy", DateInString: TfToDate.text ?? ""){
+        if (TfFromDate.text?.count == 0 && TfToDate.text?.count ?? 0 > 0 || TfToDate.text?.count == 0 && TfFromDate.text?.count ?? 0 > 0 ){
+            ShowAlertBox(Title: "'From Date' and 'To Date' Either both be Empty or Both be filled !", Message: "")
+        }
+        else if ConvertStringToDate(formate: "dd MMM yyyy", DateInString: TfFromDate.text ?? "") > ConvertStringToDate(formate: "dd MMM yyyy", DateInString: TfToDate.text ?? ""){
             ShowAlertBox(Title: "'From Date' must be Earliar than 'To Date' !", Message: "")
         }
         else{
@@ -111,7 +114,10 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
         toolbar.sizeToFit()
         
         let Donebtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(DonePressed))
-        toolbar.setItems([Donebtn], animated: true)
+//        toolbar.setItems([Donebtn], animated: true)
+        
+        let ClearBtn = UIBarButtonItem(title: "Clear", style: .done, target: nil, action: #selector(ClearPressed))
+        toolbar.setItems([Donebtn , ClearBtn], animated: true)
         
         return toolbar
     }
@@ -157,4 +163,14 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
     @objc func DonePressed(){
         self.view.endEditing(true)
     }
+    
+    @objc func ClearPressed(){
+        if activeTextField == TfFromDate{
+            TfFromDate.text = ""
+        }
+        else if activeTextField == TfToDate{
+            TfToDate.text = ""
+        }
+    }
+    
 }

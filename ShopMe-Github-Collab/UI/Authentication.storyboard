@@ -447,7 +447,7 @@
                                     <constraint firstItem="aRG-an-LTy" firstAttribute="centerY" secondItem="WkT-M7-Ajf" secondAttribute="centerY" id="y9F-mx-OKf"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cif-Mp-0La">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cif-Mp-0La">
                                 <rect key="frame" x="0.0" y="109" width="393" height="709"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jej-Ki-Srb">
@@ -598,6 +598,214 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VJq-xe-ps7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="11.450381679389313" y="-34.507042253521128"/>
+        </scene>
+        <!--Change PasswordVC-->
+        <scene sceneID="XKt-zP-9Of">
+            <objects>
+                <viewController storyboardIdentifier="ChangePasswordVC" id="qli-83-VRa" customClass="ChangePasswordVC" customModule="ShopMe_Github_Collab" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Poj-Yb-uKr">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cze-nV-5pC">
+                                <rect key="frame" x="0.0" y="59" width="393" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3h-sS-C6u">
+                                        <rect key="frame" x="94" y="10" width="205" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <color key="textColor" name="Custom Black"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JpH-5E-Cs9">
+                                        <rect key="frame" x="10" y="0.0" width="48" height="50"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="Back Button">
+                                            <color key="baseForegroundColor" name="Custom Black"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="OnClickCloseChangePassword:" destination="qli-83-VRa" eventType="touchUpInside" id="BRg-SM-MNS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="u3h-sS-C6u" firstAttribute="centerY" secondItem="cze-nV-5pC" secondAttribute="centerY" id="P2r-wx-omP"/>
+                                    <constraint firstItem="JpH-5E-Cs9" firstAttribute="leading" secondItem="cze-nV-5pC" secondAttribute="leading" constant="10" id="dx3-QB-Pe2"/>
+                                    <constraint firstItem="u3h-sS-C6u" firstAttribute="centerX" secondItem="cze-nV-5pC" secondAttribute="centerX" id="eE3-vZ-qFI"/>
+                                    <constraint firstAttribute="bottom" secondItem="JpH-5E-Cs9" secondAttribute="bottom" id="lmR-4j-M4T"/>
+                                    <constraint firstAttribute="height" constant="50" id="oHU-Vy-YA5"/>
+                                    <constraint firstItem="JpH-5E-Cs9" firstAttribute="top" secondItem="cze-nV-5pC" secondAttribute="top" id="zm4-XZ-qik"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbe-gL-LIX">
+                                <rect key="frame" x="0.0" y="109" width="393" height="709"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCl-lO-eiD">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="600"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Forget Pass Illusration" translatesAutoresizingMaskIntoConstraints="NO" id="glr-pJ-tG1">
+                                                <rect key="frame" x="71.666666666666686" y="20" width="250" height="250"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="250" id="H9b-Bk-aff"/>
+                                                    <constraint firstAttribute="width" constant="250" id="jaa-5N-qcf"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xh-m8-0KF">
+                                                <rect key="frame" x="20" y="290" width="353" height="290"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Old Password Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PCt-SE-b4U">
+                                                        <rect key="frame" x="10" y="10" width="333" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="MEM-UJ-7tw"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your New Password Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dXP-PK-CF1">
+                                                        <rect key="frame" x="10" y="80" width="333" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="9mW-y2-bpF"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Your New Password Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="II4-N4-TcO">
+                                                        <rect key="frame" x="10" y="150" width="333" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="xk4-T2-yrU"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xSW-h6-qB0">
+                                                        <rect key="frame" x="287" y="80" width="56" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="Password Hide">
+                                                            <color key="baseForegroundColor" name="Custom Black"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="OnClickShowAndHideNewPassword:" destination="qli-83-VRa" eventType="touchUpInside" id="I8h-W2-H0K"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrf-UC-OLY">
+                                                        <rect key="frame" x="287" y="150" width="56" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="Password Hide">
+                                                            <color key="baseForegroundColor" name="Custom Black"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="OnClickShowAndHideNewConfiPassword:" destination="qli-83-VRa" eventType="touchUpInside" id="cA5-9U-2wQ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3m-Aa-sgV">
+                                                        <rect key="frame" x="287" y="10" width="56" height="50"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="Password Hide">
+                                                            <color key="baseForegroundColor" name="Custom Black"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="OnClickShowAndHideOldPassword:" destination="qli-83-VRa" eventType="touchUpInside" id="fPB-iU-TxM"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqP-gv-8W7">
+                                                        <rect key="frame" x="10" y="220" width="333" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="AOh-ym-A6H"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Change Password">
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
+                                                            <color key="baseForegroundColor" systemColor="labelColor"/>
+                                                            <color key="baseBackgroundColor" name="AppColor"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="OnClickChangePassword:" destination="qli-83-VRa" eventType="touchUpInside" id="LRL-7J-QMG"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="dXP-PK-CF1" firstAttribute="top" secondItem="W3m-Aa-sgV" secondAttribute="bottom" constant="20" id="5SS-w5-WvW"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PCt-SE-b4U" secondAttribute="trailing" constant="10" id="AyN-7b-Cxc"/>
+                                                    <constraint firstItem="xSW-h6-qB0" firstAttribute="top" secondItem="PCt-SE-b4U" secondAttribute="bottom" constant="20" id="GOO-h4-UdO"/>
+                                                    <constraint firstItem="dXP-PK-CF1" firstAttribute="top" secondItem="PCt-SE-b4U" secondAttribute="bottom" constant="20" id="Gi3-OT-ZLb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="W3m-Aa-sgV" secondAttribute="trailing" constant="10" id="IpJ-tv-uU4"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xSW-h6-qB0" secondAttribute="trailing" constant="10" id="KGM-9b-qyP"/>
+                                                    <constraint firstItem="cqP-gv-8W7" firstAttribute="top" secondItem="Vrf-UC-OLY" secondAttribute="bottom" constant="20" id="Kp8-hQ-D32"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Vrf-UC-OLY" secondAttribute="trailing" constant="10" id="ZNI-t3-JpK"/>
+                                                    <constraint firstAttribute="trailing" secondItem="II4-N4-TcO" secondAttribute="trailing" constant="10" id="axi-gg-9kX"/>
+                                                    <constraint firstItem="PCt-SE-b4U" firstAttribute="leading" secondItem="7Xh-m8-0KF" secondAttribute="leading" constant="10" id="cWz-6L-r4p"/>
+                                                    <constraint firstItem="II4-N4-TcO" firstAttribute="top" secondItem="dXP-PK-CF1" secondAttribute="bottom" constant="20" id="cZl-41-Ttk"/>
+                                                    <constraint firstItem="W3m-Aa-sgV" firstAttribute="top" secondItem="7Xh-m8-0KF" secondAttribute="top" constant="10" id="cxO-lK-vWG"/>
+                                                    <constraint firstItem="II4-N4-TcO" firstAttribute="top" secondItem="xSW-h6-qB0" secondAttribute="bottom" constant="20" id="gBr-Hh-QuZ"/>
+                                                    <constraint firstItem="II4-N4-TcO" firstAttribute="leading" secondItem="7Xh-m8-0KF" secondAttribute="leading" constant="10" id="gGv-o6-aFY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dXP-PK-CF1" secondAttribute="trailing" constant="10" id="kbK-SW-UnG"/>
+                                                    <constraint firstItem="cqP-gv-8W7" firstAttribute="leading" secondItem="7Xh-m8-0KF" secondAttribute="leading" constant="10" id="mmg-j7-ok3"/>
+                                                    <constraint firstAttribute="bottom" secondItem="cqP-gv-8W7" secondAttribute="bottom" constant="20" id="pfI-JR-tFR"/>
+                                                    <constraint firstItem="dXP-PK-CF1" firstAttribute="leading" secondItem="7Xh-m8-0KF" secondAttribute="leading" constant="10" id="qcN-Sm-3VK"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cqP-gv-8W7" secondAttribute="trailing" constant="10" id="x2N-De-TAb"/>
+                                                    <constraint firstItem="PCt-SE-b4U" firstAttribute="top" secondItem="7Xh-m8-0KF" secondAttribute="top" constant="10" id="x5N-MH-L3z"/>
+                                                    <constraint firstItem="Vrf-UC-OLY" firstAttribute="top" secondItem="dXP-PK-CF1" secondAttribute="bottom" constant="20" id="xXM-Ur-P89"/>
+                                                    <constraint firstItem="cqP-gv-8W7" firstAttribute="top" secondItem="II4-N4-TcO" secondAttribute="bottom" constant="20" id="yDB-qC-9eS"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="7Xh-m8-0KF" firstAttribute="top" secondItem="glr-pJ-tG1" secondAttribute="bottom" constant="20" id="1sI-an-LJY"/>
+                                            <constraint firstAttribute="trailing" secondItem="7Xh-m8-0KF" secondAttribute="trailing" constant="20" id="U4P-Qo-JXQ"/>
+                                            <constraint firstItem="glr-pJ-tG1" firstAttribute="centerX" secondItem="TCl-lO-eiD" secondAttribute="centerX" id="Xq9-Qb-OIY"/>
+                                            <constraint firstItem="7Xh-m8-0KF" firstAttribute="leading" secondItem="TCl-lO-eiD" secondAttribute="leading" constant="20" id="eGc-bf-yk3"/>
+                                            <constraint firstItem="glr-pJ-tG1" firstAttribute="top" secondItem="TCl-lO-eiD" secondAttribute="top" constant="20" id="i1f-8y-ge7"/>
+                                            <constraint firstAttribute="bottom" secondItem="7Xh-m8-0KF" secondAttribute="bottom" constant="20" id="qqM-lN-puc"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="TCl-lO-eiD" firstAttribute="leading" secondItem="zbe-gL-LIX" secondAttribute="leading" id="47c-An-c2q"/>
+                                    <constraint firstAttribute="trailing" secondItem="TCl-lO-eiD" secondAttribute="trailing" id="cPH-Gf-pc2"/>
+                                    <constraint firstItem="TCl-lO-eiD" firstAttribute="width" secondItem="zbe-gL-LIX" secondAttribute="width" id="dTe-hm-atb"/>
+                                    <constraint firstAttribute="bottom" secondItem="TCl-lO-eiD" secondAttribute="bottom" id="if8-Pn-k5s"/>
+                                    <constraint firstAttribute="height" constant="709" id="lta-sx-IcY"/>
+                                    <constraint firstItem="TCl-lO-eiD" firstAttribute="top" secondItem="zbe-gL-LIX" secondAttribute="top" id="mIa-vF-g6P"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fEh-2W-wXV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zbe-gL-LIX" firstAttribute="top" secondItem="cze-nV-5pC" secondAttribute="bottom" id="9k7-yk-eXg"/>
+                            <constraint firstItem="fEh-2W-wXV" firstAttribute="bottom" secondItem="zbe-gL-LIX" secondAttribute="bottom" id="Anb-ap-ZYp"/>
+                            <constraint firstItem="zbe-gL-LIX" firstAttribute="leading" secondItem="fEh-2W-wXV" secondAttribute="leading" id="JZm-Wx-PpY"/>
+                            <constraint firstItem="fEh-2W-wXV" firstAttribute="trailing" secondItem="zbe-gL-LIX" secondAttribute="trailing" id="LDR-BM-dRd"/>
+                            <constraint firstItem="zbe-gL-LIX" firstAttribute="width" secondItem="cze-nV-5pC" secondAttribute="width" id="QYB-Wb-Ucz"/>
+                            <constraint firstItem="cze-nV-5pC" firstAttribute="top" secondItem="fEh-2W-wXV" secondAttribute="top" id="Sz4-Sw-kxH"/>
+                            <constraint firstItem="cze-nV-5pC" firstAttribute="leading" secondItem="fEh-2W-wXV" secondAttribute="leading" id="fMr-CQ-4iV"/>
+                            <constraint firstItem="fEh-2W-wXV" firstAttribute="trailing" secondItem="cze-nV-5pC" secondAttribute="trailing" id="psn-gh-w2D"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="TfNewConfirmPassword" destination="II4-N4-TcO" id="Ou7-OG-Dqk"/>
+                        <outlet property="TfNewPassword" destination="dXP-PK-CF1" id="Kds-uR-5rE"/>
+                        <outlet property="TfOldPassword" destination="PCt-SE-b4U" id="a4K-mJ-lmz"/>
+                        <outlet property="btnShowNewConfiPassword" destination="Vrf-UC-OLY" id="DOQ-Hv-iFw"/>
+                        <outlet property="btnShowNewPassword" destination="xSW-h6-qB0" id="urP-Kr-oIl"/>
+                        <outlet property="btnShowOldPassword" destination="W3m-Aa-sgV" id="TIy-zX-aSn"/>
+                        <outlet property="scrollView" destination="zbe-gL-LIX" id="8WE-aQ-Rir"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6TO-EB-dzu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3097" y="-21"/>
         </scene>
     </scenes>
     <resources>

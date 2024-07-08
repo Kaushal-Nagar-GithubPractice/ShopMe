@@ -78,12 +78,11 @@ class ProfileScreenVC: UIViewController {
         self.navigationController?.pushViewController(myOrderScreen, animated: true)
     }
     
-    
-    @IBAction func OnClickOpenShippingAddress(_ sender: Any) {
+    @IBAction func OnClickChangePassword(_ sender: Any) {
         
-        let ShippingAddressScreen = UIStoryboard(name: "CartList", bundle: nibBundle).instantiateViewController(withIdentifier: "SelectAddressViewController") as! SelectAddressViewController
+        let ChangePasswordScreen = UIStoryboard(name: "Authentication", bundle: nibBundle).instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
         
-        self.navigationController?.pushViewController(ShippingAddressScreen, animated: true)
+        self.navigationController?.pushViewController(ChangePasswordScreen, animated: true)
         
     }
     
