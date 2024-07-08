@@ -53,11 +53,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         checkCart()
         
     }
-    
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        UserDefaults.standard.set(cartItemArray, forKey: "MyCart")
-    }
+
     
     // MARK: - IBAction
     
@@ -124,14 +120,19 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         cell.increaseQuantity = {
             
             let ItemCount = self.productArr[indexPath.row].quantity ?? 0
-            self.productArr[indexPath.row].quantity = ItemCount+1
+            if ItemCount < 50{
+                self.productArr[indexPath.row].quantity = ItemCount+1
 
-            let lblPrice = (self.productArr[indexPath.row].price! * self.productArr[indexPath.row].quantity!)
-            self.productArr[indexPath.row].totalProductPrice = lblPrice
-            self.CartListTableView.reloadData()
-            
-            if ItemCount >= 1 {
+                let lblPrice = (self.productArr[indexPath.row].price! * self.productArr[indexPath.row].quantity!)
+                self.productArr[indexPath.row].totalProductPrice = lblPrice
+                
+                cell.btnDecrease.isEnabled = true
                 cell.btnDecrease.backgroundColor = UIColor(named: "btnQty")
+                self.CartListTableView.reloadData()
+                
+            }else{
+                cell.btnIncrease.isEnabled = false
+                cell.btnIncrease.backgroundColor = UIColor.systemGray5
             }
             self.updateTotal()
         }
@@ -146,14 +147,18 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 self.productArr[indexPath.row].quantity = itemCount-1
                 let lblPrice = (self.productArr[indexPath.row].price! * self.productArr[indexPath.row].quantity!)
                 self.productArr[indexPath.row].totalProductPrice = lblPrice
+                cell.btnIncrease.isEnabled = true
+                cell.btnIncrease.backgroundColor = UIColor(named: "btnQty")
                 self.CartListTableView.reloadData()
                 
             }else{
                 cell.btnDecrease.isEnabled = true
                 cell.btnDecrease.backgroundColor = UIColor.systemGray5
             }
+         
             self.updateTotal()
         }
+        
         return cell
     }
     
@@ -197,6 +202,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         SVProgressHUD.show()
         let request = APIRequest(isLoader: true, method: .get, path: urlPath, headers: HeaderValue.headerWithToken.value, body: nil)
         userCartViewModel.getCartData(request:request) { [self] response in
+
             if response.success == true{
                 self.cartObj = response.data
                 DispatchQueue.main.async {
@@ -206,6 +212,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     self.CartListTableView.reloadData()
                     SVProgressHUD.dismiss()
                 }
+            }else{
+                SVProgressHUD.dismiss()
+                print("=====> get cart response failed!!")
             }
             
         } error: { error in
@@ -222,6 +231,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         let request = APIRequest(isLoader: true, method: .delete, path: urlPath, headers: HeaderValue.headerWithToken.value, body: nil)
         userCartViewModel.deleteProduct(request: request) { response in
+    
             DispatchQueue.main.async {
                 
                 self.getCartData(urlPath: Constant.getUserCart)
@@ -239,7 +249,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         SVProgressHUD.show()
         let request = APIRequest(isLoader: true, method: HTTPMethods.post, path: Constant.getUserCart, headers: HeaderValue.headerWithToken.value, body: prod_arr)
         addProductOnCheckoutViewModel.addproductOnCheckout(request: request) { response in
-            //            print("=====> Added on checkout resp",response)
+
             if response.success == true {
                 DispatchQueue.main.async {
                     self.NavigateToCheckoutVc()
@@ -248,9 +258,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 
             }else{
                 print("error in checkout")
+                SVProgressHUD.dismiss()
             }
         } error: { error in
             print("error in added to cart on checkout",error!)
+            SVProgressHUD.dismiss()
         }
         
     }

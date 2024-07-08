@@ -974,7 +974,7 @@
                                             <constraint firstAttribute="height" constant="50" id="vmZ-fP-hDG"/>
                                         </constraints>
                                     </view>
-                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Zc-WP-VzL" userLabel="viewEmptyCart">
+                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Zc-WP-VzL" userLabel="viewEmptyCart">
                                         <rect key="frame" x="0.0" y="58" width="393" height="657"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-cart" translatesAutoresizingMaskIntoConstraints="NO" id="eZl-gs-uu2">
@@ -1394,7 +1394,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjo-Y0-ZhF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1658.7786259541983" y="-62.676056338028175"/>
+            <point key="canvasLocation" x="1567" y="-63"/>
         </scene>
         <!--Checkout View Controller-->
         <scene sceneID="iLf-LH-uIL">

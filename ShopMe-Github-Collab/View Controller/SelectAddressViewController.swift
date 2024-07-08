@@ -31,15 +31,9 @@ class SelectAddressViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
-        //        setUi()
-    }
-    func setUi(){
-        
-        ViewHeader.clipsToBounds = true
-        ViewHeader.layer.cornerRadius = ViewHeader.frame.height/2
-        ViewHeader.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner ]
         
     }
+
     // MARK: - IBActions
     
     @IBAction func onClickBack(_ sender: Any) {

@@ -41,7 +41,7 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-//        UserDefaults.standard.set(true, forKey: "IsRedirect")
+        //        UserDefaults.standard.set(true, forKey: "IsRedirect")
         productTableView.delegate = self
         productTableView.dataSource = self
         
@@ -110,7 +110,7 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 let loginVc = storyBoard.instantiateViewController(withIdentifier: "LoginScreenVC") as! LoginScreenVC
                 self.navigationController?.pushViewController(loginVc, animated: true)
-                    } ))
+            } ))
             alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
             alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
             alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
@@ -216,9 +216,8 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     func NavigateToOrderVc(){
         let alert = UIAlertController(title: "Order placed Successfully!", message: "" , preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default,handler: {(action:UIAlertAction!) in
-            let storyBoard = UIStoryboard(name: "Profile", bundle: self.nibBundle)
-            let orderListVc = storyBoard.instantiateViewController(withIdentifier: "MyOrderScreenVC") as! MyOrderScreenVC
-            self.navigationController?.pushViewController(orderListVc, animated: true)
+            //            self.tabBarController?.selectedIndex = 0
+            self.navigationController?.popViewController(animated: true)
         }))
         alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
         alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
@@ -232,11 +231,9 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     func callCheckoutApi(url: String ,method: HTTPMethods, body: [String:Any]){
         
         let request = APIRequest(isLoader: true, method: method, path: url, headers: HeaderValue.headerWithToken.value, body: body)
-        print("====> checkout url ===>",url)
         let checkoutViewModel = AddProductsOnChekoutViewModel()
         
         checkoutViewModel.addproductOnCheckout(request: request) { response in
-//            print("response on checkout ====>",response)
             
             DispatchQueue.main.async {
                 if response.success == true {

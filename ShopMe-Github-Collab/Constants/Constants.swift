@@ -18,4 +18,6 @@ class Constant {
     static let getUserCart =  "\(API_BASE_URL)/cart"
     static let deleteProductFromCart = "\(API_BASE_URL)/cart"
     static let checkoutOrder = "\(API_BASE_URL)/order/checkout"
+    
+    static let wishlistGet = "\(API_BASE_URL)/wishlist/"
 }
