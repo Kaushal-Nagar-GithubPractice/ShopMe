@@ -16,7 +16,7 @@ class Post_WishlistViewModel : NSObject {
             if let data = data {
                 do {
                     let parsedData = try JSONSerialization.jsonObject(with: data) as! [String:Any]
-                    print(parsedData)
+//                    print(parsedData)
                     var response = try JSONDecoder().decode(Post_WhislistModel.self, from: data)
                     successCallback(response)
                 }

@@ -106,7 +106,6 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             cell.lblProductName.text =  ShopProducts[indexPath.row].productName
             cell.lblPrice.text =  "$ \(ShopProducts[indexPath.row].price ?? 123)"
             cell.lblStrikePrice.isHidden = true
-       
         return cell
         
     }

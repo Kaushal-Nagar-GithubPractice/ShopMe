@@ -9,11 +9,7 @@ import UIKit
 import Kingfisher
 import SVProgressHUD
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect, UICollectionViewDelegateFlowLayout {
-    func reloadAfterWishlist() {
-        callApiProduct()
-        
-    }
-    
+    var arrCategorySelected = [Int]()
     var isFirstTimeApiCall = true
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     var arrHeaderImages = ["carousel-1","carousel-2","carousel-3"]
@@ -67,7 +63,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             self.callApiCategory()
             self.callApiProduct()
         }
-       
+//        self.callApiCategory()
+//        self.callApiProduct()
         
     }
     
@@ -94,6 +91,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     //MARK: IBAction Methods
     
     //MARK: Collection Delegate Methods
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == collectionCategories {
+            return CGSize(width: 225, height: 100)
+        }
+        return CGSize(width: collectionHeader.frame.width , height: 225)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
@@ -147,6 +150,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
         else  {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as! CategoriesCollectionViewCell
+            if arrCategorySelected[indexPath.row] == 1 {
+                cell.viewCategories.backgroundColor = .systemTeal
+            }
+            else{
+                cell.viewCategories.backgroundColor = .systemGray5
+            }
             cell.imageCategories.setImageWithURL(url: ArrCategory[indexPath.row].image ?? "" , imageView: cell.imageCategories)
             cell.lblCategoryName.text = ArrCategory[indexPath.row].categoryName
             cell.lblCategoryQuantity.text = "\(ArrCategory[indexPath.row].productCount ?? 0) products "
@@ -155,12 +164,28 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == collectionCategories {
-            return CGSize(width: 225, height: 100)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView.tag == 3 {
+            if arrCategorySelected[indexPath.row] == 1 {
+                arrCategorySelected[indexPath.row] = 0
+                collectionView.reloadData()
+                pageCount = 1
+                flagForEmptyProdCall = true
+                ArrProducts = []
+                callApiProduct()
+            }
+            else{
+                fillArrSelectedCategory()
+                arrCategorySelected[indexPath.row] = 1
+                collectionView.reloadData()
+                setSelectedCategory()
+            }
+            
+           
         }
-        return CGSize(width: collectionHeader.frame.width , height: 225)
+            
     }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //        if scrollView == collectionHeader{
         //            guard let visiblecell = collectionHeader.visibleCells.first else { return  }
@@ -198,11 +223,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         cell.arrProducts = ArrProducts
+        cell.delegate = self
         cell.collectionProducts.reloadData()
         cell.frame = tableView.bounds
         cell.layoutIfNeeded()
         cell.HeightConstraint.constant = cell.collectionProducts.collectionViewLayout.collectionViewContentSize.height
-        cell.delegate = self
+        
         
       
         return cell
@@ -225,6 +251,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                     self.findBannerCategories()
                     self.collectionHeader.reloadData()
                     self.collectionCategories.reloadData()
+                    self.fillArrSelectedCategory()
                     SVProgressHUD.dismiss()
                 }
             }
@@ -233,10 +260,30 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             SVProgressHUD.dismiss()
         }
     }
+    func callApiProductsInCategory(catId : String){
+        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show()
+        var requestForCategoryPrdt = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_CATEGORY_PRODUCTS+catId, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        ProductViewModel.ApiProduct.getProductData(request: requestForCategoryPrdt) { response in
+            DispatchQueue.main.async {
+                self.ArrProducts = response.data?.products ?? []
+                self.tblViewHomeScreen.reloadData()
+                SVProgressHUD.dismiss()
+            }
+        } error: { error in
+            print(error)
+            
+        }
+        SVProgressHUD.dismiss()
+    }
     func callApiProduct(){
         SVProgressHUD.setDefaultMaskType(.black)
         SVProgressHUD.show()
-        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT_LIST+"?page=\(pageCount)&items=6", headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        var request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT_LIST+"?page=\(pageCount)&items=6", headers: HeaderValue.headerWithToken.value, body: nil)
+        if UserDefaults.standard.bool(forKey: "IsRedirect") == false {
+            request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT_LIST+"?page=\(pageCount)&items=6", headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        }
+        
 //        print("----------------------",Constant.GET_PRODUCT_LIST+"?page=\(pageCount)&items=6")
         ProductViewModel.ApiProduct.getProductData(request: request) { response in
             DispatchQueue.main.async {
@@ -247,7 +294,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 }
                 else{
                     self.ArrProducts.append(contentsOf: response.data?.products ?? [])
-                    print(self.ArrProducts.count as Any)
+//                    print(self.ArrProducts)
                     self.tblViewHomeScreen.reloadData()
                     SVProgressHUD.dismiss()
                     self.isFirstTimeApiCall = false
@@ -259,6 +306,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
     }
     
+    func apiSelectedCategory(){
+        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show()
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_CATEGORY_PRODUCTS, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+    }
+    
     func findBannerCategories(){
         arrBannerCategory = []
         for i in 0..<(ArrCategory.count) {
@@ -268,6 +321,28 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
         print(arrBannerCategory)
         pageControlHeader.numberOfPages = arrBannerCategory.count
+    }
+    
+    func fillArrSelectedCategory(){
+        arrCategorySelected = [Int]()
+        for _ in 0..<ArrCategory.count{
+            arrCategorySelected.append(0)
+        }
+    }
+    
+    func setSelectedCategory(){
+        for i in 0..<ArrCategory.count{
+            if arrCategorySelected[i] == 1 {
+                if ArrCategory[i].productCount ?? 0 > 0 {
+                       flagForEmptyProdCall = false
+                        ArrProducts = []
+                        callApiProductsInCategory(catId: ArrCategory[i]._id ?? "")
+                    }
+                else{
+                    fillArrSelectedCategory()
+                }
+            }
+        }
     }
     
     //MARK: @OBJC Methods
@@ -284,10 +359,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     
     //MARK: Protocol Defined Methods
-    func selectedProduct(productId : String) {
+    func selectedProduct(productId : String,isWishlist : Bool) {
         let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "DetailsScreenVC") as! DetailsScreenVC
         vc.productID = productId
+        vc.isWishlist = isWishlist
         self.navigationController?.pushViewController(vc, animated: true)
     }
+
 }
 

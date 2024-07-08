@@ -8,12 +8,11 @@
 import UIKit
 
 protocol ProductSelect {
-    func selectedProduct(productId : String)
-    func reloadAfterWishlist()
+    func selectedProduct(productId : String, isWishlist : Bool)
 }
 
 
-class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, AddtoWishlist {
+class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     
     
@@ -41,24 +40,14 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath) as! ProductsCollectionViewCell
         if !arrProducts.isEmpty {
-//            print(arrProducts)
-            cell.arrProducts = arrProducts
+//            cell.arrProducts = arrProducts
             cell.imgProduct.setImageWithURL(url: arrProducts[indexPath.row].images?.first ?? "", imageView: cell.imgProduct)
-//            cell.starView.text = arrProducts[indexPath.row]
-            cell.delegate = self
             cell.lblProductName.text = arrProducts[indexPath.row].productName
             cell.lblPrice.text = "$\(arrProducts[indexPath.row].sellingPrice ?? 1234)"
             cell.lblStrikePrice.text =  "$\(arrProducts[indexPath.row].price ?? 1556)"
             cell.starView?.rating = arrProducts[indexPath.row].ratings ?? 0
             cell.starView?.text = "\(arrProducts[indexPath.row].ratings ?? 0)"
-            cell.btnWishlist.tag = indexPath.row
-            cell.IsWishList = arrProducts[indexPath.row].isWishList ?? false
-            if arrProducts[indexPath.row].isWishList ?? false{
-                cell.btnWishlist.tintColor = .red
-            }
-            else{
-                cell.btnWishlist.tintColor = .black
-            }
+            print(arrProducts[indexPath.row].isWishList)
         }
         return cell
         
@@ -68,21 +57,9 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        delegate?.selectedProduct(productId: arrProducts[indexPath.row]._id ?? "")
+        delegate?.selectedProduct(productId: arrProducts[indexPath.row]._id ?? "", isWishlist: arrProducts[indexPath.row].isWishList ?? false)
         
     }
-    
-//    func callApiWishList(productId : String){
-//        let request = APIRequest(isLoader: true, method: HTTPMethods.post, path: Constant.ADD_TO_WHISLIST+productId, headers: HeaderValue.headerWithToken.value, body: nil)
-//        Post_WishlistViewModel.ApiAddWishlist.getPostRatingData(request: request) { response in
-//            print(response)
-//        } error: { error in
-//            print(error)
-//        }
-//
-//    }
-    func onClickAddtoWishlist() {
-        collectionProducts.reloadData()
-        delegate?.reloadAfterWishlist()
-    }
+
+  
 }

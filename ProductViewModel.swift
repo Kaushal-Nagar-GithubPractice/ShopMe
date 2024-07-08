@@ -18,8 +18,9 @@ class ProductViewModel : NSObject {
                 do {
                     
                     let parsedData = try JSONSerialization.jsonObject(with: data) as! [String:Any]
-//                    print(parsedData)
+                    print("\nProduct JSON",parsedData)
                     let response = try JSONDecoder().decode(Product.self, from: data)
+//                    print("\nProduct JSON",response)
                     successCallback(response)
                 }
                 catch {

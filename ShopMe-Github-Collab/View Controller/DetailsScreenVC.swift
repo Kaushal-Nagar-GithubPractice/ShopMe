@@ -7,8 +7,11 @@
 
 import UIKit
 import Cosmos
+import SVProgressHUD
 class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var isRatingAdded = false
+    var isWishlist = false
+    @IBOutlet weak var addToWishlist: UIButton!
     @IBOutlet weak var tblUserReviews: UITableView!
     @IBOutlet weak var UserRating: CosmosView!
     @IBOutlet weak var viewSuggestedProduct: UIView!
@@ -75,6 +78,8 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         print(productID)
         callApiGetCartItems()
         getUserRatings()
+        print(isWishlist)
+        btnWishList()
        
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -112,6 +117,20 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             lblQuantity.text = "\(Quantity)"
         }
         
+    }
+    @IBAction func onClickAddToWishList(_ sender: Any) {
+        if isWishlist{
+            isWishlist = false
+            btnWishList()
+        }
+        else{
+            if UserDefaults.standard.bool(forKey: "IsRedirect"){
+                callApiWishList(productId: productID)
+                isWishlist = true
+                btnWishList()
+            }
+        }
+     
     }
     @IBAction func onCLickAddtoCart(_ sender: Any) {
         if isAddedtoCart {
@@ -153,12 +172,19 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             ShowAlertBox(Title: "Alert", Message: "please add your review")
         }
         else {
-//            print(UserRating.rating,txtViewUserRating.text ?? "demo" )
-          var dictRating = [
-            "rating" : UserRating.rating,
-            "review" : txtViewUserRating.text ?? "demo"
-          ] as [String : Any]
-            callApiAddRating(dictRating: dictRating)
+            //            print(UserRating.rating,txtViewUserRating.text ?? "demo")
+            if UserDefaults.standard.bool(forKey: "IsRedirect"){
+                var dictRating = [
+                    "rating" : UserRating.rating,
+                    "review" : txtViewUserRating.text ?? "demo"
+                ] as [String : Any]
+                callApiAddRating(dictRating: dictRating)
+            }
+            
+            else{
+                showAlert(title: "Alert", message: "Please Login to Add Review")
+            }
+            
         }
     }
     
@@ -308,7 +334,28 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
         
     }
-    
+    func callApiWishList(productId : String){
+        let request = APIRequest(isLoader: true, method: HTTPMethods.post, path: Constant.ADD_TO_WHISLIST+productId, headers: HeaderValue.headerWithToken.value, body: nil)
+        Post_WishlistViewModel.ApiAddWishlist.getPostRatingData(request: request) { response in
+            DispatchQueue.main.async {
+                SVProgressHUD.setDefaultMaskType(.black)
+                SVProgressHUD.show()
+                print(response)
+                if (response.success == true ){
+                    self.ShowAlertBox(Title: "Confirmation", Message: "Added to WishList Sucessfully")
+                    
+                }
+                else{
+//
+                }
+                SVProgressHUD.dismiss()
+            }
+            
+        } error: { error in
+            print(error)
+        }
+
+    }
     func getUserRatings(){
         let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_REVIEW_LIST+productID, headers: HeaderValue.headerWithToken.value, body: nil)
         UserRatingViewModel.ApiPostRatings.getPostRatingData(request: request) { response in
@@ -324,14 +371,12 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
                     self.tblUserReviews.isHidden = true
                     self.heightForTblRating.constant = 0
                 }
-                
-                
             }
         } error: { error in
             print(error as Any)
         }
     }
-
+    
     func callApiGetCartItems(){
         let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_ALL_CART_ITEMS, headers: HeaderValue.headerWithToken.value, body: nil)
         
@@ -420,6 +465,14 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         for i in 0..<(cartItems.count){
             ColorsInCart.append(cartItems[i].color ?? "")
             SizesInCArt.append(cartItems[i].size ?? "")
+        }
+    }
+    func btnWishList(){
+        if isWishlist {
+            addToWishlist.tintColor = .red
+        }
+        else{
+            addToWishlist.tintColor = .black
         }
     }
     
