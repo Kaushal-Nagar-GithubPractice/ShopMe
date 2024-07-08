@@ -10,21 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="s0d-6b-0kx">
-            <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="132" y="-27"/>
-        </scene>
         <!--Wish ListVC-->
         <scene sceneID="N7V-rR-qhH">
             <objects>
@@ -36,23 +21,39 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fWv-VD-naH">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJN-Lm-QUS">
+
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMg-QM-o6D">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaE-MQ-PQT">
-                                                <rect key="frame" x="175" y="15" width="42" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Wishlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78D-mF-PQf">
+                                                <rect key="frame" x="131" y="10" width="131" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                                <color key="textColor" name="Custom Black"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aT-Z7-6PE">
+                                                <rect key="frame" x="10" y="0.0" width="48" height="50"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="Back Button">
+                                                    <color key="baseForegroundColor" name="Custom Black"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="OnClickCloseWishlist:" destination="Nfl-7g-xzt" eventType="touchUpInside" id="e4Z-Tl-BNa"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="wms-kw-YEK"/>
+                                            <constraint firstItem="78D-mF-PQf" firstAttribute="centerX" secondItem="dMg-QM-o6D" secondAttribute="centerX" id="77n-kg-m4x"/>
+                                            <constraint firstAttribute="height" constant="50" id="EYG-YI-InS"/>
+                                            <constraint firstItem="6aT-Z7-6PE" firstAttribute="leading" secondItem="dMg-QM-o6D" secondAttribute="leading" constant="10" id="UW8-B1-pCG"/>
+                                            <constraint firstAttribute="bottom" secondItem="6aT-Z7-6PE" secondAttribute="bottom" id="jms-XT-F3H"/>
+                                            <constraint firstItem="78D-mF-PQf" firstAttribute="centerY" secondItem="dMg-QM-o6D" secondAttribute="centerY" id="kzp-Mb-BsB"/>
+                                            <constraint firstItem="6aT-Z7-6PE" firstAttribute="top" secondItem="dMg-QM-o6D" secondAttribute="top" id="xrZ-Xc-8Za"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QRF-4X-bD3">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QRF-4X-bD3">
+
                                         <rect key="frame" x="10" y="50" width="373" height="701"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vpQ-yi-yaq">
@@ -122,14 +123,16 @@
                                                                     </constraints>
                                                                     <color key="tintColor" name="Custom Black"/>
                                                                     <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="plain" image="heart-7"/>
+
+                                                                    <buttonConfiguration key="configuration" style="plain" image="WishList -k"/>
+
                                                                     <connections>
                                                                         <action selector="onClickWishList:" destination="enC-gO-zgs" eventType="touchUpInside" id="eOG-z5-iyw"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="275" id="7JB-1d-agq"/>
                                                                 <constraint firstAttribute="width" constant="210" id="9IH-hX-th2"/>
@@ -168,15 +171,48 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+
+                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="es0-o4-40R" userLabel="viewEmptyOrder">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="709"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyOrder" translatesAutoresizingMaskIntoConstraints="NO" id="2oM-AY-psb">
+                                                <rect key="frame" x="96.666666666666686" y="200" width="200" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="200" id="OGs-gD-7mE"/>
+                                                    <constraint firstAttribute="height" constant="200" id="kda-zT-uLf"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops!..Please Add Something to your Wishlist !!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZo-VY-fg6">
+                                                <rect key="frame" x="20" y="419" width="353" height="50.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                                <color key="textColor" name="Custom Black"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="IZo-VY-fg6" firstAttribute="top" secondItem="2oM-AY-psb" secondAttribute="bottom" constant="19" id="0Cq-7p-wlw"/>
+                                            <constraint firstAttribute="trailing" secondItem="IZo-VY-fg6" secondAttribute="trailing" constant="20" id="FVA-rg-bc6"/>
+                                            <constraint firstItem="IZo-VY-fg6" firstAttribute="centerX" secondItem="es0-o4-40R" secondAttribute="centerX" id="G2l-gb-fqN"/>
+                                            <constraint firstItem="2oM-AY-psb" firstAttribute="centerY" secondItem="es0-o4-40R" secondAttribute="centerY" constant="-54.5" id="NUy-Co-Wwb"/>
+                                            <constraint firstItem="2oM-AY-psb" firstAttribute="centerX" secondItem="es0-o4-40R" secondAttribute="centerX" id="vDg-2y-xfJ"/>
+                                            <constraint firstItem="IZo-VY-fg6" firstAttribute="leading" secondItem="es0-o4-40R" secondAttribute="leading" constant="20" id="x0z-70-jSQ"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="QRF-4X-bD3" firstAttribute="top" secondItem="hJN-Lm-QUS" secondAttribute="bottom" id="OTQ-9v-4W0"/>
+                                    <constraint firstItem="es0-o4-40R" firstAttribute="leading" secondItem="fWv-VD-naH" secondAttribute="leading" id="2xl-Pw-enH"/>
+                                    <constraint firstAttribute="bottom" secondItem="es0-o4-40R" secondAttribute="bottom" id="RfX-U5-CNN"/>
+                                    <constraint firstItem="es0-o4-40R" firstAttribute="top" secondItem="dMg-QM-o6D" secondAttribute="bottom" id="Y7Y-9Y-y1u"/>
                                     <constraint firstItem="QRF-4X-bD3" firstAttribute="leading" secondItem="fWv-VD-naH" secondAttribute="leading" constant="10" id="adw-w9-Q5E"/>
-                                    <constraint firstItem="hJN-Lm-QUS" firstAttribute="top" secondItem="fWv-VD-naH" secondAttribute="top" id="f4W-VB-ADn"/>
+                                    <constraint firstAttribute="trailing" secondItem="es0-o4-40R" secondAttribute="trailing" id="fhl-NQ-RFz"/>
+                                    <constraint firstAttribute="trailing" secondItem="dMg-QM-o6D" secondAttribute="trailing" id="htY-WA-Ier"/>
+                                    <constraint firstItem="dMg-QM-o6D" firstAttribute="top" secondItem="fWv-VD-naH" secondAttribute="top" id="oIe-vR-OaK"/>
+                                    <constraint firstItem="dMg-QM-o6D" firstAttribute="leading" secondItem="fWv-VD-naH" secondAttribute="leading" id="oPo-hu-l91"/>
+                                    <constraint firstItem="QRF-4X-bD3" firstAttribute="top" secondItem="dMg-QM-o6D" secondAttribute="bottom" id="odX-Mb-3cU"/>
                                     <constraint firstItem="QRF-4X-bD3" firstAttribute="bottom" secondItem="fWv-VD-naH" secondAttribute="bottomMargin" id="snU-n3-uh2"/>
-                                    <constraint firstItem="hJN-Lm-QUS" firstAttribute="leading" secondItem="fWv-VD-naH" secondAttribute="leading" id="soP-pe-9Hw"/>
-                                    <constraint firstAttribute="trailing" secondItem="hJN-Lm-QUS" secondAttribute="trailing" id="vz2-kE-lPt"/>
+
                                     <constraint firstAttribute="trailing" secondItem="QRF-4X-bD3" secondAttribute="trailing" constant="10" id="wLZ-6J-3S8"/>
                                 </constraints>
                             </view>
@@ -191,6 +227,9 @@
                         </constraints>
                     </view>
                     <connections>
+
+                        <outlet property="VwEmptyOrderView" destination="es0-o4-40R" id="ggv-fk-OPQ"/>
+
                         <outlet property="collectionWishList" destination="QRF-4X-bD3" id="19F-LI-GOo"/>
                         <outlet property="viewMain" destination="fWv-VD-naH" id="puG-hd-mCO"/>
                     </connections>
@@ -201,7 +240,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart-7" width="24" height="24"/>
+
+        <image name="Back Button" width="24" height="24"/>
+        <image name="EmptyOrder" width="200" height="200"/>
+        <image name="WishList -k" width="24" height="24"/>
+
         <namedColor name="AppColor">
             <color red="0.84313725490196079" green="0.82745098039215681" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

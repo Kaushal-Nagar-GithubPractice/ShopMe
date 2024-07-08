@@ -8,12 +8,18 @@
 import UIKit
 import SVProgressHUD
 
-class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-        
+
+class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ReloadCollectionView {
+    
     var ShopProducts = [wishlist_Products]()
+    var wishlistViewModel = WishlistViewModel()
+    
+    @IBOutlet weak var VwEmptyOrderView: UIView!
     
     @IBOutlet weak var viewMain: UIView!
     @IBOutlet weak var collectionWishList: UICollectionView!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,27 +28,27 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
     }
 
     
-    //MARK: APPLICATION DELEGATE METHODS
-   
-    
     override func viewWillAppear(_ animated: Bool) {
-        SVProgressHUD.setDefaultMaskType(.black)
         
-        self.tabBarController?.tabBar.isHidden = false
-        self.collectionWishList.showsVerticalScrollIndicator = false
-
+        SetUI()
 //        setUpMenuButton(isScroll: true)
 //        collectionWishList.reloadData()
 
-        callWishlistAPI(url: Constant.wishlistGet)
+        callWishlistAPI(url: Constant.Get_Wishlist_URL)
 
-        
-        
     }
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
             self.collectionWishList?.reloadData()
         }
+    }
+
+
+    //MARK: ALL IBACTIONS
+    
+    
+    @IBAction func OnClickCloseWishlist(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
 
     //MARK: COLLECTIONVIEW DELEGATE METHODS
@@ -55,11 +61,17 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
         let product = ShopProducts[indexPath.row]
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "wishListCVCell", for: indexPath) as! wishListCVCell
-        cell.imgProduct.setImage(imgUrl: product.images?.first ?? "" , imgView: cell.imgProduct)
+
+        
+        cell.imgProduct.SetImageWithKingFisher(ImageUrl: product.images?.first ?? "", imageView: cell.imgProduct)
         cell.lblProductName.text =  product.productName
         cell.lblPrice.text =  "$ \(product.price ?? 123)"
         cell.lblStrikePrice.isHidden = true
-        
+        cell.btnWishList.tintColor = .systemRed
+        cell.btnWishList.tag = indexPath.item
+        cell.WishlistProducts = ShopProducts
+        cell.delegate = self
+
         
         print("====>.....pname---",product.productName)
        
@@ -95,28 +107,58 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
 //        navigationController?.navigationBar.prefersLargeTitles = false
 //    }
     
+
+    func SetUI(){
+        self.tabBarController?.tabBar.isHidden = false
+        SVProgressHUD.setDefaultMaskType(.black)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    func UpdateUIData(){
+        self.collectionWishList.reloadData()
+        
+        if ShopProducts.count == 0{
+            VwEmptyOrderView.isHidden = false
+            collectionWishList.isHidden = true
+        }
+        else{
+            VwEmptyOrderView.isHidden = true
+            collectionWishList.isHidden = false
+        }
+    }
+
     
     func callWishlistAPI(url : String){
         
         SVProgressHUD.show()
-        let request  = APIRequest(isLoader: true, method: HTTPMethods.get, path: url, headers: HeaderValue.headerWithToken.value, body: nil)
+
         
-        WishlistViewModel().getWishlistData(request: request) { response in
+        let request  = APIRequest(isLoader: true, method: .get, path: url, headers: HeaderValue.headerWithToken.value, body: nil)
+        
+        wishlistViewModel.getWishlistData(request: request) { response in
             print("====> api respp ===>",response)
             
             if response.success == true {
+                self.ShopProducts = response.data?.products ?? []
                 DispatchQueue.main.async {
-                    self.ShopProducts = response.data?.products ?? []
-                    self.collectionWishList.reloadData()
+                    self.UpdateUIData()
+
                     SVProgressHUD.dismiss()
                 }
             }else{
                 print("resposne failed in wishlist=====>")
             }
+
+            SVProgressHUD.dismiss()
         } error: { error in
             print("===>Api error ===>", error)
+            SVProgressHUD.dismiss()
         }
 
+    }
+    
+    func ReloadCollectionView() {
+        callWishlistAPI(url: Constant.Get_Wishlist_URL)
     }
 
 

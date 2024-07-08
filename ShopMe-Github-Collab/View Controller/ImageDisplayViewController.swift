@@ -39,7 +39,8 @@ class ImageDisplayViewController: UIViewController, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageDisplayCollectionViewCell", for: indexPath) as! ImageDisplayCollectionViewCell
-        cell.imgView.image = UIImage(named: arrImageDisplay[indexPath.row])
+        
+        cell.imgView.setImageWithURL(url: arrImageDisplay[indexPath.row], imageView: cell.imgView)
 //        cell.viewImage.backgroundColor = .systemGray5
 //        cell.viewImage.layer.cornerRadius = 25
         return cell

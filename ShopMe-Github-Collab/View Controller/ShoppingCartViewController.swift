@@ -51,7 +51,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.tabBarController?.tabBar.isHidden = false
         
         checkCart()
-        
     }
 
     
@@ -74,6 +73,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             self.present(alert, animated: true, completion: nil)
 
         }else{
+
             var newProductArr: [Any] = []
             
             for product in productArr {
@@ -83,6 +83,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             
             let productsDict:[String : Any] = ["product": newProductArr]
             updateCartOnCheckout(prod_arr: productsDict)
+
+          
         }
 
     }
