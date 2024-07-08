@@ -54,7 +54,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
         
-        cartItemArray = UserDefaults.standard.array(forKey: "MyCart") as! [[String:String]]
+//        cartItemArray = UserDefaults.standard.array(forKey: "MyCart") as! [[String:String]]
         CartListTableView.reloadData()
         if cartItemArray.count == 0{
             CartListTableView.isHidden = true
@@ -92,7 +92,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             self.navigationController?.pushViewController(checkoutVC, animated: true)
         }else{
             showAlert(title: "Alert", message: "Please First select product to checkout.")
-            
         }
         
     }
