@@ -8,7 +8,7 @@
 import UIKit
 
 class wishListCVCell: UICollectionViewCell {
-    
+
     var IsWishList = false
     @IBOutlet weak var viewProduct: UIView!
     @IBOutlet weak var imgProduct: UIImageView!
@@ -16,13 +16,16 @@ class wishListCVCell: UICollectionViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var lblStrikePrice: UILabel!
     @IBOutlet weak var btnWishList: UIButton!
+
     var delegate : ReloadCollectionView?
     
     var WishlistProducts : [wishlist_Products] = []
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
+
         let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: "$199.00")
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
         
@@ -31,6 +34,7 @@ class wishListCVCell: UICollectionViewCell {
         viewProduct.layer.masksToBounds = true
         viewProduct.backgroundColor = UIColor.systemGray5
         
+
     }
     @IBAction func onClickWishList(_ sender: Any) {
         print("Delete product from wishlist")

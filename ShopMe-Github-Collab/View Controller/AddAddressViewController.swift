@@ -13,7 +13,8 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     var isExpand:Bool = false
     
     // MARK: - IBOutlets
-    @IBOutlet weak var tfFullName: UITextField!
+    @IBOutlet weak var tfFirstName: UITextField!
+    @IBOutlet weak var tfLastName: UITextField!
     @IBOutlet weak var tfPhoneNumber: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
     @IBOutlet weak var tfAddressline1: UITextField!
@@ -28,8 +29,8 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var textFields: [UITextField] {
-            return [tfFullName, tfPhoneNumber, tfEmail, tfAddressline1,tfAddressline2,tfCity,tfState,tfCountry,tfZipCode]
-        }
+        return [tfFirstName,tfLastName, tfPhoneNumber, tfEmail, tfAddressline1,tfAddressline2,tfCity,tfState,tfCountry,tfZipCode]
+    }
     // MARK: - View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,11 +51,8 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     }
     
     func setUi(){
-    
-        viewHeader.clipsToBounds = true
-//        viewHeader.layer.cornerRadius = 15
-//        viewHeader.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner ]
         
+        viewHeader.clipsToBounds = true
         btnSaveAddress.clipsToBounds = true
         btnSaveAddress.layer.cornerRadius = 10
     }
@@ -63,16 +61,16 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-          
+    
     @objc private func keyboardWillShow(notification: NSNotification){
         guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         scrollView.contentInset.bottom = view.convert(keyboardFrame.cgRectValue, from: nil).size.height + 50
     }
-
+    
     @objc private func keyboardWillHide(notification: NSNotification){
         scrollView.contentInset.bottom = 0
     }
-
+    
     
     // MARK: - IBActions
     
@@ -82,12 +80,18 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onClickSaveAddress(_ sender: Any) {
         
-        if ( tfFullName.text! == "" || tfPhoneNumber.text! == "" || tfEmail.text! == "" || tfAddressline1.text! == "" || tfAddressline2.text! == "" || tfCity.text! == "" || tfState.text! == "" || tfCountry.text! == "" || tfZipCode.text! == ""){
+        if ( tfFirstName.text! == "" || tfLastName.text! == "" || tfPhoneNumber.text! == "" || tfEmail.text! == "" || tfAddressline1.text! == "" || tfAddressline2.text! == "" || tfCity.text! == "" || tfState.text! == "" || tfCountry.text! == "" || tfZipCode.text! == ""){
             
             showAlert(title: "Alert", message: "Please provide the necessary details.")
+        }else if (!isValidEmail(email: tfEmail.text ?? "")) {
+            showAlert(title: "Please provide Valid Email Address!", message: "")
+        }else if(tfPhoneNumber.text?.count != 10){
+            showAlert(title: "Mobile number lenght should be 10!", message: "")
         }else{
-            let AddressDict = ["CustomerName":"\(tfFullName.text!)", "fullAddress":"\(tfAddressline1.text!),\(tfAddressline2.text!),\(tfCity.text!),\(tfState.text!),\(tfZipCode.text!)","Mobile":"\(tfPhoneNumber.text!)"]
-            delegatePassAddress?.sendAddresToPreviousVc(addrsArr: AddressDict)
+            let AddressDict:[String:Any] = ["firstName":tfFirstName.text!, "lastName": tfLastName.text! , "mobileNo" : tfPhoneNumber.text! ,"email": tfEmail.text!, "addressLine1": tfAddressline1.text! ,"addressLine2": tfAddressline2.text! ,"country": tfCountry.text! ,"city": tfCity.text! ,"state": tfState.text! ,"zipcode" : Int(tfZipCode.text!) ?? 1111]
+            
+            
+            delegatePassAddress?.sendAddresToPreviousVc(addressDict: AddressDict)
             
             self.navigationController?.popViewController(animated: true)
         }
@@ -107,5 +111,5 @@ extension UIViewController {
 }
 
 protocol SendAddress {
-    func sendAddresToPreviousVc( addrsArr: [String:String])
+    func sendAddresToPreviousVc( addressDict : [String:Any])
 }

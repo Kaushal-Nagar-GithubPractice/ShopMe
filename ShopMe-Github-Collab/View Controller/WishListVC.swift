@@ -8,6 +8,7 @@
 import UIKit
 import SVProgressHUD
 
+
 class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ReloadCollectionView {
     
     var ShopProducts = [wishlist_Products]()
@@ -18,13 +19,14 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
     @IBOutlet weak var viewMain: UIView!
     @IBOutlet weak var collectionWishList: UICollectionView!
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionWishList.dataSource = self
         collectionWishList.delegate = self
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -41,13 +43,14 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
         }
     }
 
+
     //MARK: ALL IBACTIONS
     
     
     @IBAction func OnClickCloseWishlist(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    
+
     //MARK: COLLECTIONVIEW DELEGATE METHODS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -58,6 +61,7 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
         let product = ShopProducts[indexPath.row]
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "wishListCVCell", for: indexPath) as! wishListCVCell
+
         
         cell.imgProduct.SetImageWithKingFisher(ImageUrl: product.images?.first ?? "", imageView: cell.imgProduct)
         cell.lblProductName.text =  product.productName
@@ -67,6 +71,7 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
         cell.btnWishList.tag = indexPath.item
         cell.WishlistProducts = ShopProducts
         cell.delegate = self
+
         
         print("====>.....pname---",product.productName)
        
@@ -102,6 +107,7 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
 //        navigationController?.navigationBar.prefersLargeTitles = false
 //    }
     
+
     func SetUI(){
         self.tabBarController?.tabBar.isHidden = false
         SVProgressHUD.setDefaultMaskType(.black)
@@ -120,10 +126,12 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
             collectionWishList.isHidden = false
         }
     }
+
     
     func callWishlistAPI(url : String){
         
         SVProgressHUD.show()
+
         
         let request  = APIRequest(isLoader: true, method: .get, path: url, headers: HeaderValue.headerWithToken.value, body: nil)
         
@@ -134,11 +142,13 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
                 self.ShopProducts = response.data?.products ?? []
                 DispatchQueue.main.async {
                     self.UpdateUIData()
+
                     SVProgressHUD.dismiss()
                 }
             }else{
                 print("resposne failed in wishlist=====>")
             }
+
             SVProgressHUD.dismiss()
         } error: { error in
             print("===>Api error ===>", error)

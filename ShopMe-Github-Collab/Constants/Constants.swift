@@ -12,6 +12,16 @@ let contentTypeUrlJSON =  "application/json"
 let API_BASE_URL = "https://shoppingcart-api.demoserver.biz"
 
 class Constant {
+
+    //Prasiddh's Urls
+    static let API_BASE_URL = "https://shoppingcart-api.demoserver.biz"
+    static let getUserCart =  "\(API_BASE_URL)/cart"
+    static let deleteProductFromCart = "\(API_BASE_URL)/cart"
+    static let checkoutOrder = "\(API_BASE_URL)/order/checkout"
+    
+    static let wishlistGet = "\(API_BASE_URL)/wishlist/"
+
+    //Himanshu's URLs
     static let GET_PRODUCT_LIST = API_BASE_URL + "/product/list"
     static let GET_CATEGORY_LIST = API_BASE_URL + "/category/list"
     static let GET_RELATED_LIST = API_BASE_URL + "/product/related/"
@@ -25,9 +35,6 @@ class Constant {
     static let ADD_TO_WHISLIST = API_BASE_URL + "/wishlist/"
     static let GET_CATEGORY_PRODUCTS = API_BASE_URL + "/product/list?categoryId="
 
-
-
-    
     //Kaushal's URLs
     static let Register_User_URl = API_BASE_URL + "/user/registration"
     static let Login_User_URl = API_BASE_URL + "/user/login"
@@ -39,5 +46,6 @@ class Constant {
     static let Get_Wishlist_URL = API_BASE_URL + "/wishlist/"
     static let Delete_Product_From_Wishlist_URL = API_BASE_URL + "/wishlist/"
     static let Change_Pass_URl = API_BASE_URL + "/user/changePassword"
+
 
 }

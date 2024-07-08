@@ -11,8 +11,12 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     
     var priceOfItems: Int = 0
     var totalAmount: Int = 0
-    var customerAddress = [String:String]()
-    var myOrderArray = [ [String:String] ]()
+    var customerAddress = [String:Any]()
+    var myOrderArray = [cart_Products]()
+    var discount:Int = 0
+    var fullName = ""
+    var fullAddress = ""
+    var paymentMode = ""
     
     // MARK: - IBOutlets
     @IBOutlet weak var productTableView: UITableView!
@@ -25,6 +29,7 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var lblDiscount: UILabel!
     @IBOutlet weak var lblTotalPrice: UILabel!
     @IBOutlet weak var btnChnageAddress: UIButton!
+    @IBOutlet weak var viewAddress: UIView!
     
     //    radio buttons
     @IBOutlet weak var btnPaypal: UIButton!
@@ -36,28 +41,26 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //        UserDefaults.standard.set(true, forKey: "IsRedirect")
         productTableView.delegate = self
         productTableView.dataSource = self
         
-//        let Dict : [[NSDictionary]] = [[]]
-//        UserDefaults.standard.set(Dict, forKey: "MyOrder")
-        
-        //default value for test
-        customerAddress = ["CustomerName": "John Carter","fullAddress":"sola gam,SG Highway,Ahmedabad, gujarat - 320001", "Mobile":"9009088877"]
-        
-        lblDiscount.text = String(priceOfItems*12/100)
-        
-        updateTableViewHeight()
-        
+        self.lblAddress.text = ""
+        self.lblCustomerName.text = ""
+        self.lblMobileNumber.text = ""
+        lblDiscount.text = String(priceOfItems * discount/100)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-        lblCustomerName.text = customerAddress["CustomerName"]
-        lblAddress.text = customerAddress["fullAddress"]
-        lblMobileNumber.text = customerAddress["Mobile"]
         
+        setUi()
+        setProductBill()
+        setRadioButton()
+        updateTableViewHeight()
+    }
+    
+    func setUi(){
         
         btnChnageAddress.layer.borderColor = UIColor.gray.cgColor
         btnChnageAddress.layer.cornerRadius = 5
@@ -68,8 +71,6 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         btnPlaceOrder.layer.cornerRadius = 8
         btnPlaceOrder.layer.masksToBounds = true
         
-        setProductBill()
-        setRadioButton()
     }
     
     // MARK: - IBActions
@@ -101,29 +102,37 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction func onClickPlaceOrder(_ sender: Any) {
-//        let StatusArr = ["Placed","Cancelled"]
-//        let Status = StatusArr.randomElement() as! String
         
-        let currentdate = Date.getCurrentDate()
-        // navigate to place order screen
-        let orderDetailsDict = ["Date":"\(currentdate)", "TotalItem":"\(myOrderArray.count)", "TotalAmount":"\(totalAmount)","Status":"Placed"]
+        if !UserDefaults.standard.bool(forKey: "IsRedirect"){
+            let alert = UIAlertController(title: "To Place Order You Must be Logged in!", message: "" , preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Login", style: UIAlertAction.Style.default, handler: { (action) -> Void in
+                let storyBoard = UIStoryboard(name: "Authentication", bundle: self.nibBundle)
+                
+                let loginVc = storyBoard.instantiateViewController(withIdentifier: "LoginScreenVC") as! LoginScreenVC
+                self.navigationController?.pushViewController(loginVc, animated: true)
+            } ))
+            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+            alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        if customerAddress.isEmpty{
+            showAlert(title: "Please Select Delivery Address!", message: "")
+            return
+        }
         
         if btnPaypal.isSelected || btnDirectCheck.isSelected || btnBankTransfer.isSelected  {
-//            showAlert(title: "Success", message: "Order Placed Successfully.")
-            NavigateToOrderVc(Dict:orderDetailsDict)
+            let paymentMode = getPaymentMode()
+            let orderDetails = ["billingAddress": customerAddress, "paymentMethod": paymentMode ,"shippingCharge": 100] as [String : Any]
+            
+            callCheckoutApi(url: Constant.checkoutOrder ,method: .post, body: orderDetails)
         }else{
             showAlert(title: "Alert", message: "Please select Payment Mode.")
         }
         
-//        var MyOrder = orderDetailsArr
-//        var PreviousOrder = UserDefaults.standard.object(forKey: "MyOrder") as! Array<Any>
-//        var CurrentArr = PreviousOrder.append(MyOrder)
-//        UserDefaults.standard.set(CurrentArr, forKey: "MyOrder")
-//        orderVC.MyOrderArr.apend(orderDetailsArr)
-//        print("========",UserDefaults.standard.object(forKey: "MyOrder"))
-        
     }
- 
+    
     // MARK: - Tableview Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -132,11 +141,19 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let cell = productTableView.dequeueReusableCell(withIdentifier: "OrderedItemTableViewCell", for: indexPath) as! OrderedItemTableViewCell
-        cell.imgProduct.image = UIImage(named: "\(myOrderArray[indexPath.row]["img"]!)")
-        cell.lblProductName.text = myOrderArray[indexPath.row]["Name"]
-        cell.lblProductQuantity.text = myOrderArray[indexPath.row]["TotalItem"]
-        cell.lblPrice.text = myOrderArray[indexPath.row]["Price"]
+        let index = indexPath.row
+        if myOrderArray[index].images?.count != 0 {
+            // set image using kingfisher
+            UIImageView().setImage(imgUrl: myOrderArray[index].images?[0] ?? "", imgView: cell.imgProduct)
+        }else{
+            cell.imgProduct.image = UIImage(named: "Placeholder")
+        }
+        cell.lblProductName.text = myOrderArray[index].productName!
+        cell.lblProductQuantity.text = "\(myOrderArray[index].quantity!)"
+        cell.lblPrice.text = "\(myOrderArray[index].totalProductPrice!)"
         return cell
     }
     
@@ -156,57 +173,79 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         btnBankTransfer.setImage(UIImage.init(named: "radio-button-selected"), for: .selected)
     }
     
+    func getPaymentMode() -> String {
+        if btnPaypal.isSelected == true {
+            return (btnPaypal.titleLabel?.text)!
+        }else if btnDirectCheck.isSelected == true {
+            return (btnDirectCheck.titleLabel?.text)!
+        }else if btnBankTransfer.isSelected == true {
+            return (btnBankTransfer.titleLabel?.text)!
+        }
+        return ""
+    }
+    
     func setProductBill(){
+        
         lblItemsCount.text = "\(myOrderArray.count) items"
         lblItemsPrice.text = "\(priceOfItems)"
         totalAmount =  priceOfItems - Int(lblDiscount.text!)!
         lblTotalPrice.text = String(totalAmount)
         
     }
+    
     //set table dynamic height
     func updateTableViewHeight() {
         productTableView.layoutIfNeeded()
-        heightTableView.constant = productTableView.contentSize.height
+        heightTableView.constant = CGFloat(myOrderArray.count * 118)
     }
     
-    func passAddressToCheckout(address: [String : String]) {
+    func passAddressToCheckout(address: [String : Any]) {
         customerAddress = address
+        setAddress()
     }
     
-    func NavigateToOrderVc(Dict:[String:String]){
+    func setAddress(){
+        fullName = "\(customerAddress["firstName"] ?? "") \(customerAddress["lastName"] ?? "")"
+        fullAddress = "\(customerAddress["addressLine1"] ?? ""),\(customerAddress["addressLine2"] ?? ""),\(customerAddress["city"] ?? ""),\(customerAddress["state"] ?? ""),\(customerAddress["country"] ?? "") -\(customerAddress["zipcode"] ?? 0)"
         
-        var CurrentMyOrder = UserDefaults.standard.array(forKey: "MyOrder") as! Array<Dictionary<String,String>>
-        CurrentMyOrder.insert(Dict, at: 0)
-        UserDefaults.standard.set(CurrentMyOrder, forKey: "MyOrder")
-        
-        var MyOrderArr = UserDefaults.standard.array(forKey: "MyOrder") as!  Array<Dictionary<String, String>>
-        print(MyOrderArr)
-        
-        UserDefaults.standard.set([], forKey: "MyCart")
-        
-        self.navigationController?.popViewController(animated: true)
-
-        let alert = UIAlertController(title: "Order Placed Successfully !", message: "" , preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 0)
-        } ))
+        lblCustomerName.text = fullName
+        lblAddress.text = fullAddress
+        lblMobileNumber.text = "\(customerAddress["mobileNo"] ?? "")"
+    }
     
+    func NavigateToOrderVc(){
+        let alert = UIAlertController(title: "Order placed Successfully!", message: "" , preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default,handler: {(action:UIAlertAction!) in
+            //            self.tabBarController?.selectedIndex = 0
+            self.navigationController?.popViewController(animated: true)
+        }))
         alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
         alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
         alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
         self.present(alert, animated: true, completion: nil)
- 
     }
     
-}
-
-extension Date {
-
- static func getCurrentDate() -> String {
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM yyyy"
-        return dateFormatter.string(from: Date())
+    
+    //MARK: - API CALL
+    
+    func callCheckoutApi(url: String ,method: HTTPMethods, body: [String:Any]){
+        
+        let request = APIRequest(isLoader: true, method: method, path: url, headers: HeaderValue.headerWithToken.value, body: body)
+        let checkoutViewModel = AddProductsOnChekoutViewModel()
+        
+        checkoutViewModel.addproductOnCheckout(request: request) { response in
+            
+            DispatchQueue.main.async {
+                if response.success == true {
+                    self.NavigateToOrderVc()
+                }else{
+                    self.showAlert(title: "Order failed!!", message: "\(response.message!)")
+                }
+            }
+        } error: { error in
+            print("===> error during checkout ===>",error)
+        }
+        
     }
+    
 }

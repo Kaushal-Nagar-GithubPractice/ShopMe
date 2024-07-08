@@ -21,6 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fWv-VD-naH">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
+
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMg-QM-o6D">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                         <subviews>
@@ -52,6 +53,7 @@
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QRF-4X-bD3">
+
                                         <rect key="frame" x="10" y="50" width="373" height="701"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vpQ-yi-yaq">
@@ -121,13 +123,16 @@
                                                                     </constraints>
                                                                     <color key="tintColor" name="Custom Black"/>
                                                                     <state key="normal" title="Button"/>
+
                                                                     <buttonConfiguration key="configuration" style="plain" image="WishList -k"/>
+
                                                                     <connections>
                                                                         <action selector="onClickWishList:" destination="enC-gO-zgs" eventType="touchUpInside" id="eOG-z5-iyw"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="275" id="7JB-1d-agq"/>
                                                                 <constraint firstAttribute="width" constant="210" id="9IH-hX-th2"/>
@@ -166,6 +171,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+
                                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="es0-o4-40R" userLabel="viewEmptyOrder">
                                         <rect key="frame" x="0.0" y="50" width="393" height="709"/>
                                         <subviews>
@@ -206,6 +212,7 @@
                                     <constraint firstItem="dMg-QM-o6D" firstAttribute="leading" secondItem="fWv-VD-naH" secondAttribute="leading" id="oPo-hu-l91"/>
                                     <constraint firstItem="QRF-4X-bD3" firstAttribute="top" secondItem="dMg-QM-o6D" secondAttribute="bottom" id="odX-Mb-3cU"/>
                                     <constraint firstItem="QRF-4X-bD3" firstAttribute="bottom" secondItem="fWv-VD-naH" secondAttribute="bottomMargin" id="snU-n3-uh2"/>
+
                                     <constraint firstAttribute="trailing" secondItem="QRF-4X-bD3" secondAttribute="trailing" constant="10" id="wLZ-6J-3S8"/>
                                 </constraints>
                             </view>
@@ -220,7 +227,9 @@
                         </constraints>
                     </view>
                     <connections>
+
                         <outlet property="VwEmptyOrderView" destination="es0-o4-40R" id="ggv-fk-OPQ"/>
+
                         <outlet property="collectionWishList" destination="QRF-4X-bD3" id="19F-LI-GOo"/>
                         <outlet property="viewMain" destination="fWv-VD-naH" id="puG-hd-mCO"/>
                     </connections>
@@ -231,9 +240,11 @@
         </scene>
     </scenes>
     <resources>
+
         <image name="Back Button" width="24" height="24"/>
         <image name="EmptyOrder" width="200" height="200"/>
         <image name="WishList -k" width="24" height="24"/>
+
         <namedColor name="AppColor">
             <color red="0.84313725490196079" green="0.82745098039215681" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
