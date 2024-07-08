@@ -292,7 +292,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     //MARK: Protocol  METHODS
     func onClickApplyFilter(dict: FilterDictModel) {
         searchBar.text = ""
-        print(dict)
+//        print(dict)
         flagForPgCntFilterPrdt = true
         if !(dict.minPrice == 0) {
             filterUrl += "&minPrice="+"\(dict.minPrice)"
@@ -300,10 +300,10 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         if !(dict.maxPrice == 0) {
             filterUrl += "&maxPrice="+"\(dict.maxPrice)"
         }
-        if !(dict.size.isEmpty) {
+        if !(dict.size == [""]) {
             filterUrl += "&size="+"\(dict.size)"
         }
-        if !(dict.color.isEmpty) {
+        if !(dict.color == [""]) {
             filterUrl += "&color="+"\(dict.color)"
         }
         print(filterUrl)

@@ -149,12 +149,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 self.productArr[indexPath.row].quantity = itemCount-1
                 let lblPrice = (self.productArr[indexPath.row].price! * self.productArr[indexPath.row].quantity!)
                 self.productArr[indexPath.row].totalProductPrice = lblPrice
-                cell.btnIncrease.isEnabled = true
                 cell.btnIncrease.backgroundColor = UIColor(named: "btnQty")
                 self.CartListTableView.reloadData()
+                cell.btnIncrease.isEnabled = true
                 
             }else{
-                cell.btnDecrease.isEnabled = true
+                cell.btnDecrease.isEnabled = false
                 cell.btnDecrease.backgroundColor = UIColor.systemGray5
             }
          

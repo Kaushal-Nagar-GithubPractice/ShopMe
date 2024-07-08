@@ -98,6 +98,7 @@ struct APIClient {
     typealias APIClientCompletion = (APIResult<Data?>) -> Void
     private let session = URLSession.shared
     func perform(_ request: APIRequest, _ complation: @escaping (Data?, NSError?) -> Void) {
+        print(request.path)
         var urlRequest = URLRequest(url: URL(string: request.path)!)
         urlRequest.httpMethod = request.method.rawValue
         if request.body != nil {

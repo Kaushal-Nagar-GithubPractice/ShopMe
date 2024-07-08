@@ -120,8 +120,12 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     }
     @IBAction func onClickAddToWishList(_ sender: Any) {
         if isWishlist{
-            isWishlist = false
-            btnWishList()
+            let URL = Constant.Delete_Product_From_Wishlist_URL + productID
+            
+            let request  = APIRequest(isLoader: true, method: .delete, path: URL, headers: HeaderValue.headerWithToken.value, body: nil)
+            
+            CallAPIToDeleteProductFromWishlist(request: request)
+            
         }
         else{
             if UserDefaults.standard.bool(forKey: "IsRedirect"){
@@ -435,6 +439,8 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         ProductAddToCartViewModel.ApiAddToCart.getAddToCartData(request: request) { [self] response in
 //            print("----------------",response,"-------------------------")
             DispatchQueue.main.async {
+//                Quantity = 1
+//                lblQuantity = ""
                 self.btnQuantityAdd.isEnabled = false
                 btnQuantityMinus.isEnabled = false
             }
@@ -444,6 +450,22 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     }
     
     //MARK: User Defined Methods
+    
+    func CallAPIToDeleteProductFromWishlist(request: APIRequest){ APIClient().perform(request)
+        { (data,Error) in
+        if let data = data {
+            DispatchQueue.main.async {
+                self.isWishlist = false
+                self.btnWishList()
+                
+                self.ShowAlertBox(Title: "Confirmation", Message: "Removed From Wishlist Successfully !!")
+            }
+        } else {
+            
+        }
+    }
+    }
+    
     func isProductAddedtoCart(){
         let FoundItem = cartItems.filter( { $0.productId == selectedProduct?._id})
         print(FoundItem)
@@ -472,17 +494,21 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             addToWishlist.tintColor = .red
         }
         else{
-            addToWishlist.tintColor = .black
+            addToWishlist.tintColor = .systemGray2
         }
     }
     
     func isSelectedSizeColorInCart(){
         if ColorsInCart.contains(SelectedColor) && SizesInCArt.contains(SelectedSize) {
             isAddedtoCart = true
+            btnQuantityAdd.isEnabled = false
+            btnQuantityMinus.isEnabled = false
             btnAddtoCart.setTitle(" Go to Cart", for: .normal)
         }
         else{
             isAddedtoCart = false
+            btnQuantityAdd.isEnabled = true
+            btnQuantityMinus.isEnabled = true
             btnAddtoCart.setTitle(" Add to Cart", for: .normal)
         }
     }
@@ -559,7 +585,7 @@ extension DetailsScreenVC : UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserReviewsTableViewCell", for: indexPath) as! UserReviewsTableViewCell
         cell.btnRatings.setTitle("   \(ArrReview[indexPath.row].rating ?? 5)", for: .normal)
         cell.lblUsername.text = ArrReview[indexPath.row].name
-        cell.lblUserReview.text = "   \(ArrReview[indexPath.row].review)"
+        cell.lblUserReview.text = "   \(ArrReview[indexPath.row].review ?? "")"
         return cell
     }
     
