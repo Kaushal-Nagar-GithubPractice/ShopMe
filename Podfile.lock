@@ -1,26 +1,34 @@
 PODS:
+  - Cosmos (25.0.1)
   - Kingfisher (7.11.0)
+  - ReachabilitySwift (5.2.3)
   - SVProgressHUD (2.3.1):
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
-  - SwiftyStarRatingView (1.0.4)
+  - SwiftRangeSlider (2.0.0)
 
 DEPENDENCIES:
+  - Cosmos
   - Kingfisher
+  - ReachabilitySwift
   - SVProgressHUD
-  - SwiftyStarRatingView
+  - SwiftRangeSlider
 
 SPEC REPOS:
   trunk:
+    - Cosmos
     - Kingfisher
+    - ReachabilitySwift
     - SVProgressHUD
-    - SwiftyStarRatingView
+    - SwiftRangeSlider
 
 SPEC CHECKSUMS:
+  Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
+  ReachabilitySwift: 7f151ff156cea1481a8411701195ac6a984f4979
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
-  SwiftyStarRatingView: a2b0057700e0adeb8e7442c55d99cb53b531d2f4
+  SwiftRangeSlider: f86e3b637c961120158fa1a89277c8343845cbe4
 
-PODFILE CHECKSUM: 838184a21f7dcf78c51aae0813adc4e83a917ae4
+PODFILE CHECKSUM: eb22ef3f5accade23375e5047ba3257937bc03d7
 
 COCOAPODS: 1.15.2

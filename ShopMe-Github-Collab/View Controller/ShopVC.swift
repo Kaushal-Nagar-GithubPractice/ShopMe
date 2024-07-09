@@ -6,21 +6,30 @@
 //
 
 import UIKit
-protocol changesInTransition {
-    func viewwillTranition(size: CGSize)
-}
-class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
-   
-    
+import SVProgressHUD
+
+class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UISearchBarDelegate, SelectedFilter {
+//    var isFirstTimeApiCall = true
+    var flagForPgCntFilterPrdt = false
+    var pageForFilterPdt = 1
+    var isSearchBarEmpty = true
     @IBOutlet weak var ViewMain: UIView!
-    var arrData = [ProductModel]()
-    var filterData = [ProductModel]()
+    var MainArr  = [Product_Data]()
+    var filterData = [Products]()
     @IBOutlet weak var searchBar: UISearchBar!
-    var arrProductImages = ["product-1","product-2","product-3","product-4","product-5","product-6","product-7","product-8","product-9"]
-    var arrProductName = ["Camera","Tshirt","Lamp","Shoes","Drone","Watch","Top","Creams","Chair"]
-    var arrProductPrice = [599.00,59.00,123.00,89.00,1099.95,259.00,75.00,29.00,659.99]
+    var pageCountForSearchText = 1
+    var arrData = [Products]()
+    var allFilteresProduct = [Products]()
     @IBOutlet weak var collectionProducts: UICollectionView!
-    
+    var flagForEmptyProdCall = true
+    var pageCount = 1
+    var eneteredSearchText = ""
+    var color = [""]
+    var size = [""]
+    var filterUrl = ""
+    var ShopProducts = [Products]()
+    var dictFilters : FilterDictModel?
+
     
     //MARK: APPLICATION DELEGATE METHODS
     override func viewDidLoad() {
@@ -28,17 +37,26 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         collectionProducts.dataSource = self
         collectionProducts.delegate = self
         searchBar.delegate = self
-        setUpArrayProduct()
-        filterData = arrData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
+        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show()
+        self.tabBarController?.tabBar.isHidden = false
         self.collectionProducts.showsVerticalScrollIndicator = false
+        searchBar.text = ""
+        flagForEmptyProdCall = true
+        pageCount = 1
+        pageCountForSearchText = 1
+        isSearchBarEmpty = true
+        arrData = []
+        filterData = []
         setUpMenuButton(isScroll: true)
-//        self.navigationItem.title = "Shop"
-//        self.navigationController?.navigationBar.backgroundColor = .white
-        collectionProducts.reloadData()
+//        collectionProducts.reloadData()
+//        if isFirstTimeApiCall{
+            callApiProduct()
+//        }
+        
         
     }
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
@@ -47,62 +65,54 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         }
     }
     
-    
     //MARK: SEARCHBAR DELEGATE  METHODS
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-
+        
     }
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        var enteredText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-
+        let enteredText = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         if enteredText != "" {
-           
-            filterData = arrData.filter {$0.ProductName.lowercased().contains(enteredText.lowercased().trimmingCharacters(in: .whitespaces))
-
-            }
-        }else { self.filterData = self.arrData}
-        print(filterData,filterData.count)
-        collectionProducts.reloadData()
+            isSearchBarEmpty = false
+            
+        }
+        else{
+            isSearchBarEmpty = true
+            filterData = []
+            
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
+            self.callApiProduct(searchText:enteredText ?? "")
+        }
+        eneteredSearchText = enteredText ?? ""
+        
     }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
             searchBar.showsCancelButton = false
             searchBar.text = ""
             searchBar.resignFirstResponder()
     }
     
-    
-    
     //MARK: COLLECTIONVIEW DELEGATE METHODS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filterData.count
+            return ShopProducts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath) as! ProductsCollectionViewCell
-        print(filterData)
-        if filterData.isEmpty {
-            
-        }
-        else{
-            cell.imgProduct.image = UIImage(named: filterData[indexPath.row].imageName)
-            cell.lblProductName.text =  filterData[indexPath.row].ProductName
-            cell.lblPrice.text =  "$ \(filterData[indexPath.row].ProductPrice)"
+            cell.imgProduct.setImageWithURL(url: ShopProducts[indexPath.row].images?.first ?? " ", imageView: cell.imgProduct)
+            cell.lblProductName.text =  ShopProducts[indexPath.row].productName
+            cell.lblPrice.text =  "₹ \(ShopProducts[indexPath.row].price ?? 123)"
             cell.lblStrikePrice.isHidden = true
-        }
-       
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "DetailsScreenVC") as! DetailsScreenVC
-        vc.arrCategoryImage.insert(filterData[indexPath.row].imageName, at: 0)
-        vc.Price = "\(filterData[indexPath.row].ProductPrice)"
-        vc.ProductName = filterData[indexPath.row].ProductName
+            vc.productID = ShopProducts[indexPath.row]._id ?? ""
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -110,7 +120,28 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         return CGSize(width: collectionView.frame.width / 2 - 5, height: 285)
     }
     
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + self.view.frame.height - 150 >= collectionProducts.contentSize.height {
+                if flagForEmptyProdCall {
+                    if isSearchBarEmpty {
+                        pageCount += 1
+                        callApiProduct(searchText: "")
+                    }
+                    else{
+                        pageCountForSearchText += 1
+                        callApiProduct(searchText: eneteredSearchText)
+                    }
+                    if flagForPgCntFilterPrdt == true {
+                        pageForFilterPdt += 1
+                        callApiFilteredProduct(urlString: filterUrl)
+                    }
+                    
+                }
+            }
+        
+    }
     //MARK: USERDEFINED  METHODS
     
     func setUpMenuButton(isScroll : Bool){
@@ -124,45 +155,159 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
         navigationItem.rightBarButtonItem = barButton
         self.navigationItem.title = "Shop"
-//        let label = UILabel()
-//        label.text = "Shop"
-//        label.textAlignment = .center
-//        label.font = UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)
-//        self.navigationItem.titleView = label
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: label.superview, attribute: .centerX, multiplier: 1, constant: 0))
-//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .width, relatedBy: .equal, toItem: label.superview, attribute: .width, multiplier: 1, constant: 0))
-//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: label.superview, attribute: .centerY, multiplier: 1, constant: 10))
-//        label.superview?.addConstraint(NSLayoutConstraint(item: label, attribute: .height, relatedBy: .equal, toItem: label.superview, attribute: .height, multiplier: 1, constant: 0))
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)]
-
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
-    func setUpArrayProduct(){
-        for i in 0...arrProductName.count - 1{
-            arrData.append(ProductModel(imageName: arrProductImages[i], ProductName: arrProductName[i], ProductPrice: arrProductPrice[i]))
+    
+    func callApiProduct(searchText : String = ""){
+        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show()
+        if isSearchBarEmpty {
+            let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT_LIST+"?page=\(pageCount)&items=6", headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+            ProductViewModel.ApiProduct.getProductData(request: request) { response in
+                DispatchQueue.main.async {
+                    if response.data?.products?.isEmpty == true{
+                        print(response.status as Any,response.message as Any)
+                        self.flagForEmptyProdCall = false
+                        SVProgressHUD.dismiss()
+                        
+                    }
+                    else{
+                        self.arrData.append(contentsOf: response.data?.products ?? [])
+                        self.MainArr.append(response.data!)
+                        self.ShopProducts = self.arrData
+                        self.getSizeAndColor()
+                        print(self.arrData.count as Any)
+                        self.collectionProducts.reloadData()
+                        SVProgressHUD.dismiss()
+//                        self.isFirstTimeApiCall = true
+                    }
+                }
+            } error: { error in
+                print(error as Any)
+            }
         }
-        
+            else {
+            let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT_LIST+"?page=\(pageCountForSearchText)&items=8"+"&search="+searchText, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+            print("-----------------------",Constant.GET_PRODUCT_LIST+"?page=\(pageCountForSearchText)&items=8"+"&search="+searchText)
+                ProductViewModel.ApiProduct.getProductData(request: request) { response in
+                DispatchQueue.main.async {
+                    if response.data?.products?.isEmpty == true{
+                        if response.data?.products?.isEmpty == true && response.data?.page == 1 {
+                            SVProgressHUD.dismiss()
+                            self.ShowAlertBox(Title: "Alert", Message: "No Such Product Or Category found")
+                        }
+                        print(response.status as Any,response.message as Any)
+                        self.flagForEmptyProdCall = false
+                        SVProgressHUD.dismiss()
+                    }
+                    else{
+                        self.filterData = response.data?.products ?? []
+                        self.MainArr.append(response.data!)
+                        self.ShopProducts = self.filterData
+                        self.getSizeAndColor()
+                        print(self.filterData.count as Any)
+                        self.collectionProducts.reloadData()
+                        SVProgressHUD.dismiss()
+                    }
+                }
+            } error: { error in
+                print(error as Any)
+            }
+        }
+    }
+    
+    func callApiFilteredProduct(urlString : String){
+        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show()
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT_LIST+"?page=\(pageCountForSearchText)&items=8"+urlString, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        print("------------------------",Constant.GET_PRODUCT_LIST+"?page=\(pageCountForSearchText)&items=8"+urlString)
+        ProductViewModel.ApiProduct.getProductData(request: request) { response in
+            DispatchQueue.main.async {
+                if response.data?.products?.isEmpty == true{
+                    if response.data?.products?.isEmpty == true && response.data?.page == 1 {
+                        SVProgressHUD.dismiss()
+                        self.ShowAlertBox(Title: "Alert", Message: "No Such Product Or Category found")
+                        self.searchBar.text = ""
+                        self.isSearchBarEmpty = true
+                        self.callApiProduct()
+                    }
+                    print(response.status as Any,response.message as Any)
+                    self.flagForEmptyProdCall = false
+                    self.flagForPgCntFilterPrdt  = false
+                    SVProgressHUD.dismiss()
+                }
+                else{
+//                    print(response)
+                    self.allFilteresProduct.append(contentsOf: response.data?.products ?? [])
+                    print(self.allFilteresProduct,self.ShopProducts)
+                    self.ShopProducts = self.allFilteresProduct
+                    print(self.allFilteresProduct,self.ShopProducts)
+                    self.collectionProducts.reloadData()
+                    SVProgressHUD.dismiss()
+                }
+            }
+        } error: { error in
+            print(error)
+        }
+    }
+    
+    func getSizeAndColor(){
+        color = []
+        size = []
+        for i in 0..<(MainArr.first?.products?.count ?? 0){
+            for j in 0..<(MainArr.first?.products?[i].colors?.count ?? 0){
+                if !(color.contains(MainArr.first?.products?[i].colors?[j] ?? "")) {
+                    color.append(MainArr.first?.products?[i].colors?[j] ?? "")
+                }
+            }
+            for k in 0..<(MainArr.first?.products?[i].size?.count ?? 0){
+                if !(size.contains(MainArr.first?.products?[i].size?[k] ?? "")){
+                    size.append(MainArr.first?.products?[i].size?[k] ?? "")
+                }
+            }
+        }
     }
     //MARK: OBJC  METHODS
 
     @objc func btnBackClicked(){
+        searchBar.text = ""
         let vc = UIStoryboard(name: "ShopStoryboard", bundle: nil).instantiateViewController(withIdentifier: "FilterVC") as! FilterVC
         vc.sheetPresentationController?.detents = [.medium()]
-//        vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .coverVertical
-//        let blurEffect = UIBlurEffect(style: .dark)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        view.addSubview(blurEffectView)
-//        view.sendSubviewToBack(blurEffectView)
+        vc.dictFilters = dictFilters
+        if dictFilters?.minPrice != 0 || dictFilters?.maxPrice != 0 || (dictFilters?.color != [""]) || (dictFilters?.size != [""]) {
+            vc.flagForAppliedFilter = true
+        }
+       
+        vc.minPrice = MainArr.first?.min_price ?? 0
+        vc.maxPrice = MainArr.first?.max_price ?? 1000
+        vc.arrSize = size
+        vc.arrColor = color
+        vc.delegate = self
         present(vc,animated:true)
         
-        
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
-
-
+    //MARK: Protocol  METHODS
+    func onClickApplyFilter(dict: FilterDictModel) {
+        searchBar.text = ""
+//        print(dict)
+        flagForPgCntFilterPrdt = true
+        if !(dict.minPrice == 0) {
+            filterUrl += "&minPrice="+"\(dict.minPrice)"
+        }
+        if !(dict.maxPrice == 0) {
+            filterUrl += "&maxPrice="+"\(dict.maxPrice)"
+        }
+        if !(dict.size == [""]) {
+            filterUrl += "&size="+"\(dict.size)"
+        }
+        if !(dict.color == [""]) {
+            filterUrl += "&color="+"\(dict.color)"
+        }
+        print(filterUrl)
+        dictFilters = dict
+        callApiFilteredProduct(urlString: filterUrl)
+    }
 }

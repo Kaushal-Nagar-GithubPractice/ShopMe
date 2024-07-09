@@ -26,6 +26,8 @@ class CartItemTableViewCell: UITableViewCell {
     @IBOutlet weak var btnIncrease: UIButton!
     @IBOutlet weak var btnRemoveItem: UIButton!
     @IBOutlet weak var lblTotalItemPrice: UILabel!
+    @IBOutlet weak var lblSize: UILabel!
+    @IBOutlet weak var lblColor: UILabel!
     var increaseQuantity: (() -> Void)?
     var decreaseQuantity: (() -> Void)?
     

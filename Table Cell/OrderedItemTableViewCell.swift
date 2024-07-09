@@ -20,6 +20,9 @@ class OrderedItemTableViewCell: UITableViewCell {
         
         viewOrderItem.layer.cornerRadius = 8
         viewOrderItem.layer.masksToBounds = true
+        
+        imgProduct.layer.cornerRadius = 10
+        imgProduct.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

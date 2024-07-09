@@ -34,19 +34,16 @@ class GetUserCartVM: NSObject {
                      error errorCallback: @escaping (Error?) -> Void){
         APIClient().perform(request) { (data,Error) in
             
-//            print("data in crtvm=======",data)
             if let data = data {
                 do {
                     
                     let json  = try? JSONSerialization.jsonObject(with: data)
-//                    print("JSON DAta------",json!)
                     let res = try JSONDecoder().decode(UserCartModel.self, from: data)
                     successCallback(res)
                 } catch {
                     errorCallback(Error)
                 }
             } else {
-//                print("error inside else====")
                 errorCallback(Error)
             }
         }
