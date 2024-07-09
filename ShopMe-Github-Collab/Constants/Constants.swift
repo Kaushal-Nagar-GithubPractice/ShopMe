@@ -20,6 +20,7 @@ class Constant {
     static let checkoutOrder = "\(API_BASE_URL)/order/checkout"
     
     static let wishlistGet = "\(API_BASE_URL)/wishlist/"
+    static let getCoupon = "\(API_BASE_URL)/coupon/"
 
     //Himanshu's URLs
     static let GET_PRODUCT_LIST = API_BASE_URL + "/product/list"

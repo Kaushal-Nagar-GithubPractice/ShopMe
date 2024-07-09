@@ -20,7 +20,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     var cartObj:cartData!
     var productArr = [cart_Products]()
     var loader = SVProgressHUD()
-    var shippingCharge = 100
+    var shippingCharge = 0
     var cartItemArray = [["img":"item-1","Name":"Canon camera","Price":"60000","TotalItem":"1"]]
     @IBOutlet weak var CartListTableView: UITableView!
     @IBOutlet weak var lblSubtotalPrice: UILabel!

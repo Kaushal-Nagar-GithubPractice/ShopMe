@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Kingfisher
+import SVProgressHUD
 
 extension Date {
 
@@ -48,5 +49,15 @@ extension UIImageView {
         
     }
 
+}
+
+extension UIViewController{
+    func customizeLoader(){
+        SVProgressHUD.setBackgroundColor(UIColor(named:"Custom Black - h")!)
+        SVProgressHUD.setForegroundColor(UIColor.black)
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.custom)
+        
+        SVProgressHUD.setDefaultMaskType(.black)
+    }
 }
 

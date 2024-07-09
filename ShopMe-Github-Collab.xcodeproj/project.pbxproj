@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C30383F92C3D37EF0004CCDB /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30383F82C3D37EF0004CCDB /* CouponModel.swift */; };
+		C30383FB2C3D38FF0004CCDB /* CouponViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30383FA2C3D38FF0004CCDB /* CouponViewModel.swift */; };
 		C30385262C35479D004978BD /* prasiddh'sExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30385252C35479D004978BD /* prasiddh'sExtension.swift */; };
 		C303852A2C356578004978BD /* AddToCartOnCheckoutViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30385292C356578004978BD /* AddToCartOnCheckoutViewmodel.swift */; };
 		C31219842C2944CF00D12067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219832C2944CF00D12067 /* AppDelegate.swift */; };
@@ -109,6 +111,8 @@
 
 /* Begin PBXFileReference section */
 		B176B6B1D9F8F829E25F288C /* Pods-ShopMe-Github-Collab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopMe-Github-Collab.debug.xcconfig"; path = "Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab.debug.xcconfig"; sourceTree = "<group>"; };
+		C30383F82C3D37EF0004CCDB /* CouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModel.swift; sourceTree = "<group>"; };
+		C30383FA2C3D38FF0004CCDB /* CouponViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewModel.swift; sourceTree = "<group>"; };
 		C30385252C35479D004978BD /* prasiddh'sExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "prasiddh'sExtension.swift"; sourceTree = "<group>"; };
 		C30385292C356578004978BD /* AddToCartOnCheckoutViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddToCartOnCheckoutViewmodel.swift; path = "ShopMe-Github-Collab/Extension/Prasiddh's Extensions/AddToCartOnCheckoutViewmodel.swift"; sourceTree = SOURCE_ROOT; };
 		C31219802C2944CF00D12067 /* ShopMe-Github-Collab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ShopMe-Github-Collab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -340,6 +344,7 @@
 				C3EF1DB42C32C57A006492EB /* ProfileViewModel.swift */,
 				C36419332C33DD7C0026B1DA /* UpdateDataViewModel.swift */,
 				C3DF939D2C3561CA00A7EC75 /* OrderListingViewModel.swift */,
+				C30383FA2C3D38FF0004CCDB /* CouponViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -366,6 +371,7 @@
 				C3DBA8112C3804530024E714 /* ForgetPassModel.swift */,
 				C3E1B4E72C3BBB73003E77E4 /* ChangePassModel.swift */,
 				C3DF939B2C35582900A7EC75 /* OrderListModel.swift */,
+				C30383F82C3D37EF0004CCDB /* CouponModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -626,6 +632,7 @@
 				C3DC00122C2EF3B600CC60FA /* UserCartViewModel.swift in Sources */,
 				C303852A2C356578004978BD /* AddToCartOnCheckoutViewmodel.swift in Sources */,
 				C31219882C2944CF00D12067 /* ViewController.swift in Sources */,
+				C30383FB2C3D38FF0004CCDB /* CouponViewModel.swift in Sources */,
 				C38748872C294F98006A0C72 /* HomeVC.swift in Sources */,
 				C3878AD72C36DC8500CCD8C0 /* Get_CartItems.swift in Sources */,
 				C353EE612C37F7B200727B18 /* UserRatingViewModel.swift in Sources */,
@@ -686,6 +693,7 @@
 				C3E1B4E62C3BB863003E77E4 /* ChangePasswordVC.swift in Sources */,
 				C3DF939E2C3561CA00A7EC75 /* OrderListingViewModel.swift in Sources */,
 				C3759ECA2C299BDF006ABB02 /* AddressTableViewCell.swift in Sources */,
+				C30383F92C3D37EF0004CCDB /* CouponModel.swift in Sources */,
 				C3878AD42C36D1F400CCD8C0 /* ProductInCart+CoreDataClass.swift in Sources */,
 				C3878AD52C36D1F400CCD8C0 /* ProductInCart+CoreDataProperties.swift in Sources */,
 				C3A314132C2D5064007D6BE5 /* CartItemTableViewCell.swift in Sources */,

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SVProgressHUD
 
-class CheckoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SendAddressToCheckout {
+class CheckoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SendAddressToCheckout, UITextFieldDelegate {
     
     var priceOfItems: Int = 0
     var totalAmount: Int = 0
@@ -17,6 +18,11 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     var fullName = ""
     var fullAddress = ""
     var paymentMode = ""
+    var loader: SVProgressHUD!
+    var couponData:Coupon_Data!
+    var discountPrice:Int = 0
+    
+    var isCouponBtnTap = false
     
     // MARK: - IBOutlets
     @IBOutlet weak var productTableView: UITableView!
@@ -31,6 +37,9 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var btnChnageAddress: UIButton!
     @IBOutlet weak var viewAddress: UIView!
     
+    @IBOutlet weak var tfCouponCode: UITextField!
+    @IBOutlet weak var viewCouponTf: UIView!
+    @IBOutlet weak var heightCouponView: NSLayoutConstraint!
     //    radio buttons
     @IBOutlet weak var btnPaypal: UIButton!
     @IBOutlet weak var btnDirectCheck: UIButton!
@@ -48,7 +57,9 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         self.lblAddress.text = ""
         self.lblCustomerName.text = ""
         self.lblMobileNumber.text = ""
-        lblDiscount.text = String(priceOfItems * discount/100)
+        tfCouponCode.delegate = self
+//        lblDiscount.text = String(priceOfItems * discount/100)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +69,15 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         setProductBill()
         setRadioButton()
         updateTableViewHeight()
+        
+        customizeLoader()
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        NotificationCenter.default.removeObserver(self)
+//    }
     
     func setUi(){
         
@@ -70,6 +89,24 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         
         btnPlaceOrder.layer.cornerRadius = 8
         btnPlaceOrder.layer.masksToBounds = true
+        
+        if isCouponBtnTap{
+            viewCouponTf.isHidden = false
+            
+            heightCouponView.constant = 0
+            UIView.animate(withDuration: 0.2, delay: 0) {
+                self.heightCouponView.constant = 50
+                self.view.layoutIfNeeded()
+            }
+            
+        }else{
+            self.viewCouponTf.isHidden = true
+            heightCouponView.constant = 50
+            UIView.animate(withDuration: 0.2, delay: 0) {
+                self.heightCouponView.constant = 0
+                self.view.layoutIfNeeded()
+            }
+        }
         
     }
     
@@ -95,6 +132,30 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
             btnBankTransfer.isSelected = true
         }
         
+    }
+    
+    @IBAction func onClickAddCoupon(_ sender: Any) {
+        isCouponBtnTap = true
+        setUi()
+    }
+    
+    @IBAction func onClickApplyCoupon(_ sender: Any) {
+        
+        //api call
+        if tfCouponCode.text! == "" {
+            ShowAlertBox(Title: "Please enter coupon code!", Message: "")
+        }else{
+            let getCouponUrl = Constant.getCoupon+tfCouponCode.text!
+            callCouponApi(url : getCouponUrl)
+        }
+
+    }
+    
+    @IBAction func onClickCancleCoupon(_ sender: Any) {
+        isCouponBtnTap = false
+        tfCouponCode.text = ""
+        discountPrice = 0
+        setUi()
     }
     
     @IBAction func onClickBack(_ sender: Any) {
@@ -124,7 +185,11 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         
         if btnPaypal.isSelected || btnDirectCheck.isSelected || btnBankTransfer.isSelected  {
             let paymentMode = getPaymentMode()
-            let orderDetails = ["billingAddress": customerAddress, "paymentMethod": paymentMode ,"shippingCharge": 100] as [String : Any]
+            var orderDetails = ["billingAddress": customerAddress, "paymentMethod": paymentMode ,"shippingCharge": 0 , "coupon": tfCouponCode.text ?? ""] as [String : Any]
+            
+            orderDetails = orderDetails.filter{$0.value as? String != ""}
+            
+            print("==>..order details ...=>",orderDetails)
             
             callCheckoutApi(url: Constant.checkoutOrder ,method: .post, body: orderDetails)
         }else{
@@ -132,6 +197,9 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
     }
+    //MARK: - Objc methods
+
+
     
     // MARK: - Tableview Methods
     
@@ -185,12 +253,26 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setProductBill(){
+        var payableAmount = 0
+        
+        //calculate discount price based on discount type
+        if couponData?.discountType == "amount"{
+            discountPrice = couponData?.discount ?? 0
+        }else{
+            discountPrice = Int((totalAmount * (couponData?.discount ?? 0))/100)
+        }
+        
+        if discountPrice > priceOfItems {
+            payableAmount = 0
+        }else{
+            payableAmount = priceOfItems - discountPrice
+        }
         
         lblItemsCount.text = "\(myOrderArray.count) items"
         lblItemsPrice.text = "\(priceOfItems)"
-        totalAmount =  priceOfItems - Int(lblDiscount.text!)!
+        lblDiscount.text = "\(discountPrice)"
+        totalAmount =  payableAmount
         lblTotalPrice.text = String(totalAmount)
-        
     }
     
     //set table dynamic height
@@ -243,9 +325,35 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             }
         } error: { error in
-            print("===> error during checkout ===>",error)
+            print("===> error during checkout ===>",error as Any)
         }
         
+    }
+    
+    
+    func callCouponApi(url : String){
+        SVProgressHUD.show()
+        let couponViewModel = CouponViewModel()
+        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: url, headers: HeaderValue.headerWithToken.value , body: nil)
+        couponViewModel.getCouponDetails(request: request) { response in
+            
+            DispatchQueue.main.async {
+                if response.success == true {
+                    self.couponData = response.data
+                    print("==> coupon data ===>", self.couponData as Any)
+                    self.setProductBill()
+                    SVProgressHUD.dismiss()
+                    self.ShowAlertBox(Title: "Coupon applied successful", Message: "")
+                    
+                }else{
+                    SVProgressHUD.dismiss()
+                    self.ShowAlertBox(Title: "\(response.message!)", Message: "")
+                }
+            }
+        } error: { error in
+            print("error while fetching coupon data ==>", error as Any)
+        }
+
     }
     
 }
