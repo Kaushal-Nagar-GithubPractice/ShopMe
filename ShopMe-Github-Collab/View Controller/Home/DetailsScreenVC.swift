@@ -192,6 +192,25 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
     }
     
+    @IBAction func onClickShare(_ sender: Any) {
+//        let productPage = NSURL(string:"https://www.deccanherald.com/india/delhi/ncw-urges-delhi-police-to-take-action-against-man-for-comments-targeting-kirti-chakra-awardees-widow-3097077")
+//        let productPage = NSURL(string:"\(Constant.GET_PRODUCT+productID)")
+//        let text = "shopMe://DetailScreen?id=\(productID)"
+        let text = "http://192.168.1.217:4100/shop-detail/\(productID)/product-description"
+//        print("\(Constant.GET_PRODUCT+productID)")
+               
+               // set up activity view controller
+        let textToShare = [text]
+               let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+               
+               // exclude some activity types from the list (optional)
+               activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+               
+               // present the view controller
+               self.present(activityViewController, animated: true, completion: nil)
+               
+    }
     
     //MARK: Delegate Method
     

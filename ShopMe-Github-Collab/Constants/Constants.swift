@@ -34,6 +34,9 @@ class Constant {
     static let GET_COLOR_LIST = API_BASE_URL + "/product/color"
     static let ADD_TO_WHISLIST = API_BASE_URL + "/wishlist/"
     static let GET_CATEGORY_PRODUCTS = API_BASE_URL + "/product/list?categoryId="
+    static let GET_SPECIAL_OFFERS = API_BASE_URL + "/specialOffer"
+    static let POST_ENQUIRY = API_BASE_URL + "/enquiry"
+    
 
     //Kaushal's URLs
     static let Register_User_URl = API_BASE_URL + "/user/registration"

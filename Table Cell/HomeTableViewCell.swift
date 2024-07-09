@@ -47,7 +47,7 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
             cell.lblStrikePrice.text =  "₹\(arrProducts[indexPath.row].price ?? 1556)"
             cell.starView?.rating = arrProducts[indexPath.row].ratings ?? 0
             cell.starView?.text = "\(arrProducts[indexPath.row].ratings ?? 0)"
-            print(arrProducts[indexPath.row].isWishList)
+//            print(arrProducts[indexPath.row].isWishList)
         }
         return cell
         
