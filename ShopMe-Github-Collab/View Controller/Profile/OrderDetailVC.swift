@@ -9,10 +9,7 @@ import UIKit
 
 class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
-    @IBOutlet weak var VwDelieveryHeaderView: UIView!
-    @IBOutlet weak var imgDelieveryBox: UIImageView!
     @IBOutlet weak var lblDeliveryIDLabel: UILabel!
-    @IBOutlet weak var lblDeliveryStatusLabel: UILabel!
     @IBOutlet weak var lblDelieveryDataLabel: UILabel!
     @IBOutlet weak var lblDelieveryAddNameLabel: UILabel!
     @IBOutlet weak var lblDelieevryAddLabel: UILabel!
@@ -21,6 +18,12 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var lblTotalAmountLabel: UILabel!
     @IBOutlet weak var TvOrderDetail: UITableView!
     @IBOutlet weak var TabelHeightConstaint: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var ImgPlaced: UIImageView!
+    @IBOutlet weak var ImgShipped: UIImageView!
+    @IBOutlet weak var ImgOntheWay: UIImageView!
+    @IBOutlet weak var ImgDelivered: UIImageView!
     
     var OrderData : OrderListing_Orders!
     
@@ -67,21 +70,35 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     //MARK: - All Defined Functions
     
     func SetUI(){
+        
+        if (OrderData.orderStatus == "Placed"){
+            ImgPlaced.image = UIImage(named: "Radio_Filled")
+        }else if (OrderData.orderStatus == "Package Shipped"){
+            ImgPlaced.image = UIImage(named: "Radio_Filled")
+            ImgShipped.image = UIImage(named: "Radio_Filled")
+        }else if (OrderData.orderStatus == "On the way"){
+            ImgPlaced.image = UIImage(named: "Radio_Filled")
+            ImgShipped.image = UIImage(named: "Radio_Filled")
+            ImgOntheWay.image = UIImage(named: "Radio_Filled")
+        }else if (OrderData.orderStatus == "Delivered"){
+            ImgPlaced.image = UIImage(named: "Radio_Filled")
+            ImgShipped.image = UIImage(named: "Radio_Filled")
+            ImgOntheWay.image = UIImage(named: "Radio_Filled")
+            ImgDelivered.image = UIImage(named: "Radio_Filled")
+        }
+        
+        
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
         
         TabelHeightConstaint.constant = CGFloat((OrderData.products?.count ?? 0) * 120)
         
-        imgDelieveryBox.layer.cornerRadius = 10
-        
-        VwDelieveryHeaderView.layer.cornerRadius = 10
-        VwDelieveryHeaderView.layer.masksToBounds = true
     }
     
     func UpdateUIData(){
         
         lblDeliveryIDLabel.text = OrderData._id
-        lblDeliveryStatusLabel.text = "Status : \(OrderData.orderStatus ?? "")"
+//        lblDeliveryStatusLabel.text = "Status : \(OrderData.orderStatus ?? "")"
         lblDelieveryDataLabel.text = getFormattedDate(DateInString: OrderData.createdAt ?? "", FromFormate: "yyyy-MM-dd'T'HH:mm:ssZ", ToFormate: "dd MMM , yyyy")
         lblDelieveryAddNameLabel.text = "\(OrderData.billingAddress?.firstName ?? "") \(OrderData.billingAddress?.lastName ?? "")"
         lblDelieevryAddLabel.text = "\(OrderData.billingAddress?.addressLine1 ?? "") , \(OrderData.billingAddress?.addressLine2 ?? "") , \(OrderData.billingAddress?.city ?? "") , \(OrderData.billingAddress?.state ?? "") , \(OrderData.billingAddress?.country ?? "") - \(OrderData.billingAddress?.zipcode ?? 0)"

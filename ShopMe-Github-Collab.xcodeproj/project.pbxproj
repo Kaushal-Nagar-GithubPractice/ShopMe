@@ -48,6 +48,8 @@
 		C3759EC82C299B96006ABB02 /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3759EC72C299B96006ABB02 /* SelectAddressViewController.swift */; };
 		C3759ECA2C299BDF006ABB02 /* AddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3759EC92C299BDF006ABB02 /* AddressTableViewCell.swift */; };
 		C3759ECC2C299F7A006ABB02 /* AddAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3759ECB2C299F7A006ABB02 /* AddAddressViewController.swift */; };
+		C381DCE12C3D1C0500D5D023 /* AboutUs_Help_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381DCE02C3D1C0500D5D023 /* AboutUs_Help_Model.swift */; };
+		C381DCE32C3D52FD00D5D023 /* AboutUsHelpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381DCE22C3D52FD00D5D023 /* AboutUsHelpViewModel.swift */; };
 		C3862C422C2AFB8C00F07EC0 /* ImageDisplayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3862C412C2AFB8C00F07EC0 /* ImageDisplayCollectionViewCell.swift */; };
 		C3862C442C2AFC0400F07EC0 /* ImageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3862C432C2AFC0400F07EC0 /* ImageDisplayViewController.swift */; };
 		C38748852C294F78006A0C72 /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C38748842C294F78006A0C72 /* HomeStoryboard.storyboard */; };
@@ -152,6 +154,8 @@
 		C3759EC72C299B96006ABB02 /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		C3759EC92C299BDF006ABB02 /* AddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddressTableViewCell.swift; path = "ShopMe-Github-Collab/View Controller/AddressTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		C3759ECB2C299F7A006ABB02 /* AddAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewController.swift; sourceTree = "<group>"; };
+		C381DCE02C3D1C0500D5D023 /* AboutUs_Help_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUs_Help_Model.swift; sourceTree = "<group>"; };
+		C381DCE22C3D52FD00D5D023 /* AboutUsHelpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsHelpViewModel.swift; sourceTree = "<group>"; };
 		C3862C412C2AFB8C00F07EC0 /* ImageDisplayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageDisplayCollectionViewCell.swift; path = "Collection Cell/ImageDisplayCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		C3862C432C2AFC0400F07EC0 /* ImageDisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewController.swift; sourceTree = "<group>"; };
 		C38748842C294F78006A0C72 /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
@@ -325,6 +329,7 @@
 				C30385292C356578004978BD /* AddToCartOnCheckoutViewmodel.swift */,
 				C32C46122C32878D00B12669 /* CategoryViewModal.swift */,
 				C32C46142C32988000B12669 /* ProductViewModel.swift */,
+				C381DCE22C3D52FD00D5D023 /* AboutUsHelpViewModel.swift */,
 				C3ABE8C62C33E1FF0092F804 /* ProductByIdViewModel.swift */,
 				C3ABE8CC2C34229D0092F804 /* ProductAddToCartViewModel.swift */,
 				C3878AD82C36DCA200CCD8C0 /* Get_CartItemsViewModel.swift */,
@@ -349,6 +354,7 @@
 			children = (
 				C32C460C2C3283BE00B12669 /* CategoryModel.swift */,
 				C32C46162C329B8F00B12669 /* Product.swift */,
+				C381DCE02C3D1C0500D5D023 /* AboutUs_Help_Model.swift */,
 				C3ABE8C42C33E1BE0092F804 /* ProductByIdModel.swift */,
 				C3ABE8CA2C3421A20092F804 /* ProductAddToCartModel.swift */,
 				C3878AC42C36A79300CCD8C0 /* FilterDictModel.swift */,
@@ -639,6 +645,7 @@
 				C31219A82C29464B00D12067 /* CustomTabbar.swift in Sources */,
 				C3878AC52C36A79300CCD8C0 /* FilterDictModel.swift in Sources */,
 				C351242C2C29928C00B0938E /* DetailsScreenVC.swift in Sources */,
+				C381DCE32C3D52FD00D5D023 /* AboutUsHelpViewModel.swift in Sources */,
 				C3DBA8182C3816070024E714 /* WishlistModel.swift in Sources */,
 				C3EF1DB12C32B01C006492EB /* LoginViewModel.swift in Sources */,
 				C3862C422C2AFB8C00F07EC0 /* ImageDisplayCollectionViewCell.swift in Sources */,
@@ -707,6 +714,7 @@
 				C3DF939C2C35582900A7EC75 /* OrderListModel.swift in Sources */,
 				C31219AD2C294FBF00D12067 /* RegisterScreenVC.swift in Sources */,
 				C32E1CFB2C37CBDE00EE7C50 /* Connectivity.swift in Sources */,
+				C381DCE12C3D1C0500D5D023 /* AboutUs_Help_Model.swift in Sources */,
 				C3DBA8102C38002A0024E714 /* ConfirmEmailViewModel.swift in Sources */,
 				C31219B92C298A1E00D12067 /* myOrderTableCell.swift in Sources */,
 				C355CC352C2EBCE900994D58 /* Constants.swift in Sources */,
