@@ -239,7 +239,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as! CategoriesCollectionViewCell
             cell.imageCategories.setImageWithURL(url: RelatedProduct[indexPath.row].images?.first ?? "", imageView: cell.imageCategories)
             cell.lblCategoryName.text = RelatedProduct[indexPath.row].productName
-            cell.lblCategoryQuantity.text = "$\(RelatedProduct[indexPath.row].sellingPrice ?? 999)"
+            cell.lblCategoryQuantity.text = "₹\(RelatedProduct[indexPath.row].sellingPrice ?? 999)"
             return cell
         }
     }
@@ -529,7 +529,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
         lblDescription.text = selectedProduct?.mainDescription ?? ""
         self.navigationItem.title = selectedProduct?.productName
-        lblPrice.text = " $ \(selectedProduct?.sellingPrice  ?? 1234)"
+        lblPrice.text = " ₹ \(selectedProduct?.sellingPrice  ?? 1234)"
     }
     
     func setUpMenuButton(isScroll: Bool) {

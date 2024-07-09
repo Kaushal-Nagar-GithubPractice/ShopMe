@@ -67,7 +67,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="chh-0c-w2D">
                                                                     <rect key="frame" x="0.0" y="227" width="191" height="22"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$123.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBP-bp-I8p">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹123.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBP-bp-I8p">
                                                                             <rect key="frame" x="0.0" y="1.3333333333333428" width="95.666666666666671" height="19.333333333333332"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                             <nil key="textColor"/>
@@ -76,7 +76,21 @@
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1J-1v-wE4">
                                                                             <rect key="frame" x="95.666666666666686" y="2.6666666666666572" width="95.333333333333314" height="17"/>
                                                                             <attributedString key="attributedText">
-                                                                                <fragment content="  $199.00">
+                                                                                <fragment content="  ">
+                                                                                    <attributes>
+                                                                                        <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        <font key="NSFont" metaFont="system" size="14"/>
+                                                                                    </attributes>
+                                                                                </fragment>
+                                                                                <fragment content="₹">
+                                                                                    <attributes>
+                                                                                        <color key="NSColor" red="0.90980000000000005" green="0.90980000000000005" blue="0.90980000000000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        <font key="NSFont" size="14" name="Helvetica"/>
+                                                                                        <real key="NSKern" value="0.0"/>
+                                                                                        <color key="NSStrokeColor" red="0.90980000000000005" green="0.90980000000000005" blue="0.90980000000000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    </attributes>
+                                                                                </fragment>
+                                                                                <fragment content="199.00">
                                                                                     <attributes>
                                                                                         <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <font key="NSFont" metaFont="system" size="14"/>
@@ -629,7 +643,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LN4-9b-bS2">
                                                                 <rect key="frame" x="0.0" y="106.66666666666669" width="353" height="33.333333333333343"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" tag="10" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIF-ev-CFW" userLabel="$ 400 - $ 500">
+                                                                    <button opaque="NO" tag="10" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIF-ev-CFW" userLabel="₹ 400 - ₹ 500">
                                                                         <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="33.333333333333336"/>
                                                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                                         <color key="tintColor" name="Custom Black"/>
@@ -646,7 +660,7 @@
                                                                             <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="jEh-La-kMe"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" tag="11" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHW-Ku-d9D" userLabel="$ 400 - $ 500">
+                                                                    <button opaque="NO" tag="11" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHW-Ku-d9D" userLabel="₹ 400 - ₹ 500">
                                                                         <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="33.333333333333336"/>
                                                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                                         <color key="tintColor" name="Custom Black"/>

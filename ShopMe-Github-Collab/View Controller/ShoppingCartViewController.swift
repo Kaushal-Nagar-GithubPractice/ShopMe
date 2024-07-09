@@ -35,6 +35,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         CartListTableView.delegate = self
         CartListTableView.dataSource = self
         SVProgressHUD.setForegroundColor(UIColor.black)
@@ -52,7 +53,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         checkCart()
     }
-
     
     // MARK: - IBAction
     

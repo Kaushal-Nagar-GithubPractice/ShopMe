@@ -24,7 +24,7 @@
                                         <rect key="frame" x="0.0" y="50" width="393" height="709"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vK8-Kk-n3j">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="605.33333333333337"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="600.33333333333337"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Email Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FQo-eC-Xjh">
                                                         <rect key="frame" x="20" y="305" width="353" height="50"/>
@@ -45,9 +45,9 @@
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wv-Xn-sKr">
-                                                        <rect key="frame" x="20" y="469.33333333333337" width="353" height="50"/>
+                                                        <rect key="frame" x="20" y="469.33333333333337" width="353" height="45"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="I5J-ZR-14f"/>
+                                                            <constraint firstAttribute="height" constant="45" id="I5J-ZR-14f"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Login">
@@ -60,13 +60,13 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have Account ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZO-IO-DAI">
-                                                        <rect key="frame" x="111.33333333333333" y="539.33333333333337" width="170.66666666666669" height="21.666666666666629"/>
+                                                        <rect key="frame" x="111.33333333333333" y="534.33333333333337" width="170.66666666666669" height="21.666666666666629"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbQ-Zg-XAD">
-                                                        <rect key="frame" x="132.66666666666666" y="561" width="127.66666666666666" height="34.333333333333371"/>
+                                                        <rect key="frame" x="132.66666666666666" y="556" width="127.66666666666666" height="34.333333333333371"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Register Here">
                                                             <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
@@ -236,7 +236,7 @@
                                 <rect key="frame" x="0.0" y="109" width="393" height="709"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyN-dP-GqQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="711"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="706"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Email Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K2X-jJ-bQB">
                                                 <rect key="frame" x="20" y="375" width="353" height="50"/>
@@ -257,9 +257,9 @@
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Spd-rn-SSe">
-                                                <rect key="frame" x="20" y="585" width="353" height="50"/>
+                                                <rect key="frame" x="20" y="585" width="353" height="45"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="0St-oE-3tx"/>
+                                                    <constraint firstAttribute="height" constant="45" id="0St-oE-3tx"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Register">
@@ -272,13 +272,13 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have Account ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDU-4N-96x">
-                                                <rect key="frame" x="20" y="645" width="353" height="21.666666666666629"/>
+                                                <rect key="frame" x="20" y="640" width="353" height="21.666666666666629"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Cf-nB-On3">
-                                                <rect key="frame" x="143.33333333333334" y="666.66666666666663" width="106.66666666666666" height="34.333333333333371"/>
+                                                <rect key="frame" x="143.33333333333334" y="661.66666666666663" width="106.66666666666666" height="34.333333333333371"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Login Here">
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
@@ -451,7 +451,7 @@
                                 <rect key="frame" x="0.0" y="109" width="393" height="709"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jej-Ki-Srb">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="600"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="595"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Forget Pass Illusration" translatesAutoresizingMaskIntoConstraints="NO" id="sVZ-Pe-j6o">
                                                 <rect key="frame" x="71.666666666666686" y="20" width="250" height="250"/>
@@ -461,7 +461,7 @@
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S7m-XU-gkU">
-                                                <rect key="frame" x="20" y="290" width="353" height="290"/>
+                                                <rect key="frame" x="20" y="290" width="353" height="285"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Email Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EhO-pS-Xt4">
                                                         <rect key="frame" x="10" y="10" width="333" height="50"/>
@@ -500,9 +500,9 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bdq-dF-F6M">
-                                                        <rect key="frame" x="10" y="220" width="333" height="50"/>
+                                                        <rect key="frame" x="10" y="220" width="333" height="45"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="AxO-w7-a1v"/>
+                                                            <constraint firstAttribute="height" constant="45" id="AxO-w7-a1v"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Change Password">
@@ -641,7 +641,7 @@
                                 <rect key="frame" x="0.0" y="109" width="393" height="709"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCl-lO-eiD">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="600"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="595"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Forget Pass Illusration" translatesAutoresizingMaskIntoConstraints="NO" id="glr-pJ-tG1">
                                                 <rect key="frame" x="71.666666666666686" y="20" width="250" height="250"/>
@@ -651,7 +651,7 @@
                                                 </constraints>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xh-m8-0KF">
-                                                <rect key="frame" x="20" y="290" width="353" height="290"/>
+                                                <rect key="frame" x="20" y="290" width="353" height="285"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Old Password Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PCt-SE-b4U">
                                                         <rect key="frame" x="10" y="10" width="333" height="50"/>
@@ -717,9 +717,9 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqP-gv-8W7">
-                                                        <rect key="frame" x="10" y="220" width="333" height="50"/>
+                                                        <rect key="frame" x="10" y="220" width="333" height="45"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="AOh-ym-A6H"/>
+                                                            <constraint firstAttribute="height" constant="45" id="AOh-ym-A6H"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Change Password">

@@ -104,7 +104,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductsCollectionViewCell", for: indexPath) as! ProductsCollectionViewCell
             cell.imgProduct.setImageWithURL(url: ShopProducts[indexPath.row].images?.first ?? " ", imageView: cell.imgProduct)
             cell.lblProductName.text =  ShopProducts[indexPath.row].productName
-            cell.lblPrice.text =  "$ \(ShopProducts[indexPath.row].price ?? 123)"
+            cell.lblPrice.text =  "₹ \(ShopProducts[indexPath.row].price ?? 123)"
             cell.lblStrikePrice.isHidden = true
         return cell
         

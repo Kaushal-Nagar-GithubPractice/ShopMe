@@ -26,7 +26,7 @@ class wishListCVCell: UICollectionViewCell {
         super.awakeFromNib()
 
 
-        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: "$199.00")
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: "₹199.00")
         attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSRange(location: 0, length: attributeString.length))
         
         lblStrikePrice.attributedText = attributeString

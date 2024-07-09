@@ -38,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="109" width="393" height="709"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0K3-B9-azr">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="596"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="571"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKM-4v-gYf">
                                                 <rect key="frame" x="10" y="0.0" width="373" height="276"/>
@@ -68,16 +68,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2A-qC-TZj">
-                                                <rect key="frame" x="0.0" y="276" width="393" height="320"/>
+                                                <rect key="frame" x="0.0" y="276" width="393" height="295"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TAb-57-FPT">
-                                                        <rect key="frame" x="10" y="10" width="373" height="290"/>
+                                                        <rect key="frame" x="10" y="10" width="373" height="265"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftu-SC-aJC">
-                                                                <rect key="frame" x="0.0" y="0.0" width="373" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="373" height="45"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQ5-0M-4ON">
-                                                                        <rect key="frame" x="10" y="0.0" width="295" height="50"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Edit Profile" title="   Edit Profile">
                                                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -88,7 +88,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8J8-rL-O3C">
-                                                                        <rect key="frame" x="305" y="0.0" width="48" height="50"/>
+                                                                        <rect key="frame" x="305" y="0.0" width="48" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Goto Icon"/>
                                                                         <connections>
@@ -100,7 +100,7 @@
                                                                 <constraints>
                                                                     <constraint firstItem="8J8-rL-O3C" firstAttribute="top" secondItem="ftu-SC-aJC" secondAttribute="top" id="E20-dF-0rF"/>
                                                                     <constraint firstItem="8J8-rL-O3C" firstAttribute="leading" secondItem="FQ5-0M-4ON" secondAttribute="trailing" id="Idj-hn-2dV"/>
-                                                                    <constraint firstAttribute="height" constant="50" id="OYV-ot-RDA"/>
+                                                                    <constraint firstAttribute="height" constant="45" id="OYV-ot-RDA"/>
                                                                     <constraint firstAttribute="bottom" secondItem="8J8-rL-O3C" secondAttribute="bottom" id="RIM-Ay-bTU"/>
                                                                     <constraint firstAttribute="trailing" secondItem="8J8-rL-O3C" secondAttribute="trailing" constant="20" id="YNY-9q-VlC"/>
                                                                     <constraint firstItem="FQ5-0M-4ON" firstAttribute="leading" secondItem="ftu-SC-aJC" secondAttribute="leading" constant="10" id="Zgm-Cp-qvn"/>
@@ -109,10 +109,10 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y38-7r-a7j">
-                                                                <rect key="frame" x="0.0" y="60" width="373" height="50"/>
+                                                                <rect key="frame" x="0.0" y="55" width="373" height="45"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWf-4L-BVZ">
-                                                                        <rect key="frame" x="305" y="0.0" width="48" height="50"/>
+                                                                        <rect key="frame" x="305" y="0.0" width="48" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Goto Icon"/>
                                                                         <connections>
@@ -120,7 +120,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWB-eq-VXS">
-                                                                        <rect key="frame" x="10" y="0.0" width="295" height="50"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="My Orders" title="   My Orders">
                                                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -146,10 +146,10 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uf3-Yz-jAB">
-                                                                <rect key="frame" x="0.0" y="120" width="373" height="50"/>
+                                                                <rect key="frame" x="0.0" y="110" width="373" height="45"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNQ-Km-ube">
-                                                                        <rect key="frame" x="305" y="0.0" width="48" height="50"/>
+                                                                        <rect key="frame" x="305" y="0.0" width="48" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Goto Icon"/>
                                                                         <connections>
@@ -157,7 +157,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joa-oM-5vc">
-                                                                        <rect key="frame" x="10" y="0.0" width="295" height="50"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="WishList -k" title="   My Wishlist">
                                                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -183,10 +183,10 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qg1-5r-vyy">
-                                                                <rect key="frame" x="0.0" y="180" width="373" height="50"/>
+                                                                <rect key="frame" x="0.0" y="165" width="373" height="45"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKp-6u-NsH">
-                                                                        <rect key="frame" x="305" y="0.0" width="48" height="50"/>
+                                                                        <rect key="frame" x="305" y="0.0" width="48" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Goto Icon"/>
                                                                         <connections>
@@ -194,7 +194,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHH-cE-gqq">
-                                                                        <rect key="frame" x="10" y="0.0" width="295" height="50"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Lock" title="   Change Password">
                                                                             <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
@@ -220,10 +220,10 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNO-Ia-TVe">
-                                                                <rect key="frame" x="0.0" y="240" width="373" height="50"/>
+                                                                <rect key="frame" x="0.0" y="220" width="373" height="45"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txs-Fr-XWs">
-                                                                        <rect key="frame" x="10" y="0.0" width="353" height="50"/>
+                                                                        <rect key="frame" x="10" y="0.0" width="353" height="45"/>
                                                                         <color key="backgroundColor" name="AppColor"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                                         <color key="tintColor" name="Custom Black"/>
@@ -345,10 +345,10 @@
                                 <rect key="frame" x="0.0" y="109" width="393" height="709"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVu-GR-kIT">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="672"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDs-ec-8PF">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="672"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="667"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BZC-sy-RIE">
                                                         <rect key="frame" x="96.666666666666686" y="21" width="200" height="198.66666666666669"/>
@@ -395,10 +395,10 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLt-o8-gva">
-                                                        <rect key="frame" x="20" y="612" width="353" height="50"/>
+                                                        <rect key="frame" x="20" y="612" width="353" height="45"/>
                                                         <color key="backgroundColor" name="AppColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="BW4-jo-OO5"/>
+                                                            <constraint firstAttribute="height" constant="45" id="BW4-jo-OO5"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <color key="tintColor" name="Custom Black"/>

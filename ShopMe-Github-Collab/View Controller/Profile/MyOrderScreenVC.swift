@@ -89,7 +89,7 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.lblOrderID.text = "# \(Order?._id?.prefix(6) ?? "")"
         cell.lblOrderDate.text = getFormattedDate(DateInString: Order?.createdAt ?? "", FromFormate: "yyyy-MM-dd'T'HH:mm:ssZ", ToFormate: "dd MMM , yyyy")
         cell.lblTotalItem.text = "( Total Item : \(Order?.products?.count ?? 0) )"
-        cell.lblTotalPrize.text = "$ \(Order?.totalAmount ?? 0)"
+        cell.lblTotalPrize.text = "₹ \(Order?.totalAmount ?? 0)"
         cell.lblStatus.text = Order?.orderStatus
 
         

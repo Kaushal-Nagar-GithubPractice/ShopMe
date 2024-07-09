@@ -65,7 +65,7 @@ class WishListVC: UIViewController, UICollectionViewDataSource, UICollectionView
         
         cell.imgProduct.SetImageWithKingFisher(ImageUrl: product.images?.first ?? "", imageView: cell.imgProduct)
         cell.lblProductName.text =  product.productName
-        cell.lblPrice.text =  "$ \(product.price ?? 123)"
+        cell.lblPrice.text =  "₹ \(product.price ?? 123)"
         cell.lblStrikePrice.isHidden = true
         cell.btnWishList.tintColor = .systemRed
         cell.btnWishList.tag = indexPath.item

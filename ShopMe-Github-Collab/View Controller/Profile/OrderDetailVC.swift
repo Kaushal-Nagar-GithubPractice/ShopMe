@@ -57,9 +57,9 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         Cell.selectionStyle = .none
         Cell.ImgProductImage.SetImageWithKingFisher(ImageUrl: Product?.image ?? "", imageView: Cell.ImgProductImage)
         Cell.lblProductNameLAbel.text = Product?.productName
-        Cell.lblProductPriceLabel.text = "$ \(Product?.price ?? 0)"
+        Cell.lblProductPriceLabel.text = "₹ \(Product?.price ?? 0)"
         Cell.lblQauntityLabel.text = "\(Product?.quantity ?? 0)"
-        Cell.lblTotalPriceLabel.text = "$ \(Product?.totalProductPrice ?? 0)"
+        Cell.lblTotalPriceLabel.text = "₹ \(Product?.totalProductPrice ?? 0)"
         
         return Cell
     }

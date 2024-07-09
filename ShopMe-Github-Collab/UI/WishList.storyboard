@@ -21,7 +21,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fWv-VD-naH">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
-
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMg-QM-o6D">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                         <subviews>
@@ -53,7 +52,6 @@
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QRF-4X-bD3">
-
                                         <rect key="frame" x="10" y="50" width="373" height="701"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vpQ-yi-yaq">
@@ -92,7 +90,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7i5-pG-LFY">
                                                                     <rect key="frame" x="0.0" y="227" width="191" height="22"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$123.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVb-Rv-bqe">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹123.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVb-Rv-bqe">
                                                                             <rect key="frame" x="0.0" y="1.3333333333333428" width="95.666666666666671" height="19.333333333333332"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                             <nil key="textColor"/>
@@ -101,7 +99,21 @@
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRZ-s2-anO">
                                                                             <rect key="frame" x="95.666666666666686" y="2.6666666666666572" width="95.333333333333314" height="17"/>
                                                                             <attributedString key="attributedText">
-                                                                                <fragment content="  $199.00">
+                                                                                <fragment content="  ">
+                                                                                    <attributes>
+                                                                                        <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        <font key="NSFont" metaFont="system" size="14"/>
+                                                                                    </attributes>
+                                                                                </fragment>
+                                                                                <fragment content="₹">
+                                                                                    <attributes>
+                                                                                        <color key="NSColor" red="0.90980000000000005" green="0.90980000000000005" blue="0.90980000000000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        <font key="NSFont" size="14" name="Helvetica"/>
+                                                                                        <real key="NSKern" value="0.0"/>
+                                                                                        <color key="NSStrokeColor" red="0.90980000000000005" green="0.90980000000000005" blue="0.90980000000000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    </attributes>
+                                                                                </fragment>
+                                                                                <fragment content="199.00">
                                                                                     <attributes>
                                                                                         <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <font key="NSFont" metaFont="system" size="14"/>
@@ -123,16 +135,13 @@
                                                                     </constraints>
                                                                     <color key="tintColor" name="Custom Black"/>
                                                                     <state key="normal" title="Button"/>
-
                                                                     <buttonConfiguration key="configuration" style="plain" image="WishList -k"/>
-
                                                                     <connections>
                                                                         <action selector="onClickWishList:" destination="enC-gO-zgs" eventType="touchUpInside" id="eOG-z5-iyw"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="275" id="7JB-1d-agq"/>
                                                                 <constraint firstAttribute="width" constant="210" id="9IH-hX-th2"/>
@@ -171,7 +180,6 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-
                                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="es0-o4-40R" userLabel="viewEmptyOrder">
                                         <rect key="frame" x="0.0" y="50" width="393" height="709"/>
                                         <subviews>
@@ -212,7 +220,6 @@
                                     <constraint firstItem="dMg-QM-o6D" firstAttribute="leading" secondItem="fWv-VD-naH" secondAttribute="leading" id="oPo-hu-l91"/>
                                     <constraint firstItem="QRF-4X-bD3" firstAttribute="top" secondItem="dMg-QM-o6D" secondAttribute="bottom" id="odX-Mb-3cU"/>
                                     <constraint firstItem="QRF-4X-bD3" firstAttribute="bottom" secondItem="fWv-VD-naH" secondAttribute="bottomMargin" id="snU-n3-uh2"/>
-
                                     <constraint firstAttribute="trailing" secondItem="QRF-4X-bD3" secondAttribute="trailing" constant="10" id="wLZ-6J-3S8"/>
                                 </constraints>
                             </view>
@@ -227,9 +234,7 @@
                         </constraints>
                     </view>
                     <connections>
-
                         <outlet property="VwEmptyOrderView" destination="es0-o4-40R" id="ggv-fk-OPQ"/>
-
                         <outlet property="collectionWishList" destination="QRF-4X-bD3" id="19F-LI-GOo"/>
                         <outlet property="viewMain" destination="fWv-VD-naH" id="puG-hd-mCO"/>
                     </connections>
@@ -240,11 +245,9 @@
         </scene>
     </scenes>
     <resources>
-
         <image name="Back Button" width="24" height="24"/>
         <image name="EmptyOrder" width="200" height="200"/>
         <image name="WishList -k" width="24" height="24"/>
-
         <namedColor name="AppColor">
             <color red="0.84313725490196079" green="0.82745098039215681" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

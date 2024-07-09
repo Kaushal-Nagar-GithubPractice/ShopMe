@@ -31,6 +31,7 @@ class ProfileScreenVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        
         loader.setDefaultMaskType(.black)
         
         self.tabBarController?.tabBar.isHidden = false
