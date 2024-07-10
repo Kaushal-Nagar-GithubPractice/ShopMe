@@ -47,6 +47,7 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var btnPlaceOrder: UIButton!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     // MARK: - View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +59,8 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         self.lblCustomerName.text = ""
         self.lblMobileNumber.text = ""
         tfCouponCode.delegate = self
-//        lblDiscount.text = String(priceOfItems * discount/100)
-
+        //        lblDiscount.text = String(priceOfItems * discount/100)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,16 +72,15 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         updateTableViewHeight()
         
         customizeLoader()
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        registerKeyboardState()
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        NotificationCenter.default.removeObserver(self)
-//    }
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     func setUi(){
-        
+        productTableView.separatorStyle = .none
         btnChnageAddress.layer.borderColor = UIColor.gray.cgColor
         btnChnageAddress.layer.cornerRadius = 5
         btnChnageAddress.layer.borderWidth = 1
@@ -147,13 +147,15 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         }else{
             let getCouponUrl = Constant.getCoupon+tfCouponCode.text!
             callCouponApi(url : getCouponUrl)
+            tfCouponCode.resignFirstResponder()
         }
-
+        
     }
     
     @IBAction func onClickCancleCoupon(_ sender: Any) {
         isCouponBtnTap = false
         tfCouponCode.text = ""
+        tfCouponCode.resignFirstResponder()
         discountPrice = 0
         setUi()
     }
@@ -189,8 +191,6 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
             
             orderDetails = orderDetails.filter{$0.value as? String != ""}
             
-            print("==>..order details ...=>",orderDetails)
-            
             callCheckoutApi(url: Constant.checkoutOrder ,method: .post, body: orderDetails)
         }else{
             showAlert(title: "Alert", message: "Please select Payment Mode.")
@@ -198,8 +198,22 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     //MARK: - Objc methods
+    @objc func keyboardWillShow(notification: NSNotification) {
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardInfo = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardSize = keyboardInfo.cgRectValue.size
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height , right: 0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
 
+    }
 
+    @objc func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
+    }
+
+    
     
     // MARK: - Tableview Methods
     
@@ -222,6 +236,8 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         cell.lblProductName.text = myOrderArray[index].productName!
         cell.lblProductQuantity.text = "\(myOrderArray[index].quantity!)"
         cell.lblPrice.text = "\(myOrderArray[index].totalProductPrice!)"
+        cell.lblSize.text = myOrderArray[index].size
+        cell.lblColor.text = myOrderArray[index].color
         return cell
     }
     
@@ -230,6 +246,11 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     // MARK: - Custom Methods
+    
+    func registerKeyboardState(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
     
     func setRadioButton(){
         btnPaypal.setImage(UIImage.init(named: "radio-button-notSelected"), for: .normal)
@@ -353,7 +374,7 @@ class CheckoutViewController: UIViewController, UITableViewDelegate, UITableView
         } error: { error in
             print("error while fetching coupon data ==>", error as Any)
         }
-
+        
     }
     
 }
