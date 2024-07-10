@@ -113,6 +113,7 @@ class LoginScreenVC: UIViewController {
         }
         else{
             ShowAlertBox(Title: "Something Went Wrong!", Message: LoginDataArr.message ?? "")
+            UserDefaults.standard.set(false, forKey: "IsRedirect")
         }
     }
     

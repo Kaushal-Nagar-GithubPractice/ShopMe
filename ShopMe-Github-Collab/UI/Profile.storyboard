@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cnl-bC-xRy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cnl-bC-xRy">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,8 +22,8 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ve2-Bw-h7a">
-                                        <rect key="frame" x="127" y="10" width="139" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <rect key="frame" x="132" y="10" width="129.33333333333337" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" name="Custom Black"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -52,8 +53,8 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8d-YW-ecH">
-                                                        <rect key="frame" x="155.66666666666666" y="230" width="81.666666666666657" height="36"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                                        <rect key="frame" x="157.66666666666666" y="230" width="77.666666666666657" height="36"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -80,7 +81,7 @@
                                                                         <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Edit Profile" title="   Edit Profile">
-                                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
@@ -123,7 +124,7 @@
                                                                         <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="My Orders" title="   My Orders">
-                                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
@@ -160,7 +161,7 @@
                                                                         <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="WishList -k" title="   My Wishlist">
-                                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
@@ -197,7 +198,7 @@
                                                                         <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Lock" title="   Change Password">
-                                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
@@ -222,18 +223,24 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wA1-PP-KSb">
                                                                 <rect key="frame" x="0.0" y="220" width="373" height="45"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nE3-BR-dcy">
+                                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nE3-BR-dcy">
                                                                         <rect key="frame" x="305" y="0.0" width="48" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Goto Icon"/>
+                                                                        <connections>
+                                                                            <action selector="onClickOpenAboutUs:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="iQu-W7-UCK"/>
+                                                                        </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfC-lo-IR6">
+                                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfC-lo-IR6">
                                                                         <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="About Us" title="   About Us">
-                                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                                                             <color key="baseForegroundColor" systemColor="tintColor"/>
                                                                         </buttonConfiguration>
+                                                                        <connections>
+                                                                            <action selector="onClickOpenAboutUs:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="FOy-gV-eWT"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -257,14 +264,20 @@
                                                                         <rect key="frame" x="305" y="0.0" width="48" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Goto Icon"/>
+                                                                        <connections>
+                                                                            <action selector="onClickOpenContactUs:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gJr-EI-D3W"/>
+                                                                        </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFu-Gb-sRb">
                                                                         <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Contact Us" title="   Contact Us">
-                                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                                                             <color key="baseForegroundColor" systemColor="tintColor"/>
                                                                         </buttonConfiguration>
+                                                                        <connections>
+                                                                            <action selector="onClickOpenContactUs:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="A3D-0z-CcH"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -284,18 +297,24 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08c-7P-Nea">
                                                                 <rect key="frame" x="0.0" y="330" width="373" height="45"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19S-iG-ArG">
+                                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19S-iG-ArG">
                                                                         <rect key="frame" x="305" y="0.0" width="48" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Goto Icon"/>
+                                                                        <connections>
+                                                                            <action selector="onClickOpenAboutUs:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lJs-5i-4cD"/>
+                                                                        </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yu4-Ek-u4m">
+                                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yu4-Ek-u4m">
                                                                         <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" image="Help" title="   Help">
-                                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                                                             <color key="baseForegroundColor" systemColor="tintColor"/>
                                                                         </buttonConfiguration>
+                                                                        <connections>
+                                                                            <action selector="onClickOpenAboutUs:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="zNN-Cl-e2e"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -326,8 +345,8 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9op-Co-vZf">
                                                                         <rect key="frame" x="10" y="0.0" width="295" height="45"/>
                                                                         <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" image="FAQ" title="   FAQ">
-                                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                                        <buttonConfiguration key="configuration" style="plain" image="faq" title="   FAQ">
+                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                                                             <color key="baseForegroundColor" systemColor="tintColor"/>
                                                                         </buttonConfiguration>
                                                                         <connections>
@@ -366,7 +385,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txs-Fr-XWs">
                                                         <rect key="frame" x="10" y="0.0" width="333" height="45"/>
                                                         <color key="backgroundColor" name="AppColor"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <color key="tintColor" name="Custom Black"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Logout"/>
@@ -449,8 +468,8 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcC-pV-t9P">
-                                        <rect key="frame" x="133.33333333333334" y="10" width="126.33333333333334" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <rect key="frame" x="139" y="10" width="115" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" name="Custom Black"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -493,14 +512,14 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pL3-JV-tFU">
-                                                        <rect key="frame" x="19.999999999999996" y="240" width="60.666666666666657" height="24"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <rect key="frame" x="20" y="240" width="60" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lxt-pk-dJR">
-                                                        <rect key="frame" x="20" y="324" width="86" height="24"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <rect key="frame" x="20" y="324" width="85" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -514,8 +533,8 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCC-4c-UDD">
-                                                        <rect key="frame" x="20" y="408" width="110" height="24"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <rect key="frame" x="20.000000000000007" y="408" width="107.66666666666669" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -534,7 +553,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="BW4-jo-OO5"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <color key="tintColor" name="Custom Black"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Update"/>
@@ -566,19 +585,19 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Gender*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6EF-Rv-gkw">
-                                                        <rect key="frame" x="20" y="492" width="133.66666666666666" height="24"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <rect key="frame" x="20" y="492" width="132" height="24"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OcM-0x-cXd">
-                                                        <rect key="frame" x="19.999999999999993" y="526" width="116.33333333333331" height="76"/>
+                                                        <rect key="frame" x="20.000000000000007" y="526" width="115.66666666666669" height="76"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9p-sD-vnf">
-                                                                <rect key="frame" x="0.0" y="0.0" width="116.33333333333333" height="38"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="115.66666666666667" height="38"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="radio-button-notSelected" title=" Male">
-                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                                                    <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="20"/>
                                                                     <color key="baseForegroundColor" name="Custom Black"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
@@ -586,10 +605,10 @@
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQs-sL-hli">
-                                                                <rect key="frame" x="0.0" y="38" width="116.33333333333333" height="38"/>
+                                                                <rect key="frame" x="0.0" y="38" width="115.66666666666667" height="38"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="radio-button-notSelected" title=" Female">
-                                                                    <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                                                    <fontDescription key="titleFontDescription" type="system" weight="light" pointSize="20"/>
                                                                     <color key="baseForegroundColor" name="Custom Black"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
@@ -709,8 +728,8 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAQ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQW-Fu-96l">
-                                        <rect key="frame" x="172.66666666666666" y="10" width="48" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <rect key="frame" x="173.33333333333334" y="10" width="46.666666666666657" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" name="Custom Black"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -880,8 +899,8 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pds-BX-RFc">
-                                        <rect key="frame" x="136" y="10" width="121.33333333333331" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <rect key="frame" x="140.33333333333334" y="10" width="112.66666666666666" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" name="Custom Black"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1122,8 +1141,8 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Placed Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-wj-ZhF">
-                                        <rect key="frame" x="114" y="5" width="165" height="30"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <rect key="frame" x="120.33333333333333" y="5" width="152.33333333333337" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" name="Custom Black"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1529,7 +1548,7 @@
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Need Help ?">
-                                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
                                                             <color key="baseForegroundColor" name="Custom Black"/>
                                                             <color key="baseBackgroundColor" name="AppColor"/>
                                                         </buttonConfiguration>
@@ -1540,7 +1559,7 @@
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Cancle Order">
-                                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
                                                             <color key="baseForegroundColor" name="Custom Black"/>
                                                             <color key="baseBackgroundColor" name="Custom Red -k"/>
                                                         </buttonConfiguration>
@@ -1715,8 +1734,8 @@
                                 <rect key="frame" x="0.0" y="69" width="393" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiI-UH-Bxs">
-                                        <rect key="frame" x="142.66666666666666" y="9.3333333333333304" width="108" height="21.666666666666671"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <rect key="frame" x="146.66666666666666" y="9.3333333333333304" width="99.666666666666657" height="21.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" name="Custom Black"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1755,7 +1774,7 @@
                                         <color key="tintColor" name="AppColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Apply Filter">
-                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
                                             <color key="baseForegroundColor" name="Custom Black"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -1817,14 +1836,14 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by Price :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxR-4v-qkY">
-                                <rect key="frame" x="20" y="129" width="128" height="21.666666666666657"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <rect key="frame" x="20.000000000000007" y="129" width="118.66666666666669" height="21.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" name="Custom Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter by Date :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnr-0M-DBh">
-                                <rect key="frame" x="20" y="242.33333333333334" width="124" height="21.666666666666657"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <rect key="frame" x="20" y="242.33333333333334" width="116" height="21.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" name="Custom Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1839,7 +1858,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="97X-Kc-Ssk"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                 <color key="textColor" name="Custom Black"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1859,7 +1878,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="Los-FI-Fna"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                 <color key="textColor" name="Custom Black"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1878,13 +1897,13 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3j-9k-8Hi">
                                         <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="21.666666666666668"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                         <color key="textColor" name="Custom Black"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5r-HA-ssy">
                                         <rect key="frame" x="176.66666666666663" y="0.0" width="176.33333333333337" height="21.666666666666668"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                         <color key="textColor" name="Custom Black"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1951,7 +1970,6 @@
         <image name="Contact Us" width="24" height="24"/>
         <image name="Edit Profile" width="24" height="24"/>
         <image name="EmptyOrder" width="200" height="200"/>
-        <image name="FAQ" width="24" height="24"/>
         <image name="Filter -k" width="32" height="32"/>
         <image name="Goto Icon" width="24" height="24"/>
         <image name="Help" width="24" height="24"/>
@@ -1961,6 +1979,7 @@
         <image name="Radio_Empty" width="24" height="24"/>
         <image name="WishList -k" width="24" height="24"/>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="faq" width="24" height="24"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <image name="radio-button-notSelected" width="24" height="24"/>
         <namedColor name="AppColor">
@@ -1979,7 +1998,7 @@
             <color red="1" green="0.64524848060302431" blue="0.59195060778586606" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -621,6 +621,7 @@ extension DetailsScreenVC : UITableViewDelegate,UITableViewDataSource {
         cell.btnRatings.setTitle("   \(ArrReview[indexPath.row].rating ?? 5)", for: .normal)
         cell.lblUsername.text = ArrReview[indexPath.row].name
         cell.lblUserReview.text = "   \(ArrReview[indexPath.row].review ?? "")"
+        cell.selectionStyle = .none
         return cell
     }
     

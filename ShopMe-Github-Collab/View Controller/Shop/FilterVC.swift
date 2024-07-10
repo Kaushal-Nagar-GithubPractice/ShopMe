@@ -227,6 +227,11 @@ extension FilterVC : UICollectionViewDelegate,UICollectionViewDataSource,UIColle
                                               scrollPosition: [])
                     cell.viewChoice.backgroundColor = .systemMint
                 }
+                else{
+                    collectionSize.deselectItem(at: indexPath, animated: true)
+                                             
+                    cell.viewChoice.backgroundColor = .systemGray5
+                }
             }
            
         }else {
@@ -237,6 +242,12 @@ extension FilterVC : UICollectionViewDelegate,UICollectionViewDataSource,UIColle
                                               scrollPosition: [])
                     cell.viewChoice.backgroundColor = .systemMint
                 }
+                else{
+                    collectionColor.deselectItem(at: indexPath, animated: true)
+                                             
+                    cell.viewChoice.backgroundColor = .systemGray5
+                }
+                
             }
         }
         return cell

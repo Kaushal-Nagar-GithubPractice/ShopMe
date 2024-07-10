@@ -72,7 +72,21 @@ class ProfileScreenVC: UIViewController {
         UserDefaults.standard.set("", forKey: "token")
         ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 0)
     }
+    @IBAction func onClickOpenAboutUs(_ sender: UIButton) {
+        let AboutUsScreen = UIStoryboard(name: "ContactUs", bundle: nil).instantiateViewController(withIdentifier: "AboutUsVC") as! AboutUsVC
+        if sender.tag == 1 {
+            AboutUsScreen.isHelp = false
+        }
+        else{
+            AboutUsScreen.isHelp = true
+        }
+        self.navigationController?.pushViewController(AboutUsScreen, animated: true)
+    }
     
+    @IBAction func onClickOpenContactUs(_ sender: Any) {
+        let ContactUsScreen = UIStoryboard(name: "ContactUs", bundle: nil).instantiateViewController(withIdentifier: "ContactUsVC") as! ContactUsVC
+        self.navigationController?.pushViewController(ContactUsScreen, animated: true)
+    }
     @IBAction func OnClickOpenMyOrder(_ sender: Any) {
         let myOrderScreen = self.storyboard?.instantiateViewController(withIdentifier: "MyOrderScreenVC") as! MyOrderScreenVC
         

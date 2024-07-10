@@ -28,7 +28,7 @@ class ContactUsVC: UIViewController {
         registerKeyboardNotifications()
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = true
-        txtviewMessage.placeholder = "Enter your Message here"
+        txtviewMessage.placeholder = " Enter your Message here *"
         txtviewMessage.layer.cornerRadius = 5
     }
     override func viewWillDisappear(_ animated: Bool) {
