@@ -20,7 +20,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     var cartObj:cartData!
     var productArr = [cart_Products]()
     var loader = SVProgressHUD()
-    var shippingCharge = 100
+    var shippingCharge = 0
     var cartItemArray = [["img":"item-1","Name":"Canon camera","Price":"60000","TotalItem":"1"]]
     @IBOutlet weak var CartListTableView: UITableView!
     @IBOutlet weak var lblSubtotalPrice: UILabel!
@@ -129,12 +129,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 self.productArr[indexPath.row].totalProductPrice = lblPrice
                 
                 cell.btnDecrease.isEnabled = true
-                cell.btnDecrease.backgroundColor = UIColor(named: "btnQty")
                 self.CartListTableView.reloadData()
                 
             }else{
                 cell.btnIncrease.isEnabled = false
-                cell.btnIncrease.backgroundColor = UIColor.systemGray5
             }
             self.updateTotal()
         }
@@ -149,15 +147,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 self.productArr[indexPath.row].quantity = itemCount-1
                 let lblPrice = (self.productArr[indexPath.row].price! * self.productArr[indexPath.row].quantity!)
                 self.productArr[indexPath.row].totalProductPrice = lblPrice
-                cell.btnIncrease.backgroundColor = UIColor(named: "btnQty")
                 self.CartListTableView.reloadData()
                 cell.btnIncrease.isEnabled = true
                 
             }else{
                 cell.btnDecrease.isEnabled = false
-                cell.btnDecrease.backgroundColor = UIColor.systemGray5
             }
-         
             self.updateTotal()
         }
         

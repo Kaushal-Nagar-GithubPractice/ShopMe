@@ -12,6 +12,7 @@ class AddressTableViewCell: UITableViewCell {
     @IBOutlet weak var lblCustomerName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblMobileNumber: UILabel!
+    @IBOutlet weak var imgAddressType: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
