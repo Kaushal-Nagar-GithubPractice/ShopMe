@@ -177,3 +177,23 @@ extension UILabel
         }
     }
 }
+extension UIView{
+    func ApplyShadow(view: UIView){
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        view.layer.shadowRadius = 3.0
+        view.layer.masksToBounds = false
+        
+    }
+}
+
+extension String {
+    func htmlToAttributedString(fontName: String = "SpaceGrotesk-Regular", fontSize: Float = 14) -> NSAttributedString? {
+            let style = "<style>body {font-size:\(fontSize)px; }</style>"
+            guard let data = (self + style).data(using: .utf8) else {
+                return nil
+            }
+            return try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        }
+}

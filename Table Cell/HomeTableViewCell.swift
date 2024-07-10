@@ -49,6 +49,13 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollecti
             cell.starView?.text = "\(arrProducts[indexPath.row].ratings ?? 0)"
 //            print(arrProducts[indexPath.row].isWishList)
         }
+        else{
+            cell.imgProduct.image = UIImage(named: "placeholder")
+            cell.lblProductName.text = "No Product Found"
+            cell.lblPrice.isHidden = true
+            cell.lblStrikePrice.isHidden = true
+            cell.starView?.isHidden = true
+        }
         return cell
         
     }

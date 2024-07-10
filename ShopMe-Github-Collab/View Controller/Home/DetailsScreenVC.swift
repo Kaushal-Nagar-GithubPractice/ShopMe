@@ -66,11 +66,6 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-       
-//        SelectedSize = ""
-//        SelectedColor = ""
-//        ColorsInCart = [""]
-//        SizesInCArt = [""]
         self.callApiSelectedByID(product_id: self.productID)
         callApiRelatedProduct(productId: productID)
         lblQuantity.text = "\(Quantity)"

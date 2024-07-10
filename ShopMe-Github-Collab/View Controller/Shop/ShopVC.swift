@@ -10,6 +10,7 @@ import SVProgressHUD
 
 class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UISearchBarDelegate, SelectedFilter {
 //    var isFirstTimeApiCall = true
+    @IBOutlet weak var viewEmptyProduct: UIView!
     var flagForPgCntFilterPrdt = false
     var pageForFilterPdt = 1
     var isSearchBarEmpty = true
@@ -51,6 +52,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         isSearchBarEmpty = true
         arrData = []
         filterData = []
+        self.viewEmptyProduct.isHidden = true
         setUpMenuButton(isScroll: true)
 //        collectionProducts.reloadData()
 //        if isFirstTimeApiCall{
@@ -140,25 +142,9 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                     
                 }
             }
-        
-    }
-    //MARK: USERDEFINED  METHODS
-    
-    func setUpMenuButton(isScroll : Bool){
-        
-        let icon = UIImage(named: "setting")
-        let iconSize = CGRect(origin: CGPoint.init(x: 10, y: 0), size: CGSize(width: 20, height: 18))
-        let iconButton = UIButton(frame: iconSize)
-        iconButton.tintColor = UIColor(named: "Custom Black")
-        iconButton.setBackgroundImage(icon, for: .normal)
-        let barButton = UIBarButtonItem(customView: iconButton)
-        iconButton.addTarget(self, action: #selector(btnFilterClicked), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = barButton
-        self.navigationItem.title = "Shop"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)]
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
+    //MARK: API CALLING  METHODS
     
     func callApiProduct(searchText : String = ""){
         SVProgressHUD.setDefaultMaskType(.black)
@@ -170,22 +156,30 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                     if response.data?.products?.isEmpty == true{
                         print(response.status as Any,response.message as Any)
                         self.flagForEmptyProdCall = false
+                        self.viewEmptyProduct.isHidden = false
                         SVProgressHUD.dismiss()
                         
                     }
                     else{
+                        self.viewEmptyProduct.isHidden = true
                         self.arrData.append(contentsOf: response.data?.products ?? [])
                         self.MainArr.append(response.data!)
                         self.ShopProducts = self.arrData
                         self.getSizeAndColor()
                         print(self.arrData.count as Any)
                         self.collectionProducts.reloadData()
+                        
                         SVProgressHUD.dismiss()
 //                        self.isFirstTimeApiCall = true
                     }
                 }
             } error: { error in
-                print(error as Any)
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    self.viewEmptyProduct.isHidden = false
+                    self.ShowAlertBox(Title: "Alert", Message: "\(error!)")
+                    print(error as Any)
+                }
             }
         }
             else {
@@ -196,13 +190,16 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                     if response.data?.products?.isEmpty == true{
                         if response.data?.products?.isEmpty == true && response.data?.page == 1 {
                             SVProgressHUD.dismiss()
-                            self.ShowAlertBox(Title: "Alert", Message: "No Such Product Or Category found")
+//                            self.ShowAlertBox(Title: "Alert", Message: "No Such Product Or Category found")
+                            self.viewEmptyProduct.isHidden = false
                         }
                         print(response.status as Any,response.message as Any)
                         self.flagForEmptyProdCall = false
+                        self.viewEmptyProduct.isHidden = false
                         SVProgressHUD.dismiss()
                     }
                     else{
+                        self.viewEmptyProduct.isHidden = true
                         self.filterData = response.data?.products ?? []
                         self.MainArr.append(response.data!)
                         self.ShopProducts = self.filterData
@@ -212,9 +209,15 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                         SVProgressHUD.dismiss()
                     }
                 }
-            } error: { error in
-                print(error as Any)
-            }
+                } error: { error in
+                    DispatchQueue.main.async {
+                        self.viewEmptyProduct.isHidden = false
+                        SVProgressHUD.dismiss()
+                        self.ShowAlertBox(Title: "Alert", Message: "\(error!)")
+                        print(error as Any)
+                        
+                    }
+                }
         }
     }
     
@@ -231,7 +234,9 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                         self.ShowAlertBox(Title: "Alert", Message: "No Such Product Or Category found")
                         self.searchBar.text = ""
                         self.isSearchBarEmpty = true
-                        self.callApiProduct()
+//                        self.ShopProducts = []
+//                        self.callApiProduct()
+                        self.viewEmptyProduct.isHidden = false
                     }
                     print(response.status as Any,response.message as Any)
                     self.flagForEmptyProdCall = false
@@ -239,6 +244,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                     SVProgressHUD.dismiss()
                 }
                 else{
+                    self.viewEmptyProduct.isHidden = true
 //                    print(response)
                     self.allFilteresProduct =  response.data?.products ?? []
 //                    print(self.allFilteresProduct,self.ShopProducts)
@@ -249,10 +255,31 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 }
             }
         } error: { error in
-            print(error)
+            DispatchQueue.main.async {
+                self.viewEmptyProduct.isHidden = false
+                SVProgressHUD.dismiss()
+                self.ShowAlertBox(Title: "Alert", Message: "\(error!)")
+                print(error as Any)
+            }
         }
     }
     
+    //MARK: USERDEFINED  METHODS
+    
+    func setUpMenuButton(isScroll : Bool){
+        
+        let icon = UIImage(named: "setting")
+        let iconSize = CGRect(origin: CGPoint.init(x: 10, y: 0), size: CGSize(width: 20, height: 18))
+        let iconButton = UIButton(frame: iconSize)
+        iconButton.tintColor = UIColor(named: "Custom Black")
+        iconButton.setBackgroundImage(icon, for: .normal)
+        let barButton = UIBarButtonItem(customView: iconButton)
+        iconButton.addTarget(self, action: #selector(btnFilterClicked), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = barButton
+        self.navigationItem.title = "Shop"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)]
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
     func getSizeAndColor(){
         color = []
         size = []

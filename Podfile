@@ -12,4 +12,5 @@ target 'ShopMe-Github-Collab' do
   pod ‘SwiftRangeSlider’
   pod 'ReachabilitySwift'
   pod 'KMPlaceholderTextView'
+  pod 'SwiftSoup'
 end

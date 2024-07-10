@@ -7,6 +7,7 @@ PODS:
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
   - SwiftRangeSlider (2.0.0)
+  - SwiftSoup (2.7.2)
 
 DEPENDENCIES:
   - Cosmos
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SVProgressHUD
   - SwiftRangeSlider
+  - SwiftSoup
 
 SPEC REPOS:
   trunk:
@@ -24,6 +26,7 @@ SPEC REPOS:
     - ReachabilitySwift
     - SVProgressHUD
     - SwiftRangeSlider
+    - SwiftSoup
 
 SPEC CHECKSUMS:
   Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
@@ -32,7 +35,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 7f151ff156cea1481a8411701195ac6a984f4979
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftRangeSlider: f86e3b637c961120158fa1a89277c8343845cbe4
+  SwiftSoup: 4164c6bd8af69acd119c23fb36906975a60d71bb
 
-PODFILE CHECKSUM: b9119019f8545f0f916c1f14fa21c379c4c6decf
+PODFILE CHECKSUM: 4475452abab6388a7eadb81211dda41657ebc3ab
 
 COCOAPODS: 1.15.2

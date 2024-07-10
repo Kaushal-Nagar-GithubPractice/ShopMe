@@ -108,8 +108,6 @@ class FilterVC: UIViewController {
     }
     
     @IBAction func onCLickApplyChanges(_ sender: Any) {
-        
-       
        lazy var tempMin = 0
        lazy var tempMax = 0
         lazy var tempArrSize = [""]
@@ -198,8 +196,6 @@ class FilterVC: UIViewController {
         } error: { error in
             print(error)
         }
-
-        
     }
     
     //MARK: @OBJC Methods
@@ -208,6 +204,7 @@ class FilterVC: UIViewController {
         self.dismiss(animated: true)
     }
 }
+    //MARK: Extension FilterVC
 
 extension FilterVC : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate {
     

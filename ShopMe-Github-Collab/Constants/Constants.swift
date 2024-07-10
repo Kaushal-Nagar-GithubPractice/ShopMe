@@ -36,6 +36,8 @@ class Constant {
     static let GET_CATEGORY_PRODUCTS = API_BASE_URL + "/product/list?categoryId="
     static let GET_SPECIAL_OFFERS = API_BASE_URL + "/specialOffer"
     static let POST_ENQUIRY = API_BASE_URL + "/enquiry"
+    static let GET_ABOUTUS = API_BASE_URL + "/pages/aboutUs"
+    static let GET_HELP = API_BASE_URL + "/pages/help"
     
 
     //Kaushal's URLs
