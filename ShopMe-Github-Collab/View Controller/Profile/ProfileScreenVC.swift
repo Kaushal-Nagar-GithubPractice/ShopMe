@@ -88,6 +88,14 @@ class ProfileScreenVC: UIViewController {
     }
     
     
+    @IBAction func OnClickOpenFAQ(_ sender: Any) {
+        
+        let FaqScreen = UIStoryboard(name: "Profile", bundle: nibBundle).instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+        
+        self.navigationController?.pushViewController(FaqScreen, animated: true)
+    }
+    
+    
     //MARK: - All Defined Functions
     
     func SetUI(){
@@ -151,7 +159,12 @@ class ProfileScreenVC: UIViewController {
                 self.ProfileData = response
                 DispatchQueue.main.async { [self] in
                     //Execute UI Code on Completion of API Call and getting data
-                    SetUI()
+                    if ProfileData.success == true{
+                        SetUI()
+                    }else{
+                        ShowAlertBox(Title: ProfileData.message ?? "", Message: "")
+                    }
+                    
                     loader.dismiss()
                 }
             } error: { error in

@@ -92,26 +92,7 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         cell.lblTotalPrize.text = "₹ \(Order?.totalAmount ?? 0)"
         cell.lblStatus.text = Order?.orderStatus
 
-        
-        //TODO: - Change colour of cell and show status image according to Delivery Status
-//        if ( MyOrderArr[indexPath.row]["Status"] == "placed" ){
-            cell.btnStatusbutton.setImage(UIImage(named: "Placed"), for: .normal)
-            cell.btnStatusbutton.tintColor = UIColor.systemGreen
-            cell.lblStatus.textColor = UIColor.systemGreen
-            cell.VwMyOrderTablebgView.backgroundColor = UIColor(named: "Custom Light Yellow")
-
-            let dashedBorderLayer = cell.VwStatusView.addLineDashedStroke(pattern: [10, 5], radius: 10, color: UIColor.systemGreen.cgColor)
-            cell.VwStatusView.layer.addSublayer(dashedBorderLayer)
-//        }
-//        else{
-//            cell.btnStatusbutton.setImage(UIImage(named: "Cancelled"), for: .normal)
-//            cell.btnStatusbutton.tintColor = UIColor.systemRed
-//            cell.lblStatus.textColor = UIColor.systemRed
-//            cell.VwMyOrderTablebgView.backgroundColor = UIColor(named: "Custom Light Red")
-//
-//            let dashedBorderLayer = cell.VwStatusView.addLineDashedStroke(pattern: [10, 5], radius: 10, color: UIColor.systemRed.cgColor)
-//            cell.VwStatusView.layer.addSublayer(dashedBorderLayer)
-//        }
+        ChangeCellUI(cell: cell, index: indexPath.row)
         
         return cell
     }
@@ -152,12 +133,42 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     SetUI()
                     loader.dismiss()
                 }
-            } error: { error in
-                print("========== API Error :",error)
-                self.loader.dismiss()
-            }
+        } error: { error in
+            print("========== API Error :",error)
+            self.loader.dismiss()
+        }
+    }
+    
+    func ChangeCellUI(cell : myOrderTableCell , index : Int){
         
-        
+        if ( OrderListData?.data?.orders?[index].orderStatus == "Cancelled" ){
+            
+            cell.btnStatusbutton.setImage(UIImage(named: "Cancelled"), for: .normal)
+            cell.btnStatusbutton.tintColor = UIColor.systemRed
+            cell.lblStatus.textColor = UIColor.systemRed
+            cell.VwMyOrderTablebgView.backgroundColor = UIColor(named: "Custom Light Red")
+            let dashedBorderLayer = cell.VwStatusView.addLineDashedStroke(pattern: [10, 5], radius: 10, color: UIColor.systemRed.cgColor)
+            cell.VwStatusView.layer.addSublayer(dashedBorderLayer)
+            
+        }
+        else if ( OrderListData?.data?.orders?[index].orderStatus == "Delivered" ){
+            cell.btnStatusbutton.setImage(UIImage(named: "Delievered"), for: .normal)
+            cell.btnStatusbutton.tintColor = UIColor.systemGreen
+            cell.lblStatus.textColor = UIColor.systemGreen
+            cell.VwMyOrderTablebgView.backgroundColor = UIColor(named: "Custom Light Yellow")
+
+            let dashedBorderLayer = cell.VwStatusView.addLineDashedStroke(pattern: [10, 5], radius: 10, color: UIColor.systemGreen.cgColor)
+            cell.VwStatusView.layer.addSublayer(dashedBorderLayer)
+        }
+        else{
+            cell.btnStatusbutton.setImage(UIImage(named: "Processing"), for: .normal)
+            cell.btnStatusbutton.tintColor = UIColor.systemPurple
+            cell.lblStatus.textColor = UIColor.systemPurple
+            cell.VwMyOrderTablebgView.backgroundColor = UIColor(named: "Custom Light Purple")
+
+            let dashedBorderLayer = cell.VwStatusView.addLineDashedStroke(pattern: [10, 5], radius: 10, color: UIColor.systemPurple.cgColor)
+            cell.VwStatusView.layer.addSublayer(dashedBorderLayer)
+        }
     }
     
     func UpdateUIData(){
