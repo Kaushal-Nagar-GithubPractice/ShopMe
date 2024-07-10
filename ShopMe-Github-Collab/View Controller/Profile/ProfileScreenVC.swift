@@ -18,6 +18,7 @@ class ProfileScreenVC: UIViewController {
     var ProfileData : Profile_Struct!
     let loader = SVProgressHUD.self
     
+    @IBOutlet weak var VwTopCurveView: UIView!
     @IBOutlet weak var btnLogout: UIButton!
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var imgProfileImage: UIImageView!
@@ -52,7 +53,6 @@ class ProfileScreenVC: UIViewController {
     
     //MARK: - All IBAction
     
-    
     @IBAction func OnClickOpenWishlist(_ sender: Any) {
         
         let WishlistScreen = UIStoryboard(name: "WishList", bundle: nibBundle).instantiateViewController(withIdentifier: "WishListVC") as! WishListVC
@@ -72,7 +72,21 @@ class ProfileScreenVC: UIViewController {
         UserDefaults.standard.set("", forKey: "token")
         ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex : 0)
     }
+    @IBAction func onClickOpenAboutUs(_ sender: UIButton) {
+        let AboutUsScreen = UIStoryboard(name: "ContactUs", bundle: nil).instantiateViewController(withIdentifier: "AboutUsVC") as! AboutUsVC
+        if sender.tag == 1 {
+            AboutUsScreen.isHelp = false
+        }
+        else{
+            AboutUsScreen.isHelp = true
+        }
+        self.navigationController?.pushViewController(AboutUsScreen, animated: true)
+    }
     
+    @IBAction func onClickOpenContactUs(_ sender: Any) {
+        let ContactUsScreen = UIStoryboard(name: "ContactUs", bundle: nil).instantiateViewController(withIdentifier: "ContactUsVC") as! ContactUsVC
+        self.navigationController?.pushViewController(ContactUsScreen, animated: true)
+    }
     @IBAction func OnClickOpenMyOrder(_ sender: Any) {
         let myOrderScreen = self.storyboard?.instantiateViewController(withIdentifier: "MyOrderScreenVC") as! MyOrderScreenVC
         
@@ -88,6 +102,14 @@ class ProfileScreenVC: UIViewController {
     }
     
     
+    @IBAction func OnClickOpenFAQ(_ sender: Any) {
+        
+        let FaqScreen = UIStoryboard(name: "Profile", bundle: nibBundle).instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+        
+        self.navigationController?.pushViewController(FaqScreen, animated: true)
+    }
+    
+    
     //MARK: - All Defined Functions
     
     func SetUI(){
@@ -96,14 +118,18 @@ class ProfileScreenVC: UIViewController {
         lblUserName.text = (ProfileData.data?.firstName ?? "") + " " + (ProfileData.data?.lastName ?? "")
         
         btnLogout.layer.cornerRadius = 10
-//        imgProfileImage.image = UIImage(named: "Profile Pic")
-//        lblUserName.text = UserDefaults.standard.string(forKey: "Username")
         
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.isNavigationBarHidden = true
         
+        
         VwProfileMenuBgview.layer.cornerRadius = 20
         VwProfileMenuBgview.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        VwProfileMenuBgview.layer.shadowOpacity = 0.5
+        VwProfileMenuBgview.layer.shadowOffset = CGSize(width: 0, height: -5)
+        VwProfileMenuBgview.layer.shadowRadius = 3
+        VwProfileMenuBgview.layer.shadowColor = UIColor.black.cgColor
         
         imgProfileImage.layer.cornerRadius = imgProfileImage.frame.width/2
         imgProfileImage.layer.borderWidth = 4
@@ -147,7 +173,12 @@ class ProfileScreenVC: UIViewController {
                 self.ProfileData = response
                 DispatchQueue.main.async { [self] in
                     //Execute UI Code on Completion of API Call and getting data
-                    SetUI()
+                    if ProfileData.success == true{
+                        SetUI()
+                    }else{
+                        ShowAlertBox(Title: ProfileData.message ?? "", Message: "")
+                    }
+                    
                     loader.dismiss()
                 }
             } error: { error in

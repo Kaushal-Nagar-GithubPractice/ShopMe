@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -60,7 +61,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="24" id="PEN-Ld-FPO"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -69,7 +70,7 @@
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹123.00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBP-bp-I8p">
                                                                             <rect key="frame" x="0.0" y="1.3333333333333428" width="95.666666666666671" height="19.333333333333332"/>
-                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -140,6 +141,33 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIk-BP-SZ3">
+                                        <rect key="frame" x="0.0" y="56" width="393" height="703"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noProduct" translatesAutoresizingMaskIntoConstraints="NO" id="RZf-aM-mq7">
+                                                <rect key="frame" x="56.666666666666657" y="86.666666666666657" width="280" height="280"/>
+                                                <color key="tintColor" name="AppColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="280" id="gtZ-qC-dzM"/>
+                                                    <constraint firstAttribute="width" constant="280" id="w7B-3C-grd"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry!..No Such Product Found !!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaD-Gn-0HM">
+                                                <rect key="frame" x="0.0" y="391.66666666666669" width="393" height="25.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                                <color key="textColor" name="Custom Black - h"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="OaD-Gn-0HM" secondAttribute="trailing" id="2c5-3R-wp7"/>
+                                            <constraint firstItem="OaD-Gn-0HM" firstAttribute="top" secondItem="RZf-aM-mq7" secondAttribute="bottom" constant="25" id="AOA-s7-Kt9"/>
+                                            <constraint firstItem="RZf-aM-mq7" firstAttribute="centerX" secondItem="iIk-BP-SZ3" secondAttribute="centerX" id="ZWK-0c-adJ"/>
+                                            <constraint firstItem="RZf-aM-mq7" firstAttribute="centerY" secondItem="iIk-BP-SZ3" secondAttribute="centerY" constant="-125" id="obB-1o-L5U"/>
+                                            <constraint firstItem="OaD-Gn-0HM" firstAttribute="leading" secondItem="iIk-BP-SZ3" secondAttribute="leading" id="s4i-bp-Mx5"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -147,9 +175,13 @@
                                     <constraint firstAttribute="trailing" secondItem="Ahe-9i-Vmt" secondAttribute="trailing" constant="10" id="7AQ-Cr-T4a"/>
                                     <constraint firstAttribute="trailing" secondItem="6Zn-cJ-aUF" secondAttribute="trailing" constant="10" id="EcI-h9-70S"/>
                                     <constraint firstItem="6Zn-cJ-aUF" firstAttribute="leading" secondItem="6Ct-LY-6h7" secondAttribute="leading" constant="10" id="Gy7-Lk-JRI"/>
+                                    <constraint firstItem="iIk-BP-SZ3" firstAttribute="leading" secondItem="6Ct-LY-6h7" secondAttribute="leading" id="HU3-sJ-D0Q"/>
                                     <constraint firstItem="6Zn-cJ-aUF" firstAttribute="top" secondItem="6Ct-LY-6h7" secondAttribute="top" id="HpN-Fn-vuQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="iIk-BP-SZ3" secondAttribute="trailing" id="KM7-X5-3HI"/>
+                                    <constraint firstAttribute="bottom" secondItem="iIk-BP-SZ3" secondAttribute="bottom" id="Vvr-tN-P7N"/>
                                     <constraint firstItem="Ahe-9i-Vmt" firstAttribute="bottom" secondItem="6Ct-LY-6h7" secondAttribute="bottomMargin" id="Xa7-xK-efM"/>
                                     <constraint firstItem="Ahe-9i-Vmt" firstAttribute="top" secondItem="6Zn-cJ-aUF" secondAttribute="bottom" id="uJu-jn-yVT"/>
+                                    <constraint firstItem="iIk-BP-SZ3" firstAttribute="top" secondItem="6Zn-cJ-aUF" secondAttribute="bottom" id="z7X-mF-3x0"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -166,6 +198,7 @@
                         <outlet property="ViewMain" destination="6Ct-LY-6h7" id="qDU-Ve-VcD"/>
                         <outlet property="collectionProducts" destination="Ahe-9i-Vmt" id="bhU-Vo-DKR"/>
                         <outlet property="searchBar" destination="6Zn-cJ-aUF" id="tkQ-mu-6CB"/>
+                        <outlet property="viewEmptyProduct" destination="iIk-BP-SZ3" id="yoz-ww-69V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -184,7 +217,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVG-Zs-Kja">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="674.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="469.33333333333331"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ga6-Ra-9nB">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="45"/>
@@ -546,161 +579,13 @@
                                                     <constraint firstAttribute="bottom" secondItem="vJu-s0-4fg" secondAttribute="bottom" id="taf-2w-V9A"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9iX-y1-pzA">
-                                                <rect key="frame" x="0.0" y="389.33333333333331" width="393" height="199.99999999999994"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMA-NB-3lq">
-                                                        <rect key="frame" x="0.0" y="5" width="393" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="DrC-aE-1XM"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                        <color key="tintColor" name="Custom Black"/>
-                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="  Filter by Price Range"/>
-                                                    </button>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jDY-UA-MOk">
-                                                        <rect key="frame" x="20" y="60" width="353" height="140"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="CR7-4E-ClO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="353" height="33.333333333333336"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" tag="6" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dvw-3z-QUl">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="33.333333333333336"/>
-                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" title=" $ 0 - $ 100">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                                                        </buttonConfiguration>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="BtncornerRadius">
-                                                                                <real key="value" value="10"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <connections>
-                                                                            <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="A2S-Ct-Ck2"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" tag="7" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFO-Di-gZD">
-                                                                        <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="33.333333333333336"/>
-                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" title="$ 100 - $ 200">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                                                        </buttonConfiguration>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="BtncornerRadius">
-                                                                                <real key="value" value="10"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <connections>
-                                                                            <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="g6e-aB-3iz"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Mir-NP-LQa">
-                                                                <rect key="frame" x="0.0" y="53.333333333333314" width="353" height="33.333333333333343"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" tag="8" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDz-dq-qGt">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="33.333333333333336"/>
-                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" title=" $ 200 - $ 300">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                                                        </buttonConfiguration>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="BtncornerRadius">
-                                                                                <real key="value" value="10"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <connections>
-                                                                            <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="Hb8-Uk-juZ"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" tag="9" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewu-0a-Fnq">
-                                                                        <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="33.333333333333336"/>
-                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" title=" $ 300 - $ 400">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                                                        </buttonConfiguration>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="BtncornerRadius">
-                                                                                <real key="value" value="10"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <connections>
-                                                                            <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="9ED-3t-1Yu"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LN4-9b-bS2">
-                                                                <rect key="frame" x="0.0" y="106.66666666666669" width="353" height="33.333333333333343"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" tag="10" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIF-ev-CFW" userLabel="₹ 400 - ₹ 500">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="33.333333333333336"/>
-                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" title=" $ 400 - $ 500">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                                                        </buttonConfiguration>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="BtncornerRadius">
-                                                                                <real key="value" value="10"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <connections>
-                                                                            <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="jEh-La-kMe"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" tag="11" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHW-Ku-d9D" userLabel="₹ 400 - ₹ 500">
-                                                                        <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="33.333333333333336"/>
-                                                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                                                        <color key="tintColor" name="Custom Black"/>
-                                                                        <state key="normal" title="Button"/>
-                                                                        <buttonConfiguration key="configuration" style="plain" title="Above $ 500">
-                                                                            <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                                                        </buttonConfiguration>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="BtncornerRadius">
-                                                                                <real key="value" value="10"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                        <connections>
-                                                                            <action selector="onClickPrice:" destination="ulH-e2-aOT" eventType="touchUpInside" id="lsK-QD-4ze"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstItem="jDY-UA-MOk" firstAttribute="leading" secondItem="9iX-y1-pzA" secondAttribute="leading" constant="20" id="8i6-tT-bHu"/>
-                                                    <constraint firstItem="DMA-NB-3lq" firstAttribute="top" secondItem="9iX-y1-pzA" secondAttribute="top" constant="5" id="DTh-uv-QkC"/>
-                                                    <constraint firstAttribute="height" constant="200" id="OL0-r0-DmN"/>
-                                                    <constraint firstItem="jDY-UA-MOk" firstAttribute="top" secondItem="DMA-NB-3lq" secondAttribute="bottom" constant="5" id="Ohi-Ah-wEZ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="jDY-UA-MOk" secondAttribute="trailing" constant="20" id="YMU-ah-bNk"/>
-                                                    <constraint firstItem="DMA-NB-3lq" firstAttribute="leading" secondItem="9iX-y1-pzA" secondAttribute="leading" id="ezs-C1-nEV"/>
-                                                    <constraint firstAttribute="trailing" secondItem="DMA-NB-3lq" secondAttribute="trailing" id="ogV-mr-2px"/>
-                                                    <constraint firstAttribute="bottom" secondItem="jDY-UA-MOk" secondAttribute="bottom" id="uxO-xv-n0A"/>
-                                                </constraints>
-                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVb-uP-DgG">
-                                                <rect key="frame" x="25" y="614.33333333333337" width="343" height="45"/>
+                                                <rect key="frame" x="25" y="409.33333333333331" width="343" height="45"/>
                                                 <color key="backgroundColor" name="AppColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="Skf-h4-YUg"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="tintColor" name="Custom Black"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Apply Changes"/>
@@ -727,23 +612,20 @@
                                             <constraint firstItem="TRc-86-0dD" firstAttribute="leading" secondItem="PVG-Zs-Kja" secondAttribute="leading" id="LFA-nH-33r"/>
                                             <constraint firstItem="jVb-uP-DgG" firstAttribute="leading" secondItem="PVG-Zs-Kja" secondAttribute="leading" constant="25" id="LJf-kC-fVh"/>
                                             <constraint firstItem="eIR-0K-LjK" firstAttribute="leading" secondItem="PVG-Zs-Kja" secondAttribute="leading" id="Noh-ZS-chI"/>
-                                            <constraint firstItem="jVb-uP-DgG" firstAttribute="top" secondItem="9iX-y1-pzA" secondAttribute="bottom" constant="25.000000000000114" id="QMo-mT-8pk"/>
                                             <constraint firstAttribute="trailing" secondItem="eIR-0K-LjK" secondAttribute="trailing" id="TeZ-E4-g8A"/>
                                             <constraint firstItem="OOK-mT-4Og" firstAttribute="leading" secondItem="PVG-Zs-Kja" secondAttribute="leading" id="V4c-nx-H9A"/>
                                             <constraint firstItem="ga6-Ra-9nB" firstAttribute="top" secondItem="PVG-Zs-Kja" secondAttribute="top" id="V5K-um-YVe"/>
                                             <constraint firstItem="hbU-Ii-1qb" firstAttribute="leading" secondItem="PVG-Zs-Kja" secondAttribute="leading" id="XyN-XE-Upg"/>
-                                            <constraint firstItem="9iX-y1-pzA" firstAttribute="top" secondItem="hbU-Ii-1qb" secondAttribute="bottom" id="adP-7F-tXf"/>
+                                            <constraint firstItem="jVb-uP-DgG" firstAttribute="top" secondItem="hbU-Ii-1qb" secondAttribute="bottom" constant="20" id="dCw-7t-VAt"/>
                                             <constraint firstItem="hbU-Ii-1qb" firstAttribute="top" secondItem="OOK-mT-4Og" secondAttribute="bottom" constant="5" id="e1S-0Q-tO6"/>
                                             <constraint firstAttribute="trailing" secondItem="TRc-86-0dD" secondAttribute="trailing" id="eoE-Fs-D8N"/>
                                             <constraint firstItem="ga6-Ra-9nB" firstAttribute="leading" secondItem="PVG-Zs-Kja" secondAttribute="leading" id="gYB-SY-84T"/>
                                             <constraint firstItem="eIR-0K-LjK" firstAttribute="top" secondItem="ga6-Ra-9nB" secondAttribute="bottom" id="gj1-g6-L2I"/>
-                                            <constraint firstItem="9iX-y1-pzA" firstAttribute="leading" secondItem="PVG-Zs-Kja" secondAttribute="leading" id="hap-Yu-4HP"/>
                                             <constraint firstAttribute="trailing" secondItem="ga6-Ra-9nB" secondAttribute="trailing" id="llG-fP-pwh"/>
                                             <constraint firstItem="OOK-mT-4Og" firstAttribute="top" secondItem="TRc-86-0dD" secondAttribute="bottom" constant="5" id="nfc-yG-KFC"/>
                                             <constraint firstAttribute="trailing" secondItem="jVb-uP-DgG" secondAttribute="trailing" constant="25" id="q3C-iG-Alg"/>
                                             <constraint firstAttribute="trailing" secondItem="OOK-mT-4Og" secondAttribute="trailing" id="qsI-Kq-cqd"/>
                                             <constraint firstItem="Xkx-mP-TP1" firstAttribute="leading" secondItem="PVG-Zs-Kja" secondAttribute="leading" id="tIj-u0-W03"/>
-                                            <constraint firstAttribute="trailing" secondItem="9iX-y1-pzA" secondAttribute="trailing" id="yeF-az-t4B"/>
                                             <constraint firstItem="OOK-mT-4Og" firstAttribute="leading" secondItem="PVG-Zs-Kja" secondAttribute="leading" id="zmE-6e-7Ej"/>
                                         </constraints>
                                     </view>
@@ -772,12 +654,6 @@
                     </view>
                     <connections>
                         <outlet property="btnApplyChanges" destination="jVb-uP-DgG" id="Os9-01-vrK"/>
-                        <outlet property="btnPrice0" destination="Dvw-3z-QUl" id="G07-SL-MHn"/>
-                        <outlet property="btnPrice100" destination="TFO-Di-gZD" id="a4P-8O-OzW"/>
-                        <outlet property="btnPrice200" destination="CDz-dq-qGt" id="LWN-Lg-7rf"/>
-                        <outlet property="btnPrice300" destination="ewu-0a-Fnq" id="VeH-ix-6Le"/>
-                        <outlet property="btnPrice400" destination="DIF-ev-CFW" id="rA7-qR-CVd"/>
-                        <outlet property="btnPrice500" destination="fHW-Ku-d9D" id="ppM-g6-6Oe"/>
                         <outlet property="collectionColor" destination="OBF-Yv-trs" id="epJ-P6-QC8"/>
                         <outlet property="collectionSize" destination="zkT-aJ-ui8" id="PdA-Tj-R0c"/>
                         <outlet property="lblMAxPrice" destination="AIq-Mm-rDj" id="Juq-Gu-Nqq"/>
@@ -785,7 +661,6 @@
                         <outlet property="priceRangeSLider" destination="Cwy-IH-Syl" id="lq1-kP-BUm"/>
                         <outlet property="txtMaxPrice" destination="m61-Ye-F0j" id="5Sl-7d-LqX"/>
                         <outlet property="txtMinPrice" destination="BSr-id-DgR" id="prW-NH-u7Y"/>
-                        <outlet property="viewPriceRange" destination="9iX-y1-pzA" id="ZBd-j5-UDX"/>
                         <outlet property="viewSizeBtns" destination="Xkx-mP-TP1" id="GhS-LA-0dD"/>
                     </connections>
                 </viewController>
@@ -796,11 +671,15 @@
     </scenes>
     <resources>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="noProduct" width="612" height="408"/>
         <namedColor name="AppColor">
             <color red="0.84313725490196079" green="0.82745098039215681" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Custom Black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Custom Black - h">
+            <color red="0.68199998140335083" green="0.68199998140335083" blue="0.69800001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

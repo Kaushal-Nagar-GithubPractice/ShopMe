@@ -11,4 +11,6 @@ target 'ShopMe-Github-Collab' do
   pod 'SVProgressHUD'
   pod ‘SwiftRangeSlider’
   pod 'ReachabilitySwift'
+  pod 'KMPlaceholderTextView'
+  pod 'SwiftSoup'
 end

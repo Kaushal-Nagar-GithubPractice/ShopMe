@@ -18,7 +18,7 @@ func getPostRatingData(request : APIRequest ,success successCallback : @escaping
         if let data = data {
             do {
                 let parsedData = try JSONSerialization.jsonObject(with: data) as! [String:Any]
-                print(parsedData)
+//                print(parsedData)
                 var response = try JSONDecoder().decode(UserRatingModel.self, from: data)
                 successCallback(response)
             }

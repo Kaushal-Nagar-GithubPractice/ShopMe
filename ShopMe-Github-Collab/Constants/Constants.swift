@@ -14,12 +14,13 @@ let API_BASE_URL = "https://shoppingcart-api.demoserver.biz"
 class Constant {
 
     //Prasiddh's Urls
-    static let API_BASE_URL = "https://shoppingcart-api.demoserver.biz"
+//    static let API_BASE_URL = "https://shoppingcart-api.demoserver.biz"?
     static let getUserCart =  "\(API_BASE_URL)/cart"
     static let deleteProductFromCart = "\(API_BASE_URL)/cart"
     static let checkoutOrder = "\(API_BASE_URL)/order/checkout"
     
     static let wishlistGet = "\(API_BASE_URL)/wishlist/"
+    static let getCoupon = "\(API_BASE_URL)/coupon/"
 
     //Himanshu's URLs
     static let GET_PRODUCT_LIST = API_BASE_URL + "/product/list"
@@ -34,6 +35,11 @@ class Constant {
     static let GET_COLOR_LIST = API_BASE_URL + "/product/color"
     static let ADD_TO_WHISLIST = API_BASE_URL + "/wishlist/"
     static let GET_CATEGORY_PRODUCTS = API_BASE_URL + "/product/list?categoryId="
+    static let GET_SPECIAL_OFFERS = API_BASE_URL + "/specialOffer"
+    static let POST_ENQUIRY = API_BASE_URL + "/enquiry"
+    static let GET_ABOUTUS = API_BASE_URL + "/pages/aboutUs"
+    static let GET_HELP = API_BASE_URL + "/pages/help"
+    
 
     //Kaushal's URLs
     static let Register_User_URl = API_BASE_URL + "/user/registration"
@@ -46,6 +52,8 @@ class Constant {
     static let Get_Wishlist_URL = API_BASE_URL + "/wishlist/"
     static let Delete_Product_From_Wishlist_URL = API_BASE_URL + "/wishlist/"
     static let Change_Pass_URl = API_BASE_URL + "/user/changePassword"
-
+    static let Cancel_Order_URl = API_BASE_URL + "/order/cancel/"
+    static let Get_Faq_Category = API_BASE_URL + "/faq/category"
+    static let Get_Faq_Questions = API_BASE_URL + "/faq/"
 
 }

@@ -52,6 +52,8 @@ class SelectAddressViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Delegate
     func sendAddresToPreviousVc(addressDict : [String : Any]) {
         addressArray.append(addressDict)
+        
+        print("address array ==....",addressArray)
         AddressListTableView.reloadData()
     }
     
@@ -71,9 +73,11 @@ extension SelectAddressViewController {
         let fullAddress = "\(addressArray[index]["addressLine1"] ?? ""),\(addressArray[index]["addressLine2"] ?? ""),\(addressArray[index]["city"] ?? ""),\(addressArray[index]["state"] ?? ""),\(addressArray[index]["country"] ?? "") -\(addressArray[index]["zipcode"]!)"
         
         let cell = AddressListTableView.dequeueReusableCell(withIdentifier: "AddressTableViewCell", for: indexPath) as! AddressTableViewCell
+        cell.selectionStyle = .none
         cell.lblCustomerName.text = fullName
         cell.lblAddress.text = fullAddress
         cell.lblMobileNumber.text = addressArray[index]["mobileNo"] as? String
+        cell.imgAddressType.image = UIImage(named: "\(addressArray[index]["addressType"] ?? "other")")
         
         return cell
     }

@@ -1,34 +1,42 @@
 PODS:
   - Cosmos (25.0.1)
   - Kingfisher (7.11.0)
+  - KMPlaceholderTextView (1.4.0)
   - ReachabilitySwift (5.2.3)
   - SVProgressHUD (2.3.1):
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
   - SwiftRangeSlider (2.0.0)
+  - SwiftSoup (2.7.2)
 
 DEPENDENCIES:
   - Cosmos
   - Kingfisher
+  - KMPlaceholderTextView
   - ReachabilitySwift
   - SVProgressHUD
   - SwiftRangeSlider
+  - SwiftSoup
 
 SPEC REPOS:
   trunk:
     - Cosmos
     - Kingfisher
+    - KMPlaceholderTextView
     - ReachabilitySwift
     - SVProgressHUD
     - SwiftRangeSlider
+    - SwiftSoup
 
 SPEC CHECKSUMS:
   Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
+  KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   ReachabilitySwift: 7f151ff156cea1481a8411701195ac6a984f4979
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftRangeSlider: f86e3b637c961120158fa1a89277c8343845cbe4
+  SwiftSoup: 4164c6bd8af69acd119c23fb36906975a60d71bb
 
-PODFILE CHECKSUM: eb22ef3f5accade23375e5047ba3257937bc03d7
+PODFILE CHECKSUM: 4475452abab6388a7eadb81211dda41657ebc3ab
 
 COCOAPODS: 1.15.2
