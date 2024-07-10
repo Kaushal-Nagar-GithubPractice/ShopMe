@@ -67,14 +67,11 @@ class FilterVC: UIViewController {
     }
     
     @IBAction func SliderValueChange(_ sender: RangeSlider){
-        if sender.lowerValue <= Double(maxPrice - 50) {
             txtMinPrice.text = "\(sender.lowerValue.rounded())"
             selectedMinPrice = Int(sender.lowerValue.rounded())
-        }
-        if sender.upperValue >= Double(minPrice - 50) {
             txtMaxPrice.text = "\(sender.upperValue.rounded())"
             selectedMaxPrice = Int(sender.upperValue.rounded())
-        }
+        
 //        txtMaxPrice.text = "\(sender.upperValue)"
     }
     @IBAction func onClickPrice(_ sender: UIButton) {

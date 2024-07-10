@@ -223,7 +223,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mCp-bN-NHA">
                                                                         <rect key="frame" x="5" y="0.0" width="206" height="97"/>
                                                                         <subviews>
-                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category.256x256" translatesAutoresizingMaskIntoConstraints="NO" id="3xG-1k-7Sz">
+                                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="category.256x256" translatesAutoresizingMaskIntoConstraints="NO" id="3xG-1k-7Sz">
                                                                                 <rect key="frame" x="15" y="10" width="75" height="77"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="75" id="f9a-SA-9dj"/>
@@ -550,7 +550,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdP-8Q-Ihw">
-                                <rect key="frame" x="0.0" y="59" width="393" height="758.99999999999977"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khR-dg-Tnw">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="1308.6666666666667"/>
@@ -663,7 +663,7 @@
                                                         </constraints>
                                                         <color key="tintColor" systemColor="systemGray2Color"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="share"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="share-2"/>
                                                         <connections>
                                                             <action selector="onClickShare:" destination="NSP-vt-lov" eventType="touchUpInside" id="BrN-0m-ZTe"/>
                                                         </connections>
@@ -712,7 +712,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mFG-z2-t3f">
+                                                    <collectionView clipsSubviews="YES" tag="2" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mFG-z2-t3f">
                                                         <rect key="frame" x="0.0" y="21.333333333333311" width="373" height="48.666666666666657"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zdz-Vy-t3b">
@@ -905,7 +905,7 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0TR-xm-MjJ">
                                                                             <rect key="frame" x="10" y="0.0" width="201" height="97"/>
                                                                             <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8q8-eZ-Wvx">
+                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8q8-eZ-Wvx">
                                                                                     <rect key="frame" x="5" y="5" width="75" height="87"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="75" id="itq-np-kEq"/>
@@ -978,7 +978,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nce-tX-O3f">
+                                                    <collectionView clipsSubviews="YES" tag="3" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Nce-tX-O3f">
                                                         <rect key="frame" x="0.0" y="21.333333333333368" width="373" height="48.666666666666657"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AzV-Vt-hWg">
                                                             <size key="itemSize" width="72" height="31.000000000000004"/>
@@ -1057,12 +1057,15 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add Review" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="qY1-8t-9E1">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="qY1-8t-9E1" customClass="KMPlaceholderTextView" customModule="KMPlaceholderTextView">
                                                         <rect key="frame" x="20" y="61.333333333333364" width="353" height="99.333333333333314"/>
                                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                         <color key="textColor" systemColor="labelColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="  Add Review *"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </textView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBj-cL-wc9">
                                                         <rect key="frame" x="20" y="170.66666666666663" width="353" height="34.333333333333343"/>
@@ -1324,7 +1327,7 @@
                         <outlet property="pageControl" destination="Ilr-l5-K5a" id="XQP-h0-GLt"/>
                         <outlet property="scrollView" destination="fdP-8Q-Ihw" id="5CC-fE-D8k"/>
                         <outlet property="tblUserReviews" destination="gac-8L-Abg" id="AfO-pt-bpR"/>
-                        <outlet property="txtViewUserRating" destination="qY1-8t-9E1" id="2ma-D1-puz"/>
+                        <outlet property="txtViewUserRating" destination="qY1-8t-9E1" id="bXf-xR-N0C"/>
                         <outlet property="viewColor" destination="9NP-cF-9jZ" id="28Y-1e-oXj"/>
                         <outlet property="viewSizeBtn" destination="Fpg-JM-p4N" id="Wa0-De-zNv"/>
                         <outlet property="viewSuggestedProduct" destination="P8s-dg-tG0" id="mVj-tl-wSD"/>
@@ -1453,7 +1456,7 @@
         <image name="minus" catalog="system" width="128" height="26"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="share" width="32" height="32"/>
+        <image name="share-2" width="32" height="32"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="truck" width="64" height="64"/>
         <image name="xmark" catalog="system" width="128" height="113"/>

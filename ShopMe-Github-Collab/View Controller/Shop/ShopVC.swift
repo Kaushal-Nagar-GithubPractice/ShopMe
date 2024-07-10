@@ -152,7 +152,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         iconButton.tintColor = UIColor(named: "Custom Black")
         iconButton.setBackgroundImage(icon, for: .normal)
         let barButton = UIBarButtonItem(customView: iconButton)
-        iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
+        iconButton.addTarget(self, action: #selector(btnFilterClicked), for: .touchUpInside)
         navigationItem.rightBarButtonItem = barButton
         self.navigationItem.title = "Shop"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22, weight: UIFont.Weight.semibold)]
@@ -240,10 +240,10 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                 }
                 else{
 //                    print(response)
-                    self.allFilteresProduct.append(contentsOf: response.data?.products ?? [])
-                    print(self.allFilteresProduct,self.ShopProducts)
+                    self.allFilteresProduct =  response.data?.products ?? []
+//                    print(self.allFilteresProduct,self.ShopProducts)
                     self.ShopProducts = self.allFilteresProduct
-                    print(self.allFilteresProduct,self.ShopProducts)
+//                    print(self.allFilteresProduct,self.ShopProducts)
                     self.collectionProducts.reloadData()
                     SVProgressHUD.dismiss()
                 }
@@ -271,7 +271,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     }
     //MARK: OBJC  METHODS
 
-    @objc func btnBackClicked(){
+    @objc func btnFilterClicked(){
         searchBar.text = ""
         let vc = UIStoryboard(name: "ShopStoryboard", bundle: nil).instantiateViewController(withIdentifier: "FilterVC") as! FilterVC
         vc.sheetPresentationController?.detents = [.medium()]
@@ -281,7 +281,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             vc.flagForAppliedFilter = true
         }
        
-        vc.minPrice = MainArr.first?.min_price ?? 0
+        vc.minPrice = 0
         vc.maxPrice = MainArr.first?.max_price ?? 1000
         vc.arrSize = size
         vc.arrColor = color
@@ -292,7 +292,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
     //MARK: Protocol  METHODS
     func onClickApplyFilter(dict: FilterDictModel) {
         searchBar.text = ""
-//        print(dict)
+        filterUrl = ""
         flagForPgCntFilterPrdt = true
         if !(dict.minPrice == 0) {
             filterUrl += "&minPrice="+"\(dict.minPrice)"
@@ -301,10 +301,14 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             filterUrl += "&maxPrice="+"\(dict.maxPrice)"
         }
         if !(dict.size == [""]) {
-            filterUrl += "&size="+"\(dict.size)"
+            for i in 0..<dict.size.count{
+                filterUrl += "&size[\(i)]="+"\(dict.size[i])"
+            }
         }
         if !(dict.color == [""]) {
-            filterUrl += "&color="+"\(dict.color)"
+            for i in 0..<dict.color.count{
+                filterUrl += "&color[\(i)]="+"\(dict.color[i])"
+            }
         }
         print(filterUrl)
         dictFilters = dict
