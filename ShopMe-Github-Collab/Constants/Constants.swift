@@ -14,7 +14,7 @@ let API_BASE_URL = "https://shoppingcart-api.demoserver.biz"
 class Constant {
 
     //Prasiddh's Urls
-    static let API_BASE_URL = "https://shoppingcart-api.demoserver.biz"
+//    static let API_BASE_URL = "https://shoppingcart-api.demoserver.biz"?
     static let getUserCart =  "\(API_BASE_URL)/cart"
     static let deleteProductFromCart = "\(API_BASE_URL)/cart"
     static let checkoutOrder = "\(API_BASE_URL)/order/checkout"
@@ -52,6 +52,8 @@ class Constant {
     static let Get_Wishlist_URL = API_BASE_URL + "/wishlist/"
     static let Delete_Product_From_Wishlist_URL = API_BASE_URL + "/wishlist/"
     static let Change_Pass_URl = API_BASE_URL + "/user/changePassword"
-
+    static let Cancel_Order_URl = API_BASE_URL + "/order/cancel/"
+    static let Get_Faq_Category = API_BASE_URL + "/faq/category"
+    static let Get_Faq_Questions = API_BASE_URL + "/faq/"
 
 }

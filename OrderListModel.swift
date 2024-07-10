@@ -69,6 +69,8 @@ struct OrderListing_Orders : Codable {
     let userId : String?
     let products : [OrderListing_Products]?
     let totalAmount : Int?
+    let discount : Int?
+    let originalPrice : Int?
     let billingAddress : OrderListing_BillingAddress?
     let paymentMethod : String?
     let orderStatus : String?
@@ -80,6 +82,8 @@ struct OrderListing_Orders : Codable {
         case userId = "userId"
         case products = "products"
         case totalAmount = "totalAmount"
+        case discount = "discount"
+        case originalPrice = "originalPrice"
         case billingAddress = "billingAddress"
         case paymentMethod = "paymentMethod"
         case orderStatus = "orderStatus"
@@ -92,6 +96,8 @@ struct OrderListing_Orders : Codable {
         userId = try values.decodeIfPresent(String.self, forKey: .userId)
         products = try values.decodeIfPresent([OrderListing_Products].self, forKey: .products)
         totalAmount = try values.decodeIfPresent(Int.self, forKey: .totalAmount)
+        discount = try values.decodeIfPresent(Int.self, forKey: .discount)
+        originalPrice = try values.decodeIfPresent(Int.self, forKey: .originalPrice)
         billingAddress = try values.decodeIfPresent(OrderListing_BillingAddress.self, forKey: .billingAddress)
         paymentMethod = try values.decodeIfPresent(String.self, forKey: .paymentMethod)
         orderStatus = try values.decodeIfPresent(String.self, forKey: .orderStatus)
