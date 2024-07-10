@@ -67,14 +67,11 @@ class FilterVC: UIViewController {
     }
     
     @IBAction func SliderValueChange(_ sender: RangeSlider){
-        if sender.lowerValue <= Double(maxPrice - 50) {
             txtMinPrice.text = "\(sender.lowerValue.rounded())"
             selectedMinPrice = Int(sender.lowerValue.rounded())
-        }
-        if sender.upperValue >= Double(minPrice - 50) {
             txtMaxPrice.text = "\(sender.upperValue.rounded())"
             selectedMaxPrice = Int(sender.upperValue.rounded())
-        }
+        
 //        txtMaxPrice.text = "\(sender.upperValue)"
     }
     @IBAction func onClickPrice(_ sender: UIButton) {
@@ -111,8 +108,6 @@ class FilterVC: UIViewController {
     }
     
     @IBAction func onCLickApplyChanges(_ sender: Any) {
-        
-       
        lazy var tempMin = 0
        lazy var tempMax = 0
         lazy var tempArrSize = [""]
@@ -201,8 +196,6 @@ class FilterVC: UIViewController {
         } error: { error in
             print(error)
         }
-
-        
     }
     
     //MARK: @OBJC Methods
@@ -211,6 +204,7 @@ class FilterVC: UIViewController {
         self.dismiss(animated: true)
     }
 }
+    //MARK: Extension FilterVC
 
 extension FilterVC : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITextFieldDelegate {
     

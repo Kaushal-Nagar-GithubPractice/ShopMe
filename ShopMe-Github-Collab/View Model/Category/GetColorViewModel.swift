@@ -17,7 +17,7 @@ class GetColorViewModel : NSObject {
             if let data = data {
                 do {
                     let parsedData = try JSONSerialization.jsonObject(with: data) as! [String:Any]
-                    print(parsedData)
+//                    print(parsedData)
                     var response = try JSONDecoder().decode(getColor.self, from: data)
                     successCallback(response)
                 }

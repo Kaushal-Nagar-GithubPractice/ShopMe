@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -140,6 +141,33 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iIk-BP-SZ3">
+                                        <rect key="frame" x="0.0" y="56" width="393" height="703"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noProduct" translatesAutoresizingMaskIntoConstraints="NO" id="RZf-aM-mq7">
+                                                <rect key="frame" x="56.666666666666657" y="86.666666666666657" width="280" height="280"/>
+                                                <color key="tintColor" name="AppColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="280" id="gtZ-qC-dzM"/>
+                                                    <constraint firstAttribute="width" constant="280" id="w7B-3C-grd"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry!..No Such Product Found !!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaD-Gn-0HM">
+                                                <rect key="frame" x="0.0" y="391.66666666666669" width="393" height="25.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                                <color key="textColor" name="Custom Black - h"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="OaD-Gn-0HM" secondAttribute="trailing" id="2c5-3R-wp7"/>
+                                            <constraint firstItem="OaD-Gn-0HM" firstAttribute="top" secondItem="RZf-aM-mq7" secondAttribute="bottom" constant="25" id="AOA-s7-Kt9"/>
+                                            <constraint firstItem="RZf-aM-mq7" firstAttribute="centerX" secondItem="iIk-BP-SZ3" secondAttribute="centerX" id="ZWK-0c-adJ"/>
+                                            <constraint firstItem="RZf-aM-mq7" firstAttribute="centerY" secondItem="iIk-BP-SZ3" secondAttribute="centerY" constant="-125" id="obB-1o-L5U"/>
+                                            <constraint firstItem="OaD-Gn-0HM" firstAttribute="leading" secondItem="iIk-BP-SZ3" secondAttribute="leading" id="s4i-bp-Mx5"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -147,9 +175,13 @@
                                     <constraint firstAttribute="trailing" secondItem="Ahe-9i-Vmt" secondAttribute="trailing" constant="10" id="7AQ-Cr-T4a"/>
                                     <constraint firstAttribute="trailing" secondItem="6Zn-cJ-aUF" secondAttribute="trailing" constant="10" id="EcI-h9-70S"/>
                                     <constraint firstItem="6Zn-cJ-aUF" firstAttribute="leading" secondItem="6Ct-LY-6h7" secondAttribute="leading" constant="10" id="Gy7-Lk-JRI"/>
+                                    <constraint firstItem="iIk-BP-SZ3" firstAttribute="leading" secondItem="6Ct-LY-6h7" secondAttribute="leading" id="HU3-sJ-D0Q"/>
                                     <constraint firstItem="6Zn-cJ-aUF" firstAttribute="top" secondItem="6Ct-LY-6h7" secondAttribute="top" id="HpN-Fn-vuQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="iIk-BP-SZ3" secondAttribute="trailing" id="KM7-X5-3HI"/>
+                                    <constraint firstAttribute="bottom" secondItem="iIk-BP-SZ3" secondAttribute="bottom" id="Vvr-tN-P7N"/>
                                     <constraint firstItem="Ahe-9i-Vmt" firstAttribute="bottom" secondItem="6Ct-LY-6h7" secondAttribute="bottomMargin" id="Xa7-xK-efM"/>
                                     <constraint firstItem="Ahe-9i-Vmt" firstAttribute="top" secondItem="6Zn-cJ-aUF" secondAttribute="bottom" id="uJu-jn-yVT"/>
+                                    <constraint firstItem="iIk-BP-SZ3" firstAttribute="top" secondItem="6Zn-cJ-aUF" secondAttribute="bottom" id="z7X-mF-3x0"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -166,6 +198,7 @@
                         <outlet property="ViewMain" destination="6Ct-LY-6h7" id="qDU-Ve-VcD"/>
                         <outlet property="collectionProducts" destination="Ahe-9i-Vmt" id="bhU-Vo-DKR"/>
                         <outlet property="searchBar" destination="6Zn-cJ-aUF" id="tkQ-mu-6CB"/>
+                        <outlet property="viewEmptyProduct" destination="iIk-BP-SZ3" id="yoz-ww-69V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -796,17 +829,21 @@
     </scenes>
     <resources>
         <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="noProduct" width="612" height="408"/>
         <namedColor name="AppColor">
             <color red="0.84313725490196079" green="0.82745098039215681" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Custom Black">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="Custom Black - h">
+            <color red="0.68199998140335083" green="0.68199998140335083" blue="0.69800001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

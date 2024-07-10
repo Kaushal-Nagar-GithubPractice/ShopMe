@@ -8,14 +8,15 @@
 import UIKit
 import Cosmos
 import SVProgressHUD
+import KMPlaceholderTextView
 class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var isRatingAdded = false
     var isWishlist = false
     @IBOutlet weak var addToWishlist: UIButton!
     @IBOutlet weak var tblUserReviews: UITableView!
     @IBOutlet weak var UserRating: CosmosView!
+    @IBOutlet weak var txtViewUserRating: KMPlaceholderTextView!
     @IBOutlet weak var viewSuggestedProduct: UIView!
-    @IBOutlet weak var txtViewUserRating: UITextView!
     var isAddedtoCart = false
     @IBOutlet weak var btnAddUserRating: UIButton!
     @IBOutlet weak var heightViewSuggestedProduct: NSLayoutConstraint!
@@ -96,6 +97,10 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     override func viewWillDisappear(_ animated: Bool) {
         SelectedSize = ""
         SelectedColor = ""
+        ColorsInCart = [""]
+        SizesInCArt = [""]
+        collectionSize.reloadData()
+        collectionColor.reloadData()
         
     }
     
@@ -137,31 +142,37 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
      
     }
     @IBAction func onCLickAddtoCart(_ sender: Any) {
-        if isAddedtoCart {
-            ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex: 2)
+        
+        if !(UserDefaults.standard.bool(forKey: "IsRedirect")){
+            ShowAlertBox(Title: "Alert", Message: "Please Login To Add To Cart")
         }
         else{
-            btnAddtoCart.backgroundColor = UIColor.systemGray4
-                        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
-                            self.btnAddtoCart.backgroundColor = UIColor(named: "AppColor")
-                                }, completion: nil)
-            var dict : Dictionary<String,Dictionary<String, Any>> = [:]
-            if SelectedSize != "" && SelectedColor != "" {
-                dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.sellingPrice ?? 999,"color" : SelectedColor,"size" : SelectedSize]]
-                callAddtoCartApi(dict: dict)
-                btnAddtoCart.setTitle(" Go To Cart", for: .normal)
-                isAddedtoCart = true
-                ShowAlertBox(Title: "Confirmation", Message: "Added to Cart Successfully")
+            if isAddedtoCart {
+                ProfileScreenVC.Delegate.ChangeToHomeScreen(tabbarItemIndex: 2)
             }
             else{
-                if SelectedSize == "" {
-                   ShowAlertBox(Title: "Alert", Message: "Select Size For Product ")
+                btnAddtoCart.backgroundColor = UIColor.systemGray4
+                            UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseIn, animations: {
+                                self.btnAddtoCart.backgroundColor = UIColor(named: "AppColor")
+                                    }, completion: nil)
+                var dict : Dictionary<String,Dictionary<String, Any>> = [:]
+                if SelectedSize != "" && SelectedColor != "" {
+                    dict = ["product" : ["productId" : selectedProduct?._id ?? "","quantity" : Quantity,"price" : selectedProduct?.sellingPrice ?? 999,"color" : SelectedColor,"size" : SelectedSize]]
+                    callAddtoCartApi(dict: dict)
+                    btnAddtoCart.setTitle(" Go To Cart", for: .normal)
+                    isAddedtoCart = true
+                    ShowAlertBox(Title: "Confirmation", Message: "Added to Cart Successfully")
                 }
-                else if SelectedColor == "" {
-                    ShowAlertBox(Title: "Alert", Message: "Select Color For Product ")
-                }
-                else if  SelectedSize == "" && SelectedColor == "" {
-                    ShowAlertBox(Title: "Alert", Message: "Select Size & Color For Product ")
+                else{
+                    if SelectedSize == "" {
+                       ShowAlertBox(Title: "Alert", Message: "Select Size For Product ")
+                    }
+                    else if SelectedColor == "" {
+                        ShowAlertBox(Title: "Alert", Message: "Select Color For Product ")
+                    }
+                    else if  SelectedSize == "" && SelectedColor == "" {
+                        ShowAlertBox(Title: "Alert", Message: "Select Size & Color For Product ")
+                    }
                 }
             }
         }
@@ -192,6 +203,28 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
     }
     
+    @IBAction func onClickShare(_ sender: Any) {
+        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show()
+//        let productPage = NSURL(string:"https://www.deccanherald.com/india/delhi/ncw-urges-delhi-police-to-take-action-against-man-for-comments-targeting-kirti-chakra-awardees-widow-3097077")
+//        let productPage = NSURL(string:"\(Constant.GET_PRODUCT+productID)")
+//        let text = "shopMe://DetailScreen?id=\(productID)"
+        let text = "http://192.168.1.217:4100/shop-detail/\(productID)/product-description"
+//        print("\(Constant.GET_PRODUCT+productID)")
+               
+               // set up activity view controller
+        let textToShare = [text]
+               let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+               activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+               
+               // exclude some activity types from the list (optional)
+               activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+               
+               // present the view controller
+               self.present(activityViewController, animated: true, completion: nil)
+        SVProgressHUD.dismiss()
+               
+    }
     
     //MARK: Delegate Method
     
@@ -228,7 +261,9 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
         else if collectionView == collectionSize || collectionView == collectionColor {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsCollectionViewCell", for: indexPath) as! ProductDetailsCollectionViewCell
+            cell.viewChoice.backgroundColor = .systemGray5
             if collectionView == collectionSize {
+                
                 cell.lblChoice.text = selectedProduct?.size?[indexPath.row] ?? ""
             }
             else{
@@ -449,7 +484,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
     }
     
-    //MARK: User Defined Methods
+
     
     func CallAPIToDeleteProductFromWishlist(request: APIRequest){ APIClient().perform(request)
         { (data,Error) in
@@ -465,6 +500,8 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         }
     }
     }
+    
+    //MARK: User Defined Methods
     
     func isProductAddedtoCart(){
         let FoundItem = cartItems.filter( { $0.productId == selectedProduct?._id})
@@ -568,9 +605,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
             pageControl.currentPage = currentCellIndex % (selectedProduct?.images?.count ?? 3)
             collectionSelectedItem.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
         }
-        
     }
-    
     @objc func btnBackClicked(){
         self.navigationController?.popViewController(animated: true)
     }
