@@ -11,6 +11,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     
     var delegatePassAddress:SendAddress?
     var isExpand:Bool = false
+    var addressType = ""
     
     // MARK: - IBOutlets
     @IBOutlet weak var tfFirstName: UITextField!
@@ -28,6 +29,9 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnSaveAddress: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var btnHome: UIButton!
+    @IBOutlet weak var btnOffice: UIButton!
+    @IBOutlet weak var btnOther: UIButton!
     var textFields: [UITextField] {
         return [tfFirstName,tfLastName, tfPhoneNumber, tfEmail, tfAddressline1,tfAddressline2,tfCity,tfState,tfCountry,tfZipCode]
     }
@@ -64,10 +68,12 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     
     @objc private func keyboardWillShow(notification: NSNotification){
         guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
         scrollView.contentInset.bottom = view.convert(keyboardFrame.cgRectValue, from: nil).size.height + 50
     }
     
     @objc private func keyboardWillHide(notification: NSNotification){
+        guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         scrollView.contentInset.bottom = 0
     }
     
@@ -78,9 +84,31 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func onClickselectAddressType(_ sender: UIButton) {
+//        btnHome.borderColor = UIColor(named: "Custom Black")
+//        btnOffice.borderColor = UIColor(named: "Custom Black")
+//        btnOther.borderColor = UIColor(named: "Custom Black")
+        
+        btnHome.tintColor = UIColor(named: "Custom Black")
+        btnOffice.tintColor = UIColor(named: "Custom Black")
+        btnOther.tintColor = UIColor(named: "Custom Black")
+        
+        if sender == btnHome {
+            addressType = "home"
+            btnHome.tintColor = UIColor.tintColor
+        }else if sender == btnOffice{
+            addressType = "office"
+            btnOffice.tintColor = UIColor.tintColor
+            
+        }else{
+            addressType = "other"
+
+            btnOther.tintColor = UIColor.tintColor
+        }
+    }
     @IBAction func onClickSaveAddress(_ sender: Any) {
         
-        if ( tfFirstName.text! == "" || tfLastName.text! == "" || tfPhoneNumber.text! == "" || tfEmail.text! == "" || tfAddressline1.text! == "" || tfAddressline2.text! == "" || tfCity.text! == "" || tfState.text! == "" || tfCountry.text! == "" || tfZipCode.text! == ""){
+        if ( tfFirstName.text! == "" || tfLastName.text! == "" || tfPhoneNumber.text! == "" || tfEmail.text! == "" || tfAddressline1.text! == "" || tfAddressline2.text! == "" || tfCity.text! == "" || tfState.text! == "" || tfCountry.text! == "" || tfZipCode.text! == "" ){
             
             showAlert(title: "Alert", message: "Please provide the necessary details.")
         }else if (!isValidEmail(email: tfEmail.text ?? "")) {
@@ -88,7 +116,7 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         }else if(tfPhoneNumber.text?.count != 10){
             showAlert(title: "Mobile number lenght should be 10!", message: "")
         }else{
-            let AddressDict:[String:Any] = ["firstName":tfFirstName.text!, "lastName": tfLastName.text! , "mobileNo" : tfPhoneNumber.text! ,"email": tfEmail.text!, "addressLine1": tfAddressline1.text! ,"addressLine2": tfAddressline2.text! ,"country": tfCountry.text! ,"city": tfCity.text! ,"state": tfState.text! ,"zipcode" : Int(tfZipCode.text!) ?? 1111]
+            let AddressDict:[String:Any] = ["firstName":tfFirstName.text!, "lastName": tfLastName.text! , "mobileNo" : tfPhoneNumber.text! ,"email": tfEmail.text!, "addressLine1": tfAddressline1.text! ,"addressLine2": tfAddressline2.text! ,"country": tfCountry.text! ,"city": tfCity.text! ,"state": tfState.text! ,"zipcode" : Int(tfZipCode.text!) ?? 1111 , "addressType": addressType ]
             
             
             delegatePassAddress?.sendAddresToPreviousVc(addressDict: AddressDict)

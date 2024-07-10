@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C30383F92C3D37EF0004CCDB /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30383F82C3D37EF0004CCDB /* CouponModel.swift */; };
+		C30383FB2C3D38FF0004CCDB /* CouponViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30383FA2C3D38FF0004CCDB /* CouponViewModel.swift */; };
 		C30385262C35479D004978BD /* prasiddh'sExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30385252C35479D004978BD /* prasiddh'sExtension.swift */; };
 		C303852A2C356578004978BD /* AddToCartOnCheckoutViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30385292C356578004978BD /* AddToCartOnCheckoutViewmodel.swift */; };
 		C31219842C2944CF00D12067 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31219832C2944CF00D12067 /* AppDelegate.swift */; };
@@ -78,6 +80,9 @@
 		C39548D52C38198C006C7D9B /* GetColorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39548D42C38198C006C7D9B /* GetColorViewModel.swift */; };
 		C39548D72C382613006C7D9B /* Post_WishlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39548D62C382613006C7D9B /* Post_WishlistModel.swift */; };
 		C39548D92C38262F006C7D9B /* Post_WishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39548D82C38262F006C7D9B /* Post_WishlistViewModel.swift */; };
+		C39CE5672C3D666000F8BCF5 /* ContactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39CE5662C3D666000F8BCF5 /* ContactUsVC.swift */; };
+		C39CE5692C3D6E0C00F8BCF5 /* EnquiryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39CE5682C3D6E0C00F8BCF5 /* EnquiryModel.swift */; };
+		C39CE56B2C3D6E1E00F8BCF5 /* EnquiryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39CE56A2C3D6E1E00F8BCF5 /* EnquiryViewModel.swift */; };
 		C3A3140E2C2D5014007D6BE5 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3140D2C2D5014007D6BE5 /* ShoppingCartViewController.swift */; };
 		C3A314102C2D5025007D6BE5 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3140F2C2D5025007D6BE5 /* CheckoutViewController.swift */; };
 		C3A314132C2D5064007D6BE5 /* CartItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A314112C2D5064007D6BE5 /* CartItemTableViewCell.swift */; };
@@ -85,10 +90,17 @@
 		C3A5DC642C2A7C92003511F7 /* ShopStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3A5DC632C2A7C92003511F7 /* ShopStoryboard.storyboard */; };
 		C3A5DC662C2A7CBA003511F7 /* ShopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5DC652C2A7CBA003511F7 /* ShopVC.swift */; };
 		C3A5DC702C2AC051003511F7 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A5DC6F2C2AC051003511F7 /* FilterVC.swift */; };
+		C3AAB0592C3E892300F01870 /* AboutUsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AAB0582C3E892300F01870 /* AboutUsModel.swift */; };
+		C3AAB05B2C3E894100F01870 /* AboutUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AAB05A2C3E894100F01870 /* AboutUsViewModel.swift */; };
+		C3AAB05D2C3E89DB00F01870 /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AAB05C2C3E89DB00F01870 /* AboutUsVC.swift */; };
 		C3ABE8C52C33E1BE0092F804 /* ProductByIdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ABE8C42C33E1BE0092F804 /* ProductByIdModel.swift */; };
 		C3ABE8C72C33E1FF0092F804 /* ProductByIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ABE8C62C33E1FF0092F804 /* ProductByIdViewModel.swift */; };
 		C3ABE8CB2C3421A20092F804 /* ProductAddToCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ABE8CA2C3421A20092F804 /* ProductAddToCartModel.swift */; };
 		C3ABE8CD2C34229D0092F804 /* ProductAddToCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ABE8CC2C34229D0092F804 /* ProductAddToCartViewModel.swift */; };
+		C3CC659C2C3D40FA00D99FB5 /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC659B2C3D40FA00D99FB5 /* DeepLink.swift */; };
+		C3CC65A22C3D529800D99FB5 /* SpecialOfferModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC65A12C3D529800D99FB5 /* SpecialOfferModel.swift */; };
+		C3CC65A42C3D52BA00D99FB5 /* SpecialOfferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC65A32C3D52BA00D99FB5 /* SpecialOfferViewModel.swift */; };
+		C3CC65A62C3D5C0000D99FB5 /* ContactUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3CC65A52C3D5C0000D99FB5 /* ContactUs.storyboard */; };
 		C3D287B52C3532550076DA7C /* HimanshuExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D287B42C3532550076DA7C /* HimanshuExtension.swift */; };
 		C3DBA80C2C37FD820024E714 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBA80B2C37FD820024E714 /* ForgetPasswordVC.swift */; };
 		C3DBA80E2C37FFB00024E714 /* ConfirmEmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBA80D2C37FFB00024E714 /* ConfirmEmailModel.swift */; };
@@ -114,11 +126,14 @@
 		C3EF1DB32C32B030006492EB /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EF1DB22C32B030006492EB /* LoginModel.swift */; };
 		C3EF1DB52C32C57A006492EB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EF1DB42C32C57A006492EB /* ProfileViewModel.swift */; };
 		C3EF1DB72C32C596006492EB /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EF1DB62C32C596006492EB /* ProfileModel.swift */; };
-		FC2B1AF506E1FB243DE74661 /* Pods_ShopMe_Github_Collab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F81015E434A71609EB213D9B /* Pods_ShopMe_Github_Collab.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
 		B176B6B1D9F8F829E25F288C /* Pods-ShopMe-Github-Collab.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopMe-Github-Collab.debug.xcconfig"; path = "Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab.debug.xcconfig"; sourceTree = "<group>"; };
+		C30383F82C3D37EF0004CCDB /* CouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModel.swift; sourceTree = "<group>"; };
+		C30383FA2C3D38FF0004CCDB /* CouponViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewModel.swift; sourceTree = "<group>"; };
+
 		C30385252C35479D004978BD /* prasiddh'sExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "prasiddh'sExtension.swift"; sourceTree = "<group>"; };
 		C30385292C356578004978BD /* AddToCartOnCheckoutViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddToCartOnCheckoutViewmodel.swift; path = "ShopMe-Github-Collab/Extension/Prasiddh's Extensions/AddToCartOnCheckoutViewmodel.swift"; sourceTree = SOURCE_ROOT; };
 		C31219802C2944CF00D12067 /* ShopMe-Github-Collab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ShopMe-Github-Collab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,8 +157,8 @@
 		C31219B82C298A1E00D12067 /* myOrderTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = myOrderTableCell.swift; path = "ShopMe-Github-Collab/View Controller/myOrderTableCell.swift"; sourceTree = SOURCE_ROOT; };
 		C32C460A2C326AE500B12669 /* ProductDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductDetailsCollectionViewCell.swift; path = "Collection Cell/ProductDetailsCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		C32C460C2C3283BE00B12669 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryModel.swift; path = "Collection Cell/CategoryModel.swift"; sourceTree = SOURCE_ROOT; };
-		C32C46122C32878D00B12669 /* CategoryViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModal.swift; sourceTree = SOURCE_ROOT; };
-		C32C46142C32988000B12669 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = SOURCE_ROOT; };
+		C32C46122C32878D00B12669 /* CategoryViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryViewModal.swift; path = "ShopMe-Github-Collab/View Model/Category/CategoryViewModal.swift"; sourceTree = SOURCE_ROOT; };
+		C32C46142C32988000B12669 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductViewModel.swift; path = "ShopMe-Github-Collab/View Model/Product/ProductViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		C32C46162C329B8F00B12669 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = SOURCE_ROOT; };
 		C32E1CFA2C37CBDE00EE7C50 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Connectivity.swift; path = "ShopMe-Github-Collab/View Controller/Profile/Connectivity.swift"; sourceTree = SOURCE_ROOT; };
 		C33380652C37D08D00A78234 /* Prasiddh Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Prasiddh Protocol.swift"; path = "ShopMe-Github-Collab/Extension/Prasiddh's Extensions/Prasiddh Protocol.swift"; sourceTree = SOURCE_ROOT; };
@@ -153,7 +168,7 @@
 		C351242B2C29928C00B0938E /* DetailsScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreenVC.swift; sourceTree = "<group>"; };
 		C353EE5C2C37EB9D00727B18 /* UserReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserReviewsTableViewCell.swift; path = "Table Cell/UserReviewsTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		C353EE5E2C37F7A100727B18 /* UserRatingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRatingModel.swift; sourceTree = SOURCE_ROOT; };
-		C353EE602C37F7B200727B18 /* UserRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRatingViewModel.swift; sourceTree = SOURCE_ROOT; };
+		C353EE602C37F7B200727B18 /* UserRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserRatingViewModel.swift; path = "ShopMe-Github-Collab/View Model/Rating/UserRatingViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		C355CC312C2EBAC100994D58 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = SOURCE_ROOT; };
 		C355CC342C2EBCE900994D58 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C35EC6E62C3E6165002E21CA /* CancelOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelOrderViewModel.swift; sourceTree = "<group>"; };
@@ -175,7 +190,7 @@
 		C3878AD22C36D1F400CCD8C0 /* ProductInCart+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductInCart+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C3878AD32C36D1F400CCD8C0 /* ProductInCart+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductInCart+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C3878AD62C36DC8500CCD8C0 /* Get_CartItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Get_CartItems.swift; path = "ShopMe-Github-Collab/CoreDataTables/Get_CartItems.swift"; sourceTree = SOURCE_ROOT; };
-		C3878AD82C36DCA200CCD8C0 /* Get_CartItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Get_CartItemsViewModel.swift; path = "ShopMe-Github-Collab/CoreDataTables/Get_CartItemsViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		C3878AD82C36DCA200CCD8C0 /* Get_CartItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Get_CartItemsViewModel.swift; path = "ShopMe-Github-Collab/View Model/Rating/Get_CartItemsViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		C388CAAD2C296D9A00051E02 /* HomeHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeHeaderCollectionViewCell.swift; path = "ShopMe-Github-Collab/View Controller/HomeHeaderCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		C388CAAF2C296E2D00051E02 /* HomeFacilitesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeFacilitesCollectionViewCell.swift; path = "ShopMe-Github-Collab/View Controller/HomeFacilitesCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		C388CAB12C296E8600051E02 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoriesCollectionViewCell.swift; path = "ShopMe-Github-Collab/View Controller/CategoriesCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -189,9 +204,12 @@
 		C3912AB02C3EA2E1008FF632 /* GetFaqQueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFaqQueViewModel.swift; sourceTree = "<group>"; };
 		C3912AB22C3EA7DE008FF632 /* FaqQuestionTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaqQuestionTableCell.swift; path = "Table Cell/FaqQuestionTableCell.swift"; sourceTree = SOURCE_ROOT; };
 		C39548D22C381974006C7D9B /* getColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getColor.swift; sourceTree = SOURCE_ROOT; };
-		C39548D42C38198C006C7D9B /* GetColorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetColorViewModel.swift; sourceTree = SOURCE_ROOT; };
+		C39548D42C38198C006C7D9B /* GetColorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GetColorViewModel.swift; path = "ShopMe-Github-Collab/View Model/Category/GetColorViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		C39548D62C382613006C7D9B /* Post_WishlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_WishlistModel.swift; sourceTree = SOURCE_ROOT; };
-		C39548D82C38262F006C7D9B /* Post_WishlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post_WishlistViewModel.swift; sourceTree = SOURCE_ROOT; };
+		C39548D82C38262F006C7D9B /* Post_WishlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Post_WishlistViewModel.swift; path = "ShopMe-Github-Collab/View Model/WishList/Post_WishlistViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		C39CE5662C3D666000F8BCF5 /* ContactUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsVC.swift; sourceTree = "<group>"; };
+		C39CE5682C3D6E0C00F8BCF5 /* EnquiryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnquiryModel.swift; sourceTree = "<group>"; };
+		C39CE56A2C3D6E1E00F8BCF5 /* EnquiryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnquiryViewModel.swift; sourceTree = "<group>"; };
 		C3A3140D2C2D5014007D6BE5 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
 		C3A3140F2C2D5025007D6BE5 /* CheckoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		C3A314112C2D5064007D6BE5 /* CartItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CartItemTableViewCell.swift; path = "Table Cell/CartItemTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -199,10 +217,18 @@
 		C3A5DC632C2A7C92003511F7 /* ShopStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShopStoryboard.storyboard; sourceTree = "<group>"; };
 		C3A5DC652C2A7CBA003511F7 /* ShopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopVC.swift; sourceTree = "<group>"; };
 		C3A5DC6F2C2AC051003511F7 /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
+		C3AAB0582C3E892300F01870 /* AboutUsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsModel.swift; sourceTree = "<group>"; };
+		C3AAB05A2C3E894100F01870 /* AboutUsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewModel.swift; sourceTree = "<group>"; };
+		C3AAB05C2C3E89DB00F01870 /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
 		C3ABE8C42C33E1BE0092F804 /* ProductByIdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductByIdModel.swift; sourceTree = SOURCE_ROOT; };
-		C3ABE8C62C33E1FF0092F804 /* ProductByIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductByIdViewModel.swift; sourceTree = SOURCE_ROOT; };
+		C3ABE8C62C33E1FF0092F804 /* ProductByIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductByIdViewModel.swift; path = "ShopMe-Github-Collab/View Model/Product/ProductByIdViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		C3ABE8CA2C3421A20092F804 /* ProductAddToCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddToCartModel.swift; sourceTree = SOURCE_ROOT; };
-		C3ABE8CC2C34229D0092F804 /* ProductAddToCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddToCartViewModel.swift; sourceTree = SOURCE_ROOT; };
+		C3ABE8CC2C34229D0092F804 /* ProductAddToCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProductAddToCartViewModel.swift; path = "ShopMe-Github-Collab/View Model/Product/ProductAddToCartViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		C3CC659A2C3D20E900D99FB5 /* ShopMe-Github-Collab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ShopMe-Github-Collab.entitlements"; sourceTree = "<group>"; };
+		C3CC659B2C3D40FA00D99FB5 /* DeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
+		C3CC65A12C3D529800D99FB5 /* SpecialOfferModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialOfferModel.swift; sourceTree = "<group>"; };
+		C3CC65A32C3D52BA00D99FB5 /* SpecialOfferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialOfferViewModel.swift; sourceTree = "<group>"; };
+		C3CC65A52C3D5C0000D99FB5 /* ContactUs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContactUs.storyboard; sourceTree = "<group>"; };
 		C3D287B42C3532550076DA7C /* HimanshuExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HimanshuExtension.swift; sourceTree = SOURCE_ROOT; };
 		C3DBA80B2C37FD820024E714 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
 		C3DBA80D2C37FFB00024E714 /* ConfirmEmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfirmEmailModel.swift; path = "ShopMe-Github-Collab/View Controller/Authentication/ConfirmEmailModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -228,8 +254,6 @@
 		C3EF1DB22C32B030006492EB /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginModel.swift; path = "ShopMe-Github-Collab/View Controller/LoginModel.swift"; sourceTree = SOURCE_ROOT; };
 		C3EF1DB42C32C57A006492EB /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewModel.swift; path = "ShopMe-Github-Collab/View Controller/ProfileViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		C3EF1DB62C32C596006492EB /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileModel.swift; path = "ShopMe-Github-Collab/View Controller/ProfileModel.swift"; sourceTree = SOURCE_ROOT; };
-		DBEC995D8A18DECF9AC9E759 /* Pods-ShopMe-Github-Collab.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShopMe-Github-Collab.release.xcconfig"; path = "Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab.release.xcconfig"; sourceTree = "<group>"; };
-		F81015E434A71609EB213D9B /* Pods_ShopMe_Github_Collab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShopMe_Github_Collab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,7 +261,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC2B1AF506E1FB243DE74661 /* Pods_ShopMe_Github_Collab.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +281,6 @@
 				C31219822C2944CF00D12067 /* ShopMe-Github-Collab */,
 				C31219812C2944CF00D12067 /* Products */,
 				E42B77AFD01C1DC68AAD211B /* Pods */,
-				D1910850C5F48435F981F44F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -273,6 +295,7 @@
 		C31219822C2944CF00D12067 /* ShopMe-Github-Collab */ = {
 			isa = PBXGroup;
 			children = (
+				C3CC659A2C3D20E900D99FB5 /* ShopMe-Github-Collab.entitlements */,
 				C3878AC92C36D0BF00CCD8C0 /* CoreDataTables */,
 				C3878AC62C36D04600CCD8C0 /* DatabaseManager */,
 				C355CC332C2EBCCD00994D58 /* Constants */,
@@ -298,19 +321,18 @@
 		C312199A2C2944E200D12067 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C3CC65982C3D092C00D99FB5 /* Home */,
+				C3CC65992C3D093500D99FB5 /* Shop */,
 				C3429E432C365BA5005C6DC0 /* Authentication */,
 				C3429E442C365BCE005C6DC0 /* Profile */,
 				C31219872C2944CF00D12067 /* ViewController.swift */,
-				C38748862C294F98006A0C72 /* HomeVC.swift */,
-				C351242B2C29928C00B0938E /* DetailsScreenVC.swift */,
 				C3DBA8192C3816120024E714 /* WishListVC.swift */,
-				C3A5DC652C2A7CBA003511F7 /* ShopVC.swift */,
-				C3A5DC6F2C2AC051003511F7 /* FilterVC.swift */,
-				C3862C432C2AFC0400F07EC0 /* ImageDisplayViewController.swift */,
 				C3A3140D2C2D5014007D6BE5 /* ShoppingCartViewController.swift */,
 				C3A3140F2C2D5025007D6BE5 /* CheckoutViewController.swift */,
 				C3759EC72C299B96006ABB02 /* SelectAddressViewController.swift */,
 				C3759ECB2C299F7A006ABB02 /* AddAddressViewController.swift */,
+				C39CE5662C3D666000F8BCF5 /* ContactUsVC.swift */,
+				C3AAB05C2C3E89DB00F01870 /* AboutUsVC.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -325,6 +347,7 @@
 				C3759EBD2C295517006ABB02 /* CartList.storyboard */,
 				C31219AE2C294FC800D12067 /* Authentication.storyboard */,
 				C31219B02C295D1300D12067 /* Profile.storyboard */,
+				C3CC65A52C3D5C0000D99FB5 /* ContactUs.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -341,9 +364,14 @@
 		C312199D2C29450300D12067 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				C3CC659D2C3D432400D99FB5 /* Product */,
+				C3CC659E2C3D434F00D99FB5 /* Category */,
+				C3CC659F2C3D438700D99FB5 /* Rating */,
+				C3CC65A02C3D43B400D99FB5 /* WishList */,
 				C3DC00112C2EF3B600CC60FA /* UserCartViewModel.swift */,
 				C3912AB02C3EA2E1008FF632 /* GetFaqQueViewModel.swift */,
 				C30385292C356578004978BD /* AddToCartOnCheckoutViewmodel.swift */,
+
 				C32C46122C32878D00B12669 /* CategoryViewModal.swift */,
 				C32C46142C32988000B12669 /* ProductViewModel.swift */,
 				C381DCE22C3D52FD00D5D023 /* AboutUsHelpViewModel.swift */,
@@ -353,6 +381,7 @@
 				C353EE602C37F7B200727B18 /* UserRatingViewModel.swift */,
 				C39548D42C38198C006C7D9B /* GetColorViewModel.swift */,
 				C39548D82C38262F006C7D9B /* Post_WishlistViewModel.swift */,
+
 				C3EF1DAC2C32839A006492EB /* RegisterViewModel.swift */,
 				C3EF1DB02C32B01C006492EB /* LoginViewModel.swift */,
 				C3DBA81B2C38161B0024E714 /* WishlistViewModel.swift */,
@@ -362,8 +391,17 @@
 				C3EF1DB42C32C57A006492EB /* ProfileViewModel.swift */,
 				C36419332C33DD7C0026B1DA /* UpdateDataViewModel.swift */,
 				C3DF939D2C3561CA00A7EC75 /* OrderListingViewModel.swift */,
+
 				C35EC6E62C3E6165002E21CA /* CancelOrderViewModel.swift */,
 				C3912AAC2C3E9608008FF632 /* GetFaqCategoryViewModel.swift */,
+
+
+				C30383FA2C3D38FF0004CCDB /* CouponViewModel.swift */,
+
+				C3CC65A32C3D52BA00D99FB5 /* SpecialOfferViewModel.swift */,
+				C39CE56A2C3D6E1E00F8BCF5 /* EnquiryViewModel.swift */,
+				C3AAB05A2C3E894100F01870 /* AboutUsViewModel.swift */,
+
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -391,9 +429,19 @@
 				C3DBA8112C3804530024E714 /* ForgetPassModel.swift */,
 				C3E1B4E72C3BBB73003E77E4 /* ChangePassModel.swift */,
 				C3DF939B2C35582900A7EC75 /* OrderListModel.swift */,
+
 				C35EC6E82C3E6175002E21CA /* CancelOrderModel.swift */,
 				C3912AAA2C3E94EB008FF632 /* Get_Faq_Category_Model.swift */,
 				C3912AAE2C3E9F75008FF632 /* Get_Faq_Question_Model.swift */,
+
+
+				C30383F82C3D37EF0004CCDB /* CouponModel.swift */,
+
+				C3CC659B2C3D40FA00D99FB5 /* DeepLink.swift */,
+				C3CC65A12C3D529800D99FB5 /* SpecialOfferModel.swift */,
+				C39CE5682C3D6E0C00F8BCF5 /* EnquiryModel.swift */,
+				C3AAB0582C3E892300F01870 /* AboutUsModel.swift */,
+
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -513,19 +561,64 @@
 			path = CoreDataTables;
 			sourceTree = "<group>";
 		};
-		D1910850C5F48435F981F44F /* Frameworks */ = {
+		C3CC65982C3D092C00D99FB5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F81015E434A71609EB213D9B /* Pods_ShopMe_Github_Collab.framework */,
+				C38748862C294F98006A0C72 /* HomeVC.swift */,
+				C351242B2C29928C00B0938E /* DetailsScreenVC.swift */,
+				C3862C432C2AFC0400F07EC0 /* ImageDisplayViewController.swift */,
 			);
-			name = Frameworks;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C3CC65992C3D093500D99FB5 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				C3A5DC652C2A7CBA003511F7 /* ShopVC.swift */,
+				C3A5DC6F2C2AC051003511F7 /* FilterVC.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		C3CC659D2C3D432400D99FB5 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				C3ABE8C62C33E1FF0092F804 /* ProductByIdViewModel.swift */,
+				C32C46142C32988000B12669 /* ProductViewModel.swift */,
+				C3ABE8CC2C34229D0092F804 /* ProductAddToCartViewModel.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		C3CC659E2C3D434F00D99FB5 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				C32C46122C32878D00B12669 /* CategoryViewModal.swift */,
+				C39548D42C38198C006C7D9B /* GetColorViewModel.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		C3CC659F2C3D438700D99FB5 /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				C353EE602C37F7B200727B18 /* UserRatingViewModel.swift */,
+				C3878AD82C36DCA200CCD8C0 /* Get_CartItemsViewModel.swift */,
+			);
+			path = Rating;
+			sourceTree = "<group>";
+		};
+		C3CC65A02C3D43B400D99FB5 /* WishList */ = {
+			isa = PBXGroup;
+			children = (
+				C39548D82C38262F006C7D9B /* Post_WishlistViewModel.swift */,
+			);
+			path = WishList;
 			sourceTree = "<group>";
 		};
 		E42B77AFD01C1DC68AAD211B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B176B6B1D9F8F829E25F288C /* Pods-ShopMe-Github-Collab.debug.xcconfig */,
-				DBEC995D8A18DECF9AC9E759 /* Pods-ShopMe-Github-Collab.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -537,11 +630,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C31219972C2944D300D12067 /* Build configuration list for PBXNativeTarget "ShopMe-Github-Collab" */;
 			buildPhases = (
-				797FF7F0650E2E6FBF39F9DD /* [CP] Check Pods Manifest.lock */,
 				C312197C2C2944CF00D12067 /* Sources */,
 				C312197D2C2944CF00D12067 /* Frameworks */,
 				C312197E2C2944CF00D12067 /* Resources */,
-				3CA8585D829C8729B5CE2612 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -595,6 +686,7 @@
 				C31219AF2C294FC800D12067 /* Authentication.storyboard in Resources */,
 				C31219932C2944D300D12067 /* LaunchScreen.storyboard in Resources */,
 				C31219B12C295D1300D12067 /* Profile.storyboard in Resources */,
+				C3CC65A62C3D5C0000D99FB5 /* ContactUs.storyboard in Resources */,
 				C3DBA8162C3815FB0024E714 /* WishList.storyboard in Resources */,
 				C31219902C2944D300D12067 /* Assets.xcassets in Resources */,
 				C38748852C294F78006A0C72 /* HomeStoryboard.storyboard in Resources */,
@@ -603,48 +695,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3CA8585D829C8729B5CE2612 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShopMe-Github-Collab/Pods-ShopMe-Github-Collab-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		797FF7F0650E2E6FBF39F9DD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ShopMe-Github-Collab-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C312197C2C2944CF00D12067 /* Sources */ = {
@@ -657,6 +707,7 @@
 				C303852A2C356578004978BD /* AddToCartOnCheckoutViewmodel.swift in Sources */,
 				C3912AAF2C3E9F75008FF632 /* Get_Faq_Question_Model.swift in Sources */,
 				C31219882C2944CF00D12067 /* ViewController.swift in Sources */,
+				C30383FB2C3D38FF0004CCDB /* CouponViewModel.swift in Sources */,
 				C38748872C294F98006A0C72 /* HomeVC.swift in Sources */,
 				C3878AD72C36DC8500CCD8C0 /* Get_CartItems.swift in Sources */,
 				C353EE612C37F7B200727B18 /* UserRatingViewModel.swift in Sources */,
@@ -667,6 +718,7 @@
 				C35EC6E92C3E6175002E21CA /* CancelOrderModel.swift in Sources */,
 				C31219882C2944CF00D12067 /* ViewController.swift in Sources */,
 				C3ABE8C52C33E1BE0092F804 /* ProductByIdModel.swift in Sources */,
+				C3AAB05D2C3E89DB00F01870 /* AboutUsVC.swift in Sources */,
 				C353EE5D2C37EB9D00727B18 /* UserReviewsTableViewCell.swift in Sources */,
 				C31219A82C29464B00D12067 /* CustomTabbar.swift in Sources */,
 				C3878AC52C36A79300CCD8C0 /* FilterDictModel.swift in Sources */,
@@ -696,10 +748,13 @@
 				C388CAB02C296E2D00051E02 /* HomeFacilitesCollectionViewCell.swift in Sources */,
 				C3DF93A02C356EDF00A7EC75 /* Kaushal_Extension.swift in Sources */,
 				C355CC322C2EBAC100994D58 /* NetworkManager.swift in Sources */,
+				C3CC65A22C3D529800D99FB5 /* SpecialOfferModel.swift in Sources */,
 				C3429E4A2C36A36B005C6DC0 /* MyOrderFilterScreenVC.swift in Sources */,
+				C39CE5692C3D6E0C00F8BCF5 /* EnquiryModel.swift in Sources */,
 				C3E1B4E82C3BBB73003E77E4 /* ChangePassModel.swift in Sources */,
 				C3E1B4EA2C3BBBF7003E77E4 /* ChangePassViewModel.swift in Sources */,
 				C388CAAE2C296D9A00051E02 /* HomeHeaderCollectionViewCell.swift in Sources */,
+				C3CC659C2C3D40FA00D99FB5 /* DeepLink.swift in Sources */,
 				C32C46172C329B8F00B12669 /* Product.swift in Sources */,
 				C3912AB12C3EA2E1008FF632 /* GetFaqQueViewModel.swift in Sources */,
 				C39548D52C38198C006C7D9B /* GetColorViewModel.swift in Sources */,
@@ -715,6 +770,7 @@
 				C39548D92C38262F006C7D9B /* Post_WishlistViewModel.swift in Sources */,
 				C3878AC82C36D05D00CCD8C0 /* DatabaseManager.swift in Sources */,
 				C32C46132C32878D00B12669 /* CategoryViewModal.swift in Sources */,
+				C39CE5672C3D666000F8BCF5 /* ContactUsVC.swift in Sources */,
 				C39548D72C382613006C7D9B /* Post_WishlistModel.swift in Sources */,
 				C3ABE8CB2C3421A20092F804 /* ProductAddToCartModel.swift in Sources */,
 				C39548D32C381974006C7D9B /* getColor.swift in Sources */,
@@ -722,8 +778,10 @@
 				C33380662C37D08D00A78234 /* Prasiddh Protocol.swift in Sources */,
 				C3912AAD2C3E9608008FF632 /* GetFaqCategoryViewModel.swift in Sources */,
 				C3E1B4E62C3BB863003E77E4 /* ChangePasswordVC.swift in Sources */,
+				C39CE56B2C3D6E1E00F8BCF5 /* EnquiryViewModel.swift in Sources */,
 				C3DF939E2C3561CA00A7EC75 /* OrderListingViewModel.swift in Sources */,
 				C3759ECA2C299BDF006ABB02 /* AddressTableViewCell.swift in Sources */,
+				C30383F92C3D37EF0004CCDB /* CouponModel.swift in Sources */,
 				C3878AD42C36D1F400CCD8C0 /* ProductInCart+CoreDataClass.swift in Sources */,
 				C3878AD52C36D1F400CCD8C0 /* ProductInCart+CoreDataProperties.swift in Sources */,
 				C3A314132C2D5064007D6BE5 /* CartItemTableViewCell.swift in Sources */,
@@ -734,13 +792,16 @@
 				C3DBA81C2C38161B0024E714 /* WishlistViewModel.swift in Sources */,
 				C3DBA81A2C3816120024E714 /* WishListVC.swift in Sources */,
 				C3429E462C3666E1005C6DC0 /* OrderDetailVC.swift in Sources */,
+				C3AAB05B2C3E894100F01870 /* AboutUsViewModel.swift in Sources */,
 				C31219B72C29856A00D12067 /* MyOrderScreenVC.swift in Sources */,
+				C3CC65A42C3D52BA00D99FB5 /* SpecialOfferViewModel.swift in Sources */,
 				C38F53F52C3519D60059DD4D /* MultiPartNetworkService.swift in Sources */,
 				C3DBA80C2C37FD820024E714 /* ForgetPasswordVC.swift in Sources */,
 				C3A314102C2D5025007D6BE5 /* CheckoutViewController.swift in Sources */,
 				C31219862C2944CF00D12067 /* SceneDelegate.swift in Sources */,
 				C3DBA81E2C3816C70024E714 /* wishListCVCell.swift in Sources */,
 				C31219AC2C294FBF00D12067 /* LoginScreenVC.swift in Sources */,
+				C3AAB0592C3E892300F01870 /* AboutUsModel.swift in Sources */,
 				C36419322C33DD070026B1DA /* UpdateDataModel.swift in Sources */,
 				C31219B32C295DE500D12067 /* ProfileScreenVC.swift in Sources */,
 				C3DF939C2C35582900A7EC75 /* OrderListModel.swift in Sources */,
@@ -893,10 +954,10 @@
 		};
 		C31219982C2944D300D12067 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B176B6B1D9F8F829E25F288C /* Pods-ShopMe-Github-Collab.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "ShopMe-Github-Collab/ShopMe-Github-Collab.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -921,10 +982,10 @@
 		};
 		C31219992C2944D300D12067 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DBEC995D8A18DECF9AC9E759 /* Pods-ShopMe-Github-Collab.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "ShopMe-Github-Collab/ShopMe-Github-Collab.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;

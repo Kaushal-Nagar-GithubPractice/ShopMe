@@ -13,14 +13,16 @@ class OrderedItemTableViewCell: UITableViewCell {
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var lblProductQuantity: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var lblSize: UILabel!
     @IBOutlet weak var viewOrderItem: UIView!
+    @IBOutlet weak var lblColor: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
         viewOrderItem.layer.cornerRadius = 8
-        viewOrderItem.layer.masksToBounds = true
-        
+        applyShadow(view: viewOrderItem)
+
         imgProduct.layer.cornerRadius = 10
         imgProduct.clipsToBounds = true
     }

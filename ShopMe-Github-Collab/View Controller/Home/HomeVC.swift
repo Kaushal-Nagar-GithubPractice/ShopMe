@@ -9,17 +9,17 @@ import UIKit
 import Kingfisher
 import SVProgressHUD
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect, UICollectionViewDelegateFlowLayout {
+    var isSharedProduct = false
+    var productFromURL = URLComponents()
     var arrCategorySelected = [Int]()
     var isFirstTimeApiCall = true
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-    var arrHeaderImages = ["carousel-1","carousel-2","carousel-3"]
-    var arrHeaderLabel = ["Men Fashion","Women Fashion","Kids Fashion"]
     var arrQualityImages = ["checkmark","truck.box.fill","shippingbox","phone"]
     var arrQualityText = ["  Quality Product","  Free Shipping","  14-Day Return","  24/7 Support"]
     var pageCount = 1
+    var arrSpecialOffers = [SpecialOffers]()
     var ArrCategory = [Categories_Data]()
     var ArrProducts = [Products]()
-    var arrBannerCategory = [Categories_Data]()
     var flagForEmptyProdCall = true
     @IBOutlet weak var collectionCategories: UICollectionView!
     @IBOutlet weak var collecctionFacilities: UICollectionView!
@@ -43,8 +43,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        SVProgressHUD.setDefaultMaskType(.black)
-//        SVProgressHUD.show()
+        //        SVProgressHUD.setDefaultMaskType(.black)
+        //        SVProgressHUD.show()
         timer?.invalidate()
         currentCellIndex = 0
         self.tblViewHomeScreen.showsVerticalScrollIndicator = false
@@ -53,18 +53,21 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         collectionHeader.showsHorizontalScrollIndicator = false
         collectionCategories.showsHorizontalScrollIndicator = false
         collecctionFacilities.showsHorizontalScrollIndicator = false
-        pageControlHeader.numberOfPages = arrBannerCategory.count
+        pageControlHeader.numberOfPages = arrSpecialOffers.count
         collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
         pageControlHeader.currentPage = 0
-//        pageCount = 1
-//        flagForEmptyProdCall = true
-//        ArrProducts = []
+        //        pageCount = 1
+        //        flagForEmptyProdCall = true
+        //        ArrProducts = []
+        //        print(isSharedProduct,productFromURL.queryItems?.first?.value)
+        //        openDetailProduct()
         if isFirstTimeApiCall {
+            self.callApiSpecialOffers()
             self.callApiCategory()
             self.callApiProduct()
         }
-//        self.callApiCategory()
-//        self.callApiProduct()
+        //        self.callApiCategory()
+        //        self.callApiProduct()
         
     }
     
@@ -100,15 +103,15 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
-            if (arrBannerCategory.count) > 1 {
-                return (arrBannerCategory.count) * 1000
+            if (arrSpecialOffers.count) > 1 {
+                return (arrSpecialOffers.count) * 1000
             }else{return 1}
         }
         else if collectionView.tag == 2 {
             return arrQualityImages.count
         }
         else if collectionView.tag == 3 {
-//            print(ArrCategory.count)
+            //            print(ArrCategory.count)
             return ArrCategory.count
         }else{
             return 3
@@ -118,18 +121,18 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView.tag == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeHeaderCollectionViewCell", for: indexPath) as! HomeHeaderCollectionViewCell
-            if (arrBannerCategory.count != 0){
-                if arrBannerCategory.count != 1 {
-                    cell.imageHeader.setImageWithURL(url: arrBannerCategory[indexPath.row % (arrBannerCategory.count )].bannerImage ?? "", imageView: cell.imageHeader)
-                    cell.lblHeader.text = arrBannerCategory[indexPath.row % (arrBannerCategory.count )].categoryName
-                    cell.lblDetailHeader.text = arrBannerCategory[indexPath.row % (arrBannerCategory.count)].description
+            if (arrSpecialOffers.count != 0){
+                if arrSpecialOffers.count != 1 {
+                    cell.imageHeader.setImageWithURL(url: arrSpecialOffers[indexPath.row % (arrSpecialOffers.count )].offerImage ?? "", imageView: cell.imageHeader)
+                    cell.lblHeader.text = arrSpecialOffers[indexPath.row % (arrSpecialOffers.count )].title
+                    cell.lblDetailHeader.text = arrSpecialOffers[indexPath.row % (arrSpecialOffers.count)].description
                 }
                 else{
                     collectionView.isScrollEnabled = false
                     timer?.invalidate()
-                    cell.imageHeader.setImageWithURL(url: arrBannerCategory[indexPath.row].bannerImage ?? "", imageView: cell.imageHeader)
-                    cell.lblHeader.text = arrBannerCategory[indexPath.row].categoryName
-                    cell.lblDetailHeader.text = arrBannerCategory[indexPath.row].description
+                    cell.imageHeader.setImageWithURL(url: arrSpecialOffers[indexPath.row].offerImage ?? "", imageView: cell.imageHeader)
+                    cell.lblHeader.text = arrSpecialOffers[indexPath.row].title
+                    cell.lblDetailHeader.text = arrSpecialOffers[indexPath.row].description
                 }
             }
             else{
@@ -139,7 +142,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 timer?.invalidate()
                 collectionView.isScrollEnabled = false
             }
-           
             return cell
         }
         else if collectionView.tag == 2 {
@@ -150,15 +152,25 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
         else  {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as! CategoriesCollectionViewCell
-            if arrCategorySelected[indexPath.row] == 1 {
-                cell.viewCategories.backgroundColor = .systemTeal
+            if !(ArrCategory.isEmpty){
+                
+                if arrCategorySelected[indexPath.row] == 1 {
+                    cell.viewCategories.backgroundColor = .systemTeal
+                }
+                else{
+                    cell.viewCategories.backgroundColor = .systemGray5
+                }
+                cell.imageCategories.setImageWithURL(url: ArrCategory[indexPath.row].image ?? "" , imageView: cell.imageCategories)
+                cell.lblCategoryName.text = ArrCategory[indexPath.row].categoryName
+                cell.lblCategoryQuantity.text = "\(ArrCategory[indexPath.row].productCount ?? 0) products "
+                
             }
             else{
-                cell.viewCategories.backgroundColor = .systemGray5
+                cell.imageCategories.image = UIImage(named: "placeholder")
+                cell.lblCategoryName.text = "No Category Found"
+                cell.lblCategoryQuantity.text = "0 Products"
+                collectionView.isScrollEnabled = false
             }
-            cell.imageCategories.setImageWithURL(url: ArrCategory[indexPath.row].image ?? "" , imageView: cell.imageCategories)
-            cell.lblCategoryName.text = ArrCategory[indexPath.row].categoryName
-            cell.lblCategoryQuantity.text = "\(ArrCategory[indexPath.row].productCount ?? 0) products "
             return cell
         }
         
@@ -168,7 +180,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         if collectionView.tag == 3 {
             if arrCategorySelected[indexPath.row] == 1 {
                 arrCategorySelected[indexPath.row] = 0
-                collectionView.reloadData()
+                collectionCategories.reloadData()
                 pageCount = 1
                 flagForEmptyProdCall = true
                 ArrProducts = []
@@ -177,7 +189,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             else{
                 fillArrSelectedCategory()
                 arrCategorySelected[indexPath.row] = 1
-                collectionView.reloadData()
+                collectionCategories.reloadData()
                 setSelectedCategory()
             }
             
@@ -202,7 +214,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             guard let visiblecell = collectionHeader.visibleCells.last else { return  }
             let indexpath = collectionHeader.indexPath(for: visiblecell)
             currentCellIndex = indexpath?.row ?? 0
-            pageControlHeader.currentPage = currentCellIndex % (arrBannerCategory.count)
+            pageControlHeader.currentPage = currentCellIndex % (arrSpecialOffers.count)
         }
         collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
     
@@ -228,18 +240,16 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         cell.frame = tableView.bounds
         cell.layoutIfNeeded()
         cell.HeightConstraint.constant = cell.collectionProducts.collectionViewLayout.collectionViewContentSize.height
-        
-        
-      
         return cell
     }
-    //MARK: User Defined Methods
+    
+    //MARK: API CALLING Functions
     
     func callApiCategory(){
-                SVProgressHUD.setDefaultMaskType(.black)
-                SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show()
         let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_CATEGORY_LIST, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
-     
+        
         CategoryViewModal.ApiCategory.getCategoryData(request: request) { response in
             DispatchQueue.main.async {
                 
@@ -247,8 +257,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                     print(response.status as Any,response.message as Any)
                 }else{
                     self.ArrCategory = response.data?.categories ?? []
-//                    print(self.ArrCategory)
-                    self.findBannerCategories()
                     self.collectionHeader.reloadData()
                     self.collectionCategories.reloadData()
                     self.fillArrSelectedCategory()
@@ -284,7 +292,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_PRODUCT_LIST+"?page=\(pageCount)&items=6", headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
         }
         
-//        print("----------------------",Constant.GET_PRODUCT_LIST+"?page=\(pageCount)&items=6")
+        //        print("----------------------",Constant.GET_PRODUCT_LIST+"?page=\(pageCount)&items=6")
         ProductViewModel.ApiProduct.getProductData(request: request) { response in
             DispatchQueue.main.async {
                 if response.data?.products?.isEmpty == true{
@@ -294,7 +302,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 }
                 else{
                     self.ArrProducts.append(contentsOf: response.data?.products ?? [])
-//                    print(self.ArrProducts)
+                    //                    print(self.ArrProducts)
                     self.tblViewHomeScreen.reloadData()
                     SVProgressHUD.dismiss()
                     self.isFirstTimeApiCall = false
@@ -306,22 +314,27 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
     }
     
-    func apiSelectedCategory(){
+    func callApiSpecialOffers(){
         SVProgressHUD.setDefaultMaskType(.black)
         SVProgressHUD.show()
-        let request = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_CATEGORY_PRODUCTS, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        let requestSpecialOffer = APIRequest(isLoader: true, method: HTTPMethods.get, path: Constant.GET_SPECIAL_OFFERS, headers: HeaderValue.headerWithoutAuthToken.value, body: nil)
+        
+        SpecialOfferViewModel.ApiSpecialOffer.getSpecialOffer(request: requestSpecialOffer) { response in
+            DispatchQueue.main.async {
+                if response.data?.specialOffers?.isEmpty != true {
+                    self.arrSpecialOffers = response.data?.specialOffers ?? []
+                    self.pageControlHeader.numberOfPages = self.arrSpecialOffers.count
+                    self.collectionHeader.reloadData()
+                }
+            }
+        } error: { error in
+            print(error)
+            SVProgressHUD.dismiss()
+        }
+
     }
     
-    func findBannerCategories(){
-        arrBannerCategory = []
-        for i in 0..<(ArrCategory.count) {
-            if ArrCategory[i].banner == true {
-                arrBannerCategory.append(ArrCategory[i] )
-            }
-        }
-        print(arrBannerCategory)
-        pageControlHeader.numberOfPages = arrBannerCategory.count
-    }
+    //MARK: User Defined Methods
     
     func fillArrSelectedCategory(){
         arrCategorySelected = [Int]()
@@ -345,16 +358,24 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         }
     }
     
+    func openDetailProduct(){
+        if isSharedProduct {
+            let vc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(identifier: "DetailsScreenVC") as! DetailsScreenVC
+            vc.productID = productFromURL.queryItems?.first?.value ?? ""
+//            vc.isWishlist = isWishlist
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     //MARK: @OBJC Methods
     
     @objc func slideToNext(){
-        
         currentCellIndex = currentCellIndex + 1
-        if arrBannerCategory.count > 1 {
-//            print(currentCellIndex)
-            pageControlHeader.currentPage = currentCellIndex % (arrBannerCategory.count )
+        if arrSpecialOffers.count > 1 {
+            pageControlHeader.currentPage = currentCellIndex % (arrSpecialOffers.count )
             collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
         }
+        
     }
     
     

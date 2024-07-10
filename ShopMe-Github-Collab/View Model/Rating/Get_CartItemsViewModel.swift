@@ -1,26 +1,23 @@
 //
-//  ProductViewModel.swift
+//  Get_CartDetailsViewModel.swift
 //  ShopMe-Github-Collab
 //
-//  Created by Webcodegenie on 01/07/24.
+//  Created by Webcodegenie on 04/07/24.
 //
 
 import Foundation
 
-class ProductViewModel : NSObject {
+class Get_CartItemsViewModel : NSObject {
+    static let ApiGetCart = Get_CartItemsViewModel()
     
-    static let ApiProduct = ProductViewModel()
-    
-    func getProductData(request : APIRequest ,success successCallback : @escaping  (Product)  -> Void,error errorCallback : @escaping (Error?) -> Void){
+    func getAddToCartData(request : APIRequest ,success successCallback : @escaping  (Get_CartItems)  -> Void,error errorCallback : @escaping (Error?) -> Void){
         
         APIClient().perform(request){(data,error) in
             if let data = data {
                 do {
-                    
                     let parsedData = try JSONSerialization.jsonObject(with: data) as! [String:Any]
-                    print("\nProduct JSON",parsedData)
-                    let response = try JSONDecoder().decode(Product.self, from: data)
-//                    print("\nProduct JSON",response)
+//                    print(parsedData)
+                    var response = try JSONDecoder().decode(Get_CartItems.self, from: data)
                     successCallback(response)
                 }
                 catch {

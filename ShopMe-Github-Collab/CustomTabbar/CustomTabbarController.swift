@@ -57,5 +57,16 @@ class CustomTabbarController: UITabBarController, ChangeToHomeScreen {
     func ChangeToHomeScreen(tabbarItemIndex : Int) {
         selectedIndex = tabbarItemIndex
     }
-    
+}
+
+extension CustomTabbarController {
+    func handleDeepLink(_ deeplink : DeepLink,_ urlComponents : URLComponents){
+        switch deeplink {
+        case .DetailScreen:
+            let controller1 = UIStoryboard(name: "HomeStoryboard", bundle: nibBundle).instantiateViewController(identifier: "HomeVC") as! HomeVC
+            controller1.isSharedProduct = true
+            controller1.productFromURL = urlComponents
+            selectedIndex = 3
+        }
+    }
 }

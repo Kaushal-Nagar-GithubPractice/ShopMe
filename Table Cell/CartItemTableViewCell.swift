@@ -35,8 +35,7 @@ class CartItemTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        viewQuantityManage.layer.cornerRadius = 8
-        viewQuantityManage.clipsToBounds = true
+        
         setUI()
     }
     
@@ -72,15 +71,14 @@ class CartItemTableViewCell: UITableViewCell {
     
     
     func setUI(){
-        btnIncrease.layer.cornerRadius = 8
-        btnIncrease.clipsToBounds = true
-        btnDecrease.layer.cornerRadius = 8
-        btnDecrease.clipsToBounds = true
+        viewQuantityManage.layer.cornerRadius = 5
+        viewQuantityManage.borderColor = UIColor.gray
+        viewQuantityManage.borderWidth = 0.2
+        viewQuantityManage.clipsToBounds = true
         
         viewCell.backgroundColor = UIColor.systemGray6
-        viewCell.layer.cornerRadius = 10
-        viewCell.layer.masksToBounds = true
-        
+        applyShadow(view: viewCell)
+
         btnRemoveItem.setImage(UIImage(named: "cancel"), for: .normal)
     }
 }
