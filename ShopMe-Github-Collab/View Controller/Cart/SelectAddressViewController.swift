@@ -32,13 +32,11 @@ class SelectAddressViewController: UIViewController, UITableViewDelegate, UITabl
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
         //user default address array
-        if let addressArr = UserDefaults.standard.object(forKey: "customeraddress") {
+        let addressArr = UserDefaults.standard.array(forKey: "customeraddress") as! [[String : Any]]
             self.addressArray = addressArr as! [[String : Any]]
 //            print("type of address arrr===....>",type(of: addressArr))
 //            self.addressArray.append(addressArr )
-        }else {
-            
-        }
+       
     }
 
     // MARK: - IBActions

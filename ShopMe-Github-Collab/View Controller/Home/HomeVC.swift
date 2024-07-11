@@ -11,7 +11,7 @@ import SVProgressHUD
 
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect, UICollectionViewDelegateFlowLayout {
     var isSharedProduct = false
-    var customerAddress = [[String: Any]]()
+    var customerAddress = [["firstName":"john", "lastName": "carter" , "mobileNo" : "9099009990" ,"email": "john@gmail.com", "addressLine1": "ganesh meridian" ,"addressLine2":"near kargil Petrol Pump" ,"country": "India" ,"city": "AHmedabad" ,"state": "Gujarat","zipcode" : 1111]]
     var productFromURL = URLComponents()
     @IBOutlet var lblDisplayedProducts: UILabel!
     var arrCategorySelected = [Int]()
@@ -43,17 +43,17 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         collectionCategories.dataSource = self
         collecctionFacilities.delegate = self
         collecctionFacilities.dataSource = self
-        UserDefaults.standard.set(true, forKey: "firstTimeAddress")
-               if  UserDefaults.standard.bool(forKey: "firstTimeAddress"){
-                   UserDefaults.standard.set(customerAddress, forKey: "customeraddress")
-                   UserDefaults.standard.set(false, forKey: "firstTimeAddress")
-               }
+        
+        if UserDefaults.standard.bool(forKey: "firstTimeAddress") == false{
+            UserDefaults.standard.set(true, forKey: "firstTimeAddress")
+                UserDefaults.standard.set(customerAddress, forKey: "customeraddress")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         timer?.invalidate()
         currentCellIndex = 0
-        lblDisplayedProducts.text = "Featured Products"
+//        lblDisplayedProducts.text = "Featured Products"
         self.tblViewHomeScreen.showsVerticalScrollIndicator = false
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false

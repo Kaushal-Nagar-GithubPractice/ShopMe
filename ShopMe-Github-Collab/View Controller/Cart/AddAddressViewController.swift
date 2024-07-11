@@ -45,8 +45,9 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("===>..u_default adrs arr ===...", UserDefaults.standard.array(forKey: "customeraddress"))
         self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
         Global_scrollView = scrollView
         GregisterKeyboardNotifications()
         
@@ -98,23 +99,29 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         }
     }
     @IBAction func onClickSaveAddress(_ sender: Any) {
-        
+     
         if ( tfFirstName.text! == "" || tfLastName.text! == "" || tfPhoneNumber.text! == "" || tfEmail.text! == "" || tfAddressline1.text! == "" || tfAddressline2.text! == "" || tfCity.text! == "" || tfState.text! == "" || tfCountry.text! == "" || tfZipCode.text! == "" ){
             
             showAlert(title: "Alert", message: "Please provide the necessary details.")
         }else if (!isValidEmail(email: tfEmail.text ?? "")) {
             showAlert(title: "Please provide Valid Email Address!", message: "")
-        }else if(tfPhoneNumber.text?.count != 10){
-            showAlert(title: "Mobile number lenght should be 10!", message: "")
-        }else{
+        } else if( tfPhoneNumber.text?.count != 10 ){
+            showAlert(title: "Mobile number lenght should be 10!", message: "\((tfPhoneNumber.text! as NSString).integerValue), \(type(of: (tfPhoneNumber.text! as NSString).integerValue))")
+        } else if ( Int(tfPhoneNumber.text ?? "") == nil){
+            showAlert(title: "Mobile Number Should be Number", message: "")
+        }
+//        else if(tfPhoneNumber.text?.count != 10){
+//            showAlert(title: "Mobile number lenght should be 10!", message: "")
+//        }
+        else{
             let AddressDict:[String:Any] = ["firstName":tfFirstName.text!, "lastName": tfLastName.text! , "mobileNo" : tfPhoneNumber.text! ,"email": tfEmail.text!, "addressLine1": tfAddressline1.text! ,"addressLine2": tfAddressline2.text! ,"country": tfCountry.text! ,"city": tfCity.text! ,"state": tfState.text! ,"zipcode" : Int(tfZipCode.text!) ?? 1111 , "addressType": addressType ]
             print("is first time ===>..",UserDefaults.standard.bool(forKey: "firstTimeAddress"))
             if UserDefaults.standard.bool(forKey: "firstTimeAddress"){
-                var addressArr: [[String:Any]] = UserDefaults.standard.object(forKey: "customeraddress") as! [[String : Any]]
+                var addressArr: [[String:Any]] = UserDefaults.standard.array(forKey: "customeraddress") as! [[String : Any]]
                 addressArr.append(AddressDict)
                 UserDefaults.standard.set(addressArr, forKey: "customeraddress")
                 
-                print("===>..u_default adrs arr ===...", UserDefaults.standard.object(forKey: "customeraddress"))
+                print("===>..u_default adrs arr ===...", UserDefaults.standard.array(forKey: "customeraddress"))
             }else{
                 print("not saved in user default bcz not logged in")
             }

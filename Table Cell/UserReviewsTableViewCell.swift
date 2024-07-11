@@ -13,9 +13,10 @@ class UserReviewsTableViewCell: UITableViewCell {
     @IBOutlet weak var btnRatings: UIButton!
     @IBOutlet weak var lblUsername: UILabel!
     @IBOutlet weak var imgUser: UIImageView!
+    
+    var Rating : Double = 0
     override func awakeFromNib() {
         super.awakeFromNib()
-        colorOnRating()
         // Initialization code
     }
 
@@ -24,14 +25,5 @@ class UserReviewsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func colorOnRating(){
-        if (btnRatings.titleLabel?.text as! NSString).integerValue <= Int(2.5) {
-            btnRatings.tintColor = .red
-        }
-        else{
-            btnRatings.tintColor = .systemYellow
-        }
-      
-    }
-
+    
 }

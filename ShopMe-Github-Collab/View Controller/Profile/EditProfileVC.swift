@@ -78,6 +78,12 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
         else if ( !btnGenderMale.isSelected && !btnGenderFemale.isSelected){
             ShowAlertBox(Title: "Something Went Wrong!", Message: "Select Gender Please!")
         }
+        else if( TfPhoneNumber.text?.count != 10 ){
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "Mobile Number lenght Must be 10 !")
+        }
+        else if ( Int(TfPhoneNumber.text ?? "") == nil){
+            showAlert(title: "Something Went Wrong!", message: "Mobile Number Should be Number")
+        }
         else{
             UpdateProfile()
         }

@@ -409,7 +409,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
                     self.ArrReview = response.data?.reviews ?? []
                     self.tblUserReviews.reloadData()
                     self.tblUserReviews.isHidden = false
-                    self.heightForTblRating.constant = CGFloat(150 *  (response.data?.reviews?.count ?? 1) + 75)
+                    self.heightForTblRating.constant = CGFloat(110 *  (response.data?.reviews?.count ?? 1) + 75)
                 }
                 else{
                     self.tblUserReviews.isHidden = true
@@ -627,6 +627,15 @@ extension DetailsScreenVC : UITableViewDelegate,UITableViewDataSource {
         cell.lblUsername.text = ArrReview[indexPath.row].name
         cell.lblUserReview.text = "   \(ArrReview[indexPath.row].review ?? "")"
         cell.selectionStyle = .none
+        cell.Rating = Double(ArrReview[indexPath.row].rating ?? 5)
+        
+        if Double(ArrReview[indexPath.row].rating ?? 0) <= Double(2.5) {
+            cell.btnRatings.tintColor = .red
+        }
+        else{
+            cell.btnRatings.tintColor = .systemIndigo
+        }
+        
         return cell
     }
     

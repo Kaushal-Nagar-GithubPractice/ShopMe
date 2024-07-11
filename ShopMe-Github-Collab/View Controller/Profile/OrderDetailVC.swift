@@ -12,7 +12,11 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     var cancelOrderViewModel = CancelOrderViewModel()
     var CancelOrderResponse: Cancel_Order_Main?
+    @IBOutlet var viewDiscount: UIView!
     
+    @IBOutlet var ViewHightConstraint: NSLayoutConstraint!
+    @IBOutlet var DiscountLabel: UILabel!
+    @IBOutlet var OrderAmountLable: UILabel!
     @IBOutlet weak var lblDeliveryIDLabel: UILabel!
     @IBOutlet weak var lblDelieveryDataLabel: UILabel!
     @IBOutlet weak var lblDelieveryAddNameLabel: UILabel!
@@ -141,7 +145,7 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
         
-        TabelHeightConstaint.constant = CGFloat((OrderData.products?.count ?? 0) * 124)
+        TabelHeightConstaint.constant = CGFloat((OrderData.products?.count ?? 0) * 146)
         
     }
     
@@ -197,6 +201,13 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         lblOriginalAmount.text = "\(OrderData.originalPrice ?? 0)"
         lblDiscountAmount.text = "\(OrderData.discount ?? 0)"
         
+        if ( Int(lblOriginalAmount.text ?? "") == 0 ){
+            ViewHightConstraint.constant = 0
+            viewDiscount.isHidden = true
+        }
+        else{
+            ViewHightConstraint.constant = 51
+            viewDiscount.isHidden = false
+        }
     }
-    
 }
