@@ -385,7 +385,7 @@
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0oE-MQ-KVw">
-                                                                        <rect key="frame" x="5" y="5" width="191" height="265"/>
+                                                                        <rect key="frame" x="5" y="0.0" width="191" height="270"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="50u-P4-oUZ">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="191" height="190"/>
@@ -404,7 +404,7 @@
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QE8-xD-8Sf" customClass="CosmosView" customModule="Cosmos">
-                                                                                <rect key="frame" x="38" y="246" width="115" height="19"/>
+                                                                                <rect key="frame" x="38" y="246" width="115" height="24"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="115" id="dPT-Vw-r8v"/>
                                                                                 </constraints>
@@ -496,7 +496,7 @@
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="0oE-MQ-KVw" firstAttribute="leading" secondItem="LFH-nw-783" secondAttribute="leading" constant="5" id="TAf-9Q-vIo"/>
-                                                                    <constraint firstItem="0oE-MQ-KVw" firstAttribute="top" secondItem="LFH-nw-783" secondAttribute="top" constant="5" id="dt6-k7-Q75"/>
+                                                                    <constraint firstItem="0oE-MQ-KVw" firstAttribute="top" secondItem="LFH-nw-783" secondAttribute="top" id="dt6-k7-Q75"/>
                                                                     <constraint firstAttribute="trailing" secondItem="0oE-MQ-KVw" secondAttribute="trailing" constant="5" id="x4I-eD-0t8"/>
                                                                     <constraint firstAttribute="bottom" secondItem="0oE-MQ-KVw" secondAttribute="bottom" constant="5" id="zTt-Sb-1xJ"/>
                                                                 </constraints>

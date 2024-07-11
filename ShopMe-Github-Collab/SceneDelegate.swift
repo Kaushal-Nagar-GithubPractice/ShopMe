@@ -52,5 +52,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
 //        senc
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+       guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true),
+             let host = urlComponents.host else {
+                 print("invalid URL")
+           return false
+             }
+        print(host)
+        
+        guard let deeplink = DeepLink(rawValue: host) else {
+            print("Deeplink not found ", host)
+            return false
+        }
+        if host == "DetailScreen" {
+            let DetailVc = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(withIdentifier: "DetailsScreenVC") as? DetailsScreenVC
+            print(urlComponents.queryItems?.first?.value ?? "")
+            DetailVc?.productID = urlComponents.queryItems?.first?.value ?? ""
+            self.window?.rootViewController = DetailVc
+        }
+//        CustomTabbarVC.handleDeepLink(deeplink, urlComponents)
+        return true
+    }
 }
 

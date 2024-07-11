@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Kingfisher
 
+
 extension UIViewController {
     
     func SetImageRoundBorder(ImageView : UIImageView){
@@ -32,6 +33,8 @@ extension UIViewController {
         Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
         self.present(Alert, animated: true, completion: nil)
     }
+    
+   
     
     func isValidEmail(email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -102,4 +105,18 @@ extension UIImageView{
             }
         }
     }
+}
+
+extension String{
+    // vrify Valid PhoneNumber or Not
+    func isValidPhone() -> Bool {
+        
+        let regex = try! NSRegularExpression(pattern: "^[0-9]\\d{9}$", options: .caseInsensitive)
+        let valid = regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
+        print("Mobile validation \(valid)")
+        return valid
+    }
+    func trim() -> String {
+            return self.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+        }
 }

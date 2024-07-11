@@ -213,8 +213,8 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         SVProgressHUD.show()
 //        let productPage = NSURL(string:"https://www.deccanherald.com/india/delhi/ncw-urges-delhi-police-to-take-action-against-man-for-comments-targeting-kirti-chakra-awardees-widow-3097077")
 //        let productPage = NSURL(string:"\(Constant.GET_PRODUCT+productID)")
-//        let text = "shopMe://DetailScreen?id=\(productID)"
-        let text = "http://192.168.1.217:4100/shop-detail/\(productID)/product-description"
+        let text = "shopMe://DetailScreen?id=\(productID)"
+//        let text = "http://192.168.1.217:4100/shop-detail/\(productID)/product-description"
 //        print("\(Constant.GET_PRODUCT+productID)")
                
                // set up activity view controller

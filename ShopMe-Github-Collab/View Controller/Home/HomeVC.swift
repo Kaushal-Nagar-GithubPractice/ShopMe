@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import SVProgressHUD
+import Reachability
 
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect, UICollectionViewDelegateFlowLayout {
     var isSharedProduct = false
@@ -32,6 +33,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var timer : Timer?
     var currentCellIndex = 0
     var TableHeight = CGFloat(0)
+    
     //MARK: Application Delegate Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +55,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     override func viewWillAppear(_ animated: Bool) {
         timer?.invalidate()
         currentCellIndex = 0
-//        lblDisplayedProducts.text = "Featured Products"
         self.tblViewHomeScreen.showsVerticalScrollIndicator = false
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
@@ -312,7 +313,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             DispatchQueue.main.async {
                 if response.data?.specialOffers?.isEmpty != true {
                     self.arrSpecialOffers = response.data?.specialOffers ?? []
-                    print(self.arrSpecialOffers)
+//                    print(self.arrSpecialOffers)
                     self.pageControlHeader.numberOfPages = self.arrSpecialOffers.count
                     self.collectionHeader.reloadData()
                     SVProgressHUD.dismiss()
