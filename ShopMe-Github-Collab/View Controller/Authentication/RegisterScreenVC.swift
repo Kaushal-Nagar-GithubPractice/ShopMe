@@ -34,7 +34,8 @@ class RegisterScreenVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         SetUI()
-        registerKeyboardNotifications()
+        GregisterKeyboardNotifications()
+        Global_scrollView = scrollView
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -61,20 +62,19 @@ class RegisterScreenVC: UIViewController {
     @IBAction func OnClickRegisterUser(_ sender: Any) {
         
         if(TfEmail.text?.count == 0 || TfPassword.text?.count == 0 || TfConfirmPassword.text?.count == 0 || TfEnterName.text?.count == 0 || TfEnterLastName.text?.count == 0){
-            ShowAlertBox(Title: "No field should be Empty !", Message: "")
+            ShowAlertBox(Title: "Error !!", Message: "No field should be Empty !")
         }
         else if(!isValidEmail(email: TfEmail.text ?? "")){
-            ShowAlertBox(Title: "Enter Valid Email !", Message: "")
+            ShowAlertBox(Title: "Error !!", Message: "Enter Valid Email !")
         }
         else if( TfPassword.text?.count ?? 0 <= 8 ){
-            ShowAlertBox(Title: "Password length should be More than 8 !", Message: "")
+            ShowAlertBox(Title: "Error !!", Message: "Password length should be More than 8 !")
         }
         else if ( TfPassword.text?.trimmingCharacters(in: .whitespaces) != TfConfirmPassword.text?.trimmingCharacters(in: .whitespaces)){
-            ShowAlertBox(Title: "Password & Confirm Password should be same.", Message: "")
+            ShowAlertBox(Title: "Error !!", Message: "Password & Confirm Password should be same.")
         }
         else{
             RegisterUser()
-            //            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -88,11 +88,6 @@ class RegisterScreenVC: UIViewController {
     
     func RegisterUser(){
         CallApiToRegisterUser()
-        
-        //        UserDefaults.standard.set(TfEnterName.text?.trimmingCharacters(in: .whitespaces), forKey: "Username")
-        //        UserDefaults.standard.set(TfEmail.text?.lowercased(), forKey: "Email")
-        //        UserDefaults.standard.set(TfPassword.text?.trimmingCharacters(in: .whitespaces), forKey: "Password")
-        //        UserDefaults.standard.set(false, forKey: "IsRedirect")
     }
     
     func SetUI(){
@@ -107,17 +102,6 @@ class RegisterScreenVC: UIViewController {
         TfConfirmPassword.isSecureTextEntry = true
         loader.setDefaultMaskType(.black)
         
-    }
-    
-    func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
     }
     
     func CallApiToRegisterUser() {
@@ -164,21 +148,4 @@ class RegisterScreenVC: UIViewController {
             ShowAlertBox(Title: "Something Went Wrong!", Message: RegisterDataArr.message ?? "")
         }
     }
-    
-    //MARK: - All Objc Functions
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
-        let keyboardSize = keyboardInfo.cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
-
 }

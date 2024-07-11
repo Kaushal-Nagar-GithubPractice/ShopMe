@@ -71,7 +71,7 @@ class LoginScreenVC: UIViewController {
     @IBAction func OnClickLogin(_ sender: Any) {
         
         if(TfEmail.text?.count == 0 || TfPassword.text?.count == 0){
-            ShowAlertBox(Title: "No field should be Empty !", Message: "")
+            ShowAlertBox(Title: "Error !!", Message: "No field should be Empty !")
         }
         else{
             CallApiToLogin()
@@ -103,8 +103,6 @@ class LoginScreenVC: UIViewController {
         Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
         Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
         self.present(Alert, animated: true, completion: nil)
-        
-        //        ShowAlertBox(Title: "Login Successfull!", Message: "")
     }
     
     func UpdateUI(){
@@ -147,40 +145,14 @@ class LoginScreenVC: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = true
         
-        registerKeyboardNotifications()
+        GregisterKeyboardNotifications()
+        Global_scrollView = scrollView
         
         DoShowPassword = false
         btnShowPassword.setImage(UIImage(named: "Password Hide"), for: .normal)
         TfPassword.isSecureTextEntry = true
         btnLogin.layer.cornerRadius = 15
         loader.setDefaultMaskType(.black)
-    }
-    
-    func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-    }
-    
-    //MARK: - All Objc Functions
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
-        let keyboardSize = keyboardInfo.cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
     }
     
 }

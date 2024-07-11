@@ -33,7 +33,8 @@ class ChangePasswordVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         SetUI()
-        registerKeyboardNotifications()
+        GregisterKeyboardNotifications()
+        Global_scrollView = scrollView
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
@@ -48,13 +49,13 @@ class ChangePasswordVC: UIViewController {
     @IBAction func OnClickChangePassword(_ sender: Any) {
         
         if(TfNewPassword.text?.count == 0 || TfOldPassword.text?.count == 0 || TfNewConfirmPassword.text?.count == 0 ){
-            ShowAlertBox(Title: "No field should be Empty !", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "No field should be Empty !")
         }
         else if( TfNewPassword.text?.count ?? 0 <= 8 || TfOldPassword.text?.count ?? 0 <= 8 || TfNewConfirmPassword.text?.count ?? 0 <= 8 ){
-            ShowAlertBox(Title: "Password length should be More than 8 !", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "Password length should be More than 8 !")
         }
         else if ( TfNewPassword.text?.trimmingCharacters(in: .whitespaces) != TfNewConfirmPassword.text?.trimmingCharacters(in: .whitespaces)){
-            ShowAlertBox(Title: "Password & Confirm Password must be same.", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "Password & Confirm Password must be same.")
         }
         else{
             CallAPIToChangePassword()
@@ -95,9 +96,7 @@ class ChangePasswordVC: UIViewController {
             btnShowNewConfiPassword.isSelected = true
         }
     }
-    
-    
-    
+
     
     //MARK: - All Defined Fucntions
     
@@ -121,17 +120,6 @@ class ChangePasswordVC: UIViewController {
         
         btnShowNewConfiPassword.setImage(UIImage(named: "Password Hide"), for: .normal)
         btnShowNewConfiPassword.setImage(UIImage(named: "Password Show"), for: .selected)
-    }
-    
-    func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
     }
     
     func CallAPIToChangePassword(){
@@ -165,7 +153,7 @@ class ChangePasswordVC: UIViewController {
                     
                 }
                 else{
-                    ShowAlertBox(Title:  ChangePassResponse?.message ?? "", Message: "")
+                    ShowAlertBox(Title:  "Something Went Wrong!", Message: ChangePassResponse?.message ?? "")
                 }
                 
                 loader.dismiss()
@@ -176,21 +164,5 @@ class ChangePasswordVC: UIViewController {
         }
         
         
-    }
- 
-    //MARK: - All Objc Functions
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
-        let keyboardSize = keyboardInfo.cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
     }
 }
