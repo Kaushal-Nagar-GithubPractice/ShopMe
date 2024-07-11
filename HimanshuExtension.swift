@@ -13,7 +13,7 @@ extension UIImageView {
     func setImageWithURL(url : String , imageView : UIImageView){
         let url = URL(string: url)
         let processor = DownsamplingImageProcessor(size: imageView.bounds.size)
-                     |> RoundCornerImageProcessor(cornerRadius: 15)
+//                     |> RoundCornerImageProcessor(cornerRadius: 0)
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(
             with: url,
@@ -180,8 +180,8 @@ extension UILabel
 extension UIView{
     func ApplyShadow(view: UIView){
         view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.2
-        view.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        view.layer.shadowOpacity = 0.4
+        view.layer.shadowOffset = CGSize(width: 01.0, height: 01.0)
         view.layer.shadowRadius = 3.0
         view.layer.masksToBounds = false
         

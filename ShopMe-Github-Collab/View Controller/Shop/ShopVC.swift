@@ -163,7 +163,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
                     }
                     else{
                         self.viewEmptyProduct.isHidden = true
-                        self.arrData.append(contentsOf: response.data?.products ?? [])
+                        self.arrData = response.data?.products ?? []
                         self.MainArr.append(response.data!)
                         self.ShopProducts = self.arrData
                         self.getSizeAndColor()
@@ -298,7 +298,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         }
     }
     
-    func resetState() {
+    func resetOnAppear() {
            pageCount = 1
            pageCountForSearchText = 1
 //           pageForFilterProduct = 1
@@ -311,7 +311,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
            collectionProducts.reloadData()
        }
 
-       func resetSearchState() {
+       func resetSearchArr() {
            pageCountForSearchText = 1
 //           flagForEmptyProductCall = true
 //           searchResults = []
@@ -319,7 +319,7 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
            collectionProducts.reloadData()
        }
 
-       func resetFilterState() {
+       func resetFilterArr() {
 //           pageForFilterProduct = 1
 //           flagForEmptyProductCall = true
 //           filteredProducts = []

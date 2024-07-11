@@ -12,6 +12,10 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var VwRangeSliderView: RangeSlider!
     
+    var DelieveryStatusArr =  ["All","Placed","Package Shipped","On the way","Delivered","Cancelled"]
+    var SelectedStatus = "All"
+    
+    @IBOutlet weak var btnSelectDelieveryStatus: UIButton!
     @IBOutlet weak var TfFromDate: UITextField!
     @IBOutlet weak var TfToDate: UITextField!
     var activeTextField: UITextField!
@@ -22,7 +26,7 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         TfToDate.delegate = self
         TfFromDate.delegate = self
         // Do any additional setup after loading the view.
@@ -49,17 +53,26 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
         var FilterBody = "?"
         
         if (TfFromDate.text?.count == 0 && TfToDate.text?.count ?? 0 > 0 || TfToDate.text?.count == 0 && TfFromDate.text?.count ?? 0 > 0 ){
-            ShowAlertBox(Title: "'From Date' and 'To Date' Either both be Empty or Both be filled !", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "'From Date' and 'To Date' Either both be Empty or Both be filled !")
         }
         else if ConvertStringToDate(formate: "dd MMM yyyy", DateInString: TfFromDate.text ?? "") > ConvertStringToDate(formate: "dd MMM yyyy", DateInString: TfToDate.text ?? ""){
-            ShowAlertBox(Title: "'From Date' must be Earliar than 'To Date' !", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "'From Date' must be Earliar than 'To Date' !")
         }
         else{
+            if (SelectedStatus != "All"){
+                let Value = SelectedStatus.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                
+                FilterBody = MakeAppendString(Key: "orderStatus", Value: Value ?? "", Filterbody: FilterBody)
+            }
             if(TfFromDate.text?.count != 0){
-                FilterBody = MakeAppendString(Key: "startDate", Value: getFormattedDate(DateInString: TfFromDate.text ?? "", FromFormate: "dd MMM yyyy", ToFormate: "MM-dd-yyyy"), Filterbody: FilterBody)
+                var DateInString =  getFormattedDate(DateInString: TfFromDate.text ?? "", FromFormate: "dd MMM yyyy", ToFormate: "MM-dd-yyyy")
+                
+                FilterBody = MakeAppendString(Key: "startDate", Value: DateInString, Filterbody: FilterBody)
             }
             if(TfToDate.text?.count != 0){
-                FilterBody = MakeAppendString(Key: "endDate", Value: getFormattedDate(DateInString: TfToDate.text ?? "", FromFormate: "dd MMM yyyy", ToFormate: "MM-dd-yyyy"), Filterbody: FilterBody)
+                var DateInString = getFormattedDate(DateInString: TfToDate.text ?? "", FromFormate: "dd MMM yyyy", ToFormate: "MM-dd-yyyy")
+                
+                FilterBody = MakeAppendString(Key: "endDate", Value: DateInString, Filterbody: FilterBody)
             }
             if(VwRangeSliderView.lowerValue != 0){
                 FilterBody = MakeAppendString(Key: "minPrice", Value: "\(Int(VwRangeSliderView.lowerValue))", Filterbody: FilterBody)
@@ -72,7 +85,7 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
             
             MyOrderScreenVC.UrlExtraBody = FilterBody
             MyOrderScreenVC.delegate?.CallOrderAPI()
-            
+            print("\nFilter URL Search Text", FilterBody)
             self.dismiss(animated: true)
         }
     }
@@ -84,6 +97,23 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
     }
     
     //MARK: - All Defined Functions
+    
+    func SetStatusButton(){
+        
+        let actionClosure = { [self] (action: UIAction) in
+            SelectedStatus = action.title
+        }
+        
+        var menuChildren: [UIMenuElement] = []
+        for Index in 0...DelieveryStatusArr.count-1 {
+            menuChildren.append(UIAction(title: DelieveryStatusArr[Index], handler: actionClosure))
+        }
+        
+        btnSelectDelieveryStatus.menu = UIMenu(options: .displayInline, children: menuChildren)
+        
+        btnSelectDelieveryStatus.showsMenuAsPrimaryAction = true
+        btnSelectDelieveryStatus.changesSelectionAsPrimaryAction = true
+    }
     
     func CreateDatePicker(forField field : UITextField){
         
@@ -114,7 +144,7 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
         toolbar.sizeToFit()
         
         let Donebtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(DonePressed))
-//        toolbar.setItems([Donebtn], animated: true)
+        //        toolbar.setItems([Donebtn], animated: true)
         
         let ClearBtn = UIBarButtonItem(title: "Clear", style: .done, target: nil, action: #selector(ClearPressed))
         toolbar.setItems([Donebtn , ClearBtn], animated: true)
@@ -123,12 +153,13 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
     }
     
     func SetUI(){
+        SetStatusButton()
         
         let TotalRange = MinPrice+MaxPrice
         
         VwRangeSliderView.minimumValue = Double(0)
         VwRangeSliderView.maximumValue = Double(MaxPrice)
-//        VwRangeSliderView.stepValue = Double((TotalRange)/10)
+        //        VwRangeSliderView.stepValue = Double((TotalRange)/10)
         VwRangeSliderView.lowerValue = Double(0)
         VwRangeSliderView.upperValue = Double((TotalRange)/10)
         VwRangeSliderView.minimumDistance = Double((TotalRange)/10)
@@ -159,7 +190,7 @@ class FilterScreenVC: UIViewController, UITextFieldDelegate {
             TfToDate.text = formatDate(date: datePicker.date)
         }
     }
-
+    
     @objc func DonePressed(){
         self.view.endEditing(true)
     }

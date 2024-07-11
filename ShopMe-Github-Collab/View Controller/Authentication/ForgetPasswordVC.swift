@@ -34,7 +34,8 @@ class ForgetPasswordVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         SetUI()
-        registerKeyboardNotifications()
+        GregisterKeyboardNotifications()
+        Global_scrollView = scrollView
     }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
@@ -50,16 +51,16 @@ class ForgetPasswordVC: UIViewController {
     @IBAction func OnClickChangePassword(_ sender: Any) {
         
         if(TfEmail.text?.count == 0 || TfPassword.text?.count == 0 || TfConfirmPassword.text?.count == 0 ){
-            ShowAlertBox(Title: "No field should be Empty !", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "No field should be Empty !")
         }
         else if(!isValidEmail(email: TfEmail.text ?? "")){
-            ShowAlertBox(Title: "Enter Valid Email !", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "Enter Valid Email !")
         }
         else if( TfPassword.text?.count ?? 0 <= 8 ){
-            ShowAlertBox(Title: "Password length should be More than 8 !", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "Password length should be More than 8 !")
         }
         else if ( TfPassword.text?.trimmingCharacters(in: .whitespaces) != TfConfirmPassword.text?.trimmingCharacters(in: .whitespaces)){
-            ShowAlertBox(Title: "Password & Confirm Password should be same.", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "Password & Confirm Password should be same.")
         }
         else{
             CallApiAndChangePassword()
@@ -84,17 +85,6 @@ class ForgetPasswordVC: UIViewController {
     }
     
     //MARK: - All Defined Functions
-    
-    func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-    }
 
     func CallApiAndChangePassword(){
         
@@ -114,7 +104,7 @@ class ForgetPasswordVC: UIViewController {
                     CallChangePasswordAPI()
                 }
                 else{
-                    ShowAlertBox(Title: ConfirmEmailResponse?.message ?? "", Message: "")
+                    ShowAlertBox(Title: "Something Went Wrong!", Message: ConfirmEmailResponse?.message ?? "")
                 }
                 
                 loader.dismiss()
@@ -154,7 +144,7 @@ class ForgetPasswordVC: UIViewController {
                     
                 }
                 else{
-                    ShowAlertBox(Title: ForgetPassResponse?.message ?? "", Message: "")
+                    ShowAlertBox(Title: "Something Went Wrong!", Message: ForgetPassResponse?.message ?? "")
                 }
                 
                 loader.dismiss()
@@ -168,21 +158,5 @@ class ForgetPasswordVC: UIViewController {
     func SetUI(){
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
-    }
-    
-    //MARK: - All Objc Functions
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
-        let keyboardSize = keyboardInfo.cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
     }
 }

@@ -33,7 +33,6 @@ class ProductsCollectionViewCell: UICollectionViewCell {
         viewProduct.layer.masksToBounds = true
         viewProduct.backgroundColor = UIColor.systemGray5
         starView?.settings.fillMode = .precise
-        
         ApplyShadow(view: viewProduct)
     }
     

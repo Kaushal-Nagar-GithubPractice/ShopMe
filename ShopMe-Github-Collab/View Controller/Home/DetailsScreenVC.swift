@@ -16,6 +16,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var tblUserReviews: UITableView!
     @IBOutlet weak var UserRating: CosmosView!
     @IBOutlet weak var txtViewUserRating: KMPlaceholderTextView!
+//    @IBOutlet var txtViewUserRating: UITextView!
     @IBOutlet weak var viewSuggestedProduct: UIView!
     var isAddedtoCart = false
     @IBOutlet weak var btnAddUserRating: UIButton!
@@ -81,12 +82,16 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         getUserRatings()
         print(isWishlist)
         btnWishList()
+        
+        Global_scrollView = scrollView
+        GregisterKeyboardNotifications()
        
     }
     override func viewDidAppear(_ animated: Bool) {
         if !(selectedProduct?.images?.count == 1) {
             timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
         }
+        NotificationCenter.default.removeObserver(self)
     }
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
@@ -101,7 +106,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         SizesInCArt = [""]
         collectionSize.reloadData()
         collectionColor.reloadData()
-        
+        NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: IBACTION Method
@@ -404,7 +409,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
                     self.ArrReview = response.data?.reviews ?? []
                     self.tblUserReviews.reloadData()
                     self.tblUserReviews.isHidden = false
-                    self.heightForTblRating.constant = CGFloat(150 *  (response.data?.reviews?.count ?? 1) + 75)
+                    self.heightForTblRating.constant = CGFloat(110 *  (response.data?.reviews?.count ?? 1) + 75)
                 }
                 else{
                     self.tblUserReviews.isHidden = true
@@ -622,6 +627,15 @@ extension DetailsScreenVC : UITableViewDelegate,UITableViewDataSource {
         cell.lblUsername.text = ArrReview[indexPath.row].name
         cell.lblUserReview.text = "   \(ArrReview[indexPath.row].review ?? "")"
         cell.selectionStyle = .none
+        cell.Rating = Double(ArrReview[indexPath.row].rating ?? 5)
+        
+        if Double(ArrReview[indexPath.row].rating ?? 0) <= Double(2.5) {
+            cell.btnRatings.tintColor = .red
+        }
+        else{
+            cell.btnRatings.tintColor = .systemIndigo
+        }
+        
         return cell
     }
     

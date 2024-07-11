@@ -12,8 +12,11 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     var cancelOrderViewModel = CancelOrderViewModel()
     var CancelOrderResponse: Cancel_Order_Main?
+    @IBOutlet var viewDiscount: UIView!
     
-    
+    @IBOutlet var ViewHightConstraint: NSLayoutConstraint!
+    @IBOutlet var DiscountLabel: UILabel!
+    @IBOutlet var OrderAmountLable: UILabel!
     @IBOutlet weak var lblDeliveryIDLabel: UILabel!
     @IBOutlet weak var lblDelieveryDataLabel: UILabel!
     @IBOutlet weak var lblDelieveryAddNameLabel: UILabel!
@@ -60,7 +63,21 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     
     @IBAction func OnClickCancleOrder(_ sender: Any){
-        CallAPIToCancelOrder(OrderID : OrderData._id ?? "")
+        
+        let Alert = UIAlertController(title: "Confirmation !", message: "Do You Really Want To Cancle This Order ?", preferredStyle: UIAlertController.Style.alert)
+        
+        Alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+            self.CallAPIToCancelOrder(OrderID : self.OrderData._id ?? "")
+            Alert.dismiss(animated: true)
+        }))
+        Alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in
+            Alert.dismiss(animated: true)
+        }))
+        Alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+        Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+        Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
+        self.present(Alert, animated: true, completion: nil)
+        
     }
     
     //MARK: - Table View Delegate Methods
@@ -81,6 +98,8 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         Cell.lblProductPriceLabel.text = "₹ \(Product?.price ?? 0)"
         Cell.lblQauntityLabel.text = "\(Product?.quantity ?? 0)"
         Cell.lblTotalPriceLabel.text = "₹ \(Product?.totalProductPrice ?? 0)"
+        Cell.lblSize.text = Product?.size ?? ""
+        Cell.lblColor.text = Product?.color ?? ""
         
         return Cell
     }
@@ -126,7 +145,7 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
         
-        TabelHeightConstaint.constant = CGFloat((OrderData.products?.count ?? 0) * 120)
+        TabelHeightConstaint.constant = CGFloat((OrderData.products?.count ?? 0) * 146)
         
     }
     
@@ -157,7 +176,7 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     self.present(Alert, animated: true, completion: nil)
                     
                 }else{
-                    ShowAlertBox(Title: CancelOrderResponse?.message ?? "", Message: "")
+                    ShowAlertBox(Title: "Something Went Wrong!", Message: CancelOrderResponse?.message ?? "")
                 }
                 
                 SVProgressHUD.dismiss()
@@ -182,6 +201,13 @@ class OrderDetailVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         lblOriginalAmount.text = "\(OrderData.originalPrice ?? 0)"
         lblDiscountAmount.text = "\(OrderData.discount ?? 0)"
         
+        if ( Int(lblOriginalAmount.text ?? "") == 0 ){
+            ViewHightConstraint.constant = 0
+            viewDiscount.isHidden = true
+        }
+        else{
+            ViewHightConstraint.constant = 51
+            viewDiscount.isHidden = false
+        }
     }
-    
 }

@@ -13,6 +13,8 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblCategoryQuantity: UILabel!
     @IBOutlet weak var lblCategoryName: UILabel!
     
+    @IBOutlet var viewSelected: UIView!
+    @IBOutlet var ImgGradientImage: UIImageView?
     @IBOutlet weak var imageCategories: UIImageView!
     @IBOutlet weak var viewCategories: UIView!
     
@@ -21,9 +23,12 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         
         viewCategories.backgroundColor = UIColor.systemGray5
         viewCategories.layer.cornerRadius = 15
-        viewCategories.layer.masksToBounds = true
-        
+//        viewCategories.layer.masksToBounds = true
+        ApplyShadow(view: viewCategories)
         imageCategories.layer.cornerRadius = 15
         imageCategories.layer.masksToBounds = true
+        
+        ImgGradientImage?.layer.cornerRadius = 15
+        ImgGradientImage?.layer.masksToBounds = true
     }
 }

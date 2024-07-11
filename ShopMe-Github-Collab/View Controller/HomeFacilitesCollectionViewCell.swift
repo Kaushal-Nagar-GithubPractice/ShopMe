@@ -18,6 +18,7 @@ class HomeFacilitesCollectionViewCell: UICollectionViewCell {
         
         viewFacilites.backgroundColor = UIColor.systemGray5
         viewFacilites.layer.cornerRadius = 15
-        viewFacilites.layer.masksToBounds = true
+//        viewFacilites.layer.masksToBounds = true
+        ApplyShadow(view: viewFacilites)
     }
 }

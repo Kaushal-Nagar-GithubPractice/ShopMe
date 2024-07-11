@@ -8,9 +8,11 @@
 import UIKit
 
 class OrderDetailTabelCell: UITableViewCell {
-
+    @IBOutlet weak var lblColor: UILabel!
+    
     @IBOutlet weak var CellMainView: UIView!
     @IBOutlet weak var ImgProductImage: UIImageView!
+    @IBOutlet weak var lblSize: UILabel!
     @IBOutlet weak var lblProductNameLAbel: UILabel!
     @IBOutlet weak var lblQauntityLabel: UILabel!
     @IBOutlet weak var lblProductPriceLabel: UILabel!

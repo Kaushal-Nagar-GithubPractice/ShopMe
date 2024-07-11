@@ -13,4 +13,6 @@ target 'ShopMe-Github-Collab' do
   pod 'ReachabilitySwift'
   pod 'KMPlaceholderTextView'
   pod 'SwiftSoup'
+
+ pod 'ReachabilitySwift'
 end

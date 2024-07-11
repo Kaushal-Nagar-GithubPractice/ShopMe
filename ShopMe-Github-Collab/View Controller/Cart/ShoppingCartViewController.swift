@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import SVProgressHUD
+import Reachability
 
 class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, removeFromCart{
     
@@ -22,6 +23,8 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     var loader = SVProgressHUD()
     var shippingCharge = 0
     var cartItemArray = [["img":"item-1","Name":"Canon camera","Price":"60000","TotalItem":"1"]]
+    let reachability = try! Reachability()
+    
     @IBOutlet weak var CartListTableView: UITableView!
     @IBOutlet weak var lblSubtotalPrice: UILabel!
     @IBOutlet weak var lblShippingCharge: UILabel!
@@ -38,19 +41,19 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         CartListTableView.delegate = self
         CartListTableView.dataSource = self
-        SVProgressHUD.setForegroundColor(UIColor.black)
-        SVProgressHUD.setBackgroundColor(UIColor(named: "Custom Black - h")!)
-        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.custom)
+//        SVProgressHUD.setForegroundColor(UIColor.black)
+//        SVProgressHUD.setBackgroundColor(UIColor(named: "Custom Black - h")!)
+//        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.custom)
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        customizeLoader()
         getCartData(urlPath: Constant.getUserCart)
-        SVProgressHUD.setDefaultMaskType(.black)
+//        SVProgressHUD.setDefaultMaskType(.black)
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
-        
+        reachable()
         checkCart()
     }
     
@@ -87,6 +90,30 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
           
         }
 
+    }
+    
+    func reachable(){
+        reachability.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                SVProgressHUD.dismiss()
+                self.getCartData(urlPath: Constant.getUserCart)
+
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        }
+        reachability.whenUnreachable = { _ in
+            SVProgressHUD.dismiss()
+            self.ShowAlertBox(Title: "offline", Message: "")
+            print("Not reachable")
+        }
+
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
     }
     
     // MARK: - Tableview methods
@@ -199,22 +226,28 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         SVProgressHUD.show()
         let request = APIRequest(isLoader: true, method: .get, path: urlPath, headers: HeaderValue.headerWithToken.value, body: nil)
         userCartViewModel.getCartData(request:request) { [self] response in
-
-            if response.success == true{
-                self.cartObj = response.data
-                DispatchQueue.main.async {
+            
+            DispatchQueue.main.async {
+                if response.success == true{
+                    self.cartObj = response.data
                     self.productArr = self.cartObj.products ?? []
                     self.updateTotal()
                     self.checkCart()
                     self.CartListTableView.reloadData()
                     SVProgressHUD.dismiss()
+                    
+                }else{
+                    SVProgressHUD.dismiss()
+                    self.ShowAlertBox(Title: "\(response.message ?? "Something went wrong")", Message: "")
+                    print("=====> get cart response failed!!")
                 }
-            }else{
-                SVProgressHUD.dismiss()
-                print("=====> get cart response failed!!")
             }
-            
         } error: { error in
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                print(error)
+//                self.ShowAlertBox(Title: "Alert", Message: "\(error)")
+            }
             print("cart error====",error as Any)
         }
         
@@ -259,7 +292,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             }
         } error: { error in
             print("error in added to cart on checkout",error!)
-            SVProgressHUD.dismiss()
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+            }
+            
         }
         
     }
@@ -267,7 +303,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     func NavigateToCheckoutVc(){
         let checkoutVC = self.storyboard?.instantiateViewController(withIdentifier: "CheckoutViewController") as! CheckoutViewController
         checkoutVC.myOrderArray = self.productArr
-        checkoutVC.priceOfItems = (self.cartObj.totalAmount! + self.shippingCharge)
+        checkoutVC.priceOfItems = ((self.cartObj.totalAmount ?? 00) + self.shippingCharge)
         self.navigationController?.pushViewController(checkoutVC, animated: true)
     }
     
