@@ -71,28 +71,37 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     //MARK: - All IBAction
     
     @IBAction func OnClickUpdate(_ sender: Any) {
-        
-        if (TfFirstName.text?.count == 0 || TfLastName.text?.count == 0){
-            ShowAlertBox(Title: "Something Went Wrong!", Message: "Field marked as * should not be Empty !")
-        }
-        else if ( !btnGenderMale.isSelected && !btnGenderFemale.isSelected){
-            ShowAlertBox(Title: "Something Went Wrong!", Message: "Select Gender Please!")
-        }
-        else if( TfPhoneNumber.text?.count != 10 ){
-            ShowAlertBox(Title: "Something Went Wrong!", Message: "Mobile Number lenght Must be 10 !")
-        }
-        else if ( Int(TfPhoneNumber.text ?? "") == nil){
-            showAlert(title: "Something Went Wrong!", message: "Mobile Number Should be Number")
-        }
-        else{
+        if isValidate() {
             UpdateProfile()
         }
+       
     }
     
     @IBAction func OnClickCloseEditProfile(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
+    
+    func isValidate() -> Bool {
+        if (TfFirstName.text?.count == 0 || TfLastName.text?.count == 0){
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "Field marked as * should not be Empty !")
+            return false
+        }
+        else if ( !btnGenderMale.isSelected && !btnGenderFemale.isSelected){
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "Select Gender Please!")
+            return false
+        }
+        else if TfPhoneNumber.text?.trim() != "" {
+            if TfPhoneNumber.text?.isValidPhone() == false{
+                ShowAlertBox(Title: "Something Went Wrong!", Message: "Phone Number Must be Lenght of 10 & Must be Number!")
+                return false
+            }
+            return true
+        }
+        else{
+            return true
+        }
+    }
     
     @IBAction func OnClickSelectGender(_ sender: Any) {
         btnGenderMale.isSelected = false

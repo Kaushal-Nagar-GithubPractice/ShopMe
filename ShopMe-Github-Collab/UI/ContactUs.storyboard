@@ -209,6 +209,11 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="250" id="QsX-YX-QED"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcM-Hi-BMO">
                                                 <rect key="frame" x="10" y="270" width="373" height="36"/>
@@ -281,7 +286,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OPN-1d-XjP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1666.4122137404579" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="706" y="-27"/>
         </scene>
     </scenes>
     <resources>
