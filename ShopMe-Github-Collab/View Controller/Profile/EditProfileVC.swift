@@ -44,10 +44,11 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        Global_scrollView = scrollView
         isCallFirstTime = true
         SetUI()
         SetupRadioButton()
-        registerKeyboardNotifications()
+        GregisterKeyboardNotifications()
     }
     override func viewDidAppear(_ animated: Bool) {
         CallUpdateDataAPI()
@@ -111,16 +112,16 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
         CallUpdateDataAPI()
     }
     
-    func registerKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-    }
+//    func registerKeyboardNotifications() {
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(keyboardWillShow(notification:)),
+//                                               name: UIResponder.keyboardWillShowNotification,
+//                                               object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(keyboardWillHide(notification:)),
+//                                               name: UIResponder.keyboardWillHideNotification,
+//                                               object: nil)
+//    }
     
     func CallUpdateDataAPI(){
         
@@ -282,21 +283,21 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate & UINavig
     
     //MARK: - All Objc Functions
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
-        let keyboardSize = keyboardInfo.cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
-        //        print(keyboardSize.height)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-        
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        scrollView.contentInset = .zero
-        scrollView.scrollIndicatorInsets = .zero
-    }
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+//        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
+//        let keyboardSize = keyboardInfo.cgRectValue.size
+//        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+//        //        print(keyboardSize.height)
+//        scrollView.contentInset = contentInsets
+//        scrollView.scrollIndicatorInsets = contentInsets
+//        
+//    }
+//    
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//        scrollView.contentInset = .zero
+//        scrollView.scrollIndicatorInsets = .zero
+//    }
     
     @objc func dateChange(datePicker: UIDatePicker)
     {

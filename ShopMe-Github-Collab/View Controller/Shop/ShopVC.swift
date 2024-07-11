@@ -8,6 +8,7 @@
 import UIKit
 import SVProgressHUD
 
+var Global_scrollView : UIScrollView?
 class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout, UISearchBarDelegate, SelectedFilter {
 //    var isFirstTimeApiCall = true
     @IBOutlet weak var viewEmptyProduct: UIView!
@@ -296,6 +297,35 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
             }
         }
     }
+    
+    func resetState() {
+           pageCount = 1
+           pageCountForSearchText = 1
+//           pageForFilterProduct = 1
+//           flagForEmptyProductCall = true
+//           isFilterActive = false
+//           allProducts = []
+//           searchResults = []
+//           filteredProducts = []
+//           displayedProducts = []
+           collectionProducts.reloadData()
+       }
+
+       func resetSearchState() {
+           pageCountForSearchText = 1
+//           flagForEmptyProductCall = true
+//           searchResults = []
+//           displayedProducts = []
+           collectionProducts.reloadData()
+       }
+
+       func resetFilterState() {
+//           pageForFilterProduct = 1
+//           flagForEmptyProductCall = true
+//           filteredProducts = []
+//           displayedProducts = []
+           collectionProducts.reloadData()
+       }
     //MARK: OBJC  METHODS
 
     @objc func btnFilterClicked(){
@@ -341,4 +371,6 @@ class ShopVC: UIViewController,UICollectionViewDataSource, UICollectionViewDeleg
         dictFilters = dict
         callApiFilteredProduct(urlString: filterUrl)
     }
+    
+    
 }

@@ -197,3 +197,47 @@ extension String {
             return try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
         }
 }
+
+extension UIViewController {
+    
+    
+    func GregisterKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(GkeyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(GkeyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+        
+        
+    }
+//    
+//    @objc func GkeyboardWillShow(notification: NSNotification ) {
+//        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+//        let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
+//        let keyboardSize = keyboardInfo.cgRectValue.size
+//        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+//        Global_scrollView?.contentInset = contentInsets
+//        Global_scrollView?.scrollIndicatorInsets = contentInsets
+//    }
+//    
+//    @objc func GkeyboardWillHide(notification: NSNotification) {
+//        Global_scrollView?.contentInset = .zero
+//        Global_scrollView?.scrollIndicatorInsets = .zero
+//    }
+    
+    
+    @objc private func GkeyboardWillShow(notification: NSNotification){
+        guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        Global_scrollView?.contentInset.bottom = view.convert(keyboardFrame.cgRectValue, from: nil).size.height + 15
+    }
+    
+    @objc private func GkeyboardWillHide(notification: NSNotification){
+        guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        Global_scrollView?.contentInset.bottom = 0
+    }
+}
+
