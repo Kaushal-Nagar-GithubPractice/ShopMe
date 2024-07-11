@@ -96,14 +96,14 @@ class FaqVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     if GetCategpryResponse?.success == true{
                         
                         if GetCategpryResponse?.data?.category?.count == 0{
-                            ShowAlertBox(Title: "No Category Found!", Message: "")
+                            ShowAlertBox(Title: "Oops!", Message: "No Category Found!")
                         }
                         else{
                             SetCategoryButton()
                         }
                         
                     }else{
-                        ShowAlertBox(Title: GetCategpryResponse?.message ?? "" , Message: "")
+                        ShowAlertBox(Title: "Something Went Wrong!", Message: GetCategpryResponse?.message ?? "" )
                     }
                     SVProgressHUD.dismiss()
                 }
@@ -127,7 +127,7 @@ class FaqVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     if GetFaqQuestionResponse?.success == true{
                         TvQuestionTable.reloadData()
                     }else{
-                        ShowAlertBox(Title: GetFaqQuestionResponse?.message ?? "", Message: "")
+                        ShowAlertBox(Title: "Something Went Wrong!", Message: GetFaqQuestionResponse?.message ?? "")
                     }
                     
                     SVProgressHUD.dismiss()

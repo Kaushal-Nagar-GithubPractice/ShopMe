@@ -15,7 +15,8 @@ protocol CallOrderAPI{
 class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CallOrderAPI {
     
     @IBOutlet weak var TvMyOrderTable: UITableView!
-    
+    var pageCount = 1
+    var flagForEmptyProdCall = true
     @IBOutlet weak var lblEmptyOrderLabel: UILabel!
     var getOrderListViewModel = OrderListingDataViewModel()
     var OrderListData: OrderListing_Main?
@@ -51,7 +52,7 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     @IBAction func OnClickOpenFilter(_ sender: Any) {
         if OrderListData?.success == true{
             if ( !MyOrderScreenVC.IsFilterData && OrderListData?.data?.orders?.count == 0){
-                ShowAlertBox(Title: "There is no orders to Filter !!", Message: "")
+                ShowAlertBox(Title: "Something Went Wrong!", Message: "There is no orders to Filter !!")
             }else{
                 if MyOrderScreenVC.IsFilterData{
                     MyOrderScreenVC.UrlExtraBody = ""
@@ -68,7 +69,7 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 }
             }
         }else{
-            ShowAlertBox(Title: "Error While fetching Data , Please Try Again!", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: "Error While fetching Data , Please Try Again!")
         }
     }
     
@@ -105,6 +106,14 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.navigationController?.pushViewController(OrderDetailScreen, animated: true)
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + self.view.frame.height - 200 >= TvMyOrderTable.contentSize.height {
+            if flagForEmptyProdCall {
+                pageCount += 1
+//                CallAPIToGetOrderListFromAPI()
+            }
+        }
+    }
     //MARK: - All Defined Functions
     
     func CallOrderAPI() {
@@ -115,14 +124,18 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func CallAPIToGetOrderListFromAPI(){
 
         loader.show(withStatus: "Please Wait , \nWe Are Getting Your Data!")
-        
+        var pageURL = "page=\(pageCount)&items=50"
         if MyOrderScreenVC.UrlExtraBody.count <= 1{
             MyOrderScreenVC.IsFilterData = false
+            pageURL = "?"+pageURL
         }else{
             MyOrderScreenVC.IsFilterData = true
+            pageCount = 1
+            pageURL = "&"+pageURL
         }
             
-        var request =  APIRequest(isLoader: true, method: .get, path: Constant.Get_OrderList_URl + MyOrderScreenVC.UrlExtraBody, headers: HeaderValue.headerWithToken.value, body: nil)
+        var request =  APIRequest(isLoader: true, method: .get, path: Constant.Get_OrderList_URl + MyOrderScreenVC.UrlExtraBody + pageURL
+                                , headers: HeaderValue.headerWithToken.value, body: nil)
             
         getOrderListViewModel.CallToGetOrdersData(request: request) { response in
                 
@@ -173,7 +186,7 @@ class MyOrderScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func UpdateUIData(){
         if ((OrderListData?.success) == false){
-            ShowAlertBox(Title: OrderListData?.message ?? "", Message: "")
+            ShowAlertBox(Title: "Something Went Wrong!", Message: OrderListData?.message ?? "")
         }else{
             TvMyOrderTable.reloadData()
         }

@@ -126,7 +126,7 @@ class ProfileScreenVC: UIViewController {
         VwProfileMenuBgview.layer.cornerRadius = 20
         VwProfileMenuBgview.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
-        VwProfileMenuBgview.layer.shadowOpacity = 0.5
+        VwProfileMenuBgview.layer.shadowOpacity = 0.3
         VwProfileMenuBgview.layer.shadowOffset = CGSize(width: 0, height: -5)
         VwProfileMenuBgview.layer.shadowRadius = 3
         VwProfileMenuBgview.layer.shadowColor = UIColor.black.cgColor
@@ -177,6 +177,8 @@ class ProfileScreenVC: UIViewController {
                         SetUI()
                     }else{
                         ShowAlertBox(Title: ProfileData.message ?? "", Message: "")
+                        UserDefaults.standard.set(false, forKey: "IsRedirect")
+                        UserDefaults.standard.set("", forKey: "token")
                     }
                     
                     loader.dismiss()
