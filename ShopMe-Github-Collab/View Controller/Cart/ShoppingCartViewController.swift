@@ -41,16 +41,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         
         CartListTableView.delegate = self
         CartListTableView.dataSource = self
-//        SVProgressHUD.setForegroundColor(UIColor.black)
-//        SVProgressHUD.setBackgroundColor(UIColor(named: "Custom Black - h")!)
-//        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.custom)
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         customizeLoader()
         getCartData(urlPath: Constant.getUserCart)
-//        SVProgressHUD.setDefaultMaskType(.black)
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
         reachable()
@@ -233,12 +229,16 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                     self.productArr = self.cartObj.products ?? []
                     self.updateTotal()
                     self.checkCart()
-                    self.CartListTableView.reloadData()
+                    UIView.animate(withDuration: 0.5, delay: 0) {
+                        self.CartListTableView.reloadData()
+                        self.view.layoutIfNeeded()
+                    }
+                    
                     SVProgressHUD.dismiss()
                     
                 }else{
                     SVProgressHUD.dismiss()
-                    self.ShowAlertBox(Title: "\(response.message ?? "Something went wrong")", Message: "")
+//                    self.ShowAlertBox(Title: "\(response.message ?? "Something went wrong")", Message: "")
                     print("=====> get cart response failed!!")
                 }
             }
