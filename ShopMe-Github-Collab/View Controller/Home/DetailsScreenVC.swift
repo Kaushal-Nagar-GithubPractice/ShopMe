@@ -82,6 +82,9 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         getUserRatings()
         print(isWishlist)
         btnWishList()
+        
+        Global_scrollView = scrollView
+        GregisterKeyboardNotifications()
        
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -103,7 +106,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         SizesInCArt = [""]
         collectionSize.reloadData()
         collectionColor.reloadData()
-        
+        NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: IBACTION Method

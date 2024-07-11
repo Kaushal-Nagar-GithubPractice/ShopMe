@@ -40,18 +40,21 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         textFields.forEach { $0.delegate = self }
-        scrollView.contentInset.bottom = 0
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
+//        scrollView.contentInset.bottom = 0
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
+        Global_scrollView = scrollView
+        GregisterKeyboardNotifications()
         
         setUi()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func setUi(){
@@ -65,18 +68,6 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
-    @objc private func keyboardWillShow(notification: NSNotification){
-        guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-
-        scrollView.contentInset.bottom = view.convert(keyboardFrame.cgRectValue, from: nil).size.height + 50
-    }
-    
-    @objc private func keyboardWillHide(notification: NSNotification){
-        guard let keyboardFrame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        scrollView.contentInset.bottom = 0
-    }
-    
     
     // MARK: - IBActions
     
@@ -117,7 +108,16 @@ class AddAddressViewController: UIViewController, UITextFieldDelegate {
             showAlert(title: "Mobile number lenght should be 10!", message: "")
         }else{
             let AddressDict:[String:Any] = ["firstName":tfFirstName.text!, "lastName": tfLastName.text! , "mobileNo" : tfPhoneNumber.text! ,"email": tfEmail.text!, "addressLine1": tfAddressline1.text! ,"addressLine2": tfAddressline2.text! ,"country": tfCountry.text! ,"city": tfCity.text! ,"state": tfState.text! ,"zipcode" : Int(tfZipCode.text!) ?? 1111 , "addressType": addressType ]
-            
+            print("is first time ===>..",UserDefaults.standard.bool(forKey: "firstTimeAddress"))
+            if UserDefaults.standard.bool(forKey: "firstTimeAddress"){
+                var addressArr: [[String:Any]] = UserDefaults.standard.object(forKey: "customeraddress") as! [[String : Any]]
+                addressArr.append(AddressDict)
+                UserDefaults.standard.set(addressArr, forKey: "customeraddress")
+                
+                print("===>..u_default adrs arr ===...", UserDefaults.standard.object(forKey: "customeraddress"))
+            }else{
+                print("not saved in user default bcz not logged in")
+            }
             
             delegatePassAddress?.sendAddresToPreviousVc(addressDict: AddressDict)
             
