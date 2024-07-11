@@ -13,6 +13,7 @@ class HomeHeaderCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var lblDetailHeader: UILabel!
     
+    @IBOutlet var imageGradiant: UIImageView?
     @IBOutlet weak var lblHeader: UILabel!
     @IBOutlet weak var imageHeader: UIImageView!
     @IBOutlet weak var viewHeader: UIView!
@@ -22,5 +23,8 @@ class HomeHeaderCollectionViewCell: UICollectionViewCell {
 //        ApplyShadow(view: viewHeader)
         imageHeader.layer.cornerRadius = 15
         imageHeader.layer.masksToBounds = true
+        imageGradiant?.layer.cornerRadius = 15
+        imageGradiant?.layer.masksToBounds = true
+        
     }
 }

@@ -16,6 +16,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
     @IBOutlet weak var tblUserReviews: UITableView!
     @IBOutlet weak var UserRating: CosmosView!
     @IBOutlet weak var txtViewUserRating: KMPlaceholderTextView!
+//    @IBOutlet var txtViewUserRating: UITextView!
     @IBOutlet weak var viewSuggestedProduct: UIView!
     var isAddedtoCart = false
     @IBOutlet weak var btnAddUserRating: UIButton!
@@ -87,6 +88,7 @@ class DetailsScreenVC: UIViewController, UICollectionViewDataSource, UICollectio
         if !(selectedProduct?.images?.count == 1) {
             timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
         }
+        NotificationCenter.default.removeObserver(self)
     }
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) {_ in
