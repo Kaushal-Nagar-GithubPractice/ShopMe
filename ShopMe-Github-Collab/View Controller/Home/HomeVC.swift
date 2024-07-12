@@ -9,9 +9,12 @@ import UIKit
 import Kingfisher
 import SVProgressHUD
 import Reachability
-
+import FSPagerView
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, ProductSelect, UICollectionViewDelegateFlowLayout {
+    
     var isSharedProduct = false
+    
+    @IBOutlet weak var podViewSpecialOffer: FSPagerView!
     var customerAddress = [["firstName":"john", "lastName": "carter" , "mobileNo" : "9099009990" ,"email": "john@gmail.com", "addressLine1": "ganesh meridian" ,"addressLine2":"near kargil Petrol Pump" ,"country": "India" ,"city": "AHmedabad" ,"state": "Gujarat","zipcode" : 1111]]
     var productFromURL = URLComponents()
     @IBOutlet var lblDisplayedProducts: UILabel!
@@ -33,6 +36,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var timer : Timer?
     var currentCellIndex = 0
     var TableHeight = CGFloat(0)
+    let reachability = try! Reachability()
     
     //MARK: Application Delegate Methods
     override func viewDidLoad() {
@@ -46,6 +50,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         collecctionFacilities.delegate = self
         collecctionFacilities.dataSource = self
         
+        
         if UserDefaults.standard.bool(forKey: "firstTimeAddress") == false{
             UserDefaults.standard.set(true, forKey: "firstTimeAddress")
                 UserDefaults.standard.set(customerAddress, forKey: "customeraddress")
@@ -53,6 +58,9 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
+//        DispatchQueue.main.async {
+//            self.reachable()
+//        }
         timer?.invalidate()
         currentCellIndex = 0
         self.tblViewHomeScreen.showsVerticalScrollIndicator = false
@@ -91,6 +99,61 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         
     }
     
+    
+//    func reachable(){
+//        reachability.whenReachable = { [self] reachability in
+//            if reachability.connection == .wifi {
+//                print("Reachable via WiFi")
+//            } else {
+//                print("Reachable via Cellular")
+//            }
+//            SVProgressHUD.dismiss()
+//            timer?.invalidate()
+//            currentCellIndex = 0
+//            self.tblViewHomeScreen.showsVerticalScrollIndicator = false
+//            self.navigationController?.isNavigationBarHidden = true
+//            self.tabBarController?.tabBar.isHidden = false
+//            collectionHeader.showsHorizontalScrollIndicator = false
+//            collectionCategories.showsHorizontalScrollIndicator = false
+//            collecctionFacilities.showsHorizontalScrollIndicator = false
+//            pageControlHeader.numberOfPages = arrSpecialOffers.count
+//            collectionHeader.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
+//            pageControlHeader.currentPage = 0
+//            self.callApiSpecialOffers()
+//            if isFirstTimeApiCall {
+//                self.callApiCategory()
+//                self.callApiProduct()
+//            }
+//            
+//            timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(slideToNext), userInfo: nil, repeats: true)
+//            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) {_ in
+//                self.tblViewHomeScreen.reloadData()
+//                self.collectionHeader.reloadData()
+//            }
+//        }
+//        reachability.whenUnreachable = { _ in
+//            SVProgressHUD.dismiss()
+//            let Alert = UIAlertController(title: "Connection Error!", message: "Please Turn On Your Internet.", preferredStyle: UIAlertController.Style.alert)
+//            
+//            Alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+//                SVProgressHUD.setDefaultMaskType(.black)
+//                SVProgressHUD.show(withStatus: "We Are Loading Your Data....")
+//                Alert.dismiss(animated: true)
+//            }))
+//            Alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+//            Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+//            Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
+//            self.present(Alert,animated: true)
+//            print("Not reachable")
+//        }
+//
+//        do {
+//            try reachability.startNotifier()
+//        } catch {
+//            print("Unable to start notifier")
+//        }
+//    }
+    
     //MARK: Collection Delegate Methods
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == collectionCategories {
@@ -125,6 +188,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                     cell.imageHeader.setImageWithURL(url: arrSpecialOffers[indexPath.row % (arrSpecialOffers.count )].offerImage ?? "", imageView: cell.imageHeader)
                     cell.lblHeader.text = arrSpecialOffers[indexPath.row % (arrSpecialOffers.count )].title
                     cell.lblDetailHeader.text = arrSpecialOffers[indexPath.row % (arrSpecialOffers.count)].description
+                    collectionView.isScrollEnabled = true
                 }else{
                     collectionView.isScrollEnabled = false
                     timer?.invalidate()

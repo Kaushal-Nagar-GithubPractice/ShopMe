@@ -1,5 +1,6 @@
 PODS:
   - Cosmos (25.0.1)
+  - FSPagerView (0.8.3)
   - Kingfisher (7.11.0)
   - KMPlaceholderTextView (1.4.0)
   - ReachabilitySwift (5.2.3)
@@ -11,6 +12,7 @@ PODS:
 
 DEPENDENCIES:
   - Cosmos
+  - FSPagerView
   - Kingfisher
   - KMPlaceholderTextView
   - ReachabilitySwift
@@ -21,6 +23,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Cosmos
+    - FSPagerView
     - Kingfisher
     - KMPlaceholderTextView
     - ReachabilitySwift
@@ -30,6 +33,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Cosmos: 02db0a1c953107049bfd2d7af19ceef55ecb7e98
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   KMPlaceholderTextView: 2206c3df39979e9396e2d96fa9f427a8951121b0
   ReachabilitySwift: 7f151ff156cea1481a8411701195ac6a984f4979
@@ -37,6 +41,6 @@ SPEC CHECKSUMS:
   SwiftRangeSlider: f86e3b637c961120158fa1a89277c8343845cbe4
   SwiftSoup: 4164c6bd8af69acd119c23fb36906975a60d71bb
 
-PODFILE CHECKSUM: 08ec127dffcc491532e3f9510db26076e206406b
+PODFILE CHECKSUM: 9a5631b02eea130c42cd2bdfe15b6ad4f8047320
 
 COCOAPODS: 1.15.2

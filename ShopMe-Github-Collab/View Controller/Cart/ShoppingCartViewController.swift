@@ -49,7 +49,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         getCartData(urlPath: Constant.getUserCart)
         self.navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
-        reachable()
         checkCart()
     }
     
@@ -87,31 +86,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         }
 
     }
-    
-    func reachable(){
-        reachability.whenReachable = { reachability in
-            if reachability.connection == .wifi {
-                SVProgressHUD.dismiss()
-                self.getCartData(urlPath: Constant.getUserCart)
-
-                print("Reachable via WiFi")
-            } else {
-                print("Reachable via Cellular")
-            }
-        }
-        reachability.whenUnreachable = { _ in
-            SVProgressHUD.dismiss()
-            self.ShowAlertBox(Title: "offline", Message: "")
-            print("Not reachable")
-        }
-
-        do {
-            try reachability.startNotifier()
-        } catch {
-            print("Unable to start notifier")
-        }
-    }
-    
+ 
     // MARK: - Tableview methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

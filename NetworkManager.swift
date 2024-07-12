@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+import SVProgressHUD
 
 enum HeaderValue{
     case headerForLogin
@@ -98,6 +100,36 @@ struct APIClient {
     typealias APIClientCompletion = (APIResult<Data?>) -> Void
     private let session = URLSession.shared
     func perform(_ request: APIRequest, _ complation: @escaping (Data?, NSError?) -> Void) {
+        
+        
+        DispatchQueue.main.async {
+            
+            Connectivity.IsOnlineFunc()
+            print(Connectivity.IsOnline)
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                
+                if !Connectivity.IsOnline{
+                    
+                    let Alert = UIAlertController(title: "Connection Error!", message: "Please Turn On Your Internet.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    Alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                        SVProgressHUD.setDefaultMaskType(.black)
+                        SVProgressHUD.show(withStatus: "We Are Loading Your Data....")
+                        Alert.dismiss(animated: true)
+                    }))
+                    Alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = UIColor.systemBackground
+                    Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderWidth = 0.5
+                    Alert.view.subviews.first?.subviews.first?.subviews.first?.layer.borderColor = UIColor(named: "Custom Black")?.cgColor
+                    
+                    let Viewcontroller = UIApplication.shared.keyWindow?.rootViewController
+                    Viewcontroller?.present(Alert, animated: true, completion: nil)
+                }
+                
+            }
+            
+        }
+        
         print(request.path)
         var urlRequest = URLRequest(url: URL(string: request.path)!)
         urlRequest.httpMethod = request.method.rawValue
@@ -118,7 +150,7 @@ struct APIClient {
                         if code == 401 {
                         }
                     }
-                    print("==>...NW...>",json)
+//                    print("==>...NW...>",json)
                 }catch{
                     print("catch")
                 }

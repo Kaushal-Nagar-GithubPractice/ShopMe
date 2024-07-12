@@ -11,30 +11,29 @@ import Reachability
 class Connectivity{
     
     static var reachability : Reachability! = nil
+    static var IsOnline = false
     
-    static func IsOnline() -> Bool{
-        
-        var IsOnline = false
-        
+    static func IsOnlineFunc(){
+
         do {
-            reachability = try Reachability()
+            Connectivity.reachability = try Reachability()
         } catch {
             print("Error in Variable")
         }
         
-        reachability.whenReachable = { reachability in
+        Connectivity.reachability.whenReachable = { reachability in
             if reachability.connection == .wifi {
                 print("Reachable via WiFi")
             } else {
                 print("Reachable via Cellular")
             }
             
-            IsOnline = true
+            Connectivity.IsOnline = true
             
         }
-        reachability.whenUnreachable = { _ in
+        Connectivity.reachability.whenUnreachable = { _ in
             print("Not reachable")
-            IsOnline = false
+            Connectivity.IsOnline = false
         }
         
         do {
@@ -43,6 +42,6 @@ class Connectivity{
             print("Unable to start notifier")
         }
         
-        return IsOnline
+        
     }
 }
